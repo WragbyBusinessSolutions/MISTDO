@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-MISTDO.Web-C6040248-6AE7-410F-BAFA-47F4F3DDDEBE</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20181010175835_Trainer.cs" />
+    <Compile Remove="Data\Migrations\20181010175835_Trainer.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
