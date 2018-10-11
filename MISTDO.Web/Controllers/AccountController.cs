@@ -220,7 +220,27 @@ namespace MISTDO.Web.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser()
+                {
+
+                    UserName = model.Email,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    CompanyAddress = model.CompanyAddress,
+                    CompanyName = model.CompanyName,
+                    UserAddress = model.UserAddress,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+
+                    State = model.State,
+                    City = model.City,
+                    Country = model.Country,
+                    DateRegistered = DateTime.Now.Date,
+
+
+
+                };
+
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -232,7 +252,9 @@ namespace MISTDO.Web.Controllers
 
                     //   await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    //  return RedirectToLocal(returnUrl);
+                    return View("ConfirmMail");
+
                 }
                 AddErrors(result);
             }

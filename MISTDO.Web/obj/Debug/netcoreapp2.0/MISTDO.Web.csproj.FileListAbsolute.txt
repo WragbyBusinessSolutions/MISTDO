@@ -10,3 +10,15 @@
 /Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO.Web.AssemblyInfo.cs
 /Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO.Web.dll
 /Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO.Web.pdb
+C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\bin\Debug\netcoreapp2.0\MISTDO.Web.deps.json
+C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\bin\Debug\netcoreapp2.0\MISTDO.Web.runtimeconfig.json
+C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\bin\Debug\netcoreapp2.0\MISTDO.Web.runtimeconfig.dev.json
+C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\bin\Debug\netcoreapp2.0\MISTDO.Web.dll
+C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\bin\Debug\netcoreapp2.0\MISTDO.Web.pdb
+C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\obj\Debug\netcoreapp2.0\MISTDO.Web.csprojAssemblyReference.cache
+C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\obj\Debug\netcoreapp2.0\MISTDO.Web.csproj.CoreCompileInputs.cache
+C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\obj\Debug\netcoreapp2.0\MISTDO.Web.AssemblyInfoInputs.cache
+C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\obj\Debug\netcoreapp2.0\MISTDO.Web.AssemblyInfo.cs
+C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\obj\Debug\netcoreapp2.0\MISTDO.Web.dll
+C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\obj\Debug\netcoreapp2.0\MISTDO.Web.pdb

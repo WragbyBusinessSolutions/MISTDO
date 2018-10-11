@@ -8,6 +8,8 @@ namespace MISTDO.Web.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
+        // Login Details
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -23,5 +25,67 @@ namespace MISTDO.Web.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        // Personal Info
+        [Display(Name = "First Name")]
+        [Required]
+        [DataType(DataType.Text)]
+        [MaxLength(100)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Last Name")]
+        [MaxLength(100)]
+        public string LastName { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        [MaxLength(100)]
+        [Display(Name = "Company Address")]
+        public string CompanyAddress { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        [MaxLength(100)]
+        [Display(Name = "Company Name")]
+        public string CompanyName { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        [MaxLength(100)]
+        [Display(Name = "User Address")]
+        public string UserAddress { get; set; }
+        [Display(Name = "Country")]
+        [Required]
+        [DataType(DataType.Text)]
+        public string Country { get; set; }
+        [Display(Name = "State")]
+        [Required]
+        [DataType(DataType.Text)]
+        public string State { get; set; }
+        [Display(Name = "City")]
+        [Required]
+        [DataType(DataType.Text)]
+        public string City { get; set; }
+        [Display(Name = "Date Registered")]
+
+        public DateTime DateRegistered { get; set; }
+        [Required]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
+        //////// Training Centre Registration
+
+
+
+
+
+        [Display(Name = "Training Centre Name")]
+        [Required]
+        [DataType(DataType.Text)]
+        [MaxLength(100)]
+        public string CentreName { get; set; }
+
+
+
+
     }
 }
