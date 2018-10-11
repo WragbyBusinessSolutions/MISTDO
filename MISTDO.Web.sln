@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MISTDO.Web", "MISTDO.Web\MISTDO.Web.csproj", "{13A673C9-C76E-4E27-94C3-416B986426E9}"
-	ProjectSection(ProjectDependencies) = postProject
-		{50297592-695D-4F9C-8CDA-EB86C50B3324} = {50297592-695D-4F9C-8CDA-EB86C50B3324}
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MISTDO.Api", "MISTDO.Api\MISTDO.Api.csproj", "{50297592-695D-4F9C-8CDA-EB86C50B3324}"
 EndProject
