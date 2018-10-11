@@ -215,48 +215,48 @@ namespace MISTDO.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Register(PersonalInfoViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser()
-                {
+                //var user = new ApplicationUser()
+                //{
 
-                    UserName = model.Email,
-                    Email = model.Email,
-                    PhoneNumber = model.PhoneNumber,
-                    CompanyAddress = model.CompanyAddress,
-                    CompanyName = model.CompanyName,
-                    UserAddress = model.UserAddress,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
+                //    UserName = model.Email,
+                //    Email = model.Email,
+                //    PhoneNumber = model.PhoneNumber,
+                //    CompanyAddress = model.CompanyAddress,
+                //    CompanyName = model.CompanyName,
+                //    UserAddress = model.UserAddress,
+                //    FirstName = model.FirstName,
+                //    LastName = model.LastName,
 
-                    State = model.State,
-                    City = model.City,
-                    Country = model.Country,
-                    DateRegistered = DateTime.Now.Date,
+                //    State = model.State,
+                //    City = model.City,
+                //    Country = model.Country,
+                //    DateRegistered = DateTime.Now.Date,
 
 
 
-                };
+                //};
 
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User created a new account with password.");
+                //var result = await _userManager.CreateAsync(user, model.Password);
+                //if (result.Succeeded)
+                //{
+                //    _logger.LogInformation("User created a new account with password.");
 
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                //    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                //    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                //    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
-                    //   await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
-                    //  return RedirectToLocal(returnUrl);
-                    return View("ConfirmMail");
+                //    //   await _signInManager.SignInAsync(user, isPersistent: false);
+                //    _logger.LogInformation("User created a new account with password.");
+                //    //  return RedirectToLocal(returnUrl);
+                //    return View("ConfirmMail");
 
-                }
-                AddErrors(result);
+                //}
+                //AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form

@@ -35,7 +35,14 @@ namespace MISTDO.Web
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddDistributedMemoryCache();
 
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromSeconds(60);
+                options.Cookie.HttpOnly = true;
+            });
             services.AddMvc();
         }
 
@@ -52,6 +59,7 @@ namespace MISTDO.Web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseSession();
 
             app.UseStaticFiles();
 
@@ -63,6 +71,27 @@ namespace MISTDO.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+        private async Task CreateUserRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            IdentityResult roleResult;
+            //Adding Admin Role 
+            var PAProleCheck = await RoleManager.RoleExistsAsync("PAP");
+            var AMCProleCheck = await RoleManager.RoleExistsAsync("AMCP");
+
+            if (!PAProleCheck)
+            {
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("PAP"));
+            }
+            if (!AMCProleCheck)
+            {
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("AMCP"));
+            }
+
+
         }
     }
 }

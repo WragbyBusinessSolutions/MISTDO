@@ -25,8 +25,11 @@ namespace MISTDO.Web.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+    // Personal Info
+    public class PersonalInfoViewModel
+    {
 
-        // Personal Info
         [Display(Name = "First Name")]
         [Required]
         [DataType(DataType.Text)]
@@ -73,10 +76,9 @@ namespace MISTDO.Web.Models.AccountViewModels
         public string PhoneNumber { get; set; }
 
         //////// Training Centre Registration
-
-
-
-
+    }
+    public class TrainingCentreViewModel
+    {
         [Required]
         public int OGISPId { get; set; }
 
@@ -97,3 +99,4 @@ namespace MISTDO.Web.Models.AccountViewModels
         public string TrainingModule { get; set; }
     }
 }
+
