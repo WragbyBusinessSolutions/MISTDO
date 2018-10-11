@@ -77,6 +77,9 @@ namespace MISTDO.Web.Models.AccountViewModels
 
 
 
+        [Required]
+        public int OGISPId { get; set; }
+
 
         [Display(Name = "Training Centre Name")]
         [Required]
@@ -84,8 +87,13 @@ namespace MISTDO.Web.Models.AccountViewModels
         [MaxLength(100)]
         public string CentreName { get; set; }
 
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "OGISP UserName")]
+        [MaxLength(100)]
+        public string OGISPUserName { get; set; }
+        [Required]
 
-
-
+        public string TrainingModule { get; set; }
     }
 }
