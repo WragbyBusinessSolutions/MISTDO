@@ -21,3 +21,4 @@ C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\obj\Debug\netcoreapp2.0\MISTDO
 C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\obj\Debug\netcoreapp2.0\MISTDO.Web.AssemblyInfo.cs
 C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\obj\Debug\netcoreapp2.0\MISTDO.Web.dll
 C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\obj\Debug\netcoreapp2.0\MISTDO.Web.pdb
+C:\Users\ibrah\source\repos\MISTDO.Web\MISTDO.Web\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

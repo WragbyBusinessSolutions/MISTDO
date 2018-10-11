@@ -47,7 +47,7 @@ namespace MISTDO.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -71,6 +71,8 @@ namespace MISTDO.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            CreateUserRoles(provider).Wait();
+
         }
         private async Task CreateUserRoles(IServiceProvider serviceProvider)
         {
