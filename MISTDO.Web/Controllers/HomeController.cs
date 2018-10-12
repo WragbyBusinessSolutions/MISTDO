@@ -43,7 +43,6 @@ namespace MISTDO.Web.Controllers
 
         public IActionResult RegisterNow()
         {
-
             return View();
         }
 
