@@ -13,14 +13,15 @@ C:/Users/ibrah/source/repos/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO
 C:/Users/ibrah/source/repos/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO.Web.pdb
 >>>>>>> Stashed changes
 C:/Users/ibrah/source/repos/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/UserSecretsAssemblyInfo.cs
-/Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO.Web.csproj.CoreCompileInputs.cache
-/Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/UserSecretsAssemblyInfo.cs
-/Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO.Web.AssemblyInfoInputs.cache
-/Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO.Web.AssemblyInfo.cs
 /Users/damilare/Projects/MISTDO.Web/MISTDO.Web/bin/Debug/netcoreapp2.0/MISTDO.Web.deps.json
 /Users/damilare/Projects/MISTDO.Web/MISTDO.Web/bin/Debug/netcoreapp2.0/MISTDO.Web.runtimeconfig.json
 /Users/damilare/Projects/MISTDO.Web/MISTDO.Web/bin/Debug/netcoreapp2.0/MISTDO.Web.runtimeconfig.dev.json
 /Users/damilare/Projects/MISTDO.Web/MISTDO.Web/bin/Debug/netcoreapp2.0/MISTDO.Web.dll
 /Users/damilare/Projects/MISTDO.Web/MISTDO.Web/bin/Debug/netcoreapp2.0/MISTDO.Web.pdb
+/Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO.Web.csprojAssemblyReference.cache
+/Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO.Web.csproj.CoreCompileInputs.cache
+/Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/UserSecretsAssemblyInfo.cs
+/Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO.Web.AssemblyInfoInputs.cache
+/Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO.Web.AssemblyInfo.cs
 /Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO.Web.dll
 /Users/damilare/Projects/MISTDO.Web/MISTDO.Web/obj/Debug/netcoreapp2.0/MISTDO.Web.pdb
