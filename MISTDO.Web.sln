@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MISTDO.Web", "MISTDO.Web\MISTDO.Web.csproj", "{13A673C9-C76E-4E27-94C3-416B986426E9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MISTDO.Api", "MISTDO.Api\MISTDO.Api.csproj", "{50297592-695D-4F9C-8CDA-EB86C50B3324}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MISTDO.Web", "MISTDO.Web\MISTDO.Web.csproj", "{13A673C9-C76E-4E27-94C3-416B986426E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{13A673C9-C76E-4E27-94C3-416B986426E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13A673C9-C76E-4E27-94C3-416B986426E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13A673C9-C76E-4E27-94C3-416B986426E9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50297592-695D-4F9C-8CDA-EB86C50B3324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50297592-695D-4F9C-8CDA-EB86C50B3324}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50297592-695D-4F9C-8CDA-EB86C50B3324}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50297592-695D-4F9C-8CDA-EB86C50B3324}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
