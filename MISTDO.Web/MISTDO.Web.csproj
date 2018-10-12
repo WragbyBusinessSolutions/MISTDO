@@ -84,4 +84,7 @@
     <None Include="wwwroot\bower_components\sweetalert\lib\sweet-alert.js" />
     <None Include="wwwroot\bower_components\twitter-bootstrap-wizard\jquery.bootstrap.wizard.min.js" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Home\ForgetPassword.cshtml" />
+  </ItemGroup>
 </Project>

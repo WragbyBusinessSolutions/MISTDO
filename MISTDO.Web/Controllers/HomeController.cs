@@ -29,6 +29,24 @@ namespace MISTDO.Web.Controllers
             return View();
         }
 
+        public IActionResult Trainer()
+        {
+
+            return View();
+        }
+
+        public IActionResult ForgetPassword()
+        {
+
+            return View();
+        }
+
+        public IActionResult RegisterNow()
+        {
+
+            return View();
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

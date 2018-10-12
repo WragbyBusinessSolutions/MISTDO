@@ -215,7 +215,7 @@ namespace MISTDO.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(PersonalInfoViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -224,7 +224,7 @@ namespace MISTDO.Web.Controllers
                 //{
 
                 //    UserName = model.Email,
-                //    Email = model.Email,
+                //    Email = model.Email,x
                 //    PhoneNumber = model.PhoneNumber,
                 //    CompanyAddress = model.CompanyAddress,
                 //    CompanyName = model.CompanyName,
