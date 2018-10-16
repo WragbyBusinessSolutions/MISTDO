@@ -1,5 +1,5 @@
 
-
+@model IEnumerable<Trainee>
 @{
     ViewData["Title"] = "Trainee";
     
@@ -572,11 +572,21 @@
                         <div class="page-title">
                             <h4>Trainee List</h4>
                         </div>
+                           <div class="col-md-12">
+                                                                                         
+                                        <a asp-controller="RegisterTrainee" class="btn" style="min-width:20%; background-color: #0b9242; color: white;">Add New Trainee</a>
+                                   
+                                               
+                                         </div>
                         <div class="row">
+                            
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-block">
+                                     
+                                        
                                         <div class="table-overflow">
+                                            
                                             <table id="dt-opt" class="table table-lg table-hover">
                                                 <thead>
                                                     <tr>
@@ -593,6 +603,9 @@
                                                 </thead>
                                                 
                                                 <tbody>
+                                                     @foreach (var item in Model)
+                                                    {
+
                                                     <tr>
                                                         <td>
                                                             <div class="checkbox mrg-left-10">
@@ -612,28 +625,28 @@
                                                         <td>
                                                             <div class="relative mrg-top-15">
                                                                 <span class="status online"> </span>
-                                                                <span class="pdd-left-20">Hurst</span>
+                                                                <span class="pdd-left-20">@item.FirstName,@item.LastName</span>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="mrg-top-15">
-                                                                <span class="text-info"><b>087455612</b></span>
+                                                                <span class="text-info"><b>@item.PhoneNo</b></span>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="mrg-top-15">
-                                                               <span class="sub-title">shell training centre</span>
+                                                               <span class="sub-title">@item.CompanyName</span>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="mrg-top-15">
-                                                                 <span class="sub-title">05 dehli view</span>
+                                                                 <span class="sub-title">@item.CompanyAddress</span>
                                                                 
                                                             </div>
                                                         </td>
                                                          <td>
                                                             <div class="mrg-top-15">
-                                                                 <span class="sub-title">10 mangroove street</span>
+                                                                 <span class="sub-title">@item.UserAddress</span>
                                                                
                                                             </div>
                                                         </td>
@@ -653,7 +666,7 @@
                                                         </td>
                                                     </tr>
                                                   
-                                                    
+                                                    }
                                                 </tbody>
                                             </table>
                                         </div>

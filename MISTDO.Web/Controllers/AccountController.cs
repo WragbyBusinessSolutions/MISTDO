@@ -211,6 +211,8 @@ namespace MISTDO.Web.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View("~/Views/Home/RegisterNow.cshtml");
         }
+        
+       
 
         [HttpPost]
         [AllowAnonymous]

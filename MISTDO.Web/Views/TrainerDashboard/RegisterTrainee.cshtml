@@ -1,0 +1,135 @@
+@model RegisterTraineeViewModel
+@{
+    ViewData["Title"] = "Trainee Registration | MISTDO Portal";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+    <title>Trainee - Register</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/lib/multiform/bootstrap.min.css" rel="stylesheet" />
+    <!-- animation CSS -->
+    <link href="~/lib/multiform/animate.css" rel="stylesheet" />
+    <!-- Wizard CSS -->
+    <link href="~/lib/multiform/steps.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="~/lib/multiform/style.css" rel="stylesheet" />
+    <!-- color CSS -->
+    <link href="~/lib/multiform/default.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    <!-- Bootstrap Core CSS -->
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+    <section id="wrapper" class="step-register">
+        <div class="register-box">
+            <div class="">
+               
+                <!-- multistep form -->
+                <form id="msform" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                    <!-- progressbar -->
+                     <!-- fieldsets -->
+                    <fieldset>
+                        <h2 class="fs-title">Create New Trainee</h2>
+                            <div class="form-group">
+
+                            <label asp-for="FirstName"></label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <label asp-for="LastName"></label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span></div>
+                        <div class="form-group">
+
+                            <label asp-for="PhoneNo"></label>
+                            <input asp-for="PhoneNo" class="form-control" />
+                            <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <label asp-for="CompanyName"></label>
+                            <input asp-for="CompanyName" class="form-control"   />
+                            <span asp-validation-for="CompanyName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <label asp-for="CompanyAddress"></label>
+                            <input asp-for="CompanyAddress" class="form-control" />
+                            <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+
+                        </div>
+                        <div class="form-group">
+
+                            <label asp-for="UserAddress"></label>
+                            <input asp-for="UserAddress" class="form-control"   />
+                            <span asp-validation-for="UserAddress" class="text-danger"></span>
+                        </div>
+                      
+                        <div class="form-group">
+
+                            <label asp-for="UserAddress"></label>
+                            <input asp-for="UserAddress" class="form-control"   />
+                            <span asp-validation-for="UserAddress" class="text-danger"></span>
+                        </div>
+                        <!-- <div class="form-group">
+
+                            <label asp-for="FirstFinger"></label>
+                            <input asp-for="FirstFinger" class="form-control"  />
+                            <span asp-validation-for="FirstFinger" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <label asp-for="MiddleFinger"></label>
+                            <input asp-for="MiddleFinger" class="form-control"  />
+                            <span asp-validation-for="MiddleFinger" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label asp-for="LastFinger"></label>
+                            <input asp-for="LastFinger" class="form-control"  />
+                            <span asp-validation-for="LastFinger" class="text-danger"></span>
+                        </div> -->
+                       
+                           
+                   
+                        <button type="submit" name="submit" class="btn btn-success" value="Submit">Submit</button>
+                    </fieldset>
+                </form>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </section>
+    <!-- jQuery -->
+    <script src="~/lib/multiform/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/lib/multiform/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="~/lib/multiform/sidebar-nav.min.js"></script>
+    <script src="~/lib/multiform/register-init.js"></script>
+    <script src="~/lib/multiform/jquery.easing.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="~/lib/multiform/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="~/lib/multiform/waves.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="~/lib/multiform/custom.min.js"></script>
+    <!--Style Switcher -->
+
+    <script src="~/lib/multiform/jQuery.style.switcher.js"></script>
+</body>
+</html>

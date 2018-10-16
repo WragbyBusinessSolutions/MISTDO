@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MISTDO.Web.Models.AccountViewModels;
 using MISTDO.Web.Services;
 
 namespace MISTDO.Web.Controllers
@@ -26,9 +27,38 @@ namespace MISTDO.Web.Controllers
             var certs = await _trainer.GetAllCertificates();
             return View(certs);
         }
-         public IActionResult Trainee()
+         
+
+         public async Task<IActionResult> Trainee()
         {
-            return View();
+            var train = await _trainer.GetAllTrainees();    
+            return View(train);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+         public IActionResult RegisterTrainee(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View("~/Views/TrainerDashboard/RegisterTrainee.cshtml");
+        }
+
+        
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public IActionResult RegisterTrainee(RegisterTraineeViewModel model, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
+            {
+              
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View("~/Views/TrainerDashboard/RegisterTrainee.cshtml", model);
+        }
+
+
     }
 }

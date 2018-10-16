@@ -21,5 +21,12 @@ namespace MISTDO.Web.Services
             var certs = await dbcontext.Certificates.ToListAsync();
             return certs;
         }
+
+        public async Task<IEnumerable<Trainee>> GetAllTrainees()
+        {
+            var train = await dbcontext.Trainees.ToListAsync();
+            return train;
+
+        }
     }
 }
