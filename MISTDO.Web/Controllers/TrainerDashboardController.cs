@@ -14,5 +14,9 @@ namespace MISTDO.Web.Controllers
         {
             return View();
         }
+        public IActionResult Certificate()
+        {
+            return View();
+        }
     }
 }
