@@ -14,6 +14,7 @@ namespace MISTDO.Web.Models
         public string CertStatus { get; set; }
         public string TrainerOrgId { get; set; }
         public string TrainerOrg { get; set; }
+        public DateTime DateGenerated { get; set; }
 
 
     }

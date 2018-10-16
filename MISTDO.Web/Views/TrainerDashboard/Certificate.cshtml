@@ -1,8 +1,8 @@
-﻿
+﻿@model IEnumerable<Certificate>
 @{
     ViewData["Title"] = "Certificate";
-    
-    
+
+
 }
 
 <link rel="shortcut icon" href="assets/images/logo/favicon.png">
@@ -579,51 +579,61 @@
                                             <table id="dt-opt" class="table table-lg table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th></th>
-                                                        <th>Certis</th>
-                                                        <th>Status</th>
-                                                        <th>Bill Code</th>
-                                                        <th>Date</th>
-                                                        <th>Amount</th>
+                                                        <th>Image</th>
+                                                        <th>Certificate Number</th>
+                                                        <th>Certificate Status</th>
+                                                        <th>Date Generated</th>
+
+                                                        <th>Trainer Organization Id</th>
+                                                        <th>Trainer Organization</th>
+
                                                         <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+
+                                                    @foreach (var item in Model)
+                                                    {
                                                     <tr>
+
+
+
                                                         <td>
-                                                            <div class="checkbox mrg-left-20">
-                                                                <input id="task10" name="task10" type="checkbox">
-                                                                <label for="task10"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
+
+
                                                             <div class="list-info mrg-top-10">
-                                                                <img class="thumb-img" src="assets/images/avatars/thumb-1.jpg" alt="">
+                                                                <img class="thumb-img" src="~/dist/assets/images/avatars/thumb-1.jpg" alt="">
                                                                 <div class="info">
                                                                     <span class="title">Jordan Hurst</span>
                                                                     <span class="sub-title">ID 860</span>
                                                                 </div>
                                                             </div>
                                                         </td>
+
+                                                        <td>
+                                                            <div class="mrg-top-15">
+                                                                <span class="text-info"><b>@item.CertNumber</b></span>
+                                                            </div>
+                                                        </td>
                                                         <td>
                                                             <div class="relative mrg-top-15">
                                                                 <span class="status online"> </span>
-                                                                <span class="pdd-left-20">Trade Approved</span>
+                                                                <span class="pdd-left-20">@item.CertStatus</span>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="mrg-top-15">
-                                                                <span class="text-info"><b>#33666</b></span>
+                                                                <span>@item.DateGenerated</span>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="mrg-top-15">
-                                                                <span>8 May 2017</span>
+                                                                <b class="text-dark font-size-16">@item.TrainerOrgId</b>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="mrg-top-15">
-                                                                <b class="text-dark font-size-16">$168.00</b>
+                                                                <b class="text-dark font-size-16">@item.TrainerOrg</b>
                                                             </div>
                                                         </td>
                                                         <td>
@@ -634,9 +644,9 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                  
-                                                    
-                                                </tbody>
+
+                                                    }
+                                                    </tbody>
                                             </table>
                                         </div>
                                     </div>
