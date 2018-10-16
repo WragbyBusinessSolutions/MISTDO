@@ -111,9 +111,6 @@
     <Content Update="Views\Trainer\Lockout.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Trainer\Login.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
     <Content Update="Views\Trainer\LoginWith2fa.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

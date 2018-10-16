@@ -126,7 +126,7 @@ namespace MISTDO.Web.Controllers
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            return View("~/Views/Trainer/Index.cshtml");
         }
 
         [HttpPost]
@@ -157,7 +157,7 @@ namespace MISTDO.Web.Controllers
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
+                    return View("~/Views/Trainer/Index.cshtml", model);
                 }
             }
 
