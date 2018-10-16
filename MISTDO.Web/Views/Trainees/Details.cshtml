@@ -1,0 +1,78 @@
+﻿@model MISTDO.Web.Models.Trainee
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Trainee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstFinger)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstFinger)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MiddleFinger)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MiddleFinger)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastFinger)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastFinger)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TraineeId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

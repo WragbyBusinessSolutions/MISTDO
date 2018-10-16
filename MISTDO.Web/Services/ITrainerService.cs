@@ -9,5 +9,6 @@ namespace MISTDO.Web.Services
     public interface ITrainerService
     {
         Task<IEnumerable<Certificate>> GetAllCertificates();
+        Task<IEnumerable<Trainee>> GetAllTrainees();
     }
 }

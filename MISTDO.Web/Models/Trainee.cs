@@ -22,6 +22,5 @@ namespace MISTDO.Web.Models
         public byte[] MiddleFinger { get; set; }
         public byte[] LastFinger { get; set; }
 
-        public virtual Certificate Cert { get; set; }
     }
 }

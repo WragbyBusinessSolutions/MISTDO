@@ -1,0 +1,50 @@
+﻿@model MISTDO.Web.ViewModels.NewCertificateViewModel
+@inject MISTDO.Web.Services.ITrainerService TrainerService
+@{
+    ViewData["Title"] = "NewCertificate";
+}
+
+<h2>NewCertificate</h2>
+
+<h4>Certificate</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="NewCertificate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Certificate.CertNumber" class="control-label"></label>
+                <input asp-for="Certificate.CertNumber" class="form-control" />
+                <span asp-validation-for="Certificate.CertNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Certificate.CertStatus" class="control-label"></label>
+                <input asp-for="Certificate.CertStatus" class="form-control" />
+                <span asp-validation-for="Certificate.CertStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Certificate.TrainerOrgId" class="control-label"></label>
+                <input asp-for="Certificate.TrainerOrgId" class="form-control" />
+                <span asp-validation-for="Certificate.TrainerOrgId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Certificate.TrainerOrg" class="control-label"></label>
+                <input asp-for="Certificate.TrainerOrg" class="form-control" />
+                <span asp-validation-for="Certificate.TrainerOrg" class="text-danger"></span>
+            </div>
+            @{
+                var Trainers = await TrainerService.GetAllTrainees();
+            }
+            <select class="form-control" asp-for="TrainerId" asp-items="@new SelectList(Trainers.Select(e => e.TraineeId).ToList())"></select>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
