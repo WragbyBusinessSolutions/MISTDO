@@ -104,7 +104,7 @@ namespace MISTDO.Web.Controllers
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                    var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
 
                     return View("ConfirmMail");
@@ -126,7 +126,7 @@ namespace MISTDO.Web.Controllers
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             ViewData["ReturnUrl"] = returnUrl;
-            return View("~/Views/Trainer/Index.cshtml");
+            return View();
         }
 
         [HttpPost]
@@ -157,7 +157,7 @@ namespace MISTDO.Web.Controllers
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View("~/Views/Trainer/Index.cshtml", model);
+                    return View(model);
                 }
             }
 

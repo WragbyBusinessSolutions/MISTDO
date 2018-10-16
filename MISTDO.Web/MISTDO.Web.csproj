@@ -120,7 +120,7 @@
     <Content Update="Views\Trainer\RegisterNow.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Trainer\Index.cshtml">
+    <Content Update="Views\Trainer\Login.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Trainer\ResetPassword.cshtml">

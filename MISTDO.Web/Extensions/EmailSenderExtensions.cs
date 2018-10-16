@@ -9,9 +9,9 @@ namespace MISTDO.Web.Services
 {
     public static class EmailSenderExtensions
     {
-        public static Task SendEmailConfirmationAsync(this IEmailSender emailSender, string email, string link)
+        public static string SendEmailConfirmationAsync(this IEmailSender emailSender, string email, string link)
         {
-            return emailSender.SendEmailAsync(email, "Confirm your email",
+            return emailSender.SendLinkEmailAsync(email, "Confirm your email",
                 $"Please confirm your account by clicking this: <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>");
         }
     }
