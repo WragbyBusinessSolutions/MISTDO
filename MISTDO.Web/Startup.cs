@@ -83,6 +83,10 @@ namespace MISTDO.Web
             //Adding Admin Role 
             var PAProleCheck = await RoleManager.RoleExistsAsync("PAP");
             var AMCProleCheck = await RoleManager.RoleExistsAsync("AMCP");
+            var AdminroleCheck = await RoleManager.RoleExistsAsync("Admin");
+            var TrainerroleCheck = await RoleManager.RoleExistsAsync("Trainer");
+            var TraineeroleCheck = await RoleManager.RoleExistsAsync("Trainee");
+
 
             if (!PAProleCheck)
             {
@@ -92,7 +96,18 @@ namespace MISTDO.Web
             {
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("AMCP"));
             }
-
+            if (!AdminroleCheck)
+            {
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+            if (!TrainerroleCheck)
+            {
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Trainer"));
+            }
+            if (!TraineeroleCheck)
+            {
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Trainer"));
+            }
 
         }
     }

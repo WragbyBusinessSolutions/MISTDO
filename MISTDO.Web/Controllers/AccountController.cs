@@ -209,7 +209,7 @@ namespace MISTDO.Web.Controllers
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            return View("~/Views/Home/RegisterNow.cshtml");
         }
 
         [HttpPost]
@@ -260,7 +260,7 @@ namespace MISTDO.Web.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View("~/Views/Home/RegisterNow.cshtml", model);
         }
 
         [HttpPost]

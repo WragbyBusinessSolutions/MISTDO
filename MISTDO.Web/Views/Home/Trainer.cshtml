@@ -1,4 +1,5 @@
-﻿@{
+﻿@model LoginViewModel
+@{
     ViewData["Title"] = "Trainer Portal | MISTDO Portal";
 }
 <div class="app">
@@ -21,14 +22,25 @@
                                     <img class="img-responsive inline-block" src="~/dist/assets/images/logo/jepeg_logo.jpg" alt=""><br /><br />
                                     <h2>Trainer's Portal Login</h2>
                                     <p class="mrg-btm-15 font-size-13">Please enter your user name and password to login</p>
-                                    <form>
+                                    <form asp-action="Login" asp-controller="Account" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="User name">
+                                            <input asp-for="Email" class="form-control" placeholder="User name" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Password">
+                                            <input asp-for="Password" class="form-control" placeholder="Password" />
+                                            <span asp-validation-for="Password" class="text-danger"></span>
                                         </div>
-                                        <button class="btn" style="min-width:100%; background-color: #0b9242; color: white;">Login</button>
+
+                                        <div class="form-group">
+                                                <label asp-for="RememberMe">
+                                                    <input asp-for="RememberMe" />
+                                                    @Html.DisplayNameFor(m => m.RememberMe)
+                                                </label>
+                                            </div>
+                                        
+
+                                        <button type="submit" class="btn" style="min-width:100%; background-color: #0b9242; color: white;">Login</button>
                                         <div class="form-group">
                                             <span class="font-size-13  pdd-top-30"><a asp-controller="Home" asp-action="ForgetPassword" style="color:#888da8;">Forget Password?</a></span>
                                             <span class="font-size-13 pull-right pdd-top-10"><a asp-controller="Home" asp-action="RegisterNow" style="color:#888da8;">Register Now</a></span>

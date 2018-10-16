@@ -72,7 +72,7 @@ namespace MISTDO.Web.Models.AccountViewModels
         public string PhoneNumber { get; set; }
 
         [Required]
-        public int OGISPId { get; set; }
+        public string OGISPId { get; set; }
 
 
         [Display(Name = "Training Centre Name")]
