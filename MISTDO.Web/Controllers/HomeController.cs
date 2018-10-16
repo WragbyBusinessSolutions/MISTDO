@@ -123,7 +123,7 @@ namespace MISTDO.Web.Controllers
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                var response =     _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                    var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
 
                     return View("ConfirmMail");

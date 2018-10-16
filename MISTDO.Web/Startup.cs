@@ -106,7 +106,7 @@ namespace MISTDO.Web
             }
             if (!TraineeroleCheck)
             {
-                roleResult = await RoleManager.CreateAsync(new IdentityRole("Trainer"));
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Trainee"));
             }
 
         }
