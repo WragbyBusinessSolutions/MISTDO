@@ -8,7 +8,7 @@ using MISTDO.Web.Services;
 
 namespace MISTDO.Web.Controllers
 {
-    [Authorize]
+   [Authorize]
     public class TrainerDashboardController : Controller
     {
         public ITrainerService _trainer { get; }
@@ -25,6 +25,10 @@ namespace MISTDO.Web.Controllers
         {
             var certs = await _trainer.GetAllCertificates();
             return View(certs);
+        }
+         public IActionResult Trainee()
+        {
+            return View();
         }
     }
 }
