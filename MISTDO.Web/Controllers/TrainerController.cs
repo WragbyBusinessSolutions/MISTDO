@@ -144,7 +144,16 @@ namespace MISTDO.Web.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    var user = await _userManager.FindByEmailAsync(model.Email);
+                    var isTrainer = await _userManager.IsInRoleAsync(user, "Trainer");
+                    //if (isTrainer)
+                    //{
+                    returnUrl = returnUrl ?? Url.Content("~/TrainerDashboard/");
+                    //     }
+                    //      else
+                    //      {
                     return RedirectToLocal(returnUrl);
+                    //      }
                 }
                 if (result.RequiresTwoFactor)
                 {

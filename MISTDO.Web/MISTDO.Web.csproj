@@ -133,7 +133,4 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\TrainerDashboard\" />
-  </ItemGroup>
 </Project>
