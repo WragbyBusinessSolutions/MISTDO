@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MISTDO.Web.Data;
+using Microsoft.EntityFrameworkCore;
+
 using MISTDO.Web.Models;
 using MISTDO.Web.Models.AccountViewModels;
 using MISTDO.Web.Services;
@@ -54,12 +56,11 @@ namespace MISTDO.Web.Controllers
             return View();
         }
 
-
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult RegisterTrainee(string returnUrl = null)
+        public IActionResult RegisterTrainee()
         {
-            ViewData["ReturnUrl"] = returnUrl;
+
             return View("~/Views/TrainerDashboard/RegisterTrainee.cshtml");
         }
 
@@ -67,16 +68,15 @@ namespace MISTDO.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public IActionResult RegisterTrainee(RegisterTraineeViewModel model, string returnUrl = null)
+        public async Task<IActionResult> RegisterTrainee(Trainee models)
         {
-            ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-
+                dbcontext.Add(models);
+                await dbcontext.SaveChangesAsync();
+                //  return View("~/Views/TrainerDashboard/Trainee.cshtml");
             }
-
-            // If we got this far, something failed, redisplay form
-            return View("~/Views/TrainerDashboard/RegisterTrainee.cshtml", model);
+            return RedirectToAction(nameof(Trainee));
         }
 
         [HttpPost]
