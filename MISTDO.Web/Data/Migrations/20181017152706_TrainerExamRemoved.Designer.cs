@@ -11,9 +11,10 @@ using System;
 namespace MISTDO.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181017152706_TrainerExamRemoved")]
+    partial class TrainerExamRemoved
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,8 +235,6 @@ namespace MISTDO.Web.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
-
-                    b.Property<string>("Name");
 
                     b.Property<string>("ShortCode");
 

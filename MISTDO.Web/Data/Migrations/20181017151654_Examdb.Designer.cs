@@ -11,9 +11,10 @@ using System;
 namespace MISTDO.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181017151654_Examdb")]
+    partial class Examdb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,8 +236,6 @@ namespace MISTDO.Web.Data.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Name");
-
                     b.Property<string>("ShortCode");
 
                     b.HasKey("ExamId");
@@ -286,6 +285,28 @@ namespace MISTDO.Web.Data.Migrations
                     b.HasKey("TraineeId");
 
                     b.ToTable("Trainees");
+                });
+
+            modelBuilder.Entity("MISTDO.Web.Models.TraineeExam", b =>
+                {
+                    b.Property<int>("ExamId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateGenerated");
+
+                    b.Property<int?>("OwnerTraineeId");
+
+                    b.Property<string>("Remark");
+
+                    b.Property<string>("Score");
+
+                    b.Property<string>("TrainerOrg");
+
+                    b.HasKey("ExamId");
+
+                    b.HasIndex("OwnerTraineeId");
+
+                    b.ToTable("TraineeExaminations");
                 });
 
             modelBuilder.Entity("MISTDO.Web.Models.TrainingCentre", b =>
@@ -360,6 +381,13 @@ namespace MISTDO.Web.Data.Migrations
                 });
 
             modelBuilder.Entity("MISTDO.Web.Models.Certificate", b =>
+                {
+                    b.HasOne("MISTDO.Web.Models.Trainee", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerTraineeId");
+                });
+
+            modelBuilder.Entity("MISTDO.Web.Models.TraineeExam", b =>
                 {
                     b.HasOne("MISTDO.Web.Models.Trainee", "Owner")
                         .WithMany()

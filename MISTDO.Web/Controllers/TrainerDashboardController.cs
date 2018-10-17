@@ -95,14 +95,25 @@ namespace MISTDO.Web.Controllers
             }
             return View(model);
         }
-        public IActionResult Payment(int traineeid)
+        public async Task<IActionResult> Payment(int traineeid)
         {
             var trainee = dbcontext.Trainees.FirstOrDefault(t => t.TraineeId == traineeid);
+            var exams = await _trainer.GetAllExams();
 
+            var traineesList = new List<SelectListItem>();
+
+            foreach (var item in exams)
+            {
+                traineesList.Add(new SelectListItem { Text = item.Description, Value = item.ExamId.ToString() });
+            }
+
+            ViewBag.exams = traineesList;
             return View(trainee);
         }
         public IActionResult ViewCertificate()
         {
+
+
 
             return View();
         }

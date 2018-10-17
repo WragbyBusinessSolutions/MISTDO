@@ -55,6 +55,13 @@
         </dd>
 
     </dl>
+    @{
+        var exams = ViewBag.exams as List<SelectListItem>;
+
+    }
+
+    Select the Trainee
+    <select class="form-control" asp-for="TraineeId" asp-items="exams"></select>
     <div>
         <a class="btn btn-primary" asp-action="ViewCertificate">Make Payment</a>
     </div>
