@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MISTDO.Web.Data;
 using MISTDO.Web.Models;
+using MISTDO.Web.Models.AccountViewModels;
 using MISTDO.Web.Services;
 using MISTDO.Web.ViewModels;
 
@@ -32,9 +33,10 @@ namespace MISTDO.Web.Controllers
             var certs = await _trainer.GetAllCertificates();
             return View(certs);
         }
-        public IActionResult Trainee()
+        public async Task<IActionResult> Trainee()
         {
-            return View();
+            var train = await _trainer.GetAllTrainees();
+            return View(train);
         }
         // GET: Certificates/Create
         public IActionResult NewCertificate()
@@ -44,11 +46,35 @@ namespace MISTDO.Web.Controllers
         }
 
 
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegisterTrainee(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View("~/Views/TrainerDashboard/RegisterTrainee.cshtml");
+        }
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public IActionResult RegisterTrainee(RegisterTraineeViewModel model, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
+            {
+
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View("~/Views/TrainerDashboard/RegisterTrainee.cshtml", model);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> NewCertificate(NewCertificateViewModel model)
         {
-            var tt = dbcontext.Trainees.FirstOrDefault(t => t.TraineeId == model.TrainerId); 
+            var tt = dbcontext.Trainees.FirstOrDefault(t => t.TraineeId == model.TrainerId);
             model.Certificate.DateGenerated = DateTime.Now;
             model.Certificate.Owner = tt;
             if (ModelState.IsValid)
