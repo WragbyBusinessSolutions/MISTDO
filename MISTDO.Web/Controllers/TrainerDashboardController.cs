@@ -112,9 +112,6 @@ namespace MISTDO.Web.Controllers
         }
         public IActionResult ViewCertificate()
         {
-
-
-
             return View();
         }
     }
