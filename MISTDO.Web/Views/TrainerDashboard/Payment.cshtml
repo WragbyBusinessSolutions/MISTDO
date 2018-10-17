@@ -1,0 +1,64 @@
+﻿@model Trainee
+@{
+    ViewData["Title"] = "Payment";
+}
+
+
+
+<h2>Make Payment</h2>
+
+<div>
+    <h4>Trainee Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress)
+        </dd>
+
+    </dl>
+    <div>
+        <a class="btn btn-primary" asp-action="ViewCertificate">Make Payment</a>
+    </div>
+</div>
+
+
+

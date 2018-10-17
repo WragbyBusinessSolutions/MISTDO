@@ -8,7 +8,7 @@ namespace MISTDO.Web.ViewModels
 {
     public class NewCertificateViewModel
     {
-        public Certificate Certificate { get; set; }
-        public int TrainerId { get; set; }
+        //  public Certificate Certificate { get; set; }
+        public int TraineeId { get; set; }
     }
 }
