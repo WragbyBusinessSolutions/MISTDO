@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MISTDO.Web.Data;
 using MISTDO.Web.Models;
 using MISTDO.Web.Models.AccountViewModels;
@@ -39,8 +40,26 @@ namespace MISTDO.Web.Controllers
             var train = await _trainer.GetAllTrainees();
             return View(train);
         }
+
+         public async Task<IActionResult> ViewTrainee(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var trainee = await dbcontext.Trainees
+                .SingleOrDefaultAsync(m => m.TraineeId == id);
+            if (trainee == null)
+            {
+                return NotFound();
+            }
+
+            return View(trainee);
+        }
         // GET: Certificates/Create
-        public async Task<IActionResult> NewCertificate()
+
+      public async Task<IActionResult> NewCertificate()
         {
             var trainees = await _trainer.GetAllTrainees();
             var traineesList = new List<SelectListItem>();
@@ -55,11 +74,26 @@ namespace MISTDO.Web.Controllers
         }
 
 
+        // public async Task<IActionResult> NewCertificate()
+        // {
+        //     var trainees = await _trainer.GetAllTrainees();
+        //     var traineesList = new List<SelectListItem>();
+
+        //     foreach (var item in trainees)
+        //     {
+        //         traineesList.Add(new SelectListItem { Text = item.Email, Value = item.TraineeId.ToString() });
+        //     }
+
+        //     ViewBag.trainees = traineesList;
+        //     return View();
+        // }
+
+
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult RegisterTrainee(string returnUrl = null)
+        public IActionResult RegisterTrainee()
         {
-            ViewData["ReturnUrl"] = returnUrl;
+            
             return View("~/Views/TrainerDashboard/RegisterTrainee.cshtml");
         }
 
@@ -67,34 +101,33 @@ namespace MISTDO.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public IActionResult RegisterTrainee(RegisterTraineeViewModel model, string returnUrl = null)
+        public async Task<IActionResult> RegisterTrainee(Trainee models)
         {
-            ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-
+                dbcontext.Add(models);
+                await dbcontext.SaveChangesAsync();
+              //  return View("~/Views/TrainerDashboard/Trainee.cshtml");
             }
-
-            // If we got this far, something failed, redisplay form
-            return View("~/Views/TrainerDashboard/RegisterTrainee.cshtml", model);
+            return RedirectToAction(nameof(Trainee));
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> NewCertificate(NewCertificateViewModel model)
-        {
-            var tt = dbcontext.Trainees.FirstOrDefault(t => t.TraineeId == model.TraineeId);
-            //model.Certificate.DateGenerated = DateTime.Now;
-            //model.Certificate.Owner = tt;
-            if (ModelState.IsValid)
-            {
-                //dbcontext.Add(model.Certificate);
-                //await dbcontext.SaveChangesAsync();
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> NewCertificate(NewCertificateViewModel model)
+        // {
+        //     var tt = dbcontext.Trainees.FirstOrDefault(t => t.TraineeId == model.TraineeId);
+        //     //model.Certificate.DateGenerated = DateTime.Now;
+        //     //model.Certificate.Owner = tt;
+        //     if (ModelState.IsValid)
+        //     {
+        //         //dbcontext.Add(model.Certificate);
+        //         //await dbcontext.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Payment), new { traineeid = model.TraineeId });
-            }
-            return View(model);
-        }
+        //         return RedirectToAction(nameof(Payment), new { traineeid = model.TraineeId });
+        //     }
+        //     return View(model);
+        // }
         public IActionResult Payment(int traineeid)
         {
             var trainee = dbcontext.Trainees.FirstOrDefault(t => t.TraineeId == traineeid);
@@ -102,9 +135,11 @@ namespace MISTDO.Web.Controllers
             return View(trainee);
         }
         public IActionResult ViewCertificate()
+
         {
 
             return View();
         }
     }
+
 }

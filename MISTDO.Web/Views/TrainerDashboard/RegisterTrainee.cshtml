@@ -1,4 +1,4 @@
-@model RegisterTraineeViewModel
+@model MISTDO.Web.Models.Trainee
 @{
     ViewData["Title"] = "Trainee Registration | MISTDO Portal";
     Layout = null;
@@ -84,7 +84,7 @@
                             <label asp-for="UserAddress"></label>
                             <input asp-for="UserAddress" class="form-control"   />
                             <span asp-validation-for="UserAddress" class="text-danger"></span>
-                        </div>
+                        </div> 
                         <!-- <div class="form-group">
 
                             <label asp-for="FirstFinger"></label>
