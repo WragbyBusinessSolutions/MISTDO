@@ -1,75 +1,112 @@
 ﻿@model MISTDO.Web.Models.Trainee
-
 @{
     ViewData["Title"] = "Create";
+    Layout = "_LayoutDashboard";
 }
 
-<h2>Create</h2>
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeader");
 
-<h4>Trainee</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Register Trainees</h4>
+                <p>
+                    <a asp-action="Create">Create New</a>
+                </p>
             </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-block">
+
+                            <form asp-action="Create">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="FirstName" class="control-label"></label>
+                                    <input asp-for="FirstName" class="form-control" />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="LastName" class="control-label"></label>
+                                    <input asp-for="LastName" class="form-control" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Email" class="control-label"></label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="PhoneNo" class="control-label"></label>
+                                    <input asp-for="PhoneNo" class="form-control" />
+                                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CompanyName" class="control-label"></label>
+                                    <input asp-for="CompanyName" class="form-control" />
+                                    <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CompanyAddress" class="control-label"></label>
+                                    <input asp-for="CompanyAddress" class="form-control" />
+                                    <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserAddress" class="control-label"></label>
+                                    <input asp-for="UserAddress" class="form-control" />
+                                    <span asp-validation-for="UserAddress" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="FirstFinger" class="control-label"></label>
+                                    <input asp-for="FirstFinger" class="form-control" />
+                                    <span asp-validation-for="FirstFinger" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="MiddleFinger" class="control-label"></label>
+                                    <input asp-for="MiddleFinger" class="form-control" />
+                                    <span asp-validation-for="MiddleFinger" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="LastFinger" class="control-label"></label>
+                                    <input asp-for="LastFinger" class="form-control" />
+                                    <span asp-validation-for="LastFinger" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </form>
+
+                        </div>
+
+
+
+                    </div>
+                    <div>
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneNo" class="control-label"></label>
-                <input asp-for="PhoneNo" class="form-control" />
-                <span asp-validation-for="PhoneNo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CompanyName" class="control-label"></label>
-                <input asp-for="CompanyName" class="form-control" />
-                <span asp-validation-for="CompanyName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CompanyAddress" class="control-label"></label>
-                <input asp-for="CompanyAddress" class="form-control" />
-                <span asp-validation-for="CompanyAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserAddress" class="control-label"></label>
-                <input asp-for="UserAddress" class="form-control" />
-                <span asp-validation-for="UserAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FirstFinger" class="control-label"></label>
-                <input asp-for="FirstFinger" class="form-control" />
-                <span asp-validation-for="FirstFinger" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MiddleFinger" class="control-label"></label>
-                <input asp-for="MiddleFinger" class="form-control" />
-                <span asp-validation-for="MiddleFinger" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastFinger" class="control-label"></label>
-                <input asp-for="LastFinger" class="form-control" />
-                <span asp-validation-for="LastFinger" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- Page Container END -->
 </div>
 

@@ -2,36 +2,77 @@
 @inject MISTDO.Web.Services.ITrainerService TrainerService
 @{
     ViewData["Title"] = "NewCertificate";
+    Layout = "_LayoutDashboard";
 }
 
-<h2>NewCertificate</h2>
 
-<h4>Certificate</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="NewCertificate">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
- 
-           
-        
-           
-            @{
-                //var Trainers = await TrainerService.GetAllTrainees();
-                var trainees = ViewBag.trainees as List<SelectListItem>;
 
-            }
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeader");
 
-            Select the Trainee
-            <select class="form-control" asp-for="TraineeId" asp-items="trainees"></select>
-            <div class="form-group">
-                <input type="submit" value="Next"  class="btn btn-default" />
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Create New Certificate</h4>
+                <p>
+                    <a asp-action="Create">Create New</a>
+                </p>
             </div>
-        </form>
-    </div>
-</div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-block">
+                            <form asp-action="NewCertificate">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+
+
+
+                                @{
+                                    //var Trainers = await TrainerService.GetAllTrainees();
+                                    var trainees = ViewBag.trainees as List<SelectListItem>;
+
+                                }
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        Select the Trainee
+                                    </label>
+                                    <select class="form-control" asp-for="TraineeId" asp-items="trainees"></select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Next" class="btn btn-default" />
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                    </div>
+                    <div>
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- Page Container END -->
 </div>
 

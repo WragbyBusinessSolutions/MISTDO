@@ -1,71 +1,113 @@
 ﻿@model Trainee
 @{
     ViewData["Title"] = "Payment";
+    Layout = "_LayoutDashboard";
 }
 
 
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeader");
 
-<h2>Make Payment</h2>
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Make Payment</h4>
+                <p>
+                    <a>Trainee Details</a>
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-block">
 
-<div>
-    <h4>Trainee Details</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNo)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CompanyName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CompanyAddress)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CompanyAddress)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UserAddress)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserAddress)
-        </dd>
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.FirstName)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.FirstName)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.LastName)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.LastName)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Email)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.PhoneNo)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.PhoneNo)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.CompanyName)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.CompanyName)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.CompanyAddress)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.CompanyAddress)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.UserAddress)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.UserAddress)
+                                </dd>
+                            </dl>
+                            @{
+                                var exams = ViewBag.exams as List<SelectListItem>;
 
-    </dl>
-    @{
-        var exams = ViewBag.exams as List<SelectListItem>;
+                            }
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Select the Exam module Completed
+                                </label>
+                                <select class="form-control" asp-for="TraineeId" asp-items="exams"></select>
+                            </div>
+                            <div>
+                                <a class="btn btn-primary" asp-action="ViewCertificate">Make Payment</a>
+                            </div>
 
-    }
+                        </div>
 
-    Select the Trainee
-    <select class="form-control" asp-for="TraineeId" asp-items="exams"></select>
-    <div>
-        <a class="btn btn-primary" asp-action="ViewCertificate">Make Payment</a>
+                    </div>
+
+                    <div>
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Wrapper END -->
+        <!-- Footer START -->
+        <footer class="content-footer">
+            <div class="footer">
+                <div class="copyright">
+                    <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                    <span class="go-right">
+                        <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                        <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                    </span>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer END -->
+        <!-- Page Container END -->
     </div>
 </div>
-
-
 
