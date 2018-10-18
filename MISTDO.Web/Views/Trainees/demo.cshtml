@@ -1,0 +1,244 @@
+//Initial Details and Edit Code 
+
+@model MISTDO.Web.Models.Trainee
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Trainee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstFinger)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstFinger)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MiddleFinger)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MiddleFinger)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastFinger)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastFinger)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TraineeId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+//Edit Code here
+
+@model MISTDO.Web.Models.Trainee
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Trainee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TraineeId" />
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNo" class="control-label"></label>
+                <input asp-for="PhoneNo" class="form-control" />
+                <span asp-validation-for="PhoneNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyAddress" class="control-label"></label>
+                <input asp-for="CompanyAddress" class="form-control" />
+                <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserAddress" class="control-label"></label>
+                <input asp-for="UserAddress" class="form-control" />
+                <span asp-validation-for="UserAddress" class="text-danger"></span>
+            </div>
+            <!-- <div class="form-group">
+                <label asp-for="FirstFinger" class="control-label"></label>
+                <input asp-for="FirstFinger" class="form-control" />
+                <span asp-validation-for="FirstFinger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleFinger" class="control-label"></label>
+                <input asp-for="MiddleFinger" class="form-control" />
+                <span asp-validation-for="MiddleFinger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastFinger" class="control-label"></label>
+                <input asp-for="LastFinger" class="form-control" />
+                <span asp-validation-for="LastFinger" class="text-danger"></span>
+            </div> -->
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+@model MISTDO.Web.Models.Trainee
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Trainee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstFinger)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstFinger)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MiddleFinger)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MiddleFinger)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastFinger)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastFinger)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="TraineeId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
+
