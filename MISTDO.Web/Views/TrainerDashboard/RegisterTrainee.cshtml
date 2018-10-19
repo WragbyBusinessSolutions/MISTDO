@@ -1,4 +1,5 @@
 @model MISTDO.Web.Models.Trainee
+
 @{
     ViewData["Title"] = "Trainee Registration | MISTDO Portal";
     Layout = null;
@@ -27,6 +28,10 @@
 
 </head>
 <body>
+
+    @using (Html.BeginForm()) 
+{
+@Html.AntiForgeryToken()
     <!-- Bootstrap Core CSS -->
     <!-- Preloader -->
     <div class="preloader">
@@ -107,6 +112,48 @@
                        
                            
                    
+                       <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+                     <fieldset>
+                        <h2 class="fs-title">Centre Details</h2>
+                        <h3 class="fs-subtitle">Training Centre Details</h3>
+                        <div class="form-group">
+                            
+                             @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImageUpload , new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="uploadImages" class="input-files" />
+        </div>
+    </div>
+                        
+                      
+                       
+                        </div>
+                        <input type="button" name="previous" class="previous action-button" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+                    <fieldset>
+                        <h2 class="fs-title">Personal Details</h2>
+                        <h3 class="fs-subtitle">We will never sell it</h3>
+                        <div class="form-group">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                       <div class="form-group">
+                                <label asp-for="FirstFinger" class="control-label"></label>
+                                <input asp-for="FirstFinger" class="form-control" />
+                                <span asp-validation-for="FirstFinger" class="text-danger"></span>
+                        </div>
+                       <div class="form-group">
+                                <label asp-for="FirstFinger" class="control-label"></label>
+                                <input asp-for="FirstFinger" class="form-control" />
+                                <span asp-validation-for="FirstFinger" class="text-danger"></span>
+                        </div>
+                            </div>
+                        @*<div asp-validation-summary="All" class="text-danger"></div>*@
+                        <input type="button" name="previous" class="previous action-button" value="Previous" />
                         <button type="submit" name="submit" class="btn btn-success" value="Submit">Submit</button>
                     </fieldset>
                 </form>
@@ -114,6 +161,9 @@
             </div>
         </div>
     </section>
+
+    <!-- Signature pad-->
+    
     <!-- jQuery -->
     <script src="~/lib/multiform/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
@@ -131,5 +181,7 @@
     <!--Style Switcher -->
 
     <script src="~/lib/multiform/jQuery.style.switcher.js"></script>
+}
 </body>
 </html>
+
