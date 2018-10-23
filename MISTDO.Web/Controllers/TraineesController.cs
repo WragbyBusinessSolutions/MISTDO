@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Web;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MISTDO.Web.Data;
 using MISTDO.Web.Models;
+using Microsoft.AspNetCore.Http;
+using System.Threading;
+
 
 namespace MISTDO.Web.Views.TrainerDashboard
 {
@@ -14,9 +21,12 @@ namespace MISTDO.Web.Views.TrainerDashboard
     {
         private readonly ApplicationDbContext _context;
 
+       
+
         public TraineesController(ApplicationDbContext context)
         {
             _context = context;
+           
         }
 
         // GET: Trainees
@@ -33,8 +43,11 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 return NotFound();
             }
 
-            var trainee = await _context.Trainees
-                .SingleOrDefaultAsync(m => m.TraineeId == id);
+            var trainee = await _context.Trainees.SingleOrDefaultAsync(m => m.TraineeId == id);
+
+
+
+
             if (trainee == null)
             {
                 return NotFound();
@@ -42,6 +55,8 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
             return View(trainee);
         }
+
+
 
         // GET: Trainees/Create
         public IActionResult Create()
@@ -54,10 +69,36 @@ namespace MISTDO.Web.Views.TrainerDashboard
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TraineeId,FirstName,LastName,Email,PhoneNo,CompanyName,CompanyAddress,UserAddress,FirstFinger,MiddleFinger,LastFinger")] Trainee trainee)
+        public async Task<IActionResult> Create( Trainee trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
         {
+
+           
+
             if (ModelState.IsValid)
             {
+                if (ImageUpload != null)
+
+                {
+                    if (ImageUpload.Length > 0)
+
+                    //Convert Image to byte and save to database
+
+                    {
+
+                        byte[] p1 = null;
+                        using (var fs1 = ImageUpload.OpenReadStream())
+                        using (var ms1 = new MemoryStream())
+                        {
+                            fs1.CopyTo(ms1);
+                            p1 = ms1.ToArray();
+                        }
+                        trainee.ImageUpload = p1;
+
+                    }
+                }
+
+
+
                 _context.Add(trainee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,7 +127,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TraineeId,FirstName,LastName,Email,PhoneNo,CompanyName,CompanyAddress,UserAddress,FirstFinger,MiddleFinger,LastFinger")] Trainee trainee)
+        public async Task<IActionResult> Edit(int id, [Bind("TraineeId,FirstName,LastName,Email,PhoneNo,CompanyName,CompanyAddress,UserAddress,FirstFinger,MiddleFinger,LastFinger")] Trainee trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
         {
             if (id != trainee.TraineeId)
             {
@@ -97,6 +138,27 @@ namespace MISTDO.Web.Views.TrainerDashboard
             {
                 try
                 {
+                    if (ImageUpload != null)
+
+                    {
+                        if (ImageUpload.Length > 0)
+
+                        //Convert Image to byte and save to database
+
+                        {
+
+                            byte[] p1 = null;
+                            using (var fs1 = ImageUpload.OpenReadStream())
+                            using (var ms1 = new MemoryStream())
+                            {
+                                fs1.CopyTo(ms1);
+                                p1 = ms1.ToArray();
+                            }
+                            trainee.ImageUpload = p1;
+
+                        }
+                    }
+
                     _context.Update(trainee);
                     await _context.SaveChangesAsync();
                 }

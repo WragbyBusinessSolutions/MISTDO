@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,7 +24,10 @@ namespace MISTDO.Web.Models
         public byte[] LastFinger { get; set; }
         
          public byte[] ImageUpload { get; set; }
-       
+
+          
+        
+           
         
         
        

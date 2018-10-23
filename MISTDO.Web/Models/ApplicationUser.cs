@@ -27,6 +27,7 @@ namespace MISTDO.Web.Models
         [MaxLength(100)]
         public string CompanyName { get; set; }
 
+
         [MaxLength(100)]
         public string UserAddress { get; set; }
         public string Country { get; set; }

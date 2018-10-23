@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-block">
 
-                            <form asp-action="Create">
+                            <form asp-action="Create" enctype="multipart/form-data">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-group">
                                     <label asp-for="FirstName" class="control-label"></label>
@@ -60,21 +60,32 @@
                                     <input asp-for="UserAddress" class="form-control" />
                                     <span asp-validation-for="UserAddress" class="text-danger"></span>
                                 </div>
+
+                               
+                                    <div class="row">
+                                        <span class="span4">
+                                            <input type="file" name="ImageUpload" multiple="multiple" class="input-files" />
+                                        </span>
+                                        
+                                    </div>
+                              
+
+
                                 @*<div class="form-group">
-                                                <label asp-for="FirstFinger" class="control-label"></label>
-                                                <input asp-for="FirstFinger" class="form-control" />
-                                                <span asp-validation-for="FirstFinger" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="MiddleFinger" class="control-label"></label>
-                                                <input asp-for="MiddleFinger" class="form-control" />
-                                                <span asp-validation-for="MiddleFinger" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="LastFinger" class="control-label"></label>
-                                                <input asp-for="LastFinger" class="form-control" />
-                                                <span asp-validation-for="LastFinger" class="text-danger"></span>
-                                            </div>*@
+            <label asp-for="FirstFinger" class="control-label"></label>
+            <input asp-for="FirstFinger" class="form-control" />
+            <span asp-validation-for="FirstFinger" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MiddleFinger" class="control-label"></label>
+            <input asp-for="MiddleFinger" class="form-control" />
+            <span asp-validation-for="MiddleFinger" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastFinger" class="control-label"></label>
+            <input asp-for="LastFinger" class="form-control" />
+            <span asp-validation-for="LastFinger" class="text-danger"></span>
+        </div>*@
                                 <div class="form-group">
                                     <input type="submit" value="Create" class="btn btn-default" />
                                 </div>
@@ -95,41 +106,15 @@
                                 <h2 class="fs-title">Centre Details</h2>
                                 <h3 class="fs-subtitle">Photo Upload</h3>
                                 <div class="form-group">
+                                  
                                     
-                                    @Html.ValidationSummary(true)
+                                  
 
-                                    <div class="form-group">
-                                        
-                                        <div class="centered"> 
-                                           @Html.LabelFor(model => model.ImageUpload , new { @class = "control-label col-md-2" }) 
-                                            <input type="file" name="uploadImages" class="input-files" />
-                                        </div>
-                                    </div>
-                                                                    
-                                                                <div class="col-md-2"></div>  
-                                        <div class="col-md-4">  
-                                            <div class="panel panel-default">  
-                                                <div class="panel-heading">Camera</div>  
-                                                <div class="panel-body">  
-                                                    <div id="my_camera"></div>  
-                                                    <!-- A button for taking snaps -->  
-                                                    <form>  
-                                                        <input type="button" class="btn btn-success" value="Take Snapshot" onClick="take_snapshot()">  
-                                                    </form>  
                                     
-                                                </div>  
-                                            </div>  
-                                        </div>  
-                                        <div class="col-md-4">  
-                                            <div class="panel panel-default">  
-                                                <div class="panel-heading">Captured Photo</div>  
-                                                <div class="panel-body">  
-                                                    <div id="results">Your captured image will appear here...</div>  
-                                                </div>  
-                                                <br />  
-                                                <br />  
-                                            </div>  
-                                        </div> 
+                                                                    
+                                        
+                                        
+                                       
                             
                                 </div>
                         </div>

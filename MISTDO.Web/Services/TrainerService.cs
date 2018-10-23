@@ -15,6 +15,7 @@ namespace MISTDO.Web.Services
         public TrainerService(ApplicationDbContext context)
         {
             dbcontext = context;
+
         }
         public async Task<IEnumerable<Certificate>> GetAllCertificates()
         {
@@ -27,11 +28,13 @@ namespace MISTDO.Web.Services
             var exams = await dbcontext.Examinations.ToListAsync();
             return exams;
         }
+        
 
         public async Task<IEnumerable<Trainee>> GetAllTrainees()
         {
             var Trainees = await dbcontext.Trainees.ToListAsync();
             return Trainees;
         }
+        
     }
 }
