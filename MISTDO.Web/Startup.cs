@@ -37,6 +37,7 @@ namespace MISTDO.Web
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<ITrainerService, TrainerService>();
+            services.AddTransient<IExcelToTrainingService, ExcelToTrainingService>();
 
             services.AddDistributedMemoryCache();
 

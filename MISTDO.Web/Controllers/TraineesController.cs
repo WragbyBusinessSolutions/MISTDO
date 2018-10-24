@@ -40,7 +40,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
         {
             if (id == null)
             {
-                return NotFound();
+                return View(await _context.Trainees.ToListAsync());
             }
 
             var trainee = await _context.Trainees.SingleOrDefaultAsync(m => m.TraineeId == id);
@@ -136,28 +136,29 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
             if (ModelState.IsValid)
             {
-                try
+                if (ImageUpload != null)
+
                 {
-                    if (ImageUpload != null)
+                    if (ImageUpload.Length > 0)
+
+                    //Convert Image to byte and save to database
 
                     {
-                        if (ImageUpload.Length > 0)
 
-                        //Convert Image to byte and save to database
-
+                        byte[] p1 = null;
+                        using (var fs1 = ImageUpload.OpenReadStream())
+                        using (var ms1 = new MemoryStream())
                         {
-
-                            byte[] p1 = null;
-                            using (var fs1 = ImageUpload.OpenReadStream())
-                            using (var ms1 = new MemoryStream())
-                            {
-                                fs1.CopyTo(ms1);
-                                p1 = ms1.ToArray();
-                            }
-                            trainee.ImageUpload = p1;
-
+                            fs1.CopyTo(ms1);
+                            p1 = ms1.ToArray();
                         }
+                        trainee.ImageUpload = p1;
+
                     }
+                }
+                try
+                {
+                    
 
                     _context.Update(trainee);
                     await _context.SaveChangesAsync();
@@ -186,8 +187,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 return NotFound();
             }
 
-            var trainee = await _context.Trainees
-                .SingleOrDefaultAsync(m => m.TraineeId == id);
+            var trainee = await _context.Trainees.SingleOrDefaultAsync(m => m.TraineeId == id);
             if (trainee == null)
             {
                 return NotFound();

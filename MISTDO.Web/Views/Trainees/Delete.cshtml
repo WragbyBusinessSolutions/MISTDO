@@ -17,7 +17,7 @@
                 <div class="main-content">
                     <div class="container-fluid">
                         <div class="page-title">
-                            <h4>Edit Trainee</h4>
+                            <h4>Delete Trainee </h4>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
@@ -31,12 +31,29 @@
                                                 <div class="col-md-8 ml-auto mr-auto">
                                                     <form asp-action="Delete">
                                                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                                      <input type="hidden" asp-for="TraineeId" />
+                                                        <input type="hidden" asp-for="TraineeId" />
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="profile border bottom">
+                                                                    <label class="control-label">Image Passport</label>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    
+                                                                    <img class="mrg-top-30" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.ImageUpload))" alt="Take a new Passport" height="150" width="180">
+
+                                                                    
+                                                                </div>
+                                                            
+                                                            </div>
+                                                        </div>
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label asp-for="FirstName" class="control-label"></label>
-                                                                  <input asp-for="FirstName" class="form-control" />
+                                                                    <input asp-for="FirstName" class="form-control" />
                                                                     <span asp-validation-for="FirstName" class="text-danger"></span>
                                                                 </div>
                                                             </div>
@@ -60,7 +77,7 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                     <label asp-for="PhoneNo" class="control-label"></label>
+                                                                    <label asp-for="PhoneNo" class="control-label"></label>
                                                                     <input asp-for="PhoneNo" class="form-control" />
                                                                     <span asp-validation-for="PhoneNo" class="text-danger"></span>
                                                                 </div>
@@ -94,11 +111,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            
+
                                                             <div class="col-md-6 col-xs-6">
                                                                 <div class="text-right mrg-top-5">
                                                                     <div class="form-group">
-                                                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                                                        <button type="submit" class="btn btn-primary">Delete</button>
                                                                     </div>
                                                                 </div>
                                                             </div>

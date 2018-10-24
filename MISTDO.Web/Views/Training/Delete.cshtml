@@ -1,0 +1,118 @@
+﻿@model MISTDO.Web.Models.Training
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_LayoutDashboard";
+}
+
+<link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+
+<!-- Page Container START -->
+
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeader");
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Delete Training </h4>>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-heading border bottom">
+                            <h4 class="card-title">Training Details </h4>>
+                        </div>
+                        <div class="card-block">
+                            <div class="mrg-top-40">
+                                <div class="row">
+                                    <div class="col-md-8 ml-auto mr-auto">
+                                        <form asp-action="Delete">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <input type="hidden" asp-for="TrainingId" />
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label asp-for="TrainingName"control-label"></label>
+                                                        <input asp-for="TrainingName" class="form-control" />
+                                                        <span asp-validation-for="TrainingName" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label asp-for="TrainingCost"control-label"></label>
+                                                        <input asp-for="TrainingCost" class="form-control" />
+                                                        <span asp-validation-for="TrainingCost" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="TrainingStartDate" class="control-label"></label>
+                                                        <input asp-for="TrainingStartDate" class="form-control" />
+                                                        <span asp-validation-for="TrainingStartDate" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="TrainingEndDate" class="control-label"></label>
+                                                        <input asp-for="TrainingEndDate" class="form-control" />
+                                                        <span asp-validation-for="TrainingEndDate" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="row">
+
+                                                <div class="col-md-6 col-xs-6">
+                                                    <div class="text-right mrg-top-5">
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-primary">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- Page Container END -->
+</div>
+<script src="~/dist/assets/js/vendor.js"></script>
+
+<script src="~/dist/assets/js/app.min.js"></script>
+
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>
