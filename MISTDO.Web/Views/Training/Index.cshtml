@@ -18,7 +18,7 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                <h4>Registered Trainings</h4>
+                <h4>Registered Trainings (Up comming Training)</h4>
                 <p>
                     <a asp-action="Create">Create New</a>
                 </p>
@@ -48,26 +48,92 @@
                                     </thead>
                                     <tbody>
                                         @foreach (var item in Model)
-                                        {
+                                        {if (item.TrainingStartDate >= DateTime.Today)
+                                            {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TrainingName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TrainingCost)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TrainingStartDate)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TrainingEndDate)
+                                                </td>
+                                                <td>
+                                                    <a asp-action="Edit" asp-route-id="@item.TrainingId">Edit</a> |
+                                                    <a asp-action="Details" asp-route-id="@item.TrainingId">Details</a> |
+                                                    <a asp-action="Delete" asp-route-id="@item.TrainingId">Delete</a>
+                                                </td>
+                                            </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Past Trainings</h4>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="table-overflow">
+                                <table id="dt-opt" class="table table-lg table-hover">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingCost)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingStartDate)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingEndDate)
-                                            </td>
-                                            <td>
-                                                <a asp-action="Edit" asp-route-id="@item.TrainingId">Edit</a> |
-                                                <a asp-action="Details" asp-route-id="@item.TrainingId">Details</a> |
-                                                <a asp-action="Delete" asp-route-id="@item.TrainingId">Delete</a>
-                                            </td>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.TrainingName)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.TrainingCost)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.TrainingStartDate)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.TrainingEndDate)
+                                            </th>
+                                            <th>Other Options</th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.TrainingEndDate <= DateTime.Today)
+                                            {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TrainingName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TrainingCost)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TrainingStartDate)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TrainingEndDate)
+                                                </td>
+                                                <td>
+                                                    <a asp-action="Edit" asp-route-id="@item.TrainingId">Edit</a> |
+                                                    <a asp-action="Details" asp-route-id="@item.TrainingId">Details</a> |
+                                                    <a asp-action="Delete" asp-route-id="@item.TrainingId">Delete</a>
+                                                </td>
+                                            </tr>
+                                            }
                                         }
                                     </tbody>
                                 </table>
