@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MISTDO.Web.Models.AccountViewModels
 {
-    public class TraineeRegisterViewModel
+    public class TraineeRegisterViewModel : Trainee
     {
         // Login Details
 
@@ -69,7 +69,7 @@ namespace MISTDO.Web.Models.AccountViewModels
         public DateTime DateRegistered { get; set; }
         [Required]
         [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
+        public string PhoneNo { get; set; }
 
         [Required]
         public string OGISPId { get; set; }
@@ -89,6 +89,8 @@ namespace MISTDO.Web.Models.AccountViewModels
         [Required]
 
         public string TrainingModule { get; set; }
+
+
     }
 }
 

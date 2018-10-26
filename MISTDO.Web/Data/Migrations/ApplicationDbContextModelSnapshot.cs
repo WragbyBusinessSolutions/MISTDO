@@ -295,6 +295,8 @@ namespace MISTDO.Web.Data.Migrations
                     b.Property<int>("TrainingId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("CentreId1");
+
                     b.Property<int>("TrainingCost");
 
                     b.Property<DateTime>("TrainingEndDate");
@@ -304,6 +306,8 @@ namespace MISTDO.Web.Data.Migrations
                     b.Property<DateTime>("TrainingStartDate");
 
                     b.HasKey("TrainingId");
+
+                    b.HasIndex("CentreId1");
 
                     b.ToTable("Training");
                 });
@@ -384,6 +388,13 @@ namespace MISTDO.Web.Data.Migrations
                     b.HasOne("MISTDO.Web.Models.Trainee", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerTraineeId");
+                });
+
+            modelBuilder.Entity("MISTDO.Web.Models.Training", b =>
+                {
+                    b.HasOne("MISTDO.Web.Models.TrainingCentre", "CentreId")
+                        .WithMany()
+                        .HasForeignKey("CentreId1");
                 });
 
             modelBuilder.Entity("MISTDO.Web.Models.TrainingCentre", b =>
