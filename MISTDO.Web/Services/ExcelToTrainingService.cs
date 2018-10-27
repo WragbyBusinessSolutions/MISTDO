@@ -42,7 +42,7 @@ namespace MISTDO.Web.Services
                 //productContext.Products.Add(productFromExcel);
                 //productContext.SaveChanges();
                 productsFromExcel.Add(productFromExcel);
-                _context.Training.Add(productFromExcel);
+                _context.Trainings.Add(productFromExcel);
                 _context.SaveChanges();
 
             }

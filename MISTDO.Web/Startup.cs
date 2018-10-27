@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MISTDO.Web.Data;
 using MISTDO.Web.Models;
 using MISTDO.Web.Services;
+using MISTDO.Web.Extensions;
 
 namespace MISTDO.Web
 {
@@ -28,11 +29,22 @@ namespace MISTDO.Web
         {
             services.AddRouting(options => { options.LowercaseUrls = true; });
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("TrainerConnection")));
+            services.AddDbContext<TraineeApplicationDbContext>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("TraineeConnection")));
+            services.AddDbContext<AdminApplicationDbContext>(options =>
+              options.UseSqlServer(Configuration.GetConnectionString("AdminConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+
+
+            services.AddSecondIdentity<TraineeApplicationUser, IdentityRole>(null)
+                .AddEntityFrameworkStores<TraineeApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
@@ -75,44 +87,50 @@ namespace MISTDO.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            CreateUserRoles(provider).Wait();
+         CreateUserRoles(provider).Wait();
 
         }
         private async Task CreateUserRoles(IServiceProvider serviceProvider)
         {
-            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            try
+            {
+                var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-            IdentityResult roleResult;
-            //Adding Admin Role 
-            var PAProleCheck = await RoleManager.RoleExistsAsync("PAP");
-            var AMCProleCheck = await RoleManager.RoleExistsAsync("AMCP");
-            var AdminroleCheck = await RoleManager.RoleExistsAsync("Admin");
-            var TrainerroleCheck = await RoleManager.RoleExistsAsync("Trainer");
-            var TraineeroleCheck = await RoleManager.RoleExistsAsync("Trainee");
+                IdentityResult roleResult;
+                //Adding Admin Role 
+                var PAProleCheck = await RoleManager.RoleExistsAsync("PAP");
+                var AMCProleCheck = await RoleManager.RoleExistsAsync("AMCP");
+                var AdminroleCheck = await RoleManager.RoleExistsAsync("Admin");
+                var TrainerroleCheck = await RoleManager.RoleExistsAsync("Trainer");
+                var TraineeroleCheck = await RoleManager.RoleExistsAsync("Trainee");
 
 
-            if (!PAProleCheck)
-            {
-                roleResult = await RoleManager.CreateAsync(new IdentityRole("PAP"));
+                if (!PAProleCheck)
+                {
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole("PAP"));
+                }
+                if (!AMCProleCheck)
+                {
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole("AMCP"));
+                }
+                if (!AdminroleCheck)
+                {
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+                }
+                if (!TrainerroleCheck)
+                {
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole("Trainer"));
+                }
+                if (!TraineeroleCheck)
+                {
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole("Trainee"));
+                }
             }
-            if (!AMCProleCheck)
+            catch
             {
-                roleResult = await RoleManager.CreateAsync(new IdentityRole("AMCP"));
-            }
-            if (!AdminroleCheck)
-            {
-                roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
-            }
-            if (!TrainerroleCheck)
-            {
-                roleResult = await RoleManager.CreateAsync(new IdentityRole("Trainer"));
-            }
-            if (!TraineeroleCheck)
-            {
-                roleResult = await RoleManager.CreateAsync(new IdentityRole("Trainee"));
-            }
 
+            }
         }
     }
 }

@@ -25,6 +25,7 @@ using System.Diagnostics;
 
 namespace MISTDO.Web.Views.TrainerDashboard
 {
+    [Authorize]
     public class TraineesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -34,14 +35,19 @@ namespace MISTDO.Web.Views.TrainerDashboard
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         public ApplicationDbContext dbcontext { get; }
+        public IExcelToTraineeService _exceltoTrainee { get; }
+
+        private readonly IHostingEnvironment _envt;
 
         public TraineesController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger, ApplicationDbContext context)
+            ILogger<AccountController> logger, IHostingEnvironment env, IExcelToTraineeService excelToTraineeService, ApplicationDbContext context)
         {
             _context = context;
             dbcontext = context;
+            _exceltoTrainee = excelToTraineeService;
+            _envt = env;
 
             _userManager = userManager;
             _signInManager = signInManager;
@@ -56,6 +62,45 @@ namespace MISTDO.Web.Views.TrainerDashboard
             return View(await _context.Trainees.ToListAsync());
         }
 
+        public async Task<IActionResult> Profile(string Email, TraineeRegisterViewModel model)
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+
+
+
+            if (Email == null)
+            {
+                return View(await _context.Trainees.ToListAsync());
+            }
+
+            if (user.Email == model.Email)
+            {
+                var trainee = await _context.Trainees.SingleOrDefaultAsync(m => m.Email == Email);
+
+
+
+
+
+                if (trainee == null)
+                {
+                    return NotFound();
+                }
+
+                return View(trainee);
+
+            }
+            return View();
+        }
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Training(Training training)
+        {
+            return View(await _context.Trainings.ToListAsync());
+        }
         // GET: Trainees/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -93,18 +138,21 @@ namespace MISTDO.Web.Views.TrainerDashboard
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterNow(RegisterViewModel model, string returnUrl = null)
+        public async Task<IActionResult> RegisterNow(Trainee trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload, TraineeRegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                //copy a replical to the trainee table 
+                _context.Add(trainee);
+                await _context.SaveChangesAsync();
                 var user = new ApplicationUser()
                 {
 
                     UserName = model.Email,
                     Email = model.Email,
 
-                    PhoneNumber = model.PhoneNumber,
+                    PhoneNumber = model.PhoneNo,
                     CompanyAddress = model.CompanyAddress,
                     CompanyName = model.CompanyName,
                     UserAddress = model.UserAddress,
@@ -142,9 +190,38 @@ namespace MISTDO.Web.Views.TrainerDashboard
                     var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
 
+
                     return View("ConfirmMail");
 
                 }
+
+
+            }
+
+            if (ModelState.IsValid)
+            {
+                //if (ImageUpload != null)
+
+                //{
+                //    if (ImageUpload.Length > 0)
+
+                //    //Convert Image to byte and save to database
+
+                //    {
+
+                //        byte[] p1 = null;
+                //        using (var fs1 = ImageUpload.OpenReadStream())
+                //        using (var ms1 = new MemoryStream())
+                //        {
+                //            fs1.CopyTo(ms1);
+                //            p1 = ms1.ToArray();
+                //        }
+                //        trainee.ImageUpload = p1;
+
+                //    }
+                //}
+
+
 
 
             }
@@ -177,10 +254,10 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 {
                     _logger.LogInformation("User logged in.");
                     var user = await _userManager.FindByEmailAsync(model.Email);
-                    var isTrainer = await _userManager.IsInRoleAsync(user, "Trainer");
+                    var isTrainee = await _userManager.IsInRoleAsync(user, "Trainee");
                     //if (isTrainer)
                     //{
-                    returnUrl = returnUrl ?? Url.Content("~/TrainerDashboard/");
+                    returnUrl = returnUrl ?? Url.Content("~/Trainees/Dashboard");
                     //     }
                     //      else
                     //      {
@@ -356,10 +433,10 @@ namespace MISTDO.Web.Views.TrainerDashboard
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( Trainee trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
+        public async Task<IActionResult> Create(Trainee trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
         {
 
-           
+
 
             if (ModelState.IsValid)
             {
@@ -412,7 +489,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
             //IFormFile file = new FormFile(stream, 0, stream.Length, "Name", "FileName");
 
-            
+
             return View(trainee);
         }
 
@@ -421,7 +498,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,  Trainee trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
+        public async Task<IActionResult> Edit(int id, Trainee trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
         {
             if (id != trainee.TraineeId)
             {
@@ -452,7 +529,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 }
                 try
                 {
-                    
+
 
                     _context.Update(trainee);
                     await _context.SaveChangesAsync();
@@ -505,5 +582,40 @@ namespace MISTDO.Web.Views.TrainerDashboard
         {
             return _context.Trainees.Any(e => e.TraineeId == id);
         }
+
+
+        [HttpPost("UploadFile")]
+        public async Task<IActionResult> TraineeUpload(Microsoft.AspNetCore.Http.IFormFile file)
+        {
+
+
+            if (file == null)
+                return Content("Argument null");
+
+            //var mimetype = MimeMapping.MimeTypes.GetMimeMapping(file.FileName);
+            //if (mimetype != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            //{
+            //    return Content("Invalid Content Type");
+
+            //}
+            var filePath = Path.Combine(_envt.WebRootPath, ("traineefiles\\" + file.Name));
+
+            if (file.Length > 0)
+            {
+                if (System.IO.File.Exists(filePath))
+                {
+
+                    System.IO.File.Delete(filePath);
+                }
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+                await _exceltoTrainee.ConvertFileToTraineeString(filePath);
+            }
+            return RedirectToAction("Index");
+
+        }
+
     }
 }

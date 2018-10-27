@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using MISTDO.Web.Data;
 using System;
 
-namespace MISTDO.Web.Data.Migrations
+namespace MISTDO.Web.Migrations.AdminApplicationDb
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AdminApplicationDbContext))]
+    partial class AdminApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -128,40 +128,20 @@ namespace MISTDO.Web.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MISTDO.Web.Models.ApplicationUser", b =>
+            modelBuilder.Entity("MISTDO.Web.Models.AdminApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("City");
-
-                    b.Property<string>("CompanyAddress")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("CompanyName")
-                        .HasMaxLength(100);
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
-
-                    b.Property<string>("Country");
-
-                    b.Property<DateTime>("DateRegistered");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100);
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -181,12 +161,7 @@ namespace MISTDO.Web.Data.Migrations
 
                     b.Property<string>("SecurityStamp");
 
-                    b.Property<string>("State");
-
                     b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserAddress")
-                        .HasMaxLength(100);
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
@@ -204,140 +179,6 @@ namespace MISTDO.Web.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("MISTDO.Web.Models.Certificate", b =>
-                {
-                    b.Property<int>("CertId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CertNumber");
-
-                    b.Property<string>("CertStatus");
-
-                    b.Property<DateTime>("DateGenerated");
-
-                    b.Property<int?>("OwnerTraineeId");
-
-                    b.Property<string>("TrainerOrg");
-
-                    b.Property<string>("TrainerOrgId");
-
-                    b.HasKey("CertId");
-
-                    b.HasIndex("OwnerTraineeId");
-
-                    b.ToTable("Certificates");
-                });
-
-            modelBuilder.Entity("MISTDO.Web.Models.Examination", b =>
-                {
-                    b.Property<int>("ExamId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("ShortCode");
-
-                    b.HasKey("ExamId");
-
-                    b.ToTable("Examinations");
-                });
-
-            modelBuilder.Entity("MISTDO.Web.Models.SubscriptionModule", b =>
-                {
-                    b.Property<int>("ModuleId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ModuleDescription");
-
-                    b.Property<string>("ModuleName");
-
-                    b.HasKey("ModuleId");
-
-                    b.ToTable("SubscriptionModules");
-                });
-
-            modelBuilder.Entity("MISTDO.Web.Models.Trainee", b =>
-                {
-                    b.Property<int>("TraineeId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CompanyAddress");
-
-                    b.Property<string>("CompanyName");
-
-                    b.Property<string>("Email");
-
-                    b.Property<byte[]>("FirstFinger");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<byte[]>("ImageUpload");
-
-                    b.Property<byte[]>("LastFinger");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<byte[]>("MiddleFinger");
-
-                    b.Property<string>("PhoneNo");
-
-                    b.Property<string>("UserAddress");
-
-                    b.HasKey("TraineeId");
-
-                    b.ToTable("Trainees");
-                });
-
-            modelBuilder.Entity("MISTDO.Web.Models.Training", b =>
-                {
-                    b.Property<int>("TrainingId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("CentreId1");
-
-                    b.Property<int>("TrainingCost");
-
-                    b.Property<DateTime>("TrainingEndDate");
-
-                    b.Property<string>("TrainingName");
-
-                    b.Property<DateTime>("TrainingStartDate");
-
-                    b.HasKey("TrainingId");
-
-                    b.HasIndex("CentreId1");
-
-                    b.ToTable("Trainings");
-                });
-
-            modelBuilder.Entity("MISTDO.Web.Models.TrainingCentre", b =>
-                {
-                    b.Property<int>("CentreId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CentreName")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("OGISPId")
-                        .IsRequired();
-
-                    b.Property<string>("OGISPUserName")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.HasKey("CentreId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("TrainingCentres");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -348,7 +189,7 @@ namespace MISTDO.Web.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("MISTDO.Web.Models.ApplicationUser")
+                    b.HasOne("MISTDO.Web.Models.AdminApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -356,7 +197,7 @@ namespace MISTDO.Web.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("MISTDO.Web.Models.ApplicationUser")
+                    b.HasOne("MISTDO.Web.Models.AdminApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -369,7 +210,7 @@ namespace MISTDO.Web.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("MISTDO.Web.Models.ApplicationUser")
+                    b.HasOne("MISTDO.Web.Models.AdminApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -377,29 +218,7 @@ namespace MISTDO.Web.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("MISTDO.Web.Models.ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MISTDO.Web.Models.Certificate", b =>
-                {
-                    b.HasOne("MISTDO.Web.Models.Trainee", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerTraineeId");
-                });
-
-            modelBuilder.Entity("MISTDO.Web.Models.Training", b =>
-                {
-                    b.HasOne("MISTDO.Web.Models.TrainingCentre", "CentreId")
-                        .WithMany()
-                        .HasForeignKey("CentreId1");
-                });
-
-            modelBuilder.Entity("MISTDO.Web.Models.TrainingCentre", b =>
-                {
-                    b.HasOne("MISTDO.Web.Models.ApplicationUser", "User")
+                    b.HasOne("MISTDO.Web.Models.AdminApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

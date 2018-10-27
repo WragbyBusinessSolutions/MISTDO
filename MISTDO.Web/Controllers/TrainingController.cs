@@ -23,14 +23,14 @@ namespace MISTDO.Web.Views
         public TrainingController(ApplicationDbContext context, IHostingEnvironment env, IExcelToTrainingService excelToTrainingService)
         {
             _context = context;
-            _exceltoTraining= excelToTrainingService;
+            _exceltoTraining = excelToTrainingService;
             _env = env;
         }
 
         // GET: Training
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Training.ToListAsync());
+            return View(await _context.Trainings.ToListAsync());
         }
 
         // GET: Training/Details/5
@@ -41,7 +41,7 @@ namespace MISTDO.Web.Views
                 return NotFound();
             }
 
-            var training = await _context.Training
+            var training = await _context.Trainings
                 .SingleOrDefaultAsync(m => m.TrainingId == id);
             if (training == null)
             {
@@ -62,10 +62,15 @@ namespace MISTDO.Web.Views
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TrainingName,TrainingCost,TrainingStartDate,TrainingEndDate")] Training training)
+        public async Task<IActionResult> Create([Bind("TrainingName,TrainingCost,TrainingStartDate,TrainingEndDate")] Training training, TrainingCentre trainingCentre)
         {
             if (ModelState.IsValid)
             {
+                //var dex = Convert.ToInt32(trainingCentre.CentreId);
+                //var bex = Convert.ToInt32(training.CentreId);
+                //  bex = dex;
+
+
                 _context.Add(training);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -81,7 +86,7 @@ namespace MISTDO.Web.Views
                 return NotFound();
             }
 
-            var training = await _context.Training.SingleOrDefaultAsync(m => m.TrainingId == id);
+            var training = await _context.Trainings.SingleOrDefaultAsync(m => m.TrainingId == id);
             if (training == null)
             {
                 return NotFound();
@@ -132,8 +137,7 @@ namespace MISTDO.Web.Views
                 return NotFound();
             }
 
-            var training = await _context.Training
-                .SingleOrDefaultAsync(m => m.TrainingId == id);
+            var training = await _context.Trainings.SingleOrDefaultAsync(m => m.TrainingId == id);
             if (training == null)
             {
                 return NotFound();
@@ -147,15 +151,15 @@ namespace MISTDO.Web.Views
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var training = await _context.Training.SingleOrDefaultAsync(m => m.TrainingId == id);
-            _context.Training.Remove(training);
+            var training = await _context.Trainings.SingleOrDefaultAsync(m => m.TrainingId == id);
+            _context.Trainings.Remove(training);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TrainingExists(int id)
         {
-            return _context.Training.Any(e => e.TrainingId == id);
+            return _context.Trainings.Any(e => e.TrainingId == id);
         }
 
         [HttpPost("UploadFiles")]

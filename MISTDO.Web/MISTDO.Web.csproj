@@ -25,6 +25,104 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Account\AccessDenied.cshtml" />
+    <None Include="Views\Account\ConfirmEmail.cshtml" />
+    <None Include="Views\Account\ConfirmMail.cshtml" />
+    <None Include="Views\Account\ExternalLogin.cshtml" />
+    <None Include="Views\Account\ForgotPassword.cshtml" />
+    <None Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <None Include="Views\Account\Lockout.cshtml" />
+    <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\Account\LoginWith2fa.cshtml" />
+    <None Include="Views\Account\LoginWithRecoveryCode.cshtml" />
+    <None Include="Views\Account\Register.cshtml" />
+    <None Include="Views\Account\ResetPassword.cshtml" />
+    <None Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <None Include="Views\Account\SignedOut.cshtml" />
+    <None Include="Views\Home\About.cshtml" />
+    <None Include="Views\Home\ConfirmMail.cshtml" />
+    <None Include="Views\Home\Contact.cshtml" />
+    <None Include="Views\Home\ForgetPassword.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\RegisterNow.cshtml" />
+    <None Include="Views\Home\Trainer.cshtml" />
+    <None Include="Views\Manage\ChangePassword.cshtml" />
+    <None Include="Views\Manage\Disable2fa.cshtml" />
+    <None Include="Views\Manage\EnableAuthenticator.cshtml" />
+    <None Include="Views\Manage\ExternalLogins.cshtml" />
+    <None Include="Views\Manage\GenerateRecoveryCodes.cshtml" />
+    <None Include="Views\Manage\Index.cshtml" />
+    <None Include="Views\Manage\ResetAuthenticator.cshtml" />
+    <None Include="Views\Manage\SetPassword.cshtml" />
+    <None Include="Views\Manage\ShowRecoveryCodes.cshtml" />
+    <None Include="Views\Manage\TwoFactorAuthentication.cshtml" />
+    <None Include="Views\Manage\_Layout.cshtml" />
+    <None Include="Views\Manage\_ManageNav.cshtml" />
+    <None Include="Views\Manage\_StatusMessage.cshtml" />
+    <None Include="Views\Manage\_ViewImports.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_LayoutAside.cshtml" />
+    <None Include="Views\Shared\_LayoutDashboard.cshtml" />
+    <None Include="Views\Shared\_LayoutHeader.cshtml" />
+    <None Include="Views\Shared\_Layoutold.cshtml" />
+    <None Include="Views\Shared\_LayoutTraineeAside.cshtml" />
+    <None Include="Views\Shared\_LayoutTraineeDashboard.cshtml" />
+    <None Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\TraineesDashboard\Dashboard.cshtml" />
+    <None Include="Views\Trainees\AccessDenied.cshtml" />
+    <None Include="Views\Trainees\ConfirmEmail.cshtml" />
+    <None Include="Views\Trainees\ConfirmMail.cshtml" />
+    <None Include="Views\Trainees\Create.cshtml" />
+    <None Include="Views\Trainees\Dashboard.cshtml" />
+    <None Include="Views\Trainees\Delete.cshtml" />
+    <None Include="Views\Trainees\Details.cshtml" />
+    <None Include="Views\Trainees\Edit.cshtml" />
+    <None Include="Views\Trainees\ExternalLogin.cshtml" />
+    <None Include="Views\Trainees\ForgotPassword.cshtml" />
+    <None Include="Views\Trainees\ForgotPasswordConfirmation.cshtml" />
+    <None Include="Views\Trainees\Index.cshtml" />
+    <None Include="Views\Trainees\Lockout.cshtml" />
+    <None Include="Views\Trainees\Login.cshtml" />
+    <None Include="Views\Trainees\LoginWith2fa.cshtml" />
+    <None Include="Views\Trainees\LoginWithRecoveryCode.cshtml" />
+    <None Include="Views\Trainees\Profile.cshtml" />
+    <None Include="Views\Trainees\RegisterNow.cshtml" />
+    <None Include="Views\Trainees\ResetPasswordConfirmation.cshtml" />
+    <None Include="Views\Trainees\SignedOut.cshtml" />
+    <None Include="Views\Trainees\Training.cshtml" />
+    <None Include="Views\TrainerDashboard\Certificate.cshtml" />
+    <None Include="Views\TrainerDashboard\Index.cshtml" />
+    <None Include="Views\TrainerDashboard\NewCertificate.cshtml" />
+    <None Include="Views\TrainerDashboard\Payment.cshtml" />
+    <None Include="Views\TrainerDashboard\RegisterTrainee.cshtml" />
+    <None Include="Views\TrainerDashboard\Trainee.cshtml" />
+    <None Include="Views\TrainerDashboard\Training.cshtml" />
+    <None Include="Views\TrainerDashboard\ViewCertificate.cshtml" />
+    <None Include="Views\TrainerDashboard\ViewTrainee.cshtml" />
+    <None Include="Views\Trainer\AccessDenied.cshtml" />
+    <None Include="Views\Trainer\ConfirmEmail.cshtml" />
+    <None Include="Views\Trainer\ConfirmMail.cshtml" />
+    <None Include="Views\Trainer\ExternalLogin.cshtml" />
+    <None Include="Views\Trainer\ForgotPassword.cshtml" />
+    <None Include="Views\Trainer\ForgotPasswordConfirmation.cshtml" />
+    <None Include="Views\Trainer\Index.cshtml" />
+    <None Include="Views\Trainer\Lockout.cshtml" />
+    <None Include="Views\Trainer\Login.cshtml" />
+    <None Include="Views\Trainer\LoginWith2fa.cshtml" />
+    <None Include="Views\Trainer\LoginWithRecoveryCode.cshtml" />
+    <None Include="Views\Trainer\RegisterNow.cshtml" />
+    <None Include="Views\Trainer\ResetPassword.cshtml" />
+    <None Include="Views\Trainer\ResetPasswordConfirmation.cshtml" />
+    <None Include="Views\Trainer\SignedOut.cshtml" />
+    <None Include="Views\Training\Create.cshtml" />
+    <None Include="Views\Training\Delete.cshtml" />
+    <None Include="Views\Training\Details.cshtml" />
+    <None Include="Views\Training\Edit.cshtml" />
+    <None Include="Views\Training\Index.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
     <None Include="wwwroot\bower_components\PACE\pace.min.js" />
     <None Include="wwwroot\bower_components\PACE\themes\blue\pace-theme-minimal.css" />
     <None Include="wwwroot\bower_components\bootstrap\dist\css\bootstrap.css" />
@@ -83,83 +181,6 @@
     <None Include="wwwroot\bower_components\summernote\dist\font\summernoted41d.eot" />
     <None Include="wwwroot\bower_components\sweetalert\lib\sweet-alert.js" />
     <None Include="wwwroot\bower_components\twitter-bootstrap-wizard\jquery.bootstrap.wizard.min.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Remove="Views\Home\ForgetPassword.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Update="Views\Home\ConfirmMail.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainees\AccessDenied.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainees\ConfirmEmail.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainees\ConfirmMail.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainees\ExternalLogin.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainees\Lockout.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainees\Login.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainees\LoginWith2fa.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainees\RegisterNow.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\TrainerDashboard\Training.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\AccessDenied.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\ConfirmEmail.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\ConfirmMail.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\ExternalLogin.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\ForgotPassword.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\ForgotPasswordConfirmation.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\Lockout.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\LoginWith2fa.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\LoginWithRecoveryCode.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\RegisterNow.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\Login.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\ResetPassword.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\ResetPasswordConfirmation.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Trainer\SignedOut.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\productfiles\" />
