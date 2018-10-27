@@ -50,6 +50,7 @@ namespace MISTDO.Web
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<ITrainerService, TrainerService>();
             services.AddTransient<IExcelToTrainingService, ExcelToTrainingService>();
+            services.AddTransient<IExcelToTraineeService, ExcelToTraineeService>();
 
             services.AddDistributedMemoryCache();
 

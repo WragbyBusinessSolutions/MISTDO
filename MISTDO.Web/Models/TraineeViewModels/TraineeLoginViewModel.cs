@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MISTDO.Web.Models.AccountViewModels
 {
-    public class TraineeLoginViewModel
+    public class TraineeLoginViewModel 
     {
         [Required]
         [EmailAddress]
@@ -18,5 +18,7 @@ namespace MISTDO.Web.Models.AccountViewModels
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+
     }
 }
