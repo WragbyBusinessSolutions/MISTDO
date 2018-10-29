@@ -27,12 +27,12 @@ namespace MISTDO.Web.Controllers
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger, ApplicationDbContext context)
+             ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
-            _logger = logger;
+           
             dbcontext = context;
         }
         public IActionResult Index()

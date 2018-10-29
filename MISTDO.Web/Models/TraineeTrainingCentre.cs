@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MISTDO.Web.Models
 {
-    public class TrainingCentre
+    public class TraineeTrainingCentre
     {
         [Key]
         public int CentreId { get; set; }
@@ -26,9 +26,9 @@ namespace MISTDO.Web.Models
         public string OGISPId { get; set; }
         [Required]
 
-        public virtual ApplicationUser User { get; set; }
+        public virtual TraineeApplicationUser User { get; set; }
 
-        
+
 
     }
 }

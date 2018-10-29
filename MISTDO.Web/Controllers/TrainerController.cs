@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MISTDO.Web.Data;
 using MISTDO.Web.Models;
@@ -21,27 +22,29 @@ namespace MISTDO.Web.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
-        private readonly ILogger _logger;
+       // private readonly ILogger _logger;
         public ApplicationDbContext dbcontext { get; }
+        
 
         public TrainerController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger, ApplicationDbContext context)
+             ApplicationDbContext context)
         {
             dbcontext = context;
-
+         
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
-            _logger = logger;
+            
         }
 
         public IActionResult Index()
         {
             return View();
         }
+
 
         public IActionResult ForgotPassword()
         {
@@ -89,7 +92,7 @@ namespace MISTDO.Web.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "Trainer");
+                    
                     var centredetails = new TrainingCentre
                     {
                         CentreName = model.CentreName,
@@ -143,7 +146,7 @@ namespace MISTDO.Web.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    
                     var user = await _userManager.FindByEmailAsync(model.Email);
                     var isTrainer = await _userManager.IsInRoleAsync(user, "Trainer");
                     //if (isTrainer)
@@ -161,7 +164,7 @@ namespace MISTDO.Web.Controllers
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                  //  _logger.LogWarning("User account locked out.");
                     return RedirectToAction(nameof(Lockout));
                 }
                 else
@@ -214,17 +217,17 @@ namespace MISTDO.Web.Controllers
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
+               // _logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
                 return RedirectToLocal(returnUrl);
             }
             else if (result.IsLockedOut)
             {
-                _logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+              //  _logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
                 return RedirectToAction(nameof(Lockout));
             }
             else
             {
-                _logger.LogWarning("Invalid authenticator code entered for user with ID {UserId}.", user.Id);
+               // _logger.LogWarning("Invalid authenticator code entered for user with ID {UserId}.", user.Id);
                 ModelState.AddModelError(string.Empty, "Invalid authenticator code.");
                 return View();
             }
@@ -235,7 +238,7 @@ namespace MISTDO.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+          //  _logger.LogInformation("User logged out.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
         [HttpGet]
@@ -313,6 +316,31 @@ namespace MISTDO.Web.Controllers
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
+        }
+
+        public async Task<IActionResult> Notification()
+        {
+            var notify = await dbcontext.Notifications.ToListAsync();
+            return View(notify);
+        }
+        public async Task<IActionResult> NotificationDetails(int? id)
+        {
+            if (id == null)
+            {
+                return View(await dbcontext.Notifications.ToListAsync());
+            }
+
+            var notification = await dbcontext.Notifications.SingleOrDefaultAsync(m => m.NotificationId == id);
+
+
+
+
+            if (notification == null)
+            {
+                return NotFound();
+            }
+
+            return View(notification);
         }
     }
 }

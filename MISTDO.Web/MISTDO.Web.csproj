@@ -6,8 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\20181010175835_Trainer.cs" />
-    <Compile Remove="Data\Migrations\20181010175835_Trainer.Designer.cs" />
+    <Compile Remove="Views\Account\**" />
+    <Content Remove="Views\Account\**" />
+    <EmbeddedResource Remove="Views\Account\**" />
+    <None Remove="Views\Account\**" />
   </ItemGroup>
 
 
@@ -25,20 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Account\AccessDenied.cshtml" />
-    <None Include="Views\Account\ConfirmEmail.cshtml" />
-    <None Include="Views\Account\ConfirmMail.cshtml" />
-    <None Include="Views\Account\ExternalLogin.cshtml" />
-    <None Include="Views\Account\ForgotPassword.cshtml" />
-    <None Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <None Include="Views\Account\Lockout.cshtml" />
-    <None Include="Views\Account\Login.cshtml" />
-    <None Include="Views\Account\LoginWith2fa.cshtml" />
-    <None Include="Views\Account\LoginWithRecoveryCode.cshtml" />
-    <None Include="Views\Account\Register.cshtml" />
-    <None Include="Views\Account\ResetPassword.cshtml" />
-    <None Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <None Include="Views\Account\SignedOut.cshtml" />
     <None Include="Views\Home\About.cshtml" />
     <None Include="Views\Home\ConfirmMail.cshtml" />
     <None Include="Views\Home\Contact.cshtml" />
@@ -184,5 +172,19 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\productfiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Views\Trainees\EditProfile.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Trainer\Notification.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Trainer\NotificationDetails.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Trainer\Support.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 </Project>

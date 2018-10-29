@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace MISTDO.Web.Migrations
 {
-    public partial class InitCreate : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,6 +55,87 @@ namespace MISTDO.Web.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Examinations",
+                columns: table => new
+                {
+                    ExamId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Description = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    ShortCode = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Examinations", x => x.ExamId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Notifications",
+                columns: table => new
+                {
+                    NotificationId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    NotificationDateTime = table.Column<DateTime>(nullable: false),
+                    NotificationMessage = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notifications", x => x.NotificationId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SubscriptionModules",
+                columns: table => new
+                {
+                    ModuleId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ModuleDescription = table.Column<int>(nullable: false),
+                    ModuleName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubscriptionModules", x => x.ModuleId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Supports",
+                columns: table => new
+                {
+                    SupportId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Issue = table.Column<string>(nullable: true),
+                    Subject = table.Column<string>(nullable: true),
+                    SupportTimeStamp = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Supports", x => x.SupportId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trainees",
+                columns: table => new
+                {
+                    TraineeId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CompanyAddress = table.Column<string>(nullable: true),
+                    CompanyName = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    FirstFinger = table.Column<byte[]>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    ImageUpload = table.Column<byte[]>(nullable: true),
+                    LastFinger = table.Column<byte[]>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    MiddleFinger = table.Column<byte[]>(nullable: true),
+                    PhoneNo = table.Column<string>(nullable: true),
+                    UserAddress = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trainees", x => x.TraineeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -163,6 +244,75 @@ namespace MISTDO.Web.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TrainingCentres",
+                columns: table => new
+                {
+                    CentreId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CentreName = table.Column<string>(maxLength: 100, nullable: false),
+                    OGISPId = table.Column<string>(nullable: false),
+                    OGISPUserName = table.Column<string>(maxLength: 100, nullable: false),
+                    UserId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TrainingCentres", x => x.CentreId);
+                    table.ForeignKey(
+                        name: "FK_TrainingCentres_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Certificates",
+                columns: table => new
+                {
+                    CertId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CertNumber = table.Column<string>(nullable: true),
+                    CertStatus = table.Column<string>(nullable: true),
+                    DateGenerated = table.Column<DateTime>(nullable: false),
+                    OwnerTraineeId = table.Column<int>(nullable: true),
+                    TrainerOrg = table.Column<string>(nullable: true),
+                    TrainerOrgId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Certificates", x => x.CertId);
+                    table.ForeignKey(
+                        name: "FK_Certificates_Trainees_OwnerTraineeId",
+                        column: x => x.OwnerTraineeId,
+                        principalTable: "Trainees",
+                        principalColumn: "TraineeId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trainings",
+                columns: table => new
+                {
+                    TrainingId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CentreId1 = table.Column<int>(nullable: true),
+                    TrainingCost = table.Column<int>(nullable: false),
+                    TrainingEndDate = table.Column<DateTime>(nullable: false),
+                    TrainingName = table.Column<string>(nullable: true),
+                    TrainingStartDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trainings", x => x.TrainingId);
+                    table.ForeignKey(
+                        name: "FK_Trainings_TrainingCentres_CentreId1",
+                        column: x => x.CentreId1,
+                        principalTable: "TrainingCentres",
+                        principalColumn: "CentreId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -201,6 +351,21 @@ namespace MISTDO.Web.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Certificates_OwnerTraineeId",
+                table: "Certificates",
+                column: "OwnerTraineeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrainingCentres_UserId",
+                table: "TrainingCentres",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trainings_CentreId1",
+                table: "Trainings",
+                column: "CentreId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -221,7 +386,31 @@ namespace MISTDO.Web.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Certificates");
+
+            migrationBuilder.DropTable(
+                name: "Examinations");
+
+            migrationBuilder.DropTable(
+                name: "Notifications");
+
+            migrationBuilder.DropTable(
+                name: "SubscriptionModules");
+
+            migrationBuilder.DropTable(
+                name: "Supports");
+
+            migrationBuilder.DropTable(
+                name: "Trainings");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Trainees");
+
+            migrationBuilder.DropTable(
+                name: "TrainingCentres");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

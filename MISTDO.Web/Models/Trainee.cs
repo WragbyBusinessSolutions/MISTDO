@@ -25,12 +25,12 @@ namespace MISTDO.Web.Models
         
          public byte[] ImageUpload { get; set; }
 
-          
+
         
-           
-        
-        
-       
+
+
+
+
 
     }
 }

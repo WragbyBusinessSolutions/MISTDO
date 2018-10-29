@@ -28,21 +28,21 @@ namespace MISTDO.Web.Views.TrainerDashboard
     [Authorize]
     public class TraineesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly TraineeApplicationDbContext _context;
 
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<TraineeApplicationUser> _userManager;
+        private readonly SignInManager<TraineeApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
-        private readonly ILogger _logger;
-        public ApplicationDbContext dbcontext { get; }
+       
+        public TraineeApplicationDbContext dbcontext { get; }
         public IExcelToTraineeService _exceltoTrainee { get; }
 
         private readonly IHostingEnvironment _envt;
 
-        public TraineesController(UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
+        public TraineesController(UserManager<TraineeApplicationUser> userManager,
+            SignInManager<TraineeApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger, IHostingEnvironment env, IExcelToTraineeService excelToTraineeService, ApplicationDbContext context)
+            IHostingEnvironment env, IExcelToTraineeService excelToTraineeService, TraineeApplicationDbContext context)
         {
             _context = context;
             dbcontext = context;
@@ -52,8 +52,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
-            _logger = logger;
-
+           
         }
 
         // GET: Trainees
@@ -85,22 +84,19 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
             return View(notification);
         }
-        public async Task<IActionResult> Profile(string Email, TraineeRegisterViewModel model)
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Profile(int? id, Trainee model)
         {
             var user = await _userManager.GetUserAsync(User);
-           
-            
+            id = user.TraineeId;
 
-
-            if (Email == null)
+            if (id == null)
             {
                 return View(await _context.Trainees.ToListAsync());
             }
 
-           if(user.Email == model.Email )
-            { 
-            var trainee = await _context.Trainees.SingleOrDefaultAsync(m => m.Email == Email);
-
+            var trainee = await _context.Trainees.SingleOrDefaultAsync(m => m.TraineeId == id);
 
 
 
@@ -112,12 +108,70 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
             return View(trainee);
 
-            }
-            return View();
         }
-        public IActionResult Dashboard()
+
+        // GET: Trainee/Edit/5
+        public async Task<IActionResult> EditProfile(int id)
         {
+            var user = await _userManager.GetUserAsync(User);
+            id = user.TraineeId;
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var trainee = await _context.Trainees.SingleOrDefaultAsync(m => m.TraineeId == id);
+            if (trainee == null)
+            {
+                return NotFound();
+            }
+            return View(trainee);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditProfile(int? id, Trainee model)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            id = user.TraineeId;
+
+            if (id != model.TraineeId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(model);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!TraineeExists(model.TraineeId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Profile));
+            }
+            return View(model);
+
+        }
+
+         
+
+public IActionResult Dashboard()
+        {
+
             return View();
+
         }
 
         public async Task<IActionResult> Training(Training training)
@@ -169,7 +223,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 //copy a replical to the trainee table 
                 _context.Add(trainee);
                 await _context.SaveChangesAsync();
-                var user = new ApplicationUser()
+                var user = new TraineeApplicationUser()
                 {
 
                     UserName = model.Email,
@@ -181,7 +235,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
                     UserAddress = model.UserAddress,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-
+                    TraineeId = trainee.TraineeId,
                     State = model.State,
                     City = model.City,
                     Country = model.Country,
@@ -194,8 +248,8 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "Trainer");
-                    var centredetails = new TrainingCentre
+                    
+                    var centredetails = new TraineeTrainingCentre
                     {
                         CentreName = model.CentreName,
                         OGISPUserName = model.OGISPUserName,
@@ -221,38 +275,13 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
             }
 
-            if (ModelState.IsValid)
-            {
-                //if (ImageUpload != null)
-
-                //{
-                //    if (ImageUpload.Length > 0)
-
-                //    //Convert Image to byte and save to database
-
-                //    {
-
-                //        byte[] p1 = null;
-                //        using (var fs1 = ImageUpload.OpenReadStream())
-                //        using (var ms1 = new MemoryStream())
-                //        {
-                //            fs1.CopyTo(ms1);
-                //            p1 = ms1.ToArray();
-                //        }
-                //        trainee.ImageUpload = p1;
-
-                //    }
-                //}
-
-
-
-               
-            }
-
+         
             // If we got this far, something failed, redisplay form
             return View(model);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
@@ -275,9 +304,9 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                   
                     var user = await _userManager.FindByEmailAsync(model.Email);
-                    var isTrainee = await _userManager.IsInRoleAsync(user, "Trainee");
+                   // var isTrainee = await _userManager.IsInRoleAsync(user, "Trainee");
                     //if (isTrainer)
                     //{
                     returnUrl = returnUrl ?? Url.Content("~/Trainees/Dashboard");
@@ -293,7 +322,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    
                     return RedirectToAction(nameof(Lockout));
                 }
                 else
@@ -328,17 +357,17 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
+               
                 return RedirectToLocal(returnUrl);
             }
             else if (result.IsLockedOut)
             {
-                _logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+               
                 return RedirectToAction(nameof(Lockout));
             }
             else
             {
-                _logger.LogWarning("Invalid authenticator code entered for user with ID {UserId}.", user.Id);
+               
                 ModelState.AddModelError(string.Empty, "Invalid authenticator code.");
                 return View();
             }
@@ -349,7 +378,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+           
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
         [HttpGet]

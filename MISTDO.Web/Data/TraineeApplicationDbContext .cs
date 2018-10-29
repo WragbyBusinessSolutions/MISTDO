@@ -21,8 +21,12 @@ namespace MISTDO.Web.Data
             base.OnModelCreating(builder);
            
         }
-     
-
+        public DbSet<MISTDO.Web.Models.Training> Trainings { get; set; }
+        public DbSet<Trainee> Trainees { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Support> Supports { get; set; }
+        public DbSet<TraineeTrainingCentre> TraineeTrainingCentres { get; set; }
+        public DbSet<Certificate> Certificates { get; set; }
 
     }
 }
