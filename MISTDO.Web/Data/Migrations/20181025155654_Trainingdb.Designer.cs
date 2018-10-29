@@ -11,9 +11,10 @@ using System;
 namespace MISTDO.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181025155654_Trainingdb")]
+    partial class Trainingdb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,20 +245,6 @@ namespace MISTDO.Web.Data.Migrations
                     b.ToTable("Examinations");
                 });
 
-            modelBuilder.Entity("MISTDO.Web.Models.Notification", b =>
-                {
-                    b.Property<int>("NotificationId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("NotificationDateTime");
-
-                    b.Property<string>("NotificationMessage");
-
-                    b.HasKey("NotificationId");
-
-                    b.ToTable("Notifications");
-                });
-
             modelBuilder.Entity("MISTDO.Web.Models.SubscriptionModule", b =>
                 {
                     b.Property<int>("ModuleId")
@@ -270,22 +257,6 @@ namespace MISTDO.Web.Data.Migrations
                     b.HasKey("ModuleId");
 
                     b.ToTable("SubscriptionModules");
-                });
-
-            modelBuilder.Entity("MISTDO.Web.Models.Support", b =>
-                {
-                    b.Property<int>("SupportId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Issue");
-
-                    b.Property<string>("Subject");
-
-                    b.Property<DateTime>("SupportTimeStamp");
-
-                    b.HasKey("SupportId");
-
-                    b.ToTable("Supports");
                 });
 
             modelBuilder.Entity("MISTDO.Web.Models.Trainee", b =>

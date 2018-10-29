@@ -122,7 +122,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
         public async Task<IActionResult> Training(Training training)
         {
-            return View(await _context.Training.ToListAsync());
+            return View(await _context.Trainings.ToListAsync());
         }
         // GET: Trainees/Details/5
         public async Task<IActionResult> Details(int? id)

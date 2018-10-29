@@ -28,7 +28,7 @@ namespace MISTDO.Web.Data
         public DbSet<Trainee> Trainees { get; set; }
         public DbSet<Certificate> Certificates { get; set; }
         public DbSet<Examination> Examinations { get; set; }
-        public DbSet<MISTDO.Web.Models.Training> Training { get; set; }
+        public DbSet<MISTDO.Web.Models.Training> Trainings { get; set; }
 
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Support> Supports { get; set; }
