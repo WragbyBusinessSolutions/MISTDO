@@ -62,6 +62,29 @@ namespace MISTDO.Web.Views.TrainerDashboard
             return View(await _context.Trainees.ToListAsync());
         }
 
+        public async Task<IActionResult> Notification()
+        {
+            return View(await _context.Notifications.ToListAsync());
+        }
+        public async Task<IActionResult> NotificationDetails(int? id)
+        {
+            if (id == null)
+            {
+                return View(await _context.Notifications.ToListAsync());
+            }
+
+            var notification = await _context.Notifications.SingleOrDefaultAsync(m => m.NotificationId== id);
+
+
+
+
+            if (notification == null)
+            {
+                return NotFound();
+            }
+
+            return View(notification);
+        }
         public async Task<IActionResult> Profile(string Email, TraineeRegisterViewModel model)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -421,6 +444,33 @@ namespace MISTDO.Web.Views.TrainerDashboard
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
+        }
+        //GET: Trainees/Support
+        public IActionResult Support()
+        {
+            TempData["Message"] = "Operation successful!";
+            return View();
+        }
+        // POST: Trainees/Suipport
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Support(Support support, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
+        {
+
+
+
+            if (ModelState.IsValid)
+            {
+              
+
+
+
+                _context.Add(support);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Support));
+            }
+            return View(support);
+
         }
         // GET: Trainees/Create
         public IActionResult Create()

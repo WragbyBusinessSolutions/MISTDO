@@ -30,6 +30,9 @@ namespace MISTDO.Web.Data
         public DbSet<Examination> Examinations { get; set; }
         public DbSet<MISTDO.Web.Models.Training> Training { get; set; }
 
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Support> Supports { get; set; }
+
 
     }
 }

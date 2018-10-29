@@ -83,9 +83,17 @@
     <None Include="wwwroot\bower_components\summernote\dist\font\summernoted41d.eot" />
     <None Include="wwwroot\bower_components\sweetalert\lib\sweet-alert.js" />
     <None Include="wwwroot\bower_components\twitter-bootstrap-wizard\jquery.bootstrap.wizard.min.js" />
+    <None Include="wwwroot\dist\assets\noty\js\noty\packaged\jquery.noty.packaged.min.js" />
+    <None Include="wwwroot\dist\assets\selectize\dist\css\selectize.default.css" />
+    <None Include="wwwroot\dist\assets\selectize\dist\js\standalone\selectize.min.js" />
+    <None Include="wwwroot\dist\assets\sweetalert\lib\sweet-alert.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Home\ForgetPassword.cshtml" />
+    <Content Remove="wwwroot\dist\assets\noty\js\noty\packaged\jquery.noty.packaged.min.js" />
+    <Content Remove="wwwroot\dist\assets\selectize\dist\css\selectize.default.css" />
+    <Content Remove="wwwroot\dist\assets\selectize\dist\js\standalone\selectize.min.js" />
+    <Content Remove="wwwroot\dist\assets\sweetalert\lib\sweet-alert.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Views\Home\ConfirmMail.cshtml">
@@ -119,6 +127,15 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Trainees\ForgotPasswordConfirmation.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Trainees\Support.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Trainees\NotificationDetails.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Trainees\Notification.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Trainees\Training.cshtml">

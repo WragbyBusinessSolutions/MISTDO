@@ -1,0 +1,126 @@
+﻿@model MISTDO.Web.Models.Support
+
+@{
+    ViewData["Title"] = "Support";
+     Layout = "_LayoutTraineeDashboard";
+}
+
+<link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+
+<!-- Page Container START -->
+
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeader");
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Help Center</h4>
+
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+                <h4></h4>
+            </div>
+            <div class="col-md-6">
+                <h4 align="right">@TempData["Message"]</h4>
+            </div>
+               </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-block">
+
+                            <form asp-action="Support" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="SupportTimeStamp" class="control-label"></label>
+                                    <input asp-for="SupportTimeStamp" class="form-control" />
+                                    <spa
+                                <div class="form-group">
+                                    <label  class="control-label">Subject</label>
+                                    <input asp-for="Subject" class="form-control" />
+                                    <span asp-validation-for="Subject" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Issue" class="control-label"></label>
+                                    <textarea asp-for="Issue" class="form-control" rows="4" placeholder="Type your message ..." ></textarea>
+                                    <span asp-validation-for="Issue" class="text-danger"></span>
+                                </div>
+
+
+
+
+
+
+
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </form>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-block">
+                            <form asp-action="TraineeUpload" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <p><b>Side Information here</b></p>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- Page Container END -->
+</div>
+<script src="~/dist/assets/js/vendor.js"></script>
+
+<script src="~/dist/assets/js/app.min.js"></script>
+
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>
+
+
+
