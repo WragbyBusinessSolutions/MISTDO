@@ -750,9 +750,9 @@ public IActionResult Dashboard()
 
         public ActionResult DownloadFile()
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "FolderName/";
-            byte[] fileBytes = System.IO.File.ReadAllBytes(path + "filename.extension");
-            string fileName = "filename.extension";
+            string path = AppDomain.CurrentDomain.DynamicDirectory + "wwwroot/templates/";
+            byte[] fileBytes = System.IO.File.ReadAllBytes(path + "trainee.xlsx");
+            string fileName = "trainee.xlsx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 

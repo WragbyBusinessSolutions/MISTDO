@@ -34,5 +34,20 @@ namespace MISTDO.Web.Models
         public string City { get; set; }
         public DateTime DateRegistered { get; set; }
 
+        [Required]
+        [DataType(DataType.Text)]
+        [MaxLength(100)]
+        public string CentreName { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+
+        [MaxLength(100)]
+        public string OGISPUserName { get; set; }
+
+        [Required]
+
+        public string OGISPId { get; set; }
+
     }
 }

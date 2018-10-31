@@ -194,5 +194,12 @@ namespace MISTDO.Web.Views
             return RedirectToAction("Index");
 
         }
+        public ActionResult DownloadFile()
+        {
+            string path = AppDomain.CurrentDomain.DynamicDirectory + "wwwroot/templates/";
+            byte[] fileBytes = System.IO.File.ReadAllBytes(path + "training.xlsx");
+            string fileName = "training.xlsx";
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+        }
     }
 }

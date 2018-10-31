@@ -1,0 +1,207 @@
+﻿@model MISTDO.Web.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Edit Profile";
+    Layout = "_LayoutDashboard";
+}
+
+<link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+
+<!-- Page Container START -->
+
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeader");
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Edit Training Center</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-heading border bottom">
+                            <h4 class="card-title">Training Centre Details</h4>
+                        </div>
+                        <div class="card-block">
+                            <div class="mrg-top-40">
+                                <div class="row">
+                                    <div class="col-md-8 ml-auto mr-auto">
+                                        <form asp-action="EditProfile">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <input type="hidden" asp-for="Id" />
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label asp-for="FirstName" class="control-label"></label>
+                                                        <input asp-for="FirstName" class="form-control" />
+                                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label asp-for="LastName" class="control-label"></label>
+                                                        <input asp-for="LastName" class="form-control" />
+                                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="Email" class="control-label"></label>
+                                                        <input asp-for="Email" class="form-control" />
+                                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="PhoneNumber" class="control-label"></label>
+                                                        <input asp-for="PhoneNumber" class="form-control" />
+                                                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="CompanyName" class="control-label"></label>
+                                                        <input asp-for="CompanyName" class="form-control" />
+                                                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="CompanyAddress" class="control-label"></label>
+                                                        <input asp-for="CompanyAddress" class="form-control" />
+                                                        <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="UserAddress" class="control-label"></label>
+                                                        <input asp-for="UserAddress" class="form-control" />
+                                                        <span asp-validation-for="UserAddress" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="State" class="control-label"></label>
+                                                        <input asp-for="State" class="form-control" />
+                                                        <span asp-validation-for="State" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="CentreName" class="control-label"></label>
+                                                        <input asp-for="CentreName" class="form-control" />
+                                                        <span asp-validation-for="CentreName" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="Country" class="control-label"></label>
+                                                        <input asp-for="Country" class="form-control" />
+                                                        <span asp-validation-for="Country" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="City" class="control-label"></label>
+                                                        <input asp-for="City" class="form-control" />
+                                                        <span asp-validation-for="City" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="OGISPId" class="control-label"></label>
+                                                        <input asp-for="OGISPId" class="form-control" />
+                                                        <span asp-validation-for="OGISPId" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="OGISPUserName" class="control-label"></label>
+                                                        <input asp-for="OGISPUserName" class="form-control" />
+                                                        <span asp-validation-for="OGISPUserName" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+
+                                                <div class="col-md-6 col-xs-6">
+                                                    <div class="text-right mrg-top-5">
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-primary">Save</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- Page Container END -->
+</div>
+<script src="~/dist/assets/js/vendor.js"></script>
+
+<script src="~/dist/assets/js/app.min.js"></script>
+
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>
+
+
+

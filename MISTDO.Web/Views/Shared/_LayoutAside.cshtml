@@ -21,6 +21,15 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a asp-action="Profile" asp-controller="Trainer">
+                    <span class="icon-holder">
+                        <i class="ti-user"></i>
+                    </span>
+                    <span class="title">Profile</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a asp-action="Index" asp-controller="Trainees">
                     <span class="icon-holder">
@@ -45,7 +54,7 @@
                     <span class="title">Training List</span>
                 </a>
             </li>
-            </li>
+            
             <li class="nav-item ">
                 <a asp-controller="Trainer" asp-action="Notification">
                     <span class="icon-holder">
@@ -55,13 +64,13 @@
                 </a>
             </li>
             @*<li class="nav-item ">
-                <a asp-controller="Trainer" asp-action="Support">
-                    <span class="icon-holder">
-                        <i class="ti-help"></i>
-                    </span>
-                    <span class="title">Help Support </span>
-                </a>
-            </li>*@
+            <a asp-controller="Trainer" asp-action="Support">
+                <span class="icon-holder">
+                    <i class="ti-help"></i>
+                </span>
+                <span class="title">Help Support </span>
+            </a>
+        </li>*@
             @*<li class="nav-item dropdown">
             <a class="dropdown-toggle" href="javascript:void(0);">
                 <span class="icon-holder">

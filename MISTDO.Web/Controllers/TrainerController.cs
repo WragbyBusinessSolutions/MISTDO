@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -44,8 +45,99 @@ namespace MISTDO.Web.Controllers
         {
             return View();
         }
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Profile(string id, Trainee model)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            id = user.Id;
+
+            if (id == null)
+            {
+                return View(await dbcontext.Users.ToListAsync());
+            }
+
+            var trainer = await dbcontext.Users.SingleOrDefaultAsync(m => m.Id == id);
 
 
+
+
+            if (trainer == null)
+            {
+                return NotFound();
+            }
+
+            return View(trainer);
+
+        }
+
+        // GET: Trainee/Edit/5
+        public async Task<IActionResult> EditProfile(string id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            id = user.Id;
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var trainer = await dbcontext.Users.SingleOrDefaultAsync(m => m.Id == id);
+            if (trainer == null)
+            {
+                return NotFound();
+            }
+            return View(trainer);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditProfile(string id, ApplicationUser model)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            id = user.Id;
+
+            if (id != model.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+               
+                if (user != null)
+                {
+                    user.UserName = model.Email;
+                    user.Email = model.Email;
+
+                    user.PhoneNumber = model.PhoneNumber;
+                    user.CompanyAddress = model.CompanyAddress;
+                    user.CompanyName = model.CompanyName;
+                    user.UserAddress = model.UserAddress;
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+
+                    user.State = model.State;
+                    user.City = model.City;
+                    user.Country = model.Country;
+                    user.CentreName = model.CentreName;
+                    user.OGISPUserName = model.OGISPUserName;
+                    user.OGISPId = model.OGISPId;
+                    user.EmailConfirmed = true;//Custom Column
+
+                    var idResult = await _userManager.UpdateAsync(user);//update
+                }
+                return RedirectToAction(nameof(Profile));
+            }
+            return View(model);
+
+        }
+
+        private bool TrainerExists(string id)
+        {
+            return dbcontext.Users.Any(e => e.Id == id);
+        }
         public IActionResult ForgotPassword()
         {
 
@@ -83,6 +175,9 @@ namespace MISTDO.Web.Controllers
                     State = model.State,
                     City = model.City,
                     Country = model.Country,
+                    CentreName = model.CentreName,
+                    OGISPUserName = model.OGISPUserName,
+                    OGISPId = model.OGISPId,
                     DateRegistered = DateTime.Now.Date,
 
 

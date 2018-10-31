@@ -171,16 +171,23 @@
     <None Include="wwwroot\bower_components\twitter-bootstrap-wizard\jquery.bootstrap.wizard.min.js" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="wwwroot\NewFolder\" />
     <Folder Include="wwwroot\productfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Views\Trainees\EditProfile.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Trainer\EditProfile.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Trainer\Notification.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Trainer\NotificationDetails.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Trainer\Profile.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Trainer\Support.cshtml">
