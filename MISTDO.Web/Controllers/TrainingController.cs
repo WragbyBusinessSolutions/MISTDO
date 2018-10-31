@@ -62,7 +62,7 @@ namespace MISTDO.Web.Views
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TrainingName,TrainingCost,TrainingStartDate,TrainingEndDate")] Training training)
+        public async Task<IActionResult> Create([Bind("TrainingName,TrainingCost,TrainingStartDate,TrainingEndDate,CentreId")] Training training)
         {
             if (ModelState.IsValid)
             {

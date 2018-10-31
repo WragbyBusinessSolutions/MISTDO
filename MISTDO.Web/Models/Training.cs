@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MISTDO.Web.Models
 {
-    public class Training
+    public class Training 
     {
         [Key]
         public int TrainingId { get; set; }
@@ -15,6 +15,9 @@ namespace MISTDO.Web.Models
         public DateTime TrainingStartDate{ get; set; }
         public DateTime TrainingEndDate { get; set; }
         public int CentreId { get; set; }
+        public int TraineeId { get; set; }
+        public int CertificateId { get; set; }
+
 
 
     }

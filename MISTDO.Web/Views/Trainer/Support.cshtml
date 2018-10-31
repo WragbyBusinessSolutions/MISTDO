@@ -5,6 +5,7 @@
      Layout = "_LayoutDashboard";
 }
 
+
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
 
 <!-- Page Container START -->
@@ -72,23 +73,50 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-block">
-                            <form asp-action="TraineeUpload" enctype="multipart/form-data">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="table-overflow">
+                                        @*<form asp-action="Edit">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label"> Issue</label>
+                                                        <input asp-for="Issue" class="form-control" />
+                                                       
+                                                    </div>
 
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <p><b>Side Information here</b></p>
 
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label"> Subject</label>
+                                                        <input asp-for="Subject" class="form-control" />
+                                                        
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Created When?</label>
+                                                        <input asp-for="SupportTimeStamp" class="form-control" />
+                                                        
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            
+
+
+
+                                        </form>*@
                                     </div>
+
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-md-10">
-
-                                    </div>
-                                </div>
-
-
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

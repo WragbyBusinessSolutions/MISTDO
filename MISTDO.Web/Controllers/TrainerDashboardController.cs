@@ -41,6 +41,8 @@ namespace MISTDO.Web.Controllers
             var train = await _trainer.GetAllTrainees();
             return View(train);
         }
+
+        [HttpGet]
         // GET: Certificates/Create
         public async Task<IActionResult> NewCertificate()
         {
@@ -56,7 +58,7 @@ namespace MISTDO.Web.Controllers
             return View();
         }
 
-        [HttpGet]
+       
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
