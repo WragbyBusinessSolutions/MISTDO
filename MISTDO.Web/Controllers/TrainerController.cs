@@ -342,5 +342,23 @@ namespace MISTDO.Web.Controllers
 
             return View(notification);
         }
+        public async Task<IActionResult> Support(Support support)
+        {
+
+
+
+            if (ModelState.IsValid)
+            {
+
+
+
+
+                dbcontext.Add(support);
+                await dbcontext.SaveChangesAsync();
+                return RedirectToAction(nameof(Support));
+            }
+            return View(support);
+
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MISTDO.Web.Models.AccountViewModels
 {
-    public class TraineeRegisterViewModel : Trainee
+    public class TraineeRegisterViewModel
     {
         // Login Details
 
@@ -52,10 +53,10 @@ namespace MISTDO.Web.Models.AccountViewModels
         [MaxLength(100)]
         [Display(Name = "User Address")]
         public string UserAddress { get; set; }
-        [Display(Name = "Country")]
-        [Required]
-        [DataType(DataType.Text)]
-        public string Country { get; set; }
+        //[Display(Name = "Country")]
+        //[Required]
+        //[DataType(DataType.Text)]
+        //public string Country { get; set; }
         [Display(Name = "State")]
         [Required]
         [DataType(DataType.Text)]
@@ -71,26 +72,26 @@ namespace MISTDO.Web.Models.AccountViewModels
         [Display(Name = "Phone Number")]
         public string PhoneNo { get; set; }
 
-        [Required]
-        public string OGISPId { get; set; }
+        //[Required]
+        //public string OGISPId { get; set; }
 
 
-        [Display(Name = "Training Centre Name")]
-        [Required]
-        [DataType(DataType.Text)]
-        [MaxLength(100)]
-        public string CentreName { get; set; }
+        //[Display(Name = "Training Centre Name")]
+        //[Required]
+        //[DataType(DataType.Text)]
+        //[MaxLength(100)]
+        //public string CentreName { get; set; }
 
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "OGISP UserName")]
-        [MaxLength(100)]
-        public string OGISPUserName { get; set; }
-        [Required]
+        //[Required]
+        //[DataType(DataType.Text)]
+        //[Display(Name = "OGISP UserName")]
+        //[MaxLength(100)]
+        //public string OGISPUserName { get; set; }
+        //[Required]
 
-        public string TrainingModule { get; set; }
+        //public string TrainingModule { get; set; }
 
-
+        public  IFormFile ImageUpload { get; set; }
     }
 }
 

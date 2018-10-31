@@ -34,6 +34,7 @@ namespace MISTDO.Web.Models
         public DateTime DateRegistered { get; set; }
 
 
+
         public int TraineeId { get; set; }
 
     }

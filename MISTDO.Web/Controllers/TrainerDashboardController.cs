@@ -58,42 +58,6 @@ namespace MISTDO.Web.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult RegisterTrainee()
-        {
-
-            return View("~/Views/TrainerDashboard/RegisterTrainee.cshtml");
-        }
-
-
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterTrainee(Trainee models)
-        {
-            if (ModelState.IsValid)
-            {
-                dbcontext.Add(models);
-                await dbcontext.SaveChangesAsync();
-                //  return View("~/Views/TrainerDashboard/Trainee.cshtml");
-            }
-            return RedirectToAction(nameof(Trainee));
-        }
-        public async Task<IActionResult> ViewTrainee(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var trainee = await dbcontext.Trainees
-                .SingleOrDefaultAsync(m => m.TraineeId == id);
-            if (trainee == null)
-            {
-                return NotFound();
-            }
-
-            return View(trainee);
-        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> NewCertificate(NewCertificateViewModel model)

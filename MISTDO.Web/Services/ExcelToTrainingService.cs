@@ -34,7 +34,7 @@ namespace MISTDO.Web.Services
                     productFromExcel.TrainingCost = int.Parse(ws.Cells[rw, 2].Value.ToString());
                     productFromExcel.TrainingStartDate = DateTime.Parse(ws.Cells[rw, 3].Value.ToString());
                     productFromExcel.TrainingEndDate= DateTime.Parse(ws.Cells[rw, 4].Value.ToString());
-                    
+                    productFromExcel.CentreId = int.Parse(ws.Cells[rw, 5].Value.ToString());
                     // productFromExcel.category = ws.Cells[rw, 7].Value.ToString();
                 }
                 //ProductContext productContext = new ProductContext();

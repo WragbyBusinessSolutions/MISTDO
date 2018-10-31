@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<MISTDO.Web.Models.Training>
+
 @{
-    ViewData["Title"] = "Training";
+    ViewData["Title"] = "Index";
     Layout = "_LayoutTraineeDashboard";
 }
 
@@ -19,7 +20,7 @@
             <div class="page-title">
                 <h4>Registered Trainings (Up comming Training)</h4>
                 <p>
-                    <a asp-action="RegTraining">Register for New Training</a>
+                    <a asp-action="RegTraining">Register for new training</a>
                 </p>
             </div>
             <div class="row">
@@ -37,6 +38,9 @@
                                                 @Html.DisplayNameFor(model => model.TrainingCost)
                                             </th>
                                             <th>
+                                                @Html.DisplayNameFor(model => model.CentreId)
+                                            </th>
+                                            <th>
                                                 @Html.DisplayNameFor(model => model.TrainingStartDate)
                                             </th>
                                             <th>
@@ -46,16 +50,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var item in Model)
+                                        @foreach (var item in Model.Distinct())
                                         {
-                                            if (item.TrainingStartDate >= DateTime.Today)
-                                            {
+                                           
                                                 <tr>
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.TrainingName)
                                                     </td>
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.TrainingCost)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.CentreId)
                                                     </td>
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.TrainingStartDate)
@@ -69,7 +75,7 @@
                                                         <a asp-action="Delete" asp-route-id="@item.TrainingId">Delete</a>
                                                     </td>
                                                 </tr>
-                                            }
+                                            
                                         }
                                     </tbody>
                                 </table>
@@ -101,6 +107,9 @@
                                                 @Html.DisplayNameFor(model => model.TrainingCost)
                                             </th>
                                             <th>
+                                                @Html.DisplayNameFor(model => model.CentreId)
+                                            </th>
+                                            <th>
                                                 @Html.DisplayNameFor(model => model.TrainingStartDate)
                                             </th>
                                             <th>
@@ -120,6 +129,9 @@
                                                     </td>
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.TrainingCost)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.CentreId)
                                                     </td>
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.TrainingStartDate)
@@ -171,6 +183,7 @@
 
 <!-- page js -->
 <script src="~/dist/assets/js/table/data-table.js"></script>
+
 
 
 

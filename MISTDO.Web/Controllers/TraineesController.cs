@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Authentication;
 using MISTDO.Web.Models.AccountViewModels;
 using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
+using System.Net.Mime;
 
 namespace MISTDO.Web.Views.TrainerDashboard
 {
@@ -37,14 +38,17 @@ namespace MISTDO.Web.Views.TrainerDashboard
         public TraineeApplicationDbContext dbcontext { get; }
         public IExcelToTraineeService _exceltoTrainee { get; }
 
+        private readonly ApplicationDbContext tdbcontext;
+
         private readonly IHostingEnvironment _envt;
 
         public TraineesController(UserManager<TraineeApplicationUser> userManager,
             SignInManager<TraineeApplicationUser> signInManager,
             IEmailSender emailSender,
-            IHostingEnvironment env, IExcelToTraineeService excelToTraineeService, TraineeApplicationDbContext context)
+            IHostingEnvironment env, IExcelToTraineeService excelToTraineeService, TraineeApplicationDbContext context, ApplicationDbContext contexted)
         {
             _context = context;
+            tdbcontext = contexted;
             dbcontext = context;
             _exceltoTrainee = excelToTraineeService;
             _envt = env;
@@ -176,7 +180,7 @@ public IActionResult Dashboard()
 
         public async Task<IActionResult> Training(Training training)
         {
-            return View(await _context.Trainings.ToListAsync());
+            return View(await tdbcontext.Trainings.ToListAsync());
         }
         // GET: Trainees/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -215,14 +219,55 @@ public IActionResult Dashboard()
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterNow(Trainee trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload, TraineeRegisterViewModel model, string returnUrl = null)
+        public async Task<IActionResult> RegisterNow(TraineeRegisterViewModel model,  string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                Trainee trainee = new Trainee();
+
                 //copy a replical to the trainee table 
-                _context.Add(trainee);
-                await _context.SaveChangesAsync();
+                if (model.ImageUpload != null)
+
+                {
+                    if (model.ImageUpload.Length > 0)
+
+                    //Convert Image to byte and save to database
+
+                    {
+
+                        byte[] p1 = null;
+                        using (var fs1 =model.ImageUpload.OpenReadStream())
+                        using (var ms1 = new MemoryStream())
+                        {
+                            fs1.CopyTo(ms1);
+                            p1 = ms1.ToArray();
+
+                            //     model.ImageUpload = p1;
+
+
+
+                            trainee.PhoneNo = model.PhoneNo;
+                                trainee.CompanyAddress = model.CompanyAddress;
+                            trainee.CompanyName = model.CompanyName;
+                           trainee.UserAddress = model.UserAddress;
+                            trainee.FirstName = model.FirstName;
+                            trainee.LastName = model.LastName;
+                           trainee.ImageUpload = p1;
+
+
+                           
+
+                            dbcontext.Add(trainee);
+                            dbcontext.SaveChanges();
+
+                        }
+                    }
+
+                }
+           
+               
+
                 var user = new TraineeApplicationUser()
                 {
 
@@ -235,10 +280,9 @@ public IActionResult Dashboard()
                     UserAddress = model.UserAddress,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    TraineeId = trainee.TraineeId,
                     State = model.State,
+                    TraineeId = trainee.TraineeId,
                     City = model.City,
-                    Country = model.Country,
                     DateRegistered = DateTime.Now.Date,
 
 
@@ -248,18 +292,8 @@ public IActionResult Dashboard()
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    
-                    var centredetails = new TraineeTrainingCentre
-                    {
-                        CentreName = model.CentreName,
-                        OGISPUserName = model.OGISPUserName,
-                        OGISPId = model.OGISPId,
-                        User = user
 
-
-                    };
-                    dbcontext.Add(centredetails);
-                    dbcontext.SaveChanges();
+                
 
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -335,6 +369,8 @@ public IActionResult Dashboard()
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -693,7 +729,31 @@ public IActionResult Dashboard()
                 await _exceltoTrainee.ConvertFileToTraineeString(filePath);
             }
             return RedirectToAction("Index");
+           
 
+        }
+        public async Task<IActionResult> RegTraining([Bind("TrainingName,TrainingCost,TrainingStartDate,CentreId,TrainingEndDate")] Training training, TrainingCentre trainingCentre)
+        {
+            if (ModelState.IsValid)
+            {
+                //var dex = Convert.ToInt32(trainingCentre.CentreId);
+                //var bex = Convert.ToInt32(training.CentreId);
+                //  bex = dex;
+
+
+                tdbcontext.Add(training);
+                await tdbcontext.SaveChangesAsync();
+                return RedirectToAction(nameof(Training));
+            }
+            return View(training);
+        }
+
+        public ActionResult DownloadFile()
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + "FolderName/";
+            byte[] fileBytes = System.IO.File.ReadAllBytes(path + "filename.extension");
+            string fileName = "filename.extension";
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
     }

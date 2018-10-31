@@ -14,7 +14,7 @@ namespace MISTDO.Web.Models
         public int TrainingCost { get; set; }
         public DateTime TrainingStartDate{ get; set; }
         public DateTime TrainingEndDate { get; set; }
-        public virtual   TrainingCentre CentreId { get; set; }
+        public int CentreId { get; set; }
 
 
     }

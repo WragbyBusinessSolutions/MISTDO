@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DPR MISTDO Portal</title>
+    @*<environment include="Development">
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="~/css/site.css" />
+        </environment>*@
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/logo/favicon.png">
+    <!-- plugins css -->
+    <link rel="stylesheet" href="~/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
+    <link rel="stylesheet" href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+
+    <!-- page plugins css -->
+    <link rel="stylesheet" href="~/bower_components/bower-jvectormap/jquery-jvectormap-1.2.2.css" />
+    <link rel="stylesheet" href="~/bower_components/nvd3/build/nv.d3.min.css" />
+
+
+    <!-- core css -->
+    <link href="~/dist/assets/css/ei-icon.css" rel="stylesheet">
+    <link href="~/dist/assets/css/themify-icons.css" rel="stylesheet">
+    <link href="~/dist/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/dist/assets/css/animate.min.css" rel="stylesheet">
+    <link href="~/dist/assets/css/app.css" rel="stylesheet">
+
+
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+
+    <div class="app">
+        <div class="layout">
+            @await Html.PartialAsync("_LayoutRegisterAside")
+
+            @RenderBody()
+        </div>
+    </div>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <!-- build:js assets/js/vendor.js -->
+    <script src="~/dist/assets/js/vendor.js"></script>
+
+    <!-- page plugins js -->
+    <script src="~/bower_components/bower-jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/dist/assets/js/maps/jquery-jvectormap-us-aea.js"></script>
+    <script src="~/bower_components/d3/d3.min.js"></script>
+    <script src="~/bower_components/nvd3/build/nv.d3.min.js"></script>
+    <script src="~/bower_components/jquery.sparkline/index.js"></script>
+    <script src="~/bower_components/chart.js/dist/Chart.min.js"></script>
+
+    <script src="~/dist/assets/js/app.min.js"></script>
+
+    <!-- page js -->
+    <script src="~/dist/assets/js/dashboard/dashboard.js"></script>
+    <!-- page js -->
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
+

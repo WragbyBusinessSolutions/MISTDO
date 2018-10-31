@@ -62,7 +62,7 @@ namespace MISTDO.Web.Views
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TrainingName,TrainingCost,TrainingStartDate,TrainingEndDate")] Training training, TrainingCentre trainingCentre)
+        public async Task<IActionResult> Create([Bind("TrainingName,TrainingCost,TrainingStartDate,TrainingEndDate")] Training training)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace MISTDO.Web.Views
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TrainingId,TrainingName,TrainingCost,TrainingStartDate,TrainingEndDate")] Training training)
+        public async Task<IActionResult> Edit(int id, [Bind("TrainingId,TrainingName,TrainingCost,CentreId,TrainingStartDate,TrainingEndDate")] Training training)
         {
             if (id != training.TrainingId)
             {

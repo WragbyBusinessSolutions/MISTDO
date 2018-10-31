@@ -1,0 +1,117 @@
+﻿@model MISTDO.Web.Models.Training
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_LayoutTraineeDashboard";
+}
+
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeader");
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Create New Training </h4>
+                @*<p>
+                        <a asp-action="Create">Create New</a>
+                    </p>*@
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-block">
+
+                            <form asp-action="Create" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label class="control-label"> Training Name</label>
+                                    <input asp-for="TrainingName" class="form-control" />
+                                    <span asp-validation-for="TrainingName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"> Training Cost</label>
+                                    <input asp-for="TrainingCost" class="form-control" />
+                                    <span asp-validation-for="TrainingCost" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"> Training Center Id</label>
+                                    <input asp-for="CentreId" class="form-control" />
+                                    <span asp-validation-for="CentreId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Training Start When?</label>
+                                    <input asp-for="TrainingStartDate" class="form-control" />
+                                    <span asp-validation-for="TrainingStartDate" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Training Ends When?</label>
+                                    <input asp-for="TrainingEndDate" class="form-control" />
+                                    <span asp-validation-for="TrainingEndDate" class="text-danger"></span>
+                                </div>
+
+
+
+
+
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </form>
+
+                        </div>
+
+
+
+                    </div>
+                    @*<div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>*@
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-block">
+                            <form asp-action="TrainingUpload" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <p><b>Upload Bulk Training Excel File</b></p>
+                                        <input type="file" name="file" multiple />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <input type="submit" value="Upload" />
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- Page Container END -->
+</div>
+
+
