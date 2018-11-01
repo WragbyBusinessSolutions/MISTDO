@@ -437,6 +437,17 @@ namespace MISTDO.Web.Controllers
 
             return View(notification);
         }
+        [HttpGet]
+        //GET: Trainees/Support
+        public async Task<IActionResult> Support(int id)
+        {
+
+            
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Support(Support support)
         {
 
@@ -444,8 +455,6 @@ namespace MISTDO.Web.Controllers
 
             if (ModelState.IsValid)
             {
-
-
 
 
                 dbcontext.Add(support);
