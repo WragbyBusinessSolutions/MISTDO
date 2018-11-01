@@ -41,18 +41,19 @@ namespace MISTDO.Web.Views.TrainerDashboard
         private readonly ApplicationDbContext tdbcontext;
 
         private readonly IHostingEnvironment _envt;
+        public ITrainerService _trainer { get; }
 
         public TraineesController(UserManager<TraineeApplicationUser> userManager,
             SignInManager<TraineeApplicationUser> signInManager,
             IEmailSender emailSender,
-            IHostingEnvironment env, IExcelToTraineeService excelToTraineeService, TraineeApplicationDbContext context, ApplicationDbContext contexted)
+            IHostingEnvironment env, IExcelToTraineeService excelToTraineeService, ITrainerService trainer, TraineeApplicationDbContext context, ApplicationDbContext contexted)
         {
             _context = context;
             tdbcontext = contexted;
             dbcontext = context;
             _exceltoTrainee = excelToTraineeService;
             _envt = env;
-
+            _trainer = trainer;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
@@ -168,10 +169,14 @@ namespace MISTDO.Web.Views.TrainerDashboard
             return View(model);
 
         }
+        public async Task<IActionResult> Certificate()
+        {
+            var certs = await _trainer.GetAllCertificates();
+            return View(certs);
+        }
 
-         
 
-public IActionResult Dashboard()
+        public IActionResult Dashboard()
         {
 
             return View();

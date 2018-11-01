@@ -175,6 +175,9 @@
     <Folder Include="wwwroot\productfiles\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Views\Trainees\Certificate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Trainees\EditProfile.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
