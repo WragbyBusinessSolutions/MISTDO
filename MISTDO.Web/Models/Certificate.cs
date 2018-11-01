@@ -26,7 +26,8 @@ namespace MISTDO.Web.Models
 
         public string TrainerOrg { get; set; }
         public DateTime DateGenerated { get; set; }
-        public virtual Trainee Owner { get; set; }
+        public virtual TraineeApplicationUser Owner { get; set; }
+        public virtual ApplicationUser Trainer { get; set; }
 
 
     }

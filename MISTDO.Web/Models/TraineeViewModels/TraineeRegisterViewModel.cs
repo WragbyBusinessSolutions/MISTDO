@@ -70,7 +70,7 @@ namespace MISTDO.Web.Models.AccountViewModels
         public DateTime DateRegistered { get; set; }
         [Required]
         [Display(Name = "Phone Number")]
-        public string PhoneNo { get; set; }
+        public string PhoneNumber { get; set; }
 
         //[Required]
         //public string OGISPId { get; set; }

@@ -13,6 +13,7 @@ namespace MISTDO.Web.Services
     public class ExcelToTraineeService : IExcelToTraineeService
     {
         private readonly ApplicationDbContext _context;
+        private readonly TraineeApplicationDbContext dbcontext;
         public ExcelToTraineeService(ApplicationDbContext context)
         {
             _context = context;
@@ -21,19 +22,19 @@ namespace MISTDO.Web.Services
         {
 
             var eps = new ExcelPackage(new FileInfo(filePath));
-            List<Models.Trainee> traineesFromExcel = new List<Models.Trainee>();
+            List<Models.TraineeApplicationUser> traineesFromExcel = new List<Models.TraineeApplicationUser>();
             var ws = eps.Workbook.Worksheets["Sheet1"];
             
             for (int rw = 2; rw <= ws.Dimension.End.Row; rw++)
             {
-                Models.Trainee traineeFromExcel = new Models.Trainee();
+                Models.TraineeApplicationUser traineeFromExcel = new Models.TraineeApplicationUser();
                 if (ws.Cells[rw, 1].Value != null)
                 {
 
                     traineeFromExcel.FirstName = ws.Cells[rw, 1].Value.ToString();
                     traineeFromExcel.LastName = ws.Cells[rw, 2].Value.ToString();
                     traineeFromExcel.Email = ws.Cells[rw, 3].Value.ToString();
-                    traineeFromExcel.PhoneNo = ws.Cells[rw, 4].Value.ToString();
+                    traineeFromExcel.PhoneNumber = ws.Cells[rw, 4].Value.ToString();
                     traineeFromExcel.CompanyName = ws.Cells[rw, 5].Value.ToString();
                     traineeFromExcel.CompanyAddress= ws.Cells[rw, 6].Value.ToString();
                     traineeFromExcel.UserAddress = ws.Cells[rw, 7].Value.ToString();
@@ -47,8 +48,8 @@ namespace MISTDO.Web.Services
                 //productContext.Products.Add(productFromExcel);
                 //productContext.SaveChanges();
                 traineesFromExcel.Add(traineeFromExcel);
-                _context.Trainees.Add(traineeFromExcel);
-                _context.SaveChanges();
+                dbcontext.Users.Add(traineeFromExcel);
+                dbcontext.SaveChanges();
                
 
             }

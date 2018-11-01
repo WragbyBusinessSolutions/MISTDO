@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MISTDO.Web.Models.Trainee>
+﻿@model IEnumerable<MISTDO.Web.Models.TraineeApplicationUser>
 @{
     ViewData["Title"] = "Index";
     Layout = "_LayoutDashboard";
@@ -40,7 +40,7 @@
                                                 @Html.DisplayNameFor(model => model.Email)
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.PhoneNo)
+                                                @Html.DisplayNameFor(model => model.PhoneNumber)
                                             </th>
                                             <th>
                                                 @Html.DisplayNameFor(model => model.CompanyName)
@@ -69,7 +69,7 @@
                                                     @Html.DisplayFor(modelItem => item.Email)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.PhoneNo)
+                                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.CompanyName)
@@ -82,9 +82,9 @@
                                                 </td>
                                                
                                                 <td>
-                                                    <a asp-action="Edit" asp-route-id="@item.TraineeId">Edit</a> |
-                                                    <a asp-action="Details" asp-route-id="@item.TraineeId">Details</a> |
-                                                    <a asp-action="Delete" asp-route-id="@item.TraineeId">Delete</a>
+                                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                                                 </td>
                                             </tr>
                                         }

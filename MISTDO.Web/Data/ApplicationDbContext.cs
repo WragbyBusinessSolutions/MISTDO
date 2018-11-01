@@ -24,15 +24,12 @@ namespace MISTDO.Web.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
         public DbSet<TrainingCentre> TrainingCentres { get; set; }
-        public DbSet<SubscriptionModule> SubscriptionModules { get; set; }
-        public DbSet<Trainee> Trainees { get; set; }
         public DbSet<Certificate> Certificates { get; set; }
-        public DbSet<Examination> Examinations { get; set; }
-        public DbSet<MISTDO.Web.Models.Training> Trainings { get; set; }
+        public DbSet<Training> Trainings { get; set; }
 
         public DbSet<Notification> Notifications { get; set; }
-        public DbSet<Support> Supports { get; set; }
 
+        public DbSet<Support> TrainerSupports { get; set; }
 
 
 

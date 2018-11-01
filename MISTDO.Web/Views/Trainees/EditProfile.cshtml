@@ -1,4 +1,4 @@
-﻿@model MISTDO.Web.Models.Trainee
+﻿@model MISTDO.Web.Models.TraineeApplicationUser
 @{
     ViewData["Title"] = "Edit Profile";
     Layout = "_LayoutTraineeDashboard";
@@ -31,7 +31,7 @@
                                     <div class="col-md-8 ml-auto mr-auto">
                                         <form asp-action="EditProfile">
                                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                            <input type="hidden" asp-for="TraineeId" />
+                                            <input type="hidden" asp-for="Id" />
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -60,9 +60,9 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label asp-for="PhoneNo" class="control-label"></label>
-                                                        <input asp-for="PhoneNo" class="form-control" />
-                                                        <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                                                        <label asp-for="PhoneNumber" class="control-label"></label>
+                                                        <input asp-for="PhoneNumber" class="form-control" />
+                                                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                                                     </div>
                                                 </div>
                                             </div>

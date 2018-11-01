@@ -11,11 +11,12 @@ namespace MISTDO.Web.Services
     public class TrainerService : ITrainerService
     {
         private readonly ApplicationDbContext dbcontext;
+        private readonly TraineeApplicationDbContext _Traineedbcontext;
 
-        public TrainerService(ApplicationDbContext context)
+        public TrainerService(ApplicationDbContext context, TraineeApplicationDbContext traineecontext)
         {
             dbcontext = context;
-
+            _Traineedbcontext = traineecontext;
         }
         public async Task<IEnumerable<Certificate>> GetAllCertificates()
         {
@@ -23,18 +24,22 @@ namespace MISTDO.Web.Services
             return certs;
         }
 
-        public async Task<IEnumerable<Examination>> GetAllExams()
-        {
-            var exams = await dbcontext.Examinations.ToListAsync();
-            return exams;
-        }
-        
 
-        public async Task<IEnumerable<Trainee>> GetAllTrainees()
+
+
+
+
+        public async Task<IEnumerable<Training>> GetAllTrainees(string TrainingCentreId, string ModuleId)
         {
-            var Trainees = await dbcontext.Trainees.ToListAsync();
-            return Trainees;
+            var Trainings = await dbcontext.Trainings.Where(t => t.TrainingCentreId == TrainingCentreId && t.ModuleId == ModuleId).ToListAsync();
+            return Trainings;
         }
-        
+        public async Task<IEnumerable<Training>> GetNullCertificateTrainees(string TrainingCentreId, string ModuleId)
+        {
+            var Trainings = await dbcontext.Trainings.Where(t => t.TrainingCentreId == TrainingCentreId && t.ModuleId == ModuleId && t.CertificateId == null).ToListAsync();
+            return Trainings;
+        }
+
+
     }
 }

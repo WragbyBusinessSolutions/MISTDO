@@ -8,7 +8,7 @@ namespace MISTDO.Web.ViewModels
 {
     public class PaymentViewModel
     {
-        public Trainee Trainee { get; set; }
-        public IEnumerable<Examination> Exams { get; set; }
+        public TraineeApplicationUser Trainee { get; set; }
+        public IEnumerable<Modules> Exams { get; set; }
     }
 }

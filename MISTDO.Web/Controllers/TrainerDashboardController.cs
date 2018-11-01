@@ -21,11 +21,13 @@ namespace MISTDO.Web.Controllers
         public ITrainerService _trainer { get; }
 
         private readonly ApplicationDbContext dbcontext;
+        private readonly TraineeApplicationDbContext Traineedbcontext;
 
-        public TrainerDashboardController(ITrainerService trainer, ApplicationDbContext context)
+        public TrainerDashboardController(ITrainerService trainer, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext)
         {
             _trainer = trainer;
             dbcontext = context;
+            Traineedbcontext = traineedbcontext;
         }
         public IActionResult Index()
         {
@@ -36,33 +38,37 @@ namespace MISTDO.Web.Controllers
             var certs = await _trainer.GetAllCertificates();
             return View(certs);
         }
-        public async Task<IActionResult> Trainee()
-        {
-            var train = await _trainer.GetAllTrainees();
-            return View(train);
-        }
+     
         // GET: Certificates/Create
-        public async Task<IActionResult> NewCertificate()
+        [HttpGet]
+
+        public async Task<IActionResult> NewCertificate(string TrainingCentreId, string ModuleId)
         {
-            var trainees = await _trainer.GetAllTrainees();
+            var trainings = await _trainer.GetNullCertificateTrainees(TrainingCentreId, ModuleId);
             var traineesList = new List<SelectListItem>();
 
-            foreach (var item in trainees)
+
+
+            foreach (var item in trainings)
             {
-                traineesList.Add(new SelectListItem { Text = item.Email, Value = item.TraineeId.ToString() });
+                var Trainees = await Traineedbcontext.Users.Where(u => u.Id == item.TraineeId).ToListAsync();
+                foreach (var trainee in Trainees)
+
+                    traineesList.Add(new SelectListItem { Text = trainee.UserName, Value = trainee.Id });
             }
 
             ViewBag.trainees = traineesList;
             return View();
         }
 
-        [HttpGet]
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> NewCertificate(NewCertificateViewModel model)
         {
-            var tt = dbcontext.Trainees.FirstOrDefault(t => t.TraineeId == model.TraineeId);
+
+
+            var tt = Traineedbcontext.Users.FirstOrDefault(t => t.Id == model.TraineeId);
             //model.Certificate.DateGenerated = DateTime.Now;
             //model.Certificate.Owner = tt;
             if (ModelState.IsValid)
@@ -74,19 +80,20 @@ namespace MISTDO.Web.Controllers
             }
             return View(model);
         }
-        public async Task<IActionResult> Payment(int traineeid)
+        public async Task<IActionResult> Payment(string traineeid)
         {
-            var trainee = dbcontext.Trainees.FirstOrDefault(t => t.TraineeId == traineeid);
-            var exams = await _trainer.GetAllExams();
-
-            var traineesList = new List<SelectListItem>();
-
-            foreach (var item in exams)
+            var trainee = Traineedbcontext.Users.FirstOrDefault(t => t.Id == traineeid);
+            var TraineeViewModel = new TraineeViewModel
             {
-                traineesList.Add(new SelectListItem { Text = item.Description, Value = item.ExamId.ToString() });
-            }
-
-            ViewBag.exams = traineesList;
+                FirstName = trainee.FirstName,
+                LastName = trainee.LastName,
+                Email = trainee.Email,
+                PhoneNumber = trainee.PhoneNumber,
+                CompanyName = trainee.CompanyName,
+                CompanyAddress = trainee.CompanyAddress,
+                UserAddress = trainee.UserAddress,
+                TraineeId = trainee.Id
+            };
             return View(trainee);
         }
         public IActionResult ViewCertificate()

@@ -21,7 +21,8 @@ namespace MISTDO.Web.Data
             base.OnModelCreating(builder);
            
         }
-     
+
+        public DbSet<Modules> Modules { get; set; }
 
 
     }

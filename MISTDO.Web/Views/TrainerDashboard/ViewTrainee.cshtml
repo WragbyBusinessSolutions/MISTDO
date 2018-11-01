@@ -1,5 +1,5 @@
 
-@model MISTDO.Web.Models.Trainee
+@model MISTDO.Web.Models.TraineeApplicationUser
 @{
     ViewData["Title"] = "ViewTrainee";
     
@@ -616,11 +616,11 @@
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-md-3">
-                                                        <p class="mrg-top-10 text-dark"> <b> @Html.DisplayNameFor(model => model.PhoneNo)</b></p>
+                                                        <p class="mrg-top-10 text-dark"> <b> @Html.DisplayNameFor(model => model.PhoneNumber)</b></p>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <span class="status online mrg-top-10"></span>
-                                                        <p class="mrg-top-10">@Html.DisplayFor(model => model.PhoneNo)</p>
+                                                        <p class="mrg-top-10">@Html.DisplayFor(model => model.PhoneNumber)</p>
                                                     </div>
                                                 </div>
                                                 <hr>

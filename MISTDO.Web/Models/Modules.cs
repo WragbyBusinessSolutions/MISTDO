@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace MISTDO.Web.Models
 {
-    public class Examination
+    public class Modules
     {
         [Key]
 
 
-        public int ExamId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public string Description { get; set; }
-
+        public double Cost { get; set; }
         public string ShortCode { get; set; }
 
 

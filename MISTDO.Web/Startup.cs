@@ -35,11 +35,15 @@ namespace MISTDO.Web
             services.AddDbContext<AdminApplicationDbContext>(options =>
               options.UseSqlServer(Configuration.GetConnectionString("AdminConnection")));
 
+
+            services.AddDistributedMemoryCache();
+
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-
+          
 
             services.AddSecondIdentity<TraineeApplicationUser, IdentityRole>(null)
                 .AddEntityFrameworkStores<TraineeApplicationDbContext>()
@@ -52,7 +56,6 @@ namespace MISTDO.Web
             services.AddTransient<IExcelToTrainingService, ExcelToTrainingService>();
             services.AddTransient<IExcelToTraineeService, ExcelToTraineeService>();
 
-            services.AddDistributedMemoryCache();
 
             services.AddSession(options =>
             {
@@ -79,7 +82,6 @@ namespace MISTDO.Web
             app.UseSession();
 
             app.UseStaticFiles();
-
             app.UseAuthentication();
 
             app.UseMvc(routes =>

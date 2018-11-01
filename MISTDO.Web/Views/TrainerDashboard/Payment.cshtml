@@ -1,4 +1,4 @@
-﻿@model Trainee
+﻿@model TraineeViewModel
 @{
     ViewData["Title"] = "Payment";
     Layout = "_LayoutDashboard";
@@ -44,10 +44,10 @@
                                     @Html.DisplayFor(model => model.Email)
                                 </dd>
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.PhoneNo)
+                                    @Html.DisplayNameFor(model => model.PhoneNumber)
                                 </dt>
                                 <dd>
-                                    @Html.DisplayFor(model => model.PhoneNo)
+                                    @Html.DisplayFor(model => model.PhoneNumber)
                                 </dd>
                                 <dt>
                                     @Html.DisplayNameFor(model => model.CompanyName)

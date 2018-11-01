@@ -33,9 +33,11 @@ namespace MISTDO.Web.Models
         public string City { get; set; }
         public DateTime DateRegistered { get; set; }
 
+        public byte[] FirstFinger { get; set; }
+        public byte[] MiddleFinger { get; set; }
+        public byte[] LastFinger { get; set; }
 
-
-        public int TraineeId { get; set; }
+        public byte[] ImageUpload { get; set; }
 
     }
 }

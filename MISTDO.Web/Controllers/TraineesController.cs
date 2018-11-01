@@ -62,7 +62,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
         // GET: Trainees
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Trainees.ToListAsync());
+            return View(await _context.Users.ToListAsync());
         }
 
         public async Task<IActionResult> Notification()
@@ -90,17 +90,17 @@ namespace MISTDO.Web.Views.TrainerDashboard
         }
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Profile(int? id, Trainee model)
+        public async Task<IActionResult> Profile(string id, TraineeViewModel model)
         {
             var user = await _userManager.GetUserAsync(User);
-            id = user.TraineeId;
+            id = user.Id;
 
             if (id == null)
             {
-                return View(await _context.Trainees.ToListAsync());
+                return View(await _context.Users.ToListAsync());
             }
 
-            var trainee = await _context.Trainees.SingleOrDefaultAsync(m => m.TraineeId == id);
+            var trainee = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
 
 
 
@@ -115,17 +115,17 @@ namespace MISTDO.Web.Views.TrainerDashboard
         }
 
         // GET: Trainee/Edit/5
-        public async Task<IActionResult> EditProfile(int id)
+        public async Task<IActionResult> EditProfile(string id)
         {
             var user = await _userManager.GetUserAsync(User);
-            id = user.TraineeId;
+            id = user.Id;
 
             if (id == null)
             {
                 return NotFound();
             }
 
-            var trainee = await _context.Trainees.SingleOrDefaultAsync(m => m.TraineeId == id);
+            var trainee = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
             if (trainee == null)
             {
                 return NotFound();
@@ -135,10 +135,10 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditProfile(int? id, Trainee model)
+        public async Task<IActionResult> EditProfile(string id, TraineeViewModel model)
         {
             var user = await _userManager.GetUserAsync(User);
-            id = user.TraineeId;
+            id = user.Id;
 
             if (id != model.TraineeId)
             {
@@ -183,14 +183,14 @@ public IActionResult Dashboard()
             return View(await tdbcontext.Trainings.ToListAsync());
         }
         // GET: Trainees/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
-                return View(await _context.Trainees.ToListAsync());
+                return View(await _context.Users.ToListAsync());
             }
 
-            var trainee = await _context.Trainees.SingleOrDefaultAsync(m => m.TraineeId == id);
+            var trainee = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
 
 
 
@@ -224,7 +224,7 @@ public IActionResult Dashboard()
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                Trainee trainee = new Trainee();
+                TraineeViewModel trainee = new TraineeViewModel();
 
                 //copy a replical to the trainee table 
                 if (model.ImageUpload != null)
@@ -247,7 +247,7 @@ public IActionResult Dashboard()
 
 
 
-                            trainee.PhoneNo = model.PhoneNo;
+                            trainee.PhoneNumber = model.PhoneNumber;
                                 trainee.CompanyAddress = model.CompanyAddress;
                             trainee.CompanyName = model.CompanyName;
                            trainee.UserAddress = model.UserAddress;
@@ -274,14 +274,14 @@ public IActionResult Dashboard()
                     UserName = model.Email,
                     Email = model.Email,
 
-                    PhoneNumber = model.PhoneNo,
+                    PhoneNumber = model.PhoneNumber,
                     CompanyAddress = model.CompanyAddress,
                     CompanyName = model.CompanyName,
                     UserAddress = model.UserAddress,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     State = model.State,
-                    TraineeId = trainee.TraineeId,
+                    //Id = trainee.Id,
                     City = model.City,
                     DateRegistered = DateTime.Now.Date,
 
@@ -548,7 +548,7 @@ public IActionResult Dashboard()
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( Trainee trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
+        public async Task<IActionResult> Create( TraineeViewModel trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
         {
 
            
@@ -586,14 +586,14 @@ public IActionResult Dashboard()
         }
 
         // GET: Trainees/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var trainee = await _context.Trainees.SingleOrDefaultAsync(m => m.TraineeId == id);
+            var trainee = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
             if (trainee == null)
             {
                 return NotFound();
@@ -613,7 +613,7 @@ public IActionResult Dashboard()
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,  Trainee trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
+        public async Task<IActionResult> Edit(string id,  TraineeViewModel trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
         {
             if (id != trainee.TraineeId)
             {
@@ -666,14 +666,14 @@ public IActionResult Dashboard()
         }
 
         // GET: Trainees/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var trainee = await _context.Trainees.SingleOrDefaultAsync(m => m.TraineeId == id);
+            var trainee = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
             if (trainee == null)
             {
                 return NotFound();
@@ -685,17 +685,17 @@ public IActionResult Dashboard()
         // POST: Trainees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var trainee = await _context.Trainees.SingleOrDefaultAsync(m => m.TraineeId == id);
-            _context.Trainees.Remove(trainee);
+            var trainee = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
+            _context.Users.Remove(trainee);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TraineeExists(int id)
+        private bool TraineeExists(string id)
         {
-            return _context.Trainees.Any(e => e.TraineeId == id);
+            return _context.Users.Any(e => e.Id == id);
         }
 
 

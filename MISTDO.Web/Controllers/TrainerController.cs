@@ -47,7 +47,7 @@ namespace MISTDO.Web.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Profile(string id, Trainee model)
+        public async Task<IActionResult> Profile(string id)
         {
             var user = await _userManager.GetUserAsync(User);
             id = user.Id;

@@ -1,5 +1,5 @@
 
-@model IEnumerable<Trainee>
+@model IEnumerable<TraineeApplicationUser>
 @{
     ViewData["Title"] = "Trainee";
     
@@ -630,7 +630,7 @@
                                                         </td>
                                                         <td>
                                                             <div class="mrg-top-15">
-                                                                <span class="text-info"><b>@item.PhoneNo</b></span>
+                                                                <span class="text-info"><b>@item.PhoneNumber</b></span>
                                                             </div>
                                                         </td>
                                                         <td>
@@ -659,7 +659,7 @@
                                                          
                                                         <td>
                                                             <div class="mrg-top-10 text-center">
-                                                               <a asp-action="ViewTrainee" asp-route-id="@item.TraineeId">Details</a>
+                                                               <a asp-action="ViewTrainee" asp-route-id="@item.Id">Details</a>
                                                           
                                                             </div>
                                                         </td>

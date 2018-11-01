@@ -28,18 +28,43 @@
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-group">
                                     <label class="control-label"> Training Name</label>
+                                    <input asp-for="TraineeId" class="form-control" />
+                                    <span asp-validation-for="TraineeId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"> Training Cost</label>
+                                    <input asp-for="ModuleId" class="form-control" />
+                                    <span asp-validation-for="ModuleId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"> Training Center Id</label>
+                                    <input asp-for="CertificateId" class="form-control" />
+                                    <span asp-validation-for="CertificateId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"> Training Name</label>
                                     <input asp-for="TrainingName" class="form-control" />
                                     <span asp-validation-for="TrainingName" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label"> Training Cost</label>
-                                    <input asp-for="TrainingCost" class="form-control" />
-                                    <span asp-validation-for="TrainingCost" class="text-danger"></span>
+                                    <label class="control-label"> Training Name</label>
+                                    <input asp-for="TrainingCentreId" class="form-control" />
+                                    <span asp-validation-for="TrainingCentreId" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label"> Training Center Id</label>
-                                    <input asp-for="CentreId" class="form-control" />
-                                    <span asp-validation-for="CentreId" class="text-danger"></span>
+                                    <label class="control-label"> Training Name</label>
+                                    <input asp-for="PaymentRefId" class="form-control" />
+                                    <span asp-validation-for="PaymentRefId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"> Training Name</label>
+                                    <input asp-for="DateCreated" class="form-control" />
+                                    <span asp-validation-for="DateCreated" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"> Training Name</label>
+                                    <input asp-for="CertGenDate" class="form-control" />
+                                    <span asp-validation-for="CertGenDate" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Training Start When?</label>
