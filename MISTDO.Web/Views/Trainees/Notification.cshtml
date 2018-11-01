@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="page-title">
                 <h4>Your Notifications </h4>
-                
+
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -34,7 +34,7 @@
                                             <th>
                                                 @Html.DisplayNameFor(model => model.NotificationDateTime)
                                             </th>
-                                           
+
 
                                             <th></th>
                                         </tr>
@@ -42,21 +42,21 @@
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.NotificationMessage)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.NotificationDateTime)
-                                            </td>
-                                            
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.NotificationMessage)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.NotificationDateTime)
+                                                </td>
 
-                                            <td>
-                                                
-                                                <a asp-action="NotificationDetails" asp-route-id="@item.NotificationId">Details</a> |
-                                               
-                                            </td>
-                                        </tr>
+
+                                                <td>
+
+                                                    <a asp-action="NotificationDetails" asp-route-id="@item.NotificationId">Details</a> |
+
+                                                </td>
+                                            </tr>
                                         }
                                     </tbody>
                                 </table>
@@ -84,16 +84,17 @@
     </footer>
     <!-- Footer END -->
     <!-- Page Container END -->
+    <script src="~/dist/assets/js/vendor.js"></script>
+
+    <script src="~/dist/assets/js/app.min.js"></script>
+
+    <!-- page plugins js -->
+    <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+    <!-- page js -->
+    <script src="~/dist/assets/js/table/data-table.js"></script>
 </div>
-<script src="~/dist/assets/js/vendor.js"></script>
 
-<script src="~/dist/assets/js/app.min.js"></script>
-
-<!-- page plugins js -->
-<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
-
-<!-- page js -->
-<script src="~/dist/assets/js/table/data-table.js"></script>
 
 
 

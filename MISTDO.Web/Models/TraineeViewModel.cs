@@ -16,7 +16,12 @@ namespace MISTDO.Web.Models.AccountViewModels
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-       
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+
 
         [Display(Name = "First Name")]
         [Required]
