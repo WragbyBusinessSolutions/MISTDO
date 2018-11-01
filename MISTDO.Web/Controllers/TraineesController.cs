@@ -573,42 +573,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
                     }
 
-                var user = new TraineeApplicationUser()
-                {
-
-                    UserName = trainee.Email,
-                    Email = trainee.Email,
-
-                    PhoneNumber = trainee.PhoneNumber,
-                    CompanyAddress = trainee.CompanyAddress,
-                    CompanyName = trainee.CompanyName,
-                    UserAddress = trainee.UserAddress,
-                    FirstName = trainee.FirstName,
-                    LastName = trainee.LastName,
-
-                    State = trainee.State,
-                    City = trainee.City,
-
-
-                    DateRegistered = DateTime.Now.Date,
-
-
-
-                };
-
-                var result = await _userManager.CreateAsync(user, trainee.Password);
-                if (result.Succeeded)
-                {
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    var response = _emailSender.SendEmailConfirmationAsync(trainee.Email, callbackUrl);
-
-
-
-                    return View("ConfirmMail");
-
-                }
-
+                
                     var user = new TraineeApplicationUser()
                     {
 

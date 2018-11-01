@@ -120,6 +120,8 @@ namespace MISTDO.Web.Views
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ModuleId,CertificateId,TraineeId,CertificateId ,TrainingName,TrainingCentreId ,PaymentRefId,DateCreated ,CertGenDate ,TrainingStartDate,TrainingEndDate")] Training training)
         {
+            var user = await _userManager.GetUserAsync(User);
+           // id = user.Id;
             if (id != training.Id)
             {
                 return NotFound();
@@ -129,7 +131,24 @@ namespace MISTDO.Web.Views
             {
                 try
                 {
-                    _context.Update(training);
+                    var train = new Training()
+                    {
+
+                        TrainingCentreId = user.Id,
+                        CertificateId = training.CertificateId,
+                        ModuleId = training.ModuleId,
+                        TrainingStartDate = training.TrainingStartDate,
+                        TraineeId = training.TraineeId,
+                        PaymentRefId = training.PaymentRefId,
+                        CertGenDate = training.CertGenDate,
+                        DateCreated = training.DateCreated,
+                        TrainingEndDate = training.TrainingEndDate,
+                        TrainingName = training.TrainingName
+
+
+
+                    };
+                    _context.Update(train);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
