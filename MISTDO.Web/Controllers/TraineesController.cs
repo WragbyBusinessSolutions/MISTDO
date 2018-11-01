@@ -186,7 +186,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
         }
 
 
-        public async Task<IActionResult> Dashboard()
+        public IActionResult Dashboard()
         {
             
             
@@ -572,35 +572,41 @@ namespace MISTDO.Web.Views.TrainerDashboard
                         image = p1;
 
                     }
+                var user = new TraineeApplicationUser()
+                {
 
-                
-                    var user = new TraineeApplicationUser()
-                    {
+                    UserName = model.Email,
+                    Email = model.Email,
 
-                        UserName = model.Email,
-                        Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    CompanyAddress = model.CompanyAddress,
+                    CompanyName = model.CompanyName,
+                    UserAddress = model.UserAddress,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
 
-                        PhoneNumber = model.PhoneNumber,
-                        CompanyAddress = model.CompanyAddress,
-                        CompanyName = model.CompanyName,
-                        UserAddress = model.UserAddress,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
+                    DateRegistered = DateTime.Now.Date,
 
-                        DateRegistered = DateTime.Now.Date,
+                    ImageUpload = image
 
-                        ImageUpload = image
-
-                    };
-
-                    var result = await _userManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
-                    {
-                    return RedirectToAction(nameof(Index));
+                };
 
 
-                    }
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                    var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
+
+
+                    return View("ConfirmMail");
+
+                }
+
+                   
+                   
                 }
                 return View();
             
