@@ -1,4 +1,4 @@
-﻿<!-- Side Nav START -->
+﻿            <!-- Side Nav START -->
 <div class="side-nav">
     <div class="side-nav-inner">
         <div class="side-nav-logo">
@@ -14,48 +14,60 @@
         </div>
         <ul class="side-nav-menu scrollable">
             <li class="nav-item active">
-                <a class="mrg-top-30" asp-action="Index">
+                <a class="mrg-top-30" href="/administrator">
                     <span class="icon-holder">
                         <i class="ti-dashboard"></i>
                     </span>
                     <span class="title">Dashboard</span>
                 </a>
             </li>
-
-            <li class="nav-item">
-                <a asp-action="Profile" asp-controller="Trainer">
-                    <span class="icon-holder">
-                        <i class="ti-user"></i>
-                    </span>
-                    <span class="title">Profile</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a asp-action="Index" asp-controller="Trainees">
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder">
                         <i class="ti-id-badge"></i>
                     </span>
-                    <span class="title">Trainees</span>
+                    <span class="title">Registered Trainees</span>
+                    <span class="arrow">
+                        <i class="ti-angle-right"></i>
+                    </span>
                 </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#">
+                            All Registered Trainees
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Registered Module Trainees</a>
+                    </li>
+                </ul>
             </li>
-            <li class="nav-item ">
-                <a asp-controller="TrainerDashboard" asp-action="Certificate">
+            <li class="nav-item">
+                <a href="/trainees">
                     <span class="icon-holder">
                         <i class="ti-medall"></i>
                     </span>
-                    <span class="title">Certificate</span>
+                    <span class="title">Certification</span>
                 </a>
             </li>
             <li class="nav-item ">
-                <a asp-controller="Training" asp-action="Index">
+                <a href="/trainerdashboard/certificate">
                     <span class="icon-holder">
                         <i class="ti-view-list"></i>
                     </span>
-                    <span class="title">Training List</span>
+                    <span class="title">Accredited Training Institutes </span>
                 </a>
             </li>
             <li class="nav-item ">
-                <a asp-controller="Trainer" asp-action="Notification">
+                <a href="/training">
+                    <span class="icon-holder">
+                        <i class="ti-user"></i>
+                    </span>
+                    <span class="title"> User Management</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a href="/trainer/notification">
                     <span class="icon-holder">
                         <i class="ti-bell pdd-right-10"></i>
                     </span>
@@ -63,7 +75,7 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a asp-controller="Trainer" asp-action="Support">
+                <a href="/trainer/support">
                     <span class="icon-holder">
                         <i class="ti-help"></i>
                     </span>

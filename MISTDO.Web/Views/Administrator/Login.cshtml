@@ -1,5 +1,4 @@
 ﻿@model TraineeLoginViewModel
-
 @{
     ViewData["Title"] = "Trainee Portal | MISTDO Portal";
 }
@@ -8,7 +7,7 @@
         <div class="sign-in">
             <div class="row no-mrg-horizon">
                 <div class="col-md-8 no-pdd-horizon d-none d-md-block">
-                    <div class="full-height bg" style="background-image: url('../dist/assets/images/others/welcomepage3.jpg')">
+                    <div class="full-height bg" style="background-image: url('../dist/assets/images/others/welcomepage4.jpg')">
                         <div class="img-caption">
                             @*<h1 class="caption-title">We make spectacular</h1>
                                 <p class="caption-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>*@
@@ -21,11 +20,10 @@
                             <div class="table-cell">
                                 <div class="pdd-horizon-15">
                                     <img class="img-responsive inline-block" src="~/dist/assets/images/logo/jepeg_logo.jpg" alt=""><br /><br />
-                                    <h2>Trainee's Portal Login</h2>
+                                    <h2>SHE Administrative Portal Login</h2>
                                     <p class="mrg-btm-15 font-size-13">Please enter your user name and password to login</p>
                                     <form asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                                         <div asp-validation-summary="All" class="text-danger"></div>
-
                                         <div class="form-group">
                                             <input asp-for="Email" class="form-control" placeholder="User name" />
                                             <span asp-validation-for="Email" class="text-danger"></span>
@@ -34,7 +32,6 @@
                                             <input asp-for="Password" class="form-control" placeholder="Password" />
                                             <span asp-validation-for="Password" class="text-danger"></span>
                                         </div>
-
                                         <div class="form-group">
                                             <label asp-for="RememberMe">
                                                 <input asp-for="RememberMe" />
@@ -42,9 +39,8 @@
                                             </label>
                                         </div>
 
-
-                                        <button type="submit" class="btn" style="min-width:100%; background-color: #0b9242; color: white;">Login</button>
-                                        <div class="form-group">
+                                        @*<button type="submit" class="btn" style="min-width:100%; background-color: #0b9242; color: white;">Login</button>*@
+                                        <a asp-controller="Administrator" asp-action="Dashboard" class="btn" style="min-width:100%; background-color: #0b9242; color: white;"> Login</a><div class="form-group">
                                             <span class="font-size-13  pdd-top-30"><a asp-action="ForgotPassword" style="color:#888da8;">Forget Password?</a></span>
                                             <span class="font-size-13 pull-right pdd-top-10"><a asp-action="RegisterNow" style="color:#888da8;">Register Now</a></span>
                                         </div>
@@ -63,4 +59,3 @@
         </div>
     </div>
 </div>
-
