@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MISTDO.Web.Data;
 using MISTDO.Web.Models;
@@ -12,11 +13,14 @@ namespace MISTDO.Web.Services
     {
         private readonly ApplicationDbContext dbcontext;
         private readonly TraineeApplicationDbContext _Traineedbcontext;
+        private readonly AdminApplicationDbContext Admindbcontext;
 
-        public TrainerService(ApplicationDbContext context, TraineeApplicationDbContext traineecontext)
+        public TrainerService(ApplicationDbContext context, TraineeApplicationDbContext traineecontext, AdminApplicationDbContext admindb)
         {
             dbcontext = context;
             _Traineedbcontext = traineecontext;
+            Admindbcontext = admindb;
+
         }
         public async Task<IEnumerable<Certificate>> GetAllCertificates()
         {
@@ -46,5 +50,11 @@ namespace MISTDO.Web.Services
         }
 
 
-    }
+        public async Task<IEnumerable<Modules>> GetAllModules()
+        {
+            var modules = await Admindbcontext.Modules.ToListAsync();
+            return modules;
+                }
+
+        }
 }

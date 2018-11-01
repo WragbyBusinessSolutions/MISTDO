@@ -12,22 +12,29 @@ using MISTDO.Web.Models;
 using MISTDO.Web.Models.AccountViewModels;
 using MISTDO.Web.Services;
 using MISTDO.Web.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace MISTDO.Web.Controllers
 {
     [Authorize]
     public class TrainerDashboardController : Controller
     {
+        private readonly UserManager<ApplicationUser> _usermanager;
+
         public ITrainerService _trainer { get; }
 
         private readonly ApplicationDbContext dbcontext;
         private readonly TraineeApplicationDbContext Traineedbcontext;
+        private readonly AdminApplicationDbContext Admindbcontext;
 
-        public TrainerDashboardController(ITrainerService trainer, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext)
+        public TrainerDashboardController(ITrainerService trainer, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext, AdminApplicationDbContext admindb, UserManager<ApplicationUser> userManager)
         {
+            _usermanager = userManager;
+
             _trainer = trainer;
             dbcontext = context;
             Traineedbcontext = traineedbcontext;
+            Admindbcontext = admindb;
         }
         public IActionResult Index()
         {
@@ -39,48 +46,123 @@ namespace MISTDO.Web.Controllers
             return View(certs);
         }
      
-        // GET: Certificates/Create
-        [HttpGet]
+        //// GET: Certificates/Create
+        //[HttpGet]
 
-        public async Task<IActionResult> NewCertificate(string TrainingCentreId, string ModuleId)
+        //public async Task<IActionResult> NewCertificate(string TrainingCentreId, string ModuleId)
+        //{
+        //    var trainings = await _trainer.GetNullCertificateTrainees(TrainingCentreId, ModuleId);
+        //    var traineesList = new List<SelectListItem>();
+
+
+
+        //    foreach (var item in trainings)
+        //    {
+        //        var Trainees = await Traineedbcontext.Users.Where(u => u.Id == item.TraineeId).ToListAsync();
+        //        foreach (var trainee in Trainees)
+
+        //            traineesList.Add(new SelectListItem { Text = trainee.UserName, Value = trainee.Id });
+        //    }
+
+        //    ViewBag.trainees = traineesList;
+        //    return View();
+        //}
+
+        ////[AllowAnonymous]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> NewCertificate(NewCertificateViewModel model)
+        //{
+
+
+        //    var tt = Traineedbcontext.Users.FirstOrDefault(t => t.Id == model.TraineeId);
+        //    //model.Certificate.DateGenerated = DateTime.Now;
+        //    //model.Certificate.Owner = tt;
+        //    if (ModelState.IsValid)
+        //    {
+        //        //dbcontext.Add(model.Certificate);
+        //        //await dbcontext.SaveChangesAsync();
+
+        //        return RedirectToAction(nameof(Payment), new { traineeid = model.TraineeId });
+        //    }
+        //    return View(model);
+        //}
+        public async Task<IActionResult> Modules()
         {
-            var trainings = await _trainer.GetNullCertificateTrainees(TrainingCentreId, ModuleId);
-            var traineesList = new List<SelectListItem>();
+            var modules = await _trainer.GetAllModules();
+           
+            var modulesList = new List<SelectListItem>();
+          foreach (var item in modules)
 
-
-
-            foreach (var item in trainings)
-            {
-                var Trainees = await Traineedbcontext.Users.Where(u => u.Id == item.TraineeId).ToListAsync();
-                foreach (var trainee in Trainees)
-
-                    traineesList.Add(new SelectListItem { Text = trainee.UserName, Value = trainee.Id });
-            }
-
-            ViewBag.trainees = traineesList;
+                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString()});
+            
+            
+            ViewBag.modules = modulesList;
             return View();
         }
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Modules(Modules model)
+        {
+        
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(EligibleUsersForCertificate), new { ModuleId = model.Id });
+            }
+            return View(model);
+        }
+
+
+
+        public async Task<IActionResult> EligibleUsersForCertificate(int ModuleId)
+        {
+            var users = new List<SelectListItem>();
+
+            var Trainer = await _usermanager.GetUserAsync(User);
+         //   var traineesList = new List<TraineeViewModel>();
+            var trainings = await _trainer.GetNullCertificateTrainees(Trainer.Id, ModuleId.ToString());
+            foreach (var trainee in trainings)
+            {
+                var TraineeApplicationUser = Traineedbcontext.Users.First(t => t.Id == trainee.TraineeId);
+                //var model  = new TraineeViewModel
+                //{
+                //    FirstName = TraineeApplicationUser.FirstName,
+                //    LastName = TraineeApplicationUser.LastName,
+                //    Email = TraineeApplicationUser.Email,
+                //    PhoneNumber = TraineeApplicationUser.PhoneNumber,
+                //    CompanyName = TraineeApplicationUser.CompanyName,
+                //    CompanyAddress = TraineeApplicationUser.CompanyAddress,
+                //    UserAddress = TraineeApplicationUser.UserAddress,
+                //    TraineeId = TraineeApplicationUser.Id
+                //};
+              //  traineesList.Add(model);
+                users.Add(new SelectListItem { Text = TraineeApplicationUser.UserName, Value = TraineeApplicationUser.Id });
+
+            }
+            ViewBag.users = users;
+            return View();
+
+        }
+
 
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> NewCertificate(NewCertificateViewModel model)
+        public IActionResult EligibleUsersForCertificate(NewCertificateViewModel model)
         {
-
-
-            var tt = Traineedbcontext.Users.FirstOrDefault(t => t.Id == model.TraineeId);
-            //model.Certificate.DateGenerated = DateTime.Now;
-            //model.Certificate.Owner = tt;
             if (ModelState.IsValid)
             {
-                //dbcontext.Add(model.Certificate);
-                //await dbcontext.SaveChangesAsync();
+               
 
                 return RedirectToAction(nameof(Payment), new { traineeid = model.TraineeId });
             }
             return View(model);
         }
-        public async Task<IActionResult> Payment(string traineeid)
+
+
+
+        public IActionResult Payment(string traineeid)
         {
             var trainee = Traineedbcontext.Users.FirstOrDefault(t => t.Id == traineeid);
             var TraineeViewModel = new TraineeViewModel

@@ -266,9 +266,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
                     UserAddress = model.UserAddress,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    State = model.State,
                     ImageUpload = p1,
-                    City = model.City,
                     DateRegistered = DateTime.Now.Date,
 
 
@@ -530,46 +528,65 @@ namespace MISTDO.Web.Views.TrainerDashboard
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( TraineeViewModel trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
+        public async Task<IActionResult> Create(TraineeViewModel model)
         {
-
-           
-
             if (ModelState.IsValid)
             {
-                if (ImageUpload != null)
+
+                byte[] image = null;
+
+                if (model.ImageUpload != null)
 
                 {
-                    if (ImageUpload.Length > 0)
-
-                    //Convert Image to byte and save to database
-
-                    {
-
-                        byte[] p1 = null;
-                        using (var fs1 = ImageUpload.OpenReadStream())
+                    byte[] p1 = null;
+                        using (var fs1 = model.ImageUpload.OpenReadStream())
                         using (var ms1 = new MemoryStream())
                         {
                             fs1.CopyTo(ms1);
                             p1 = ms1.ToArray();
                         }
-                        trainee.ImageUpload = p1;
+                        image = p1;
 
                     }
+
+
+
+                    var user = new TraineeApplicationUser()
+                    {
+
+                        UserName = model.Email,
+                        Email = model.Email,
+
+                        PhoneNumber = model.PhoneNumber,
+                        CompanyAddress = model.CompanyAddress,
+                        CompanyName = model.CompanyName,
+                        UserAddress = model.UserAddress,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+
+                        DateRegistered = DateTime.Now.Date,
+
+                        ImageUpload = image
+
+                    };
+
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                    return RedirectToAction(nameof(Index));
+
+
+                    }
+
                 }
+                return View();
+            
 
-
-
-                _context.Add(trainee);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(trainee);
         }
-
         // GET: Trainees/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
+
             if (id == null)
             {
                 return NotFound();
@@ -597,6 +614,8 @@ namespace MISTDO.Web.Views.TrainerDashboard
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id,  TraineeViewModel trainee, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
         {
+            byte[] image = null;
+
             if (id != trainee.TraineeId)
             {
                 return NotFound();
@@ -620,7 +639,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
                             fs1.CopyTo(ms1);
                             p1 = ms1.ToArray();
                         }
-                        trainee.ImageUpload = p1;
+                      image = p1;
 
                     }
                 }

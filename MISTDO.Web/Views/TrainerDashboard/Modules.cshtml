@@ -1,0 +1,69 @@
+﻿@model Modules
+@{
+    Layout = "_LayoutDashboard";
+    ViewData["Title"] = "Modules";
+}
+
+
+
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeader");
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Select The Training Module</h4>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-block">
+                            <form asp-action="Modules">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+ @{
+                                    var modules = ViewBag.modules as List<SelectListItem>;
+
+                                }
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        Select Module
+                                    </label>
+                                    <select class="form-control" asp-for="Id" asp-items="modules"></select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Next" class="btn btn-default" />
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- Page Container END -->
+</div>
+
+
