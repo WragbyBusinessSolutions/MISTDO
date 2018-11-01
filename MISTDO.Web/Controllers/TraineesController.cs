@@ -224,6 +224,8 @@ public IActionResult Dashboard()
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                byte[] p1 = null;
+
                 TraineeViewModel trainee = new TraineeViewModel();
 
                 //copy a replical to the trainee table 
@@ -236,37 +238,19 @@ public IActionResult Dashboard()
 
                     {
 
-                        byte[] p1 = null;
                         using (var fs1 =model.ImageUpload.OpenReadStream())
                         using (var ms1 = new MemoryStream())
                         {
                             fs1.CopyTo(ms1);
                             p1 = ms1.ToArray();
 
-                            //     model.ImageUpload = p1;
-
-
-
-                            trainee.PhoneNumber = model.PhoneNumber;
-                                trainee.CompanyAddress = model.CompanyAddress;
-                            trainee.CompanyName = model.CompanyName;
-                           trainee.UserAddress = model.UserAddress;
-                            trainee.FirstName = model.FirstName;
-                            trainee.LastName = model.LastName;
-                           trainee.ImageUpload = p1;
-
-
-                           
-
-                            dbcontext.Add(trainee);
-                            dbcontext.SaveChanges();
-
+                       
                         }
                     }
 
                 }
-           
-               
+
+
 
                 var user = new TraineeApplicationUser()
                 {
@@ -281,7 +265,7 @@ public IActionResult Dashboard()
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     State = model.State,
-                    //Id = trainee.Id,
+                    ImageUpload = p1,
                     City = model.City,
                     DateRegistered = DateTime.Now.Date,
 
@@ -292,10 +276,6 @@ public IActionResult Dashboard()
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-
-                
-
-
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
