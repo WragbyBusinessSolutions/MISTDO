@@ -17,16 +17,19 @@ namespace MISTDO.Web.Models.AccountViewModels
         public string Email { get; set; }
 
         [Required]
-        [EmailAddress]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
-
-
-
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
         [Display(Name = "First Name")]
         [Required]
         [DataType(DataType.Text)]
         [MaxLength(100)]
+
         public string FirstName { get; set; }
 
         [Required]
@@ -49,18 +52,7 @@ namespace MISTDO.Web.Models.AccountViewModels
         [MaxLength(100)]
         [Display(Name = "User Address")]
         public string UserAddress { get; set; }
-        //[Display(Name = "Country")]
-        //[Required]
-        //[DataType(DataType.Text)]
-        //public string Country { get; set; }
-        [Display(Name = "State")]
-        [Required]
-        [DataType(DataType.Text)]
-        public string State { get; set; }
-        [Display(Name = "City")]
-        [Required]
-        [DataType(DataType.Text)]
-        public string City { get; set; }
+       
         [Display(Name = "Date Registered")]
 
         public DateTime DateRegistered { get; set; }
@@ -70,26 +62,7 @@ namespace MISTDO.Web.Models.AccountViewModels
 
         public string TraineeId { get; set; }
 
-        //[Required]
-        //public string OGISPId { get; set; }
-
-
-        //[Display(Name = "Training Centre Name")]
-        //[Required]
-        //[DataType(DataType.Text)]
-        //[MaxLength(100)]
-        //public string CentreName { get; set; }
-
-        //[Required]
-        //[DataType(DataType.Text)]
-        //[Display(Name = "OGISP UserName")]
-        //[MaxLength(100)]
-        //public string OGISPUserName { get; set; }
-        //[Required]
-
-        //public string TrainingModule { get; set; }
-
-        public  byte[] ImageUpload { get; set; }
+        public IFormFile ImageUpload { get; set; }
     }
 }
 

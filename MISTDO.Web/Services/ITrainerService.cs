@@ -14,6 +14,7 @@ namespace MISTDO.Web.Services
         Task<IEnumerable<Training>> GetTraining(string Id);
         Task<IEnumerable<Certificate>> GetCertificate(string Id);
 
+        Task<IEnumerable<Modules>> GetAllModules();
 
     }
 }
