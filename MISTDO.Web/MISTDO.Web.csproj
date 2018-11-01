@@ -10,6 +10,18 @@
     <Content Remove="Views\Account\**" />
     <EmbeddedResource Remove="Views\Account\**" />
     <None Remove="Views\Account\**" />
+    <Content Remove="Views\Shared\_LayoutRegisterAside.cshtml" />
+    <Content Remove="Views\Shared\_RegisterPartial.cshtml" />
+    <None Remove="Views\Shared\Error.cshtml" />
+    <None Remove="Views\Shared\_Layout.cshtml" />
+    <None Remove="Views\Shared\_LayoutAside.cshtml" />
+    <None Remove="Views\Shared\_LayoutDashboard.cshtml" />
+    <None Remove="Views\Shared\_LayoutHeader.cshtml" />
+    <None Remove="Views\Shared\_Layoutold.cshtml" />
+    <None Remove="Views\Shared\_LayoutTraineeAside.cshtml" />
+    <None Remove="Views\Shared\_LayoutTraineeDashboard.cshtml" />
+    <None Remove="Views\Shared\_LoginPartial.cshtml" />
+    <None Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
   </ItemGroup>
 
 
@@ -48,16 +60,6 @@
     <None Include="Views\Manage\_ManageNav.cshtml" />
     <None Include="Views\Manage\_StatusMessage.cshtml" />
     <None Include="Views\Manage\_ViewImports.cshtml" />
-    <None Include="Views\Shared\Error.cshtml" />
-    <None Include="Views\Shared\_Layout.cshtml" />
-    <None Include="Views\Shared\_LayoutAside.cshtml" />
-    <None Include="Views\Shared\_LayoutDashboard.cshtml" />
-    <None Include="Views\Shared\_LayoutHeader.cshtml" />
-    <None Include="Views\Shared\_Layoutold.cshtml" />
-    <None Include="Views\Shared\_LayoutTraineeAside.cshtml" />
-    <None Include="Views\Shared\_LayoutTraineeDashboard.cshtml" />
-    <None Include="Views\Shared\_LoginPartial.cshtml" />
-    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Views\TraineesDashboard\Dashboard.cshtml" />
     <None Include="Views\Trainees\AccessDenied.cshtml" />
     <None Include="Views\Trainees\ConfirmEmail.cshtml" />
