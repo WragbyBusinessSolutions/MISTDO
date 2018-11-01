@@ -249,9 +249,6 @@ public IActionResult Dashboard()
                     }
 
                 }
-
-
-
                 var user = new TraineeApplicationUser()
                 {
 
