@@ -254,9 +254,6 @@ namespace MISTDO.Web.Views.TrainerDashboard
                     }
 
                 }
-
-
-
                 var user = new TraineeApplicationUser()
                 {
 
