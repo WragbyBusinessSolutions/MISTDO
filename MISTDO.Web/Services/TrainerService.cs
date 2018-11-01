@@ -28,10 +28,16 @@ namespace MISTDO.Web.Services
             return certs;
         }
 
-        public async Task<IEnumerable<Training>> GetAllTraining(string TraineeId)
+        public async Task<IEnumerable<Training>> GetTraining(string Id)
         {
-            var training = await dbcontext.Trainings.Where(t => t.TraineeId == TraineeId).ToListAsync();
+            var training = await dbcontext.Trainings.Where(t => t.TraineeId == Id).ToListAsync();
             return training;
+        }
+
+        public async Task<IEnumerable<Certificate>> GetCertificate(string Id)
+        {
+            var certificate = await dbcontext.Certificates.Where(t => t.Owner.Id == Id).ToListAsync();
+            return certificate;
         }
 
 

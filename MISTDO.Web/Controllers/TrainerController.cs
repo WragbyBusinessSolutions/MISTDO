@@ -439,7 +439,7 @@ namespace MISTDO.Web.Controllers
         }
         [HttpGet]
         //GET: Trainees/Support
-        public async Task<IActionResult> Support(int id)
+        public IActionResult Support(int id)
         {
 
             

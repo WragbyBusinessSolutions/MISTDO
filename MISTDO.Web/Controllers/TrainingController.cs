@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -17,14 +18,16 @@ namespace MISTDO.Web.Views
     public class TrainingController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IHostingEnvironment _env;
         public IExcelToTrainingService _exceltoTraining { get; }
 
-        public TrainingController(ApplicationDbContext context, IHostingEnvironment env, IExcelToTrainingService excelToTrainingService)
+        public TrainingController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IHostingEnvironment env, IExcelToTrainingService excelToTrainingService)
         {
             _context = context;
             _exceltoTraining = excelToTrainingService;
             _env = env;
+            _userManager = userManager;
         }
 
         // GET: Training
@@ -62,16 +65,32 @@ namespace MISTDO.Web.Views
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ModuleId,CertificateId ,TrainingName,TrainingCentreId ,PaymentRefId,DateCreated ,CertGenDate ,TrainingStartDate,TrainingEndDate")] Training training)
+        public async Task<IActionResult> Create([Bind("Id,ModuleId,CertificateId,TraineeId,CertificateId ,TrainingName,TrainingCentreId ,PaymentRefId,DateCreated ,CertGenDate ,TrainingStartDate,TrainingEndDate")] Training training, string id)
         {
+            var user = await _userManager.GetUserAsync(User);
+            id = user.Id;
             if (ModelState.IsValid)
             {
-                //var dex = Convert.ToInt32(trainingCentre.CentreId);
-                //var bex = Convert.ToInt32(training.CentreId);
-                //  bex = dex;
+                var train = new Training()
+                {
 
+                    TrainingCentreId =  user.Id,
+                    CertificateId = training.CertificateId,
+                    ModuleId =    training.ModuleId,
+                    TrainingStartDate = training.TrainingStartDate,
+                    TraineeId =   training.TraineeId,
+                    PaymentRefId =training.PaymentRefId,
+                    CertGenDate = training.CertGenDate,
+                    DateCreated = training.DateCreated,
+                    TrainingEndDate = training.TrainingEndDate,
+                    TrainingName = training.TrainingName
 
-                _context.Add(training);
+                    
+
+                };
+
+                 _context.Add(train);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -99,7 +118,7 @@ namespace MISTDO.Web.Views
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ModuleId,CertificateId ,TrainingName,TrainingCentreId ,PaymentRefId,DateCreated ,CertGenDate ,TrainingStartDate,TrainingEndDate")] Training training)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ModuleId,CertificateId,TraineeId,CertificateId ,TrainingName,TrainingCentreId ,PaymentRefId,DateCreated ,CertGenDate ,TrainingStartDate,TrainingEndDate")] Training training)
         {
             if (id != training.Id)
             {

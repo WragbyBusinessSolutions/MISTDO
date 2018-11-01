@@ -10,18 +10,6 @@
     <Content Remove="Views\Account\**" />
     <EmbeddedResource Remove="Views\Account\**" />
     <None Remove="Views\Account\**" />
-    <Content Remove="Views\Shared\_LayoutRegisterAside.cshtml" />
-    <Content Remove="Views\Shared\_RegisterPartial.cshtml" />
-    <None Remove="Views\Shared\Error.cshtml" />
-    <None Remove="Views\Shared\_Layout.cshtml" />
-    <None Remove="Views\Shared\_LayoutAside.cshtml" />
-    <None Remove="Views\Shared\_LayoutDashboard.cshtml" />
-    <None Remove="Views\Shared\_LayoutHeader.cshtml" />
-    <None Remove="Views\Shared\_Layoutold.cshtml" />
-    <None Remove="Views\Shared\_LayoutTraineeAside.cshtml" />
-    <None Remove="Views\Shared\_LayoutTraineeDashboard.cshtml" />
-    <None Remove="Views\Shared\_LoginPartial.cshtml" />
-    <None Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
   </ItemGroup>
 
 
@@ -60,6 +48,16 @@
     <None Include="Views\Manage\_ManageNav.cshtml" />
     <None Include="Views\Manage\_StatusMessage.cshtml" />
     <None Include="Views\Manage\_ViewImports.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_LayoutAside.cshtml" />
+    <None Include="Views\Shared\_LayoutDashboard.cshtml" />
+    <None Include="Views\Shared\_LayoutHeader.cshtml" />
+    <None Include="Views\Shared\_Layoutold.cshtml" />
+    <None Include="Views\Shared\_LayoutTraineeAside.cshtml" />
+    <None Include="Views\Shared\_LayoutTraineeDashboard.cshtml" />
+    <None Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Views\TraineesDashboard\Dashboard.cshtml" />
     <None Include="Views\Trainees\AccessDenied.cshtml" />
     <None Include="Views\Trainees\ConfirmEmail.cshtml" />
@@ -171,26 +169,15 @@
     <None Include="wwwroot\bower_components\summernote\dist\font\summernoted41d.eot" />
     <None Include="wwwroot\bower_components\sweetalert\lib\sweet-alert.js" />
     <None Include="wwwroot\bower_components\twitter-bootstrap-wizard\jquery.bootstrap.wizard.min.js" />
-    <None Include="Views\Account\AccessDenied.cshtml" />
-    <None Include="Views\Account\ConfirmEmail.cshtml" />
-    <None Include="Views\Account\ConfirmMail.cshtml" />
-    <None Include="Views\Account\ExternalLogin.cshtml" />
-    <None Include="Views\Account\ForgotPassword.cshtml" />
-    <None Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <None Include="Views\Account\Lockout.cshtml" />
-    <None Include="Views\Account\Login.cshtml" />
-    <None Include="Views\Account\LoginWith2fa.cshtml" />
-    <None Include="Views\Account\LoginWithRecoveryCode.cshtml" />
-    <None Include="Views\Account\Register.cshtml" />
-    <None Include="Views\Account\ResetPassword.cshtml" />
-    <None Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <None Include="Views\Account\SignedOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\NewFolder\" />
     <Folder Include="wwwroot\productfiles\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Views\Shared\_LayoutTraineeHeader.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Trainees\Certificate.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

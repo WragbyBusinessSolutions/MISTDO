@@ -169,23 +169,47 @@ namespace MISTDO.Web.Views.TrainerDashboard
             return View(model);
 
         }
-        public async Task<IActionResult> Certificate()
+        public async Task<IActionResult> Certificate(string id)
         {
-            var certs = await _trainer.GetAllCertificates();
-            return View(certs);
+            var user = await _userManager.GetUserAsync(User);
+            id = user.Id; // initialize id  with user id
+
+
+            if (id == null)
+            {
+                return View(await _context.Users.ToListAsync());
+            }
+            var certificates = await _trainer.GetCertificate(id);
+          
+
+            return View(certificates.ToList());
         }
 
 
         public IActionResult Dashboard()
         {
-
+            
+            
             return View();
 
         }
 
-        public async Task<IActionResult> Training(Training training)
+        public async Task<IActionResult> Training(string id,Training training)
         {
-            return View(await tdbcontext.Trainings.ToListAsync());
+            var user = await _userManager.GetUserAsync(User);
+            id = user.Id;
+
+            if (id == null)
+            {
+                return View(await _context.Users.ToListAsync());
+            }
+            var trainings = await _trainer.GetTraining(id);
+           //var i = trainings.ToList();
+           // var trainee = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
+
+           
+
+            return View( trainings.ToList());
         }
         // GET: Trainees/Details/5
         public async Task<IActionResult> Details(string id)
@@ -548,36 +572,41 @@ namespace MISTDO.Web.Views.TrainerDashboard
                         image = p1;
 
                     }
+                var user = new TraineeApplicationUser()
+                {
+
+                    UserName = model.Email,
+                    Email = model.Email,
+
+                    PhoneNumber = model.PhoneNumber,
+                    CompanyAddress = model.CompanyAddress,
+                    CompanyName = model.CompanyName,
+                    UserAddress = model.UserAddress,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+
+                    DateRegistered = DateTime.Now.Date,
+
+                    ImageUpload = image
+
+                };
+
+
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                    var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
 
 
-                    var user = new TraineeApplicationUser()
-                    {
+                    return View("ConfirmMail");
 
-                        UserName = model.Email,
-                        Email = model.Email,
+                }
 
-                        PhoneNumber = model.PhoneNumber,
-                        CompanyAddress = model.CompanyAddress,
-                        CompanyName = model.CompanyName,
-                        UserAddress = model.UserAddress,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-
-                        DateRegistered = DateTime.Now.Date,
-
-                        ImageUpload = image
-
-                    };
-
-                    var result = await _userManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
-                    {
-                    return RedirectToAction(nameof(Index));
-
-
-                    }
-
+                   
+                   
                 }
                 return View();
             
