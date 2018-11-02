@@ -22,8 +22,11 @@ namespace MISTDO.Web.Views
         private readonly IHostingEnvironment _env;
         public IExcelToTrainingService _exceltoTraining { get; }
 
-        public TrainingController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IHostingEnvironment env, IExcelToTrainingService excelToTrainingService)
+        public ITrainerService _trainer { get; }
+
+        public TrainingController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IHostingEnvironment env, ITrainerService trainer, IExcelToTrainingService excelToTrainingService)
         {
+            _trainer = trainer;
             _context = context;
             _exceltoTraining = excelToTrainingService;
             _env = env;
@@ -55,8 +58,16 @@ namespace MISTDO.Web.Views
         }
 
         // GET: Training/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var modules = await _trainer.GetAllModules();
+
+            var modulesList = new List<SelectListItem>();
+            foreach (var item in modules)
+
+                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+            ViewBag.modules = modulesList;
+
             return View();
         }
 
@@ -67,6 +78,11 @@ namespace MISTDO.Web.Views
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ModuleId,CertificateId,TraineeId,CertificateId ,TrainingName,TrainingCentreId ,PaymentRefId,DateCreated ,CertGenDate ,TrainingStartDate,TrainingEndDate")] Training training, string id)
         {
+
+            
+            
+           
+
             var user = await _userManager.GetUserAsync(User);
             id = user.Id;
             if (ModelState.IsValid)

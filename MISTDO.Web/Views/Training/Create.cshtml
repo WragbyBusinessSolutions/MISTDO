@@ -5,6 +5,7 @@
     Layout = "_LayoutDashboard";
 }
 @inject UserManager<ApplicationUser> userManager;
+
 <div class="page-container">
     <!-- Header START -->
     @await Html.PartialAsync("_LayoutHeader");
@@ -25,8 +26,10 @@
                         <div class="card-block">
                             @{
                                 var user = await userManager.GetUserAsync(User);
-                                        }
+                                var modules = ViewBag.modules as List<SelectListItem>;
 
+                            }
+                         
                             <form asp-action="Create" enctype="multipart/form-data">
 
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -37,8 +40,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label"> Module ID</label>
-                                    <input asp-for="ModuleId" class="form-control" />
-                                    <span asp-validation-for="ModuleId" class="text-danger"></span>
+                                    <select class="form-control" asp-for="ModuleId" asp-items="modules"></select>
+
                                 </div>
 
                                 <div class="form-group">
@@ -97,7 +100,7 @@
                                     <input type="submit" value="Create" class="btn btn-default" />
                                 </div>
                             </form>
-                            
+
                         </div>
 
 
@@ -113,7 +116,7 @@
                             <form asp-action="TrainingUpload" enctype="multipart/form-data">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <p>       @Html.ActionLink("Click here to download Template for Bulk Upload", "DownloadFile", new { })</p>
-                          
+
                                 <div class="form-group">
                                     <div class="col-md-10">
                                         <p><b>Upload Bulk Training Excel File</b></p>

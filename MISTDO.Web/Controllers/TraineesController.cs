@@ -63,6 +63,15 @@ namespace MISTDO.Web.Views.TrainerDashboard
         // GET: Trainees
         public async Task<IActionResult> Index()
         {
+            
+            var trainings = await _trainer.GetTrainee();
+            foreach (var item in trainings)
+            {
+                
+                ViewBag.TrainerCenter = item.TrainingCentreId;
+            }
+            
+
             return View(await _context.Users.ToListAsync());
         }
 

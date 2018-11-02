@@ -14,12 +14,14 @@ namespace MISTDO.Web.Services
         private readonly ApplicationDbContext dbcontext;
         private readonly TraineeApplicationDbContext _Traineedbcontext;
         private readonly AdminApplicationDbContext Admindbcontext;
+        private readonly UserManager<TraineeApplicationUser> _userManager;
 
-        public TrainerService(ApplicationDbContext context, TraineeApplicationDbContext traineecontext, AdminApplicationDbContext admindb)
+        public TrainerService(ApplicationDbContext context, UserManager<TraineeApplicationUser> userManager, TraineeApplicationDbContext traineecontext, AdminApplicationDbContext admindb)
         {
             dbcontext = context;
             _Traineedbcontext = traineecontext;
             Admindbcontext = admindb;
+            _userManager = userManager;
 
         }
         public async Task<IEnumerable<Certificate>> GetAllCertificates()
@@ -31,6 +33,15 @@ namespace MISTDO.Web.Services
         public async Task<IEnumerable<Training>> GetTraining(string Id)
         {
             var training = await dbcontext.Trainings.Where(t => t.TraineeId == Id).ToListAsync();
+            return training;
+        }
+
+        public async Task<IEnumerable<Training>> GetTrainee()
+        {
+           
+            var training = await dbcontext.Trainings.ToListAsync();
+            
+         
             return training;
         }
 

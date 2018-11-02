@@ -38,6 +38,7 @@ namespace MISTDO.Web
 
             services.AddDistributedMemoryCache();
 
+           
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()

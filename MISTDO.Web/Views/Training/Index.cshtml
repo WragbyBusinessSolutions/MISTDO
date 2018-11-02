@@ -5,6 +5,7 @@
     Layout = "_LayoutDashboard";
 }
 
+@inject UserManager<ApplicationUser> userManager;
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
 
 <!-- Page Container START -->
@@ -22,6 +23,113 @@
                 <p>
                     <a asp-action="Create">Create New</a>
                 </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+
+                            @{
+                                var user = await userManager.GetUserAsync(User);
+                               
+
+                            }
+                            <div class="table-overflow">
+                                <table id="dt-opt" class="table table-lg table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.TrainingName)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.ModuleId)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.PaymentRefId)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.TrainingCentreId)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.TraineeId)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.CertificateId)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.CertGenDate)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.DateCreated)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.TrainingStartDate)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.TrainingEndDate)
+                                            </th>
+                                            <th>Other Options</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.TrainingCentreId == user.Id )
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.ModuleId)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.PaymentRefId)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingCentreId)
+                                                    </td>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.TraineeId)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.CertificateId)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.CertGenDate)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.DateCreated)
+                                                    </th>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate)
+                                                    </td>
+                                                    <td>
+                                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Past Trainings</h4>
+
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -67,91 +175,7 @@
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                           
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.ModuleId)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.PaymentRefId)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingCentreId)
-                                            </td>
-                                            <th>
-                                                @Html.DisplayFor(model => item.TraineeId)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayFor(model => item.CertificateId)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayFor(model => item.CertGenDate)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayFor(model => item.DateCreated)
-                                            </th>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingStartDate)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingEndDate)
-                                            </td>
-                                            <td>
-                                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                            </td>
-                                        </tr>
-                                           
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid">
-            <div class="page-title">
-                <h4>Past Trainings</h4>
-                
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-block">
-                            <div class="table-overflow">
-                                <table id="dt-opt" class="table table-lg table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.TrainingName)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.ModuleId)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.PaymentRefId)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.TrainingStartDate)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.TrainingEndDate)
-                                            </th>
-                                            <th>Other Options</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model)
-                                        {
-                                            if (item.TrainingStartDate >= DateTime.Today)
+                                            if (item.TrainingStartDate >= DateTime.Today && item.TrainingCentreId == user.Id)
                                             {
                                                 <tr>
                                                     <td>
@@ -163,6 +187,21 @@
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.PaymentRefId)
                                                     </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingCentreId)
+                                                    </td>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.TraineeId)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.CertificateId)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.CertGenDate)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.DateCreated)
+                                                    </th>
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.TrainingStartDate)
                                                     </td>
