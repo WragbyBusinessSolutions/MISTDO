@@ -14,9 +14,10 @@ namespace MISTDO.Web.Services
     {
         private readonly ApplicationDbContext _context;
         private readonly TraineeApplicationDbContext dbcontext;
-        public ExcelToTraineeService(ApplicationDbContext context)
+        public ExcelToTraineeService(ApplicationDbContext context, TraineeApplicationDbContext tcontext)
         {
             _context = context;
+            dbcontext = tcontext;
         }
         public async Task ConvertFileToTraineeString(string filePath)
         {
@@ -49,7 +50,7 @@ namespace MISTDO.Web.Services
                 //productContext.SaveChanges();
                 traineesFromExcel.Add(traineeFromExcel);
                 dbcontext.Users.Add(traineeFromExcel);
-                dbcontext.SaveChanges();
+                await dbcontext.SaveChangesAsync();
                
 
             }

@@ -48,7 +48,7 @@ namespace MISTDO.Web.Services
                 //productContext.SaveChanges();
                 productsFromExcel.Add(productFromExcel);
                 _context.Trainings.Add(productFromExcel);
-                _context.SaveChanges();
+               await _context.SaveChangesAsync();
 
             }
                    
