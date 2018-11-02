@@ -26,7 +26,6 @@
     <Content Remove="Views\Trainer\NotificationDetails.cshtml" />
     <Content Remove="Views\Trainer\Profile.cshtml" />
     <Content Remove="Views\Trainer\Support.cshtml" />
-    <Content Remove="Views\TrainerDashboard\EligibleUsersForCertificate.cshtml" />
     <Content Remove="Views\TrainerDashboard\Modules.cshtml" />
     <None Remove="Views\Shared\Error.cshtml" />
     <None Remove="Views\Shared\_LayoutDashboard.cshtml" />
