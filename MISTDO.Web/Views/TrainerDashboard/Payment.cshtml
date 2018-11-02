@@ -19,6 +19,9 @@
                     <a>Trainee Details</a>
                 </p>
             </div>
+            @{ 
+                var module = ViewBag.Module as Modules;
+            }
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
@@ -67,17 +70,28 @@
                                 <dd>
                                     @Html.DisplayFor(model => model.UserAddress)
                                 </dd>
-                            </dl>
-                            @{
-                                var exams = ViewBag.exams as List<SelectListItem>;
+                                <dt>
+                                    Module Name
+                                </dt>
+                                <dd>
+                                    @module.Name
+                                </dd>
+                                <dt>
+                                    Module Short Code
+                                </dt>
+                                <dd>
+                                    @module.ShortCode
+                                </dd>
+                                <dt>
+                                    Module Cost
+                                </dt>
+                                <dd>
+                                    @module.Cost
+                                </dd>
 
-                            }
-                            <div class="form-group">
-                                <label class="control-label">
-                                    Select the Exam module Completed
-                                </label>
-                                <select class="form-control" asp-for="TraineeId" asp-items="exams"></select>
-                            </div>
+                            </dl>
+                           
+                           
                             <div>
                                 <a class="btn btn-primary" asp-action="ViewCertificate">Make Payment</a>
                             </div>
@@ -86,9 +100,6 @@
 
                     </div>
 
-                    <div>
-                        <a asp-action="Index">Back to List</a>
-                    </div>
                 </div>
             </div>
         </div>

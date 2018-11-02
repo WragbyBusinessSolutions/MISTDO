@@ -120,27 +120,25 @@ namespace MISTDO.Web.Controllers
             var users = new List<SelectListItem>();
 
             var Trainer = await _usermanager.GetUserAsync(User);
+
+           
+
          //   var traineesList = new List<TraineeViewModel>();
             var trainings = await _trainer.GetNullCertificateTrainees(Trainer.Id, ModuleId.ToString());
             foreach (var trainee in trainings)
             {
-                var TraineeApplicationUser = Traineedbcontext.Users.First(t => t.Id == trainee.TraineeId);
-                //var model  = new TraineeViewModel
-                //{
-                //    FirstName = TraineeApplicationUser.FirstName,
-                //    LastName = TraineeApplicationUser.LastName,
-                //    Email = TraineeApplicationUser.Email,
-                //    PhoneNumber = TraineeApplicationUser.PhoneNumber,
-                //    CompanyName = TraineeApplicationUser.CompanyName,
-                //    CompanyAddress = TraineeApplicationUser.CompanyAddress,
-                //    UserAddress = TraineeApplicationUser.UserAddress,
-                //    TraineeId = TraineeApplicationUser.Id
-                //};
-              //  traineesList.Add(model);
-                users.Add(new SelectListItem { Text = TraineeApplicationUser.UserName, Value = TraineeApplicationUser.Id });
+                var TraineeApplicationUser = Traineedbcontext.Users.Where(t => t.Id == trainee.TraineeId).ToList();
+
+                foreach (var user in TraineeApplicationUser)
+                {
+                users.Add(new SelectListItem { Text = user.UserName, Value = user.Id });
+
+                }
 
             }
             ViewBag.users = users;
+            ViewBag.ModuleId = ModuleId;
+
             return View();
 
         }
@@ -155,15 +153,16 @@ namespace MISTDO.Web.Controllers
             {
                
 
-                return RedirectToAction(nameof(Payment), new { traineeid = model.TraineeId });
+                return RedirectToAction(nameof(Payment), new { traineeid = model.TraineeId, moduleid = model.ModuleId });
             }
             return View(model);
         }
 
 
 
-        public IActionResult Payment(string traineeid)
+        public async Task<IActionResult> Payment(string traineeid, int moduleid)
         {
+            var module = await _trainer.GetModulebyId(moduleid);
             var trainee = Traineedbcontext.Users.FirstOrDefault(t => t.Id == traineeid);
             var TraineeViewModel = new TraineeViewModel
             {
@@ -176,7 +175,8 @@ namespace MISTDO.Web.Controllers
                 UserAddress = trainee.UserAddress,
                 TraineeId = trainee.Id
             };
-            return View(trainee);
+            ViewBag.Module = module;
+            return View(TraineeViewModel);
         }
         public IActionResult ViewCertificate()
         {

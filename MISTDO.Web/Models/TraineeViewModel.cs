@@ -61,6 +61,7 @@ namespace MISTDO.Web.Models.AccountViewModels
         public string PhoneNumber { get; set; }
 
         public string TraineeId { get; set; }
+        public string ModuleId { get; set; }
 
         public IFormFile ImageUpload { get; set; }
     }

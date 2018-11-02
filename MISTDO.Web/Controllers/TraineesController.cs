@@ -42,7 +42,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
         private readonly IHostingEnvironment _envt;
         public ITrainerService _trainer { get; }
-
+        
         public TraineesController(UserManager<TraineeApplicationUser> userManager,
             SignInManager<TraineeApplicationUser> signInManager,
             IEmailSender emailSender,

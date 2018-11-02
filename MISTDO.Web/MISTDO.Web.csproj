@@ -12,6 +12,11 @@
     <None Remove="Views\Account\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20181102094547_TrainerdbUpdates.cs" />
+    <Compile Remove="Migrations\20181102094547_TrainerdbUpdates.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="EPPlus.Core" Version="1.5.4" />

@@ -36,6 +36,10 @@
                                     <select class="form-control" asp-for="TraineeId" asp-items="users"></select>
                                 </div>
                                 <div class="form-group">
+                                    
+                                    <Input class="form-control" value="@ViewBag.ModuleId" asp-for="ModuleId"  hidden/>
+                                </div>
+                                <div class="form-group">
                                     <input type="submit" value="Next" class="btn btn-default" />
                                 </div>
                             </form>
