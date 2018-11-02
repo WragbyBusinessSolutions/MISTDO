@@ -178,7 +178,8 @@ namespace MISTDO.Web.Controllers
             ViewBag.Module = module;
             return View(TraineeViewModel);
         }
-        public IActionResult ViewCertificate()
+       
+            public IActionResult ViewCertificate()
         {
             return View();
         }
