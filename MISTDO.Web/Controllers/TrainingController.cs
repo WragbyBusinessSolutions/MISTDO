@@ -68,6 +68,8 @@ namespace MISTDO.Web.Views
                 modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
             ViewBag.modules = modulesList;
 
+            
+
             return View();
         }
 
