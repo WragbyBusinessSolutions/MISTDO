@@ -47,47 +47,7 @@ namespace MISTDO.Web.Controllers
             return View(certs);
         }
 
-        //// GET: Certificates/Create
-        //[HttpGet]
 
-        //public async Task<IActionResult> NewCertificate(string TrainingCentreId, string ModuleId)
-        //{
-        //    var trainings = await _trainer.GetNullCertificateTrainees(TrainingCentreId, ModuleId);
-        //    var traineesList = new List<SelectListItem>();
-
-
-
-        //    foreach (var item in trainings)
-        //    {
-        //        var Trainees = await Traineedbcontext.Users.Where(u => u.Id == item.TraineeId).ToListAsync();
-        //        foreach (var trainee in Trainees)
-
-        //            traineesList.Add(new SelectListItem { Text = trainee.UserName, Value = trainee.Id });
-        //    }
-
-        //    ViewBag.trainees = traineesList;
-        //    return View();
-        //}
-
-        ////[AllowAnonymous]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> NewCertificate(NewCertificateViewModel model)
-        //{
-
-
-        //    var tt = Traineedbcontext.Users.FirstOrDefault(t => t.Id == model.TraineeId);
-        //    //model.Certificate.DateGenerated = DateTime.Now;
-        //    //model.Certificate.Owner = tt;
-        //    if (ModelState.IsValid)
-        //    {
-        //        //dbcontext.Add(model.Certificate);
-        //        //await dbcontext.SaveChangesAsync();
-
-        //        return RedirectToAction(nameof(Payment), new { traineeid = model.TraineeId });
-        //    }
-        //    return View(model);
-        //}
         public async Task<IActionResult> Modules()
         {
             var modules = await _trainer.GetAllModules();
@@ -121,11 +81,9 @@ namespace MISTDO.Web.Controllers
             var users = new List<SelectListItem>();
 
             var Trainer = await _usermanager.GetUserAsync(User);
-<<<<<<< HEAD
 
-           
 
-         //   var traineesList = new List<TraineeViewModel>();
+            //   var traineesList = new List<TraineeViewModel>();
             var trainings = await _trainer.GetNullCertificateTrainees(Trainer.Id, ModuleId.ToString());
             foreach (var trainee in trainings)
             {
@@ -133,35 +91,16 @@ namespace MISTDO.Web.Controllers
 
                 foreach (var user in TraineeApplicationUser)
                 {
-                users.Add(new SelectListItem { Text = user.UserName, Value = user.Id });
+                    users.Add(new SelectListItem { Text = user.UserName, Value = user.Id });
 
                 }
-=======
-            //   var traineesList = new List<TraineeViewModel>();
-            var trainings = await _trainer.GetNullCertificateTrainees(Trainer.Id, ModuleId.ToString());
-            foreach (var trainee in trainings)
-            {
-                var TraineeApplicationUser = Traineedbcontext.Users.First(t => t.Id == trainee.TraineeId);
-                //var model  = new TraineeViewModel
-                //{
-                //    FirstName = TraineeApplicationUser.FirstName,
-                //    LastName = TraineeApplicationUser.LastName,
-                //    Email = TraineeApplicationUser.Email,
-                //    PhoneNumber = TraineeApplicationUser.PhoneNumber,
-                //    CompanyName = TraineeApplicationUser.CompanyName,
-                //    CompanyAddress = TraineeApplicationUser.CompanyAddress,
-                //    UserAddress = TraineeApplicationUser.UserAddress,
-                //    TraineeId = TraineeApplicationUser.Id
-                //};
-                //  traineesList.Add(model);
-                users.Add(new SelectListItem { Text = TraineeApplicationUser.UserName, Value = TraineeApplicationUser.Id });
->>>>>>> 99a6363... Updated the Registred trainees in admin
 
             }
             ViewBag.users = users;
             ViewBag.ModuleId = ModuleId;
 
             return View();
+
 
         }
 
