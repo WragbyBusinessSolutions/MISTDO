@@ -21,6 +21,7 @@ namespace MISTDO.Web.Controllers
     public class TrainerDashboardController : Controller
     {
         private readonly UserManager<ApplicationUser> _usermanager;
+        private readonly UserManager<TraineeApplicationUser> _traineeuserManager;
 
         public ITrainerService _trainer { get; }
 
@@ -28,10 +29,10 @@ namespace MISTDO.Web.Controllers
         private readonly TraineeApplicationDbContext Traineedbcontext;
         private readonly AdminApplicationDbContext Admindbcontext;
 
-        public TrainerDashboardController(ITrainerService trainer, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext, AdminApplicationDbContext admindb, UserManager<ApplicationUser> userManager)
+        public TrainerDashboardController(ITrainerService trainer, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext, AdminApplicationDbContext admindb, UserManager<ApplicationUser> userManager, UserManager<TraineeApplicationUser> traineeuserManager)
         {
             _usermanager = userManager;
-
+            _traineeuserManager = traineeuserManager;
             _trainer = trainer;
             dbcontext = context;
             Traineedbcontext = traineedbcontext;
@@ -97,6 +98,7 @@ namespace MISTDO.Web.Controllers
 
             }
             ViewBag.users = users;
+
             ViewBag.ModuleId = ModuleId;
 
             return View();
@@ -105,9 +107,7 @@ namespace MISTDO.Web.Controllers
         }
 
 
-        [AllowAnonymous]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+      
         public IActionResult EligibleUsersForCertificate(NewCertificateViewModel model)
         {
             if (ModelState.IsValid)
@@ -140,9 +140,74 @@ namespace MISTDO.Web.Controllers
             return View(TraineeViewModel);
         }
        
-            public IActionResult ViewCertificate()
+        public async Task<IActionResult> ViewCertificate(string traineeid, string moduleid)
         {
+            var training = dbcontext.Trainings.FirstOrDefault(t => t.TraineeId == traineeid && t.ModuleId == moduleid);
+                        var centre = await _usermanager.FindByIdAsync(training.TrainingCentreId);
+
+              var  trainee = await _traineeuserManager.FindByIdAsync(traineeid);
+            var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
+
+            var CertId = Helpers.GetCertId.RandomString(5);
+
+            ViewBag.Trainee = trainee;
+            ViewBag.Centre = centre;
+            ViewBag.Module = module;
+
+
+            var updateTraining = new Training
+            {
+                CertGenDate = DateTime.Now,
+                CertificateId = CertId,
+                DateCreated = training.DateCreated,
+                Id = training.Id,
+                ModuleId = training.ModuleId,
+                PaymentRefId = training.PaymentRefId,
+                TraineeId = training.TraineeId,
+                TrainingCentreId = training.TrainingCentreId,
+                TrainingEndDate = training.TrainingEndDate,
+                TrainingName = training.TrainingName,
+                TrainingStartDate = training.TrainingStartDate
+            };
+
+            var local = dbcontext.Set<Training>()
+    .Local
+    .FirstOrDefault(entry => entry.Id.Equals(updateTraining.Id));
+
+            // check if local is not null 
+            if (local != null) // I'm using a extension method
+            {
+                // detach
+                dbcontext.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            dbcontext.Entry(updateTraining).State = EntityState.Modified;
+
+            // save 
+            
+
+            await dbcontext.SaveChangesAsync();
+
+            ViewBag.Training = updateTraining;
+
+
+
             return View();
+        }
+       
+        public IActionResult PaymentCompleted(RemitaResponse data, string traineeid, string moduleid)
+        {
+            var training = new Training
+            {
+                PaymentRefId = data.PaymentReference,
+                
+
+            };
+
+            //  var trainee = _traineeuserManager.FindByIdAsync(traineeid);
+            var url = Url.Action(nameof(ViewCertificate), new { traineeid, moduleid });
+            return Json(new { isSuccess = true, redirectUrl = url});
+          //  return RedirectToAction(nameof(ViewCertificate), new {  traineeid, moduleid });
         }
     }
 }

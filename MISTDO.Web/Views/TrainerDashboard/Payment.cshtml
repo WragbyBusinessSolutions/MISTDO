@@ -25,6 +25,8 @@
                     <input type="hidden" value="@Model.Email" id="Email" />
                     <input type="hidden" value="@module.Cost" id="Amount" />
                     <input type="hidden" value="@Model.TraineeId" id="CustomerId" />
+                    <input type="hidden" value="@module.Id" id="ModuleId" />
+
                 </p>
             </div>
           
@@ -133,6 +135,7 @@
 </div>
 
 <script>
+
     function makePayment() {
         var customerid = $('#CustomerId').val();
         var firstname = $('#FirstName').val();
@@ -140,6 +143,7 @@
 
         var email = $('#Email').val();
         var cost = $('#Amount').val();
+        var moduleid = $('#ModuleId').val();
 
         console.log(customerid);
         console.log(firstname);
@@ -155,7 +159,17 @@
             email: email,
             amount: cost,
             onSuccess: function (response) {
+
                 console.log('callback Successful Response', response);
+                $.post('@Url.Action("PaymentCompleted", "TrainerDashboard")', {
+                    data: response, traineeid: customerid, moduleid: moduleid
+                }, function () {
+                    // 
+                }).done(function (returndata) {
+                    if (returndata.isSuccess) {
+                        window.location = returndata.redirectUrl;
+                    };
+                });
             },
             onError: function (response) {
                 console.log('callback Error Response', response);
@@ -166,6 +180,8 @@
         });
 
         paymentEngine.showPaymentWidget();
+
     }
+
 </script>
 
