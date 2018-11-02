@@ -1,13 +1,10 @@
-﻿@model IEnumerable<MISTDO.Web.Models.TraineeApplicationUser>
+﻿@model IEnumerable<ApplicationUser>
 @{
-    ViewData["Title"] = "Trainee";
-    Layout = "_LayoutDashboard";
+    ViewData["Title"] = "All Registered Training Centers";
+    Layout = "_LayoutAdminDashboard";
 }
-
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
-
 <!-- Page Container START -->
-@inject UserManager<ApplicationUser> userManager;
 <div class="page-container">
     <!-- Header START -->
     @await Html.PartialAsync("_LayoutHeader");
@@ -17,18 +14,9 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                <h4>Registered Trainees</h4>
-                <p>
-                    <a asp-action="Create">Create New</a>
-                </p>
+                <h4>All Registered Training Centers</h4>
             </div>
             <div class="row">
-                @{
-                    var user = await userManager.GetUserAsync(User);
-                    
-                    
-
-                }
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-block">
@@ -37,77 +25,78 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.FirstName)
+                                                Training Center ID
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.LastName)
+                                                Training Center Name
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Email)
+                                                Address
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.PhoneNumber)
+                                                City
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.CompanyName)
+                                                Email
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.CompanyAddress)
+                                                Phone Number
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.UserAddress)
+                                                OGISP Permit ID
                                             </th>
-
-                                            <th></th>
+                                            <th>
+                                                Registration Date
+                                            </th>
+                                            <th>
+                                                Others
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                            if (ViewBag.TrainerCenter == user.Id)
-                                            {
+
                                             <tr>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                                    @Html.DisplayFor(modelItem => item.Id)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.LastName)
+                                                    @Html.DisplayFor(modelItem => item.CentreName)
                                                 </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Email)
-                                                </td>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.CompanyAddress)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.City)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.Email)
+                                                </th>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.PhoneNumber)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.CompanyName)
+                                                    @Html.DisplayFor(modelItem => item.OGISPId)
                                                 </td>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.DateRegistered)
+                                                </th>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.CompanyAddress)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.UserAddress)
-                                                </td>
-
-                                                <td>
-                                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                    <a asp-action="Delete" asp-route-id="@item.Id">Details</a>
                                                 </td>
                                             </tr>
-                                            }
+
                                         }
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Content Wrapper END -->
     <!-- Footer START -->
     <footer class="content-footer">
@@ -125,14 +114,8 @@
     <!-- Page Container END -->
 </div>
 <script src="~/dist/assets/js/vendor.js"></script>
-
 <script src="~/dist/assets/js/app.min.js"></script>
-
 <!-- page plugins js -->
 <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
-
 <!-- page js -->
 <script src="~/dist/assets/js/table/data-table.js"></script>
-
-
-

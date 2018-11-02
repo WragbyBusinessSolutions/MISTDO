@@ -1,13 +1,10 @@
-﻿@model IEnumerable<MISTDO.Web.Models.TraineeApplicationUser>
+﻿@model IEnumerable<Modules>
 @{
-    ViewData["Title"] = "Trainee";
-    Layout = "_LayoutDashboard";
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdminDashboard";
 }
-
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
-
 <!-- Page Container START -->
-@inject UserManager<ApplicationUser> userManager;
 <div class="page-container">
     <!-- Header START -->
     @await Html.PartialAsync("_LayoutHeader");
@@ -17,18 +14,12 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                <h4>Registered Trainees</h4>
+                <h4>All Trainings</h4>
                 <p>
-                    <a asp-action="Create">Create New</a>
+                    <a asp-controller="Administrator" asp-action="AddNewModule">Add New Module</a>
                 </p>
             </div>
             <div class="row">
-                @{
-                    var user = await userManager.GetUserAsync(User);
-                    
-                    
-
-                }
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-block">
@@ -37,77 +28,54 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.FirstName)
+                                                Module Name
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.LastName)
+                                                Module Code
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Email)
+                                                Module Desciption
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.PhoneNumber)
+                                                Module Certificate Generation Cost
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.CompanyName)
+                                                Module Student Registration Course
                                             </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.CompanyAddress)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.UserAddress)
-                                            </th>
-
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                            if (ViewBag.TrainerCenter == user.Id)
-                                            {
+
                                             <tr>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                                    @Html.DisplayFor(modelItem => item.Name)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.LastName)
+                                                    @Html.DisplayFor(modelItem => item.ShortCode)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.Email)
+                                                    @Html.DisplayFor(modelItem => item.Description)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                                    @Html.DisplayFor(modelItem => item.Cost)
                                                 </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.CompanyName)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.CompanyAddress)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.UserAddress)
-                                                </td>
-
-                                                <td>
-                                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                                </td>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.CertificateCost)
+                                                </th>
                                             </tr>
-                                            }
+
                                         }
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Content Wrapper END -->
     <!-- Footer START -->
     <footer class="content-footer">
@@ -125,14 +93,10 @@
     <!-- Page Container END -->
 </div>
 <script src="~/dist/assets/js/vendor.js"></script>
-
 <script src="~/dist/assets/js/app.min.js"></script>
-
 <!-- page plugins js -->
 <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
-
 <!-- page js -->
 <script src="~/dist/assets/js/table/data-table.js"></script>
-
 
 
