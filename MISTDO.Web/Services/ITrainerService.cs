@@ -1,4 +1,4 @@
-﻿using MISTDO.Web.Models;
+using MISTDO.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +11,12 @@ namespace MISTDO.Web.Services
         Task<IEnumerable<Certificate>> GetAllCertificates();
         Task<IEnumerable<Training>> GetAllTrainees(string TrainingCentreId, string ModuleId);
         Task<IEnumerable<Training>> GetNullCertificateTrainees(string TrainingCentreId, string ModuleId);
+        Task<IEnumerable<Training>> GetAllModuleTrainees();
         Task<IEnumerable<Training>> GetTraining(string Id);
         Task<IEnumerable<Certificate>> GetCertificate(string Id);
-
+        Task<IEnumerable<TraineeApplicationUser>> GetTrainees();
         Task<IEnumerable<Modules>> GetAllModules();
+
         Task<Modules> GetModulebyId(int Id);
 
     }

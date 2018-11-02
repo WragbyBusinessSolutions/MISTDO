@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,22 +40,32 @@ namespace MISTDO.Web.Services
             return certificate;
         }
 
+        public async Task<IEnumerable<TraineeApplicationUser>> GetTrainees()
+        {
+            var allRegisteredTrainees = await _Traineedbcontext.Trainees.ToListAsync();
 
+            return allRegisteredTrainees;
+        }
 
-    
         public async Task<IEnumerable<Training>> GetAllTrainees(string TrainingCentreId, string ModuleId)
         {
             var Trainings = await dbcontext.Trainings.Where(t => t.TrainingCentreId == TrainingCentreId && t.ModuleId == ModuleId).ToListAsync();
             return Trainings;
         }
 
+        public async Task<IEnumerable<Training>> GetAllModuleTrainees()
+        {
+            var Trainings = await dbcontext.Trainings.ToListAsync();
+            return Trainings;
+        }
+
         public async Task<IEnumerable<Training>> GetNullCertificateTrainees(string TrainingCentreId, string ModuleId)
         {
-          var Trainings = await dbcontext.Trainings.Where(t => t.TrainingCentreId == TrainingCentreId && t.ModuleId == ModuleId && t.CertificateId == null).ToListAsync();
+            var Trainings = await dbcontext.Trainings.Where(t => t.TrainingCentreId == TrainingCentreId && t.ModuleId == ModuleId && t.CertificateId == null).ToListAsync();
 
 
             return Trainings;
-          
+
         }
 
 
@@ -63,11 +73,13 @@ namespace MISTDO.Web.Services
         {
             var modules = await Admindbcontext.Modules.ToListAsync();
             return modules;
-                }
+
+        }
         public async Task<Modules> GetModulebyId(int Id)
         {
             var modules = await Admindbcontext.Modules.FirstOrDefaultAsync(i => i.Id == Id);
             return modules;
+
         }
 
     }
