@@ -16,10 +16,8 @@ namespace MISTDO.Web.Services
         Task<IEnumerable<Certificate>> GetCertificate(string Id);
         Task<IEnumerable<TraineeApplicationUser>> GetTrainees();
         Task<IEnumerable<Modules>> GetAllModules();
-<<<<<<< HEAD
+
         Task<Modules> GetModulebyId(int Id);
 
-=======
->>>>>>> 99a6363... Updated the Registred trainees in admin
     }
 }
