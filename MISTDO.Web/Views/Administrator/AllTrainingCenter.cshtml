@@ -1,0 +1,121 @@
+﻿@model IEnumerable<ApplicationUser>
+@{
+    ViewData["Title"] = "All Registered Training Centers";
+    Layout = "_LayoutAdminDashboard";
+}
+<link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+<!-- Page Container START -->
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeader");
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>All Registered Training Centers</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="table-overflow">
+                                <table id="dt-opt" class="table table-lg table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Training Center ID
+                                            </th>
+                                            <th>
+                                                Training Center Name
+                                            </th>
+                                            <th>
+                                                Address
+                                            </th>
+                                            <th>
+                                                City
+                                            </th>
+                                            <th>
+                                                Email
+                                            </th>
+                                            <th>
+                                                Phone Number
+                                            </th>
+                                            <th>
+                                                OGISP Permit ID
+                                            </th>
+                                            <th>
+                                                Registration Date
+                                            </th>
+                                            <th>
+                                                Others
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Id)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.CentreName)
+                                                </td>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.CompanyAddress)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.City)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.Email)
+                                                </th>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.OGISPId)
+                                                </td>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.DateRegistered)
+                                                </th>
+                                                <td>
+                                                    <a asp-action="Delete" asp-route-id="@item.Id">Details</a>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- Page Container END -->
+</div>
+<script src="~/dist/assets/js/vendor.js"></script>
+<script src="~/dist/assets/js/app.min.js"></script>
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>

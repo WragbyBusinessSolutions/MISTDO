@@ -11,9 +11,10 @@ using System;
 namespace MISTDO.Web.Migrations.AdminApplicationDb
 {
     [DbContext(typeof(AdminApplicationDbContext))]
-    partial class AdminApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181102163242_.")]
+    partial class _
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

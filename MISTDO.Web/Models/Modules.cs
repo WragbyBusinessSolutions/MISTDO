@@ -17,7 +17,7 @@ namespace MISTDO.Web.Models
         public string Description { get; set; }
         public double Cost { get; set; }
         public string ShortCode { get; set; }
-
+        public double CertificateCost { get; set; }
 
     }
 }

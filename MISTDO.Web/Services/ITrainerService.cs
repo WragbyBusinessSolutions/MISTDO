@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace MISTDO.Web.Services
 {
@@ -18,7 +19,7 @@ namespace MISTDO.Web.Services
         Task<IEnumerable<Certificate>> GetCertificate(string Id);
         Task<IEnumerable<TraineeApplicationUser>> GetTrainees();
         Task<IEnumerable<Modules>> GetAllModules();
-
+        Task<IEnumerable<ApplicationUser>> GetAllTrainingCenters();
         Task<Modules> GetModulebyId(int Id);
 
     }

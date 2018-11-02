@@ -79,7 +79,6 @@ namespace MISTDO.Web.Services
 
         }
 
-
         public async Task<IEnumerable<Modules>> GetAllModules()
         {
             var modules = await Admindbcontext.Modules.ToListAsync();
@@ -93,5 +92,11 @@ namespace MISTDO.Web.Services
 
         }
 
+        public async Task<IEnumerable<ApplicationUser>> GetAllTrainingCenters()
+        {
+            var users = await dbcontext.Users.ToListAsync();
+
+            return users;
+        }
     }
 }
