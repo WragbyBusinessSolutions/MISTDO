@@ -267,8 +267,6 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("City");
-
                     b.Property<string>("CompanyAddress")
                         .HasMaxLength(100);
 
@@ -277,8 +275,6 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
-
-                    b.Property<string>("Country");
 
                     b.Property<DateTime>("DateRegistered");
 
@@ -320,8 +316,6 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
                     b.Property<bool>("PhoneNumberConfirmed");
 
                     b.Property<string>("SecurityStamp");
-
-                    b.Property<string>("State");
 
                     b.Property<bool>("TwoFactorEnabled");
 

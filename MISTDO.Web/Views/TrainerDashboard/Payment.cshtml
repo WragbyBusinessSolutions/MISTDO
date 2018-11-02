@@ -15,10 +15,19 @@
         <div class="container-fluid">
             <div class="page-title">
                 <h4>Make Payment</h4>
+                @{
+                    var module = ViewBag.Module as Modules;
+                }
                 <p>
                     <a>Trainee Details</a>
+                    <input type="hidden" value="@Model.FirstName" id="FirstName" />
+                    <input type="hidden" value="@Model.LastName" id="LastName" />
+                    <input type="hidden" value="@Model.Email" id="Email" />
+                    <input type="hidden" value="@module.Cost" id="Amount" />
+                    <input type="hidden" value="@Model.TraineeId" id="CustomerId" />
                 </p>
             </div>
+          
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
@@ -67,28 +76,40 @@
                                 <dd>
                                     @Html.DisplayFor(model => model.UserAddress)
                                 </dd>
-                            </dl>
-                            @{
-                                var exams = ViewBag.exams as List<SelectListItem>;
+                                <dt>
+                                    Module Name
+                                </dt>
+                                <dd>
+                                    @module.Name
+                                </dd>
+                                <dt>
+                                    Module Short Code
+                                </dt>
+                                <dd>
+                                    @module.ShortCode
+                                </dd>
+                                <dt>
+                                    Module Cost
+                                </dt>
+                                <dd>
+                                    @module.Cost
+                                </dd>
 
-                            }
-                            <div class="form-group">
-                                <label class="control-label">
-                                    Select the Exam module Completed
-                                </label>
-                                <select class="form-control" asp-for="TraineeId" asp-items="exams"></select>
-                            </div>
+                            </dl>
+                           
+                           
                             <div>
-                                <a class="btn btn-primary" asp-action="ViewCertificate">Make Payment</a>
+                                @*<a class="btn btn-primary" asp-action="ViewCertificate">Make Payment</a>*@
+                                <form>
+                                    <script src="https://remitademo.net/payment/v1/remita-pay-inline.bundle.js"></script>
+                                    <button class="btn btn-primary" type="button" onclick="makePayment()"> Pay </button>
+                                </form>
                             </div>
 
                         </div>
 
                     </div>
 
-                    <div>
-                        <a asp-action="Index">Back to List</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -110,4 +131,41 @@
         <!-- Page Container END -->
     </div>
 </div>
+
+<script>
+    function makePayment() {
+        var customerid = $('#CustomerId').val();
+        var firstname = $('#FirstName').val();
+        var lastname = $('#LastName').val();
+
+        var email = $('#Email').val();
+        var cost = $('#Amount').val();
+
+        console.log(customerid);
+        console.log(firstname);
+        console.log(lastname);
+        console.log(email);
+        console.log(cost);
+
+        var paymentEngine = RmPaymentEngine.init({
+            key: 'dGFnYWJpZWxlc2luQHdyYWdieXNvbHV0aW9ucy5jb218NDEwNDkxNzR8ZTZhMzJhYmZjMjFjYmZkYWM0ZTI3ZTkzNTU5MzUxMWM5NDlhMDM1ZGU3MjQzNzk2ODViYjdlN2E1OTc0OGZhZDJjOTEyYjk1ZWZkYTAyYWM1NTU3MmZlZDZkMmQzMTM2Njc5YWIyZmFiYTNmOGZhMjIxNmJmYjM0ZjNhODMwMGU=',
+            customerId: customerid,
+            firstName: firstname,
+            lastName: lastname,
+            email: email,
+            amount: cost,
+            onSuccess: function (response) {
+                console.log('callback Successful Response', response);
+            },
+            onError: function (response) {
+                console.log('callback Error Response', response);
+            },
+            onClose: function () {
+                console.log("closed");
+            }
+        });
+
+        paymentEngine.showPaymentWidget();
+    }
+</script>
 

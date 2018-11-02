@@ -116,10 +116,10 @@ namespace MISTDO.Web.Views
         // GET: Training/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
             var training = await _context.Trainings.SingleOrDefaultAsync(m => m.Id == id);
             if (training == null)
@@ -186,10 +186,10 @@ namespace MISTDO.Web.Views
         // GET: Training/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
             var training = await _context.Trainings.SingleOrDefaultAsync(m => m.Id == id);
             if (training == null)

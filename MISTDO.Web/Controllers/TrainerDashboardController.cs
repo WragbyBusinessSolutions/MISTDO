@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +13,7 @@ using MISTDO.Web.Models.AccountViewModels;
 using MISTDO.Web.Services;
 using MISTDO.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using TraineeViewModel = MISTDO.Web.Models.AccountViewModels.TraineeViewModel;
 
 namespace MISTDO.Web.Controllers
 {
@@ -45,58 +46,18 @@ namespace MISTDO.Web.Controllers
             var certs = await _trainer.GetAllCertificates();
             return View(certs);
         }
-     
-        //// GET: Certificates/Create
-        //[HttpGet]
-
-        //public async Task<IActionResult> NewCertificate(string TrainingCentreId, string ModuleId)
-        //{
-        //    var trainings = await _trainer.GetNullCertificateTrainees(TrainingCentreId, ModuleId);
-        //    var traineesList = new List<SelectListItem>();
 
 
-
-        //    foreach (var item in trainings)
-        //    {
-        //        var Trainees = await Traineedbcontext.Users.Where(u => u.Id == item.TraineeId).ToListAsync();
-        //        foreach (var trainee in Trainees)
-
-        //            traineesList.Add(new SelectListItem { Text = trainee.UserName, Value = trainee.Id });
-        //    }
-
-        //    ViewBag.trainees = traineesList;
-        //    return View();
-        //}
-
-        ////[AllowAnonymous]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> NewCertificate(NewCertificateViewModel model)
-        //{
-
-
-        //    var tt = Traineedbcontext.Users.FirstOrDefault(t => t.Id == model.TraineeId);
-        //    //model.Certificate.DateGenerated = DateTime.Now;
-        //    //model.Certificate.Owner = tt;
-        //    if (ModelState.IsValid)
-        //    {
-        //        //dbcontext.Add(model.Certificate);
-        //        //await dbcontext.SaveChangesAsync();
-
-        //        return RedirectToAction(nameof(Payment), new { traineeid = model.TraineeId });
-        //    }
-        //    return View(model);
-        //}
         public async Task<IActionResult> Modules()
         {
             var modules = await _trainer.GetAllModules();
-           
-            var modulesList = new List<SelectListItem>();
-          foreach (var item in modules)
 
-                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString()});
-            
-            
+            var modulesList = new List<SelectListItem>();
+            foreach (var item in modules)
+
+                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+
+
             ViewBag.modules = modulesList;
             return View();
         }
@@ -105,7 +66,7 @@ namespace MISTDO.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Modules(Modules model)
         {
-        
+
             if (ModelState.IsValid)
             {
                 return RedirectToAction(nameof(EligibleUsersForCertificate), new { ModuleId = model.Id });
@@ -120,28 +81,26 @@ namespace MISTDO.Web.Controllers
             var users = new List<SelectListItem>();
 
             var Trainer = await _usermanager.GetUserAsync(User);
-         //   var traineesList = new List<TraineeViewModel>();
+
+
+            //   var traineesList = new List<TraineeViewModel>();
             var trainings = await _trainer.GetNullCertificateTrainees(Trainer.Id, ModuleId.ToString());
             foreach (var trainee in trainings)
             {
-                var TraineeApplicationUser = Traineedbcontext.Users.First(t => t.Id == trainee.TraineeId);
-                //var model  = new TraineeViewModel
-                //{
-                //    FirstName = TraineeApplicationUser.FirstName,
-                //    LastName = TraineeApplicationUser.LastName,
-                //    Email = TraineeApplicationUser.Email,
-                //    PhoneNumber = TraineeApplicationUser.PhoneNumber,
-                //    CompanyName = TraineeApplicationUser.CompanyName,
-                //    CompanyAddress = TraineeApplicationUser.CompanyAddress,
-                //    UserAddress = TraineeApplicationUser.UserAddress,
-                //    TraineeId = TraineeApplicationUser.Id
-                //};
-              //  traineesList.Add(model);
-                users.Add(new SelectListItem { Text = TraineeApplicationUser.UserName, Value = TraineeApplicationUser.Id });
+                var TraineeApplicationUser = Traineedbcontext.Users.Where(t => t.Id == trainee.TraineeId).ToList();
+
+                foreach (var user in TraineeApplicationUser)
+                {
+                    users.Add(new SelectListItem { Text = user.UserName, Value = user.Id });
+
+                }
 
             }
             ViewBag.users = users;
+            ViewBag.ModuleId = ModuleId;
+
             return View();
+
 
         }
 
@@ -153,17 +112,18 @@ namespace MISTDO.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-               
 
-                return RedirectToAction(nameof(Payment), new { traineeid = model.TraineeId });
+
+                return RedirectToAction(nameof(Payment), new { traineeid = model.TraineeId, moduleid = model.ModuleId });
             }
             return View(model);
         }
 
 
 
-        public IActionResult Payment(string traineeid)
+        public async Task<IActionResult> Payment(string traineeid, int moduleid)
         {
+            var module = await _trainer.GetModulebyId(moduleid);
             var trainee = Traineedbcontext.Users.FirstOrDefault(t => t.Id == traineeid);
             var TraineeViewModel = new TraineeViewModel
             {
@@ -176,9 +136,11 @@ namespace MISTDO.Web.Controllers
                 UserAddress = trainee.UserAddress,
                 TraineeId = trainee.Id
             };
-            return View(trainee);
+            ViewBag.Module = module;
+            return View(TraineeViewModel);
         }
-        public IActionResult ViewCertificate()
+       
+            public IActionResult ViewCertificate()
         {
             return View();
         }
