@@ -107,7 +107,8 @@ namespace MISTDO.Web.Controllers
         }
 
 
-      
+        [HttpPost]
+
         public IActionResult EligibleUsersForCertificate(NewCertificateViewModel model)
         {
             if (ModelState.IsValid)
