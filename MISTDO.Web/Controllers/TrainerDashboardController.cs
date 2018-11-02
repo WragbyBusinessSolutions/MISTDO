@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +13,7 @@ using MISTDO.Web.Models.AccountViewModels;
 using MISTDO.Web.Services;
 using MISTDO.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using TraineeViewModel = MISTDO.Web.Models.AccountViewModels.TraineeViewModel;
 
 namespace MISTDO.Web.Controllers
 {
@@ -45,7 +46,7 @@ namespace MISTDO.Web.Controllers
             var certs = await _trainer.GetAllCertificates();
             return View(certs);
         }
-     
+
         //// GET: Certificates/Create
         //[HttpGet]
 
@@ -90,13 +91,13 @@ namespace MISTDO.Web.Controllers
         public async Task<IActionResult> Modules()
         {
             var modules = await _trainer.GetAllModules();
-           
-            var modulesList = new List<SelectListItem>();
-          foreach (var item in modules)
 
-                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString()});
-            
-            
+            var modulesList = new List<SelectListItem>();
+            foreach (var item in modules)
+
+                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+
+
             ViewBag.modules = modulesList;
             return View();
         }
@@ -105,7 +106,7 @@ namespace MISTDO.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Modules(Modules model)
         {
-        
+
             if (ModelState.IsValid)
             {
                 return RedirectToAction(nameof(EligibleUsersForCertificate), new { ModuleId = model.Id });
@@ -120,6 +121,7 @@ namespace MISTDO.Web.Controllers
             var users = new List<SelectListItem>();
 
             var Trainer = await _usermanager.GetUserAsync(User);
+<<<<<<< HEAD
 
            
 
@@ -134,6 +136,26 @@ namespace MISTDO.Web.Controllers
                 users.Add(new SelectListItem { Text = user.UserName, Value = user.Id });
 
                 }
+=======
+            //   var traineesList = new List<TraineeViewModel>();
+            var trainings = await _trainer.GetNullCertificateTrainees(Trainer.Id, ModuleId.ToString());
+            foreach (var trainee in trainings)
+            {
+                var TraineeApplicationUser = Traineedbcontext.Users.First(t => t.Id == trainee.TraineeId);
+                //var model  = new TraineeViewModel
+                //{
+                //    FirstName = TraineeApplicationUser.FirstName,
+                //    LastName = TraineeApplicationUser.LastName,
+                //    Email = TraineeApplicationUser.Email,
+                //    PhoneNumber = TraineeApplicationUser.PhoneNumber,
+                //    CompanyName = TraineeApplicationUser.CompanyName,
+                //    CompanyAddress = TraineeApplicationUser.CompanyAddress,
+                //    UserAddress = TraineeApplicationUser.UserAddress,
+                //    TraineeId = TraineeApplicationUser.Id
+                //};
+                //  traineesList.Add(model);
+                users.Add(new SelectListItem { Text = TraineeApplicationUser.UserName, Value = TraineeApplicationUser.Id });
+>>>>>>> 99a6363... Updated the Registred trainees in admin
 
             }
             ViewBag.users = users;
@@ -151,7 +173,7 @@ namespace MISTDO.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-               
+
 
                 return RedirectToAction(nameof(Payment), new { traineeid = model.TraineeId, moduleid = model.ModuleId });
             }

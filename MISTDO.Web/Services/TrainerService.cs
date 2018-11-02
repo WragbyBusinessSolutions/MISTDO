@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,12 +40,27 @@ namespace MISTDO.Web.Services
             return certificate;
         }
 
+        public async Task<IEnumerable<TraineeApplicationUser>> GetTrainees()
+        {
+            var allRegisteredTrainees = await _Traineedbcontext.Trainees.ToListAsync();
 
+<<<<<<< HEAD
 
     
+=======
+            return allRegisteredTrainees;
+        }
+
+>>>>>>> 99a6363... Updated the Registred trainees in admin
         public async Task<IEnumerable<Training>> GetAllTrainees(string TrainingCentreId, string ModuleId)
         {
             var Trainings = await dbcontext.Trainings.Where(t => t.TrainingCentreId == TrainingCentreId && t.ModuleId == ModuleId).ToListAsync();
+            return Trainings;
+        }
+
+        public async Task<IEnumerable<Training>> GetAllModuleTrainees()
+        {
+            var Trainings = await dbcontext.Trainings.ToListAsync();
             return Trainings;
         }
 
@@ -63,11 +78,14 @@ namespace MISTDO.Web.Services
         {
             var modules = await Admindbcontext.Modules.ToListAsync();
             return modules;
+<<<<<<< HEAD
                 }
         public async Task<Modules> GetModulebyId(int Id)
         {
             var modules = await Admindbcontext.Modules.FirstOrDefaultAsync(i => i.Id == Id);
             return modules;
+=======
+>>>>>>> 99a6363... Updated the Registred trainees in admin
         }
 
     }
