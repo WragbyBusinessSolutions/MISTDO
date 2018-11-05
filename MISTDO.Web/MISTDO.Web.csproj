@@ -30,15 +30,10 @@
     <None Remove="Views\Shared\_LayoutTraineeDashboard.cshtml" />
     <None Remove="Views\Shared\_LoginPartial.cshtml" />
     <None Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
-    <None Remove="Views\TraineesDashboard\Dashboard.cshtml" />
     <None Remove="Views\Trainees\AccessDenied.cshtml" />
     <None Remove="Views\Trainees\ConfirmEmail.cshtml" />
     <None Remove="Views\Trainees\ConfirmMail.cshtml" />
-    <None Remove="Views\Trainees\Create.cshtml" />
     <None Remove="Views\Trainees\Dashboard.cshtml" />
-    <None Remove="Views\Trainees\Delete.cshtml" />
-    <None Remove="Views\Trainees\Details.cshtml" />
-    <None Remove="Views\Trainees\Edit.cshtml" />
     <None Remove="Views\Trainees\ExternalLogin.cshtml" />
     <None Remove="Views\Trainees\ForgotPassword.cshtml" />
     <None Remove="Views\Trainees\ForgotPasswordConfirmation.cshtml" />

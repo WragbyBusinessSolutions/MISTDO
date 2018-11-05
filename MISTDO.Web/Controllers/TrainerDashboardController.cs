@@ -225,6 +225,7 @@ namespace MISTDO.Web.Controllers
 
         public async Task<IActionResult> Training()
         {
+
             return View(await dbcontext.Trainings.ToListAsync());
         }
 
