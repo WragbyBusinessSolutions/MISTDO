@@ -457,7 +457,7 @@ namespace MISTDO.Web.Controllers
             return View(training);
         }
 
-        public async Task<IActionResult> CreateTraining()
+        public async Task<IActionResult> AttachTraineeTraining()
         {
             var modules = await _trainer.GetAllModules();
 
@@ -472,12 +472,9 @@ namespace MISTDO.Web.Controllers
             return View();
         }
 
-        // POST: Training/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTraining([Bind("Id,ModuleId,CertificateId,TraineeId,CertificateId ,TrainingName,TrainingCentreId ,PaymentRefId,DateCreated ,CertGenDate ,TrainingStartDate,TrainingEndDate")] Training training, string id)
+        public async Task<IActionResult> AttachTraineeTraining([Bind("Id,ModuleId,CertificateId,TraineeId,CertificateId ,TrainingName,TrainingCentreId ,PaymentRefId,DateCreated ,CertGenDate ,TrainingStartDate,TrainingEndDate")] Training training, string id)
         {
 
 
@@ -509,7 +506,64 @@ namespace MISTDO.Web.Controllers
                 dbcontext.Add(train);
 
                 await dbcontext.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Trainees));
+            }
+            return View(training);
+        }
+
+        public async Task<IActionResult> CreateTraining()
+        {
+            var modules = await _trainer.GetAllModules();
+
+            var modulesList = new List<SelectListItem>();
+            foreach (var item in modules)
+
+                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+            ViewBag.modules = modulesList;
+
+
+
+            return View();
+        }
+
+        // POST: Training/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateTraining( Training training, string id)
+        {
+
+
+
+
+
+            var user = await _usermanager.GetUserAsync(User);
+            id = user.Id;
+            if (ModelState.IsValid)
+            {
+                var train = new Training()
+                {
+
+                    TrainingCentreId = user.Id,
+                    CertificateId = training.CertificateId,
+                    //ModuleId = training.ModuleId,
+                    TrainingStartDate = training.TrainingStartDate,
+                    TraineeId = training.TraineeId,
+                    PaymentRefId = training.PaymentRefId,
+                    //CertGenDate = training.CertGenDate,
+                    DateCreated = DateTime.Now,
+                    TrainingEndDate = training.TrainingEndDate,
+                    TrainingName = training.TrainingName
+
+
+
+                };
+
+                dbcontext.Add(train);
+
+                await dbcontext.SaveChangesAsync();
+                return RedirectToAction(nameof(Trainees));
             }
             return View(training);
         }
@@ -608,6 +662,7 @@ namespace MISTDO.Web.Controllers
             {
 
                 ViewBag.TrainerCenter = item.TrainingCentreId;
+                ViewBag.TraineeId = item.TraineeId;
             }
 
 
