@@ -185,7 +185,19 @@ namespace MISTDO.Web.Controllers
             dbcontext.Entry(updateTraining).State = EntityState.Modified;
 
             // save 
-            
+            Certificate certificate = new Certificate
+            {
+                CertNumber = updateTraining.CertificateId,
+                CertStatus = "Valid",
+                DateGenerated = updateTraining.CertGenDate,
+                Owner = trainee,
+                Trainer = centre,
+                TrainerOrg = centre.CentreName,
+                TrainerOrgId = centre.OGISPId
+
+            };
+
+            dbcontext.Add(certificate);
 
             await dbcontext.SaveChangesAsync();
 
