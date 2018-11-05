@@ -1,0 +1,173 @@
+﻿@model MISTDO.Web.Models.Training
+
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_LayoutDashboard";
+}
+
+<link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+
+<!-- Page Container START -->
+
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeader");
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Training Details </h4>>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-heading border bottom">
+                                    <h4 class="card-title">General Info</h4>
+                                </div>
+                                <div class="card-block">
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="mrg-top-10 text-dark"> <b>Training Title</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="status online mrg-top-10"></span>
+                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.TrainingName)</p>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="mrg-top-10 text-dark"> <b>Module ID</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="status online mrg-top-10"></span>
+                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.ModuleId)</p>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="mrg-top-10 text-dark"> <b>Payment Reference Id</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="status online mrg-top-10"></span>
+                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.PaymentRefId)</p>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="mrg-top-10 text-dark"> <b>Training Centre ID</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="status online mrg-top-10"></span>
+                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.TrainingCentreId)</p>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="mrg-top-10 text-dark"> <b>Trainee ID</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="status online mrg-top-10"></span>
+                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.TraineeId)</p>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="mrg-top-10 text-dark"> <b>Certificate ID</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="status online mrg-top-10"></span>
+                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.CertificateId)</p>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="mrg-top-10 text-dark"> <b>Certificate Generation Date</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="status online mrg-top-10"></span>
+                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.CertGenDate)</p>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="mrg-top-10 text-dark"> <b>Date Created</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="status online mrg-top-10"></span>
+                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.DateCreated)</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="mrg-top-10 text-dark"> <b>Training Start Date</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="status online mrg-top-10"></span>
+                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.TrainingStartDate)</p>
+                                        </div>
+                                    </div>
+
+
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="mrg-top-10 text-dark"> <b> Training End Date</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="status online mrg-top-10"></span>
+                                            <p class="mrg-top-10">@Html.DisplayFor(model => model.TrainingEndDate)</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- Page Container END -->
+</div>
+<script src="~/dist/assets/js/vendor.js"></script>
+
+<script src="~/dist/assets/js/app.min.js"></script>
+
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>

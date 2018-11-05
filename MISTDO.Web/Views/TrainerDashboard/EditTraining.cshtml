@@ -1,0 +1,210 @@
+﻿@model MISTDO.Web.Models.Training
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_LayoutDashboard";
+}
+@inject UserManager<ApplicationUser> userManager;
+<link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+
+<!-- Page Container START -->
+
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeader");
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Edit Training </h4>>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-heading border bottom">
+                            <h4 class="card-title">Training Details </h4>
+                        </div>
+                        <div class="card-block">
+                            <div class="mrg-top-40">
+                                <div class="row">
+                                    <div class="col-md-8 ml-auto mr-auto">
+                                        @{
+                                            var user = await userManager.GetUserAsync(User);
+                                        }
+                                        <form asp-action="EditTraining">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <input type="hidden" asp-for="Id" />
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label"> Training Name</label>
+                                                        <input asp-for="TrainingName" class="form-control" />
+                                                        <span asp-validation-for="TrainingName" class="text-danger"></span>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label"> Module ID</label>
+                                                        <input asp-for="ModuleId" class="form-control" />
+                                                        <span asp-validation-for="ModuleId" class="text-danger"></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="row">
+                                                <div class="col-md-12">
+
+
+                                                    <div class="form-group">
+                                                        <label class="control-label"> Training Center Id</label>
+                                                        <input asp-for="@user.Id" class="form-control" disabled />
+                                                        <span asp-validation-for="TrainingCentreId" class="text-danger"></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+
+
+                                                    <div class="form-group">
+                                                        <label class="control-label" hidden> Training Center Id</label>
+                                                        <input asp-for="CertificateId" class="form-control" hidden />
+                                                        <span asp-validation-for="CertificateId" class="text-danger"></span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-12">
+
+
+                                                    <div class="form-group">
+                                                        <label class="control-label"> Payment Reference ID</label>
+                                                        <input asp-for="PaymentRefId" class="form-control" />
+                                                        <span asp-validation-for="PaymentRefId" class="text-danger"></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+
+
+                                                    <div class="form-group">
+                                                        <label class="control-label"> Trainee Id</label>
+                                                        <input asp-for="TraineeId" class="form-control" />
+                                                        <span asp-validation-for="TraineeId" class="text-danger"></span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-12">
+
+                                                    <div class="form-group">
+                                                        <label class="control-label"> Certificate Id</label>
+                                                        <input asp-for="CertificateId" class="form-control" />
+                                                        <span asp-validation-for="CertificateId" class="text-danger"></span>
+                                                    </div>
+
+                                                </div>
+                                             </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+
+                                            <div class="form-group">
+                                                <label class="control-label"> Certificate Generation Date</label>
+                                                <input asp-for="CertGenDate" class="form-control" />
+                                                <span asp-validation-for="CertGenDate" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12">
+
+                                            <div class="form-group">
+                                                <label class="control-label"> Date Created</label>
+                                                <input asp-for="DateCreated" class="form-control" />
+                                                <span asp-validation-for="DateCreated" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                </div>
+
+
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Training Start When?</label>
+                                                    <input asp-for="TrainingStartDate" class="form-control" />
+                                                    <span asp-validation-for="TrainingStartDate" class="text-danger"></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Training Ends When?</label>
+                                                <input asp-for="TrainingEndDate" class="form-control" />
+                                                <span asp-validation-for="TrainingEndDate" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                <div class="row">
+
+
+                                    <div class="col-md-6 col-xs-6">
+                                        <div class="text-right mrg-top-5">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+    </div>
+<!-- Content Wrapper END -->
+<!-- Footer START -->
+<footer class="content-footer">
+    <div class="footer">
+        <div class="copyright">
+            <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+            <span class="go-right">
+                <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                <a href="#" class="text-gray">Privacy &amp; Policy</a>
+            </span>
+        </div>
+    </div>
+</footer>
+<!-- Footer END -->
+<!-- Page Container END -->
+</div>
+<script src="~/dist/assets/js/vendor.js"></script>
+
+<script src="~/dist/assets/js/app.min.js"></script>
+
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>
+
+
+
+
