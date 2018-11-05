@@ -99,7 +99,7 @@
     <Content Include="wwwroot\bower_components\PACE\pace.min.js" />
     <Content Include="wwwroot\bower_components\PACE\themes\blue\pace-theme-minimal.css" />
     <Content Include="wwwroot\bower_components\bootstrap\dist\css\bootstrap.css" />
-    <None Include="wwwroot\bower_components\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="wwwroot\bower_components\bootstrap\dist\js\bootstrap.js" />
     <Content Include="wwwroot\bower_components\bootstrap-datepicker\dist\css\bootstrap-datepicker3.css" />
     <Content Include="wwwroot\bower_components\bootstrap-datepicker\dist\js\bootstrap-datepicker.js" />
     <Content Include="wwwroot\bower_components\bootstrap-daterangepicker\daterangepicker.css" />
