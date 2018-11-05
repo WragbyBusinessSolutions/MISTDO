@@ -21,6 +21,9 @@
                 <p>
                     <a asp-action="CreateTrainees">Create New</a>
                 </p>
+                <p align="right">
+                    <a asp-action="AttachTraineeTraining">Attach Trainee to a training</a>
+                </p>
             </div>
             <div class="row">
                 @{
@@ -52,7 +55,7 @@
                                                 Company Name
                                             </th>
                                             <th>
-                                               Company Address
+                                                Company Address
                                             </th>
                                             <th>
                                                 User Address
@@ -64,41 +67,108 @@
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                            if (ViewBag.TrainerCenter == user.Id)
+                                            if (ViewBag.TrainerCenter == user.Id && ViewBag.TraineeId == item.Id)
                                             {
-                                            <tr>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.FirstName)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.LastName)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Email)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.CompanyName)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.CompanyAddress)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.UserAddress)
-                                                </td>
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.LastName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Email)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.CompanyName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.CompanyAddress)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.UserAddress)
+                                                    </td>
 
-                                                <td>
-                                                    <a asp-action="EditTrainees" asp-route-id="@item.Id">Edit</a> |
-                                                    <a asp-action="DetailsTrainees" asp-route-id="@item.Id">Details</a> |
-                                                    @*<a asp-action="DeleteTrainees" asp-route-id="@item.Id">Delete</a>*@
-                                                </td>
-                                            </tr>
+                                                    <td>
+                                                        <a asp-action="EditTrainees" asp-route-id="@item.Id">Edit</a> |
+                                                        <a asp-action="DetailsTrainees" asp-route-id="@item.Id">Details</a> |
+                                                        @*<a asp-action="DeleteTrainees" asp-route-id="@item.Id">Delete</a>*@
+                                                    </td>
+                                                </tr>
                                             }
                                         }
                                     </tbody>
                                 </table>
+                                <table id="dt-opt" class="table table-lg table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                First Name
+                                            </th>
+                                            <th>
+                                                Last Name
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Email)
+                                            </th>
+                                            <th>
+                                                Phone Number
+                                            </th>
+                                            <th>
+                                                Company Name
+                                            </th>
+                                            <th>
+                                                Company Address
+                                            </th>
+                                            <th>
+                                                User Address
+                                            </th>
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            if (ViewBag.TrainerCenter == user.Id )
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.LastName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Email)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.CompanyName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.CompanyAddress)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.UserAddress)
+                                                    </td>
+
+                                                    <td>
+                                                        <a asp-action="EditTrainees" asp-route-id="@item.Id">Edit</a> |
+                                                        <a asp-action="DetailsTrainees" asp-route-id="@item.Id">Details</a> |
+                                                        <a asp-action="DeleteTrainees" asp-route-id="@item.Id">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+
                             </div>
 
                         </div>

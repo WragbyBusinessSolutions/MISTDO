@@ -189,6 +189,9 @@
     <Content Update="Views\TrainerDashboard\CreateTrainees.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\TrainerDashboard\AttachTraineeTraining.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\TrainerDashboard\CreateTraining.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
