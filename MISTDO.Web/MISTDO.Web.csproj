@@ -57,8 +57,6 @@
     <None Remove="Views\TrainerDashboard\NewCertificate.cshtml" />
     <None Remove="Views\TrainerDashboard\Payment.cshtml" />
     <None Remove="Views\TrainerDashboard\RegisterTrainee.cshtml" />
-    <None Remove="Views\TrainerDashboard\Trainee.cshtml" />
-    <None Remove="Views\TrainerDashboard\Training.cshtml" />
     <None Remove="Views\TrainerDashboard\ViewCertificate.cshtml" />
     <None Remove="Views\TrainerDashboard\ViewTrainee.cshtml" />
     <None Remove="Views\Trainer\AccessDenied.cshtml" />
@@ -179,5 +177,58 @@
   <ItemGroup>
     <Folder Include="wwwroot\NewFolder\" />
     <Folder Include="wwwroot\productfiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Views\Trainees\Trainees.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\AccessDenied.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\ConfirmEmail.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\ConfirmMail.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\CreateTrainees.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\CreateTraining.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\DeleteTrainees.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\DeleteTraining.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\DetailsTrainees.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\DetailsTraining.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\EditTrainees.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\EditTraining.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\EditProfile.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\Profile.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\Support.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\Trainees.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\Training.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 </Project>
