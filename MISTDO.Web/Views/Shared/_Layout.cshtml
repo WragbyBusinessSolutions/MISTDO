@@ -11,10 +11,12 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/logo/favicon.png">
+
     <!-- plugins css -->
-    <link  href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" rel="stylesheet" />
-    <link href="~/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
+    <link rel="stylesheet" href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+
     <!-- core css -->
     <link href="~/dist/assets/css/ei-icon.css" rel="stylesheet">
     <link href="~/dist/assets/css/themify-icons.css" rel="stylesheet">
@@ -29,12 +31,22 @@
     <!-- color CSS -->
     <link href="~/lib/multiform/default.css" rel="stylesheet" />
 
-   
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
 </head>
 <body>
 
     @RenderBody()
-    @RenderSection("Scripts", required: false)
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
 
     <!-- build:js assets/js/vendor.js -->
     <!-- plugins js -->
@@ -48,16 +60,6 @@
     <!-- core js -->
     <script src="~/dist/assets/js/scripts.js"></script>
     <script src="~/dist/assets/js/app.js"></script>
-
-
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-
-
-
 
     <!-- endbuild -->
     <!-- page js -->
@@ -73,10 +75,7 @@
                 crossorigin="anonymous"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
