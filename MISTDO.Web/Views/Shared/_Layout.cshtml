@@ -13,9 +13,10 @@
     <link rel="shortcut icon" href="assets/images/logo/favicon.png">
 
     <!-- plugins css -->
+    
+    <link href="~/lib/multiform/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
     <link rel="stylesheet" href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
-    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <!-- core css -->
     <link href="~/dist/assets/css/ei-icon.css" rel="stylesheet">
     <link href="~/dist/assets/css/themify-icons.css" rel="stylesheet">
@@ -29,12 +30,13 @@
     <link href="~/lib/multiform/style.css" rel="stylesheet" />
     <!-- color CSS -->
     <link href="~/lib/multiform/default.css" rel="stylesheet" />
-    <environment exclude="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+
+    @*<environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    </environment>*@
 </head>
 <body>
 
@@ -62,7 +64,7 @@
     <!-- endbuild -->
     <!-- page js -->
     <environment exclude="Development">
-        @*<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery"
                 crossorigin="anonymous"
@@ -71,7 +73,7 @@
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
                 crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>*@
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
     @RenderSection("Scripts", required: false)
