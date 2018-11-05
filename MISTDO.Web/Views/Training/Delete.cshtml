@@ -32,7 +32,7 @@
                                     <div class="col-md-8 ml-auto mr-auto">
                                         <form asp-action="Delete">
                                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                            <input type="hidden" asp-for="TrainingId" />
+                                            <input type="hidden" asp-for="Id" />
                                             
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -42,13 +42,13 @@
                                                         <span asp-validation-for="TrainingName" class="text-danger"></span>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                @*<div class="col-md-6">
                                                     <div class="form-group">
                                                         <label asp-for="TrainingCost"control-label"></label>
                                                         <input asp-for="TrainingCost" class="form-control" />
                                                         <span asp-validation-for="TrainingCost" class="text-danger"></span>
                                                     </div>
-                                                </div>
+                                                </div>*@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
