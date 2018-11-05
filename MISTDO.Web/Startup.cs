@@ -131,9 +131,9 @@ namespace MISTDO.Web
                     roleResult = await RoleManager.CreateAsync(new IdentityRole("Trainee"));
                 }
             }
-            catch
+            catch(Exception e)
             {
-
+                Console.WriteLine(e.Message);
             }
         }
     }
