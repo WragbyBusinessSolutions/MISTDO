@@ -101,10 +101,11 @@ namespace MISTDO.Web.Controllers
 
             //   var traineesList = new List<TraineeViewModel>();
             var trainings = await _trainer.GetNullCertificateTrainees(Trainer.Id, ModuleId.ToString());
+           
             foreach (var trainee in trainings)
             {
                 var TraineeApplicationUser = Traineedbcontext.Users.Where(t => t.Id == trainee.TraineeId).ToList();
-
+              
                 foreach (var user in TraineeApplicationUser)
                 {
                     users.Add(new SelectListItem { Text = user.UserName, Value = user.Id });
@@ -126,6 +127,10 @@ namespace MISTDO.Web.Controllers
 
         public IActionResult EligibleUsersForCertificate(NewCertificateViewModel model)
         {
+            if (model.TraineeId == null)
+            {
+                return Content("No Available Trainee");
+            }
             if (ModelState.IsValid)
             {
 
