@@ -201,6 +201,9 @@
     <Content Update="Views\TrainerDashboard\DetailsTrainees.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\TrainerDashboard\Details.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\TrainerDashboard\DetailsTraining.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

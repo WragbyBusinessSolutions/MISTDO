@@ -36,6 +36,12 @@ namespace MISTDO.Web.Services
             return training;
         }
 
+        public async Task<IEnumerable<Calender>> GetCalenders()
+        {
+            var calenders = await dbcontext.Calenders.ToListAsync();
+            return calenders;
+        }
+
         public async Task<IEnumerable<Training>> GetTrainee()
         {
            
@@ -44,6 +50,8 @@ namespace MISTDO.Web.Services
          
             return training;
         }
+
+
 
         public async Task<IEnumerable<Certificate>> GetCertificate(string Id)
         {
@@ -97,6 +105,15 @@ namespace MISTDO.Web.Services
             var users = await dbcontext.Users.ToListAsync();
 
             return users;
+        }
+        public async Task<IEnumerable<ApplicationUser>> GetTrainingCentre(string id)
+        {
+
+            var trainer = await dbcontext.Users.FirstOrDefaultAsync(i => i.Id == id);
+
+
+
+            return trainer;
         }
     }
 }

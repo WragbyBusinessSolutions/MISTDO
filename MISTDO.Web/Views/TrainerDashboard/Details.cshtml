@@ -1,4 +1,4 @@
-﻿@model MISTDO.Web.Models.Calender
+﻿@model MISTDO.Web.Models.Training
 
 
 @{
@@ -19,7 +19,11 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                <h4>Training Details </h4>>
+                <p>
+            <a asp-action="Trainees">Back</a>
+              </p>
+                <h4>Training Details </h4>
+
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -74,46 +78,8 @@
                                             <p class="mrg-top-10"> @Html.DisplayFor(model => model.TraineeId)</p>
                                         </div>
                                     </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Training Cost</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.Cost)</p>
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Training Venue</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.Venue)</p>
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Training Start Time</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.TrainingStartTime)</p>
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Training End Time </b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.TrainingEndTime)</p>
-                                        </div>
-                                    </div>
+                                   
+                                    
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-3">

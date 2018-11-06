@@ -1,7 +1,7 @@
-﻿@model IEnumerable<MISTDO.Web.Models.Training>
+﻿@model IEnumerable<MISTDO.Web.Models.Calender>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Training";
     Layout = "_LayoutDashboard";
 }
 
@@ -17,157 +17,45 @@
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
     <div class="main-content">
+        @{
+            var user = await userManager.GetUserAsync(User);
+
+
+        }
         <div class="container-fluid">
             <div class="page-title">
-                <h4>Registered Trainings (Up comming Training)</h4>
+                <h4>Trainings Calender</h4>
                 <p>
-                    <a asp-action="CreateTraining">Create New</a>
+                    <span style="float:left;"> <a asp-action="CreateTraining">Create New</a></span>
                 </p>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-block">
-
-                            @{
-                                var user = await userManager.GetUserAsync(User);
-                               
-
-                            }
                             <div class="table-overflow">
                                 <table id="dt-opt" class="table table-lg table-hover">
                                     <thead>
                                         <tr>
                                             <th>
-                                               Training Title
+                                                Module Name
                                             </th>
                                             <th>
-                                               Module ID
+                                                Module ID
                                             </th>
-                                            @*<th>
-                                                @Html.DisplayNameFor(model => model.PaymentRefId)
-                                            </th>
+                                          
                                             <th>
-                                                @Html.DisplayNameFor(model => model.TrainingCentreId)
-                                            </th>*@
-                                            <th>
-                                               Trainee ID
-                                            </th>
-                                            @*<th>
-                                                @Html.DisplayNameFor(model => model.CertificateId)
+                                                Trainee ID
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.CertGenDate)
+                                                @Html.DisplayNameFor(model => model.Cost)
+                                            </th>
+                                          
+                                            <th>
+                                                Start Date
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.DateCreated)
-                                            </th>*@
-                                            <th>
-                                               From
-                                            </th>
-                                            <th>
-                                                To
-                                            </th>
-                                            <th>Other Options</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model)
-                                        {
-                                            if (item.TrainingCentreId == user.Id )
-                                            {
-                                                <tr>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingName)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.ModuleId)
-                                                    </td>
-                                                    @*<td>
-                                                        @Html.DisplayFor(modelItem => item.PaymentRefId)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingCentreId)
-                                                    </td>*@
-                                                    <th>
-                                                        @Html.DisplayFor(model => item.TraineeId)
-                                                    </th>
-                                                    @*<th>
-                                                        @Html.DisplayFor(model => item.CertificateId)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayFor(model => item.CertGenDate)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayFor(model => item.DateCreated)
-                                                    </th>*@
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate)
-                                                    </td>
-                                                    <td>
-                                                        <a asp-action="EditTraining" asp-route-id="@item.Id">Edit</a> |
-                                                        <a asp-action="DetailsTraining" asp-route-id="@item.Id">Details</a> |
-                                                        <a asp-action="DeleteTraining" asp-route-id="@item.Id">Delete</a>
-                                                    </td>
-                                                </tr>
-                                            }
-
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid">
-            <div class="page-title">
-                <h4>Past Trainings</h4>
-
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-block">
-                            <div class="table-overflow">
-                                <table id="dt-opt" class="table table-lg table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                               Training Title
-                                            </th>
-                                            <th>
-                                               Module ID
-                                            </th>
-                                            @*<th>
-                                                @Html.DisplayNameFor(model => model.PaymentRefId)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.TrainingCentreId)
-                                            </th>*@
-                                            <th>
-                                               Trainee ID
-                                            </th>
-                                            @*<th>
-                                                @Html.DisplayNameFor(model => model.CertificateId)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.CertGenDate)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.DateCreated)
-                                            </th>*@
-                                            <th>
-                                               From
-                                            </th>
-                                            <th>
-                                                To
+                                                End Date
                                             </th>
                                             <th>Other Options</th>
                                         </tr>
@@ -184,34 +72,24 @@
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.ModuleId)
                                                     </td>
-                                                    @*<td>
-                                                        @Html.DisplayFor(modelItem => item.PaymentRefId)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingCentreId)
-                                                    </td>*@
+                                                   
                                                     <th>
                                                         @Html.DisplayFor(model => item.TraineeId)
                                                     </th>
-                                                    @*<th>
-                                                        @Html.DisplayFor(model => item.CertificateId)
-                                                    </th>
                                                     <th>
-                                                        @Html.DisplayFor(model => item.CertGenDate)
+                                                        @Html.DisplayFor(model => item.Cost)
                                                     </th>
-                                                    <th>
-                                                        @Html.DisplayFor(model => item.DateCreated)
-                                                    </th>*@
+                                                   
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate)
+                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate)
+                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
                                                     </td>
                                                     <td>
-                                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                        <a asp-action="EditTraining" asp-route-id="@item.Id">Edit</a> |
+                                                        <a asp-action="DetailsTraining" asp-route-id="@item.Id">Details</a> |
+                                                        <a asp-action="DeleteTraining" asp-route-id="@item.Id">Delete</a>
                                                     </td>
                                                 </tr>
                                             }

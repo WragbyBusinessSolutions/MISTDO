@@ -1,4 +1,4 @@
-﻿@model MISTDO.Web.Models.Training
+﻿@model MISTDO.Web.Models.Calender
 
 @{
     ViewData["Title"] = "Edit";
@@ -73,9 +73,9 @@
 
 
                                                     <div class="form-group">
-                                                        <label class="control-label" hidden> Training Center Id</label>
-                                                        <input asp-for="CertificateId" class="form-control" hidden />
-                                                        <span asp-validation-for="CertificateId" class="text-danger"></span>
+                                                        <label class="control-label" >Training Cost</label>
+                                                        <input asp-for="Cost" class="form-control" hidden />
+                                                        <span asp-validation-fcoor="Cost" class="text-danger"></span>
                                                     </div>
 
                                                 </div>
@@ -83,9 +83,9 @@
 
 
                                                     <div class="form-group">
-                                                        <label class="control-label"> Payment Reference ID</label>
-                                                        <input asp-for="PaymentRefId" class="form-control" />
-                                                        <span asp-validation-for="PaymentRefId" class="text-danger"></span>
+                                                        <label class="control-label"> Training Venue </label>
+                                                        <input asp-for="Venue" class="form-control" />
+                                                        <span asp-validation-for="Venue" class="text-danger"></span>
                                                     </div>
 
                                                 </div>
@@ -105,8 +105,8 @@
 
                                                     <div class="form-group">
                                                         <label class="control-label"> Certificate Id</label>
-                                                        <input asp-for="CertificateId" class="form-control" />
-                                                        <span asp-validation-for="CertificateId" class="text-danger"></span>
+                                                        <input asp-for="TrainingStartTime" class="form-control" />
+                                                        <span asp-validation-for="TrainingStartTime" class="text-danger"></span>
                                                     </div>
 
                                                 </div>
@@ -117,20 +117,12 @@
 
                                             <div class="form-group">
                                                 <label class="control-label"> Certificate Generation Date</label>
-                                                <input asp-for="CertGenDate" class="form-control" />
-                                                <span asp-validation-for="CertGenDate" class="text-danger"></span>
+                                                <input asp-for="TrainingEndTime" class="form-control" />
+                                                <span asp-validation-for="TrainingEndTime" class="text-danger"></span>
                                             </div>
 
                                         </div>
-                                        <div class="col-md-12">
-
-                                            <div class="form-group">
-                                                <label class="control-label"> Date Created</label>
-                                                <input asp-for="DateCreated" class="form-control" />
-                                                <span asp-validation-for="DateCreated" class="text-danger"></span>
-                                            </div>
-
-                                        </div>
+                                        
                                 </div>
 
 

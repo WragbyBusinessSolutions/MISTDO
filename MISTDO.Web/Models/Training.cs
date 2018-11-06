@@ -19,15 +19,23 @@ namespace MISTDO.Web.Models
         public string TrainingCentreId { get; set; }
         public string PaymentRefId { get; set; }
 
+        [DataType(DataType.Date)]
+
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
 
         public DateTime DateCreated { get; set; }
+        [DataType(DataType.Date)]
+
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
 
         public DateTime CertGenDate { get; set; }
+        [DataType(DataType.Date)]
+
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
 
         public DateTime TrainingStartDate{ get; set; }
+        [DataType(DataType.Date)]
+
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
 
         public DateTime TrainingEndDate { get; set; }

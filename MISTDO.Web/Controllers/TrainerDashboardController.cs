@@ -241,7 +241,7 @@ namespace MISTDO.Web.Controllers
         public async Task<IActionResult> Training()
         {
 
-            return View(await dbcontext.Trainings.ToListAsync());
+            return View(await dbcontext.Calenders.ToListAsync());
         }
 
         public async Task<IActionResult> Notification()
@@ -385,13 +385,17 @@ namespace MISTDO.Web.Controllers
             return View(model);
 
         }
-
-        public async Task<IActionResult> DetailsTraining(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
+            var tcentre = await _trainer.GetAllTrainingCenters();
+
+            foreach (var item in tcentre)
+                
+                ViewBag.Tcenter = item.CentreName;
 
             var training = await dbcontext.Trainings
                 .SingleOrDefaultAsync(m => m.Id == id);
@@ -402,6 +406,22 @@ namespace MISTDO.Web.Controllers
 
             return View(training);
         }
+        public async Task<IActionResult> DetailsTraining(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var calenders = await dbcontext.Calenders
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (calenders == null)
+            {
+                return NotFound();
+            }
+
+            return View(calenders);
+        }
         [HttpGet]
         public async Task<IActionResult> EditTraining(int id)
         {
@@ -410,12 +430,12 @@ namespace MISTDO.Web.Controllers
             //    return NotFound();
             //}
 
-            var training = await dbcontext.Trainings.SingleOrDefaultAsync(m => m.Id == id);
-            if (training == null)
+            var calenders = await dbcontext.Calenders.SingleOrDefaultAsync(m => m.Id == id);
+            if (calenders == null)
             {
                 return NotFound();
             }
-            return View(training);
+            return View(calenders);
         }
 
         // POST: Training/Edit/5
@@ -423,7 +443,7 @@ namespace MISTDO.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditTraining(int id, [Bind("Id,ModuleId,CertificateId,TraineeId,CertificateId ,TrainingName,TrainingCentreId ,PaymentRefId,DateCreated ,CertGenDate ,TrainingStartDate,TrainingEndDate")] Training training)
+        public async Task<IActionResult> EditTraining(int id, Calender training)
         {
             var user = await _usermanager.GetUserAsync(User);
             // id = user.Id;
@@ -436,17 +456,17 @@ namespace MISTDO.Web.Controllers
             {
                 try
                 {
-                    var train = new Training()
+                    var train = new Calender()
                     {
                         Id = training.Id,
                         TrainingCentreId = user.Id,
-                        CertificateId = training.CertificateId,
+                        Venue = training.Venue,
                         ModuleId = training.ModuleId,
                         TrainingStartDate = training.TrainingStartDate,
                         TraineeId = training.TraineeId,
-                        PaymentRefId = training.PaymentRefId,
-                        CertGenDate = training.CertGenDate,
-                        DateCreated = training.DateCreated,
+                        Cost = training.Cost,
+                        TrainingStartTime = training.TrainingStartTime,
+                        TrainingEndTime = training.TrainingEndTime,
                         TrainingEndDate = training.TrainingEndDate,
                         TrainingName = training.TrainingName
 
@@ -467,7 +487,7 @@ namespace MISTDO.Web.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Training));
             }
             return View(training);
         }
@@ -500,6 +520,7 @@ namespace MISTDO.Web.Controllers
             id = user.Id;
             if (ModelState.IsValid)
             {
+                var bae = await _trainer.GetModulebyId(int.Parse(training.ModuleId));
                 var train = new Training()
                 {
 
@@ -510,7 +531,7 @@ namespace MISTDO.Web.Controllers
                     TraineeId = training.TraineeId,
                     DateCreated = DateTime.Now,
                     TrainingEndDate = training.TrainingEndDate,
-                    TrainingName = training.TrainingName
+                    TrainingName = bae.Name
 
 
 
@@ -544,7 +565,7 @@ namespace MISTDO.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTraining( Training training, string id)
+        public async Task<IActionResult> CreateTraining( Calender calender, string id)
         {
 
 
@@ -555,19 +576,22 @@ namespace MISTDO.Web.Controllers
             id = user.Id;
             if (ModelState.IsValid)
             {
-                var train = new Training()
+                var bae = await _trainer.GetModulebyId(int.Parse(calender.ModuleId));
+
+                var train = new Calender()
                 {
+                     
 
                     TrainingCentreId = user.Id,
-                    CertificateId = training.CertificateId,
-                    //ModuleId = training.ModuleId,
-                    TrainingStartDate = training.TrainingStartDate,
-                    TraineeId = training.TraineeId,
-                    PaymentRefId = training.PaymentRefId,
-                    //CertGenDate = training.CertGenDate,
-                    DateCreated = DateTime.Now,
-                    TrainingEndDate = training.TrainingEndDate,
-                    TrainingName = training.TrainingName
+                    Cost= calender.Cost,
+                    ModuleId = calender.ModuleId,
+                    TrainingStartDate = calender.TrainingStartDate,
+                    TraineeId = calender.TraineeId,
+                    TrainingEndTime = calender.TrainingEndTime,
+                    TrainingStartTime = calender.TrainingStartTime,
+                    Venue = calender.Venue,
+                    TrainingEndDate = calender.TrainingEndDate,
+                    TrainingName = bae.Name
 
 
 
@@ -576,9 +600,9 @@ namespace MISTDO.Web.Controllers
                 dbcontext.Add(train);
 
                 await dbcontext.SaveChangesAsync();
-                return RedirectToAction(nameof(Trainees));
+                return RedirectToAction(nameof(Training));
             }
-            return View(training);
+            return View(calender);
         }
         public async Task<IActionResult> DeleteTraining(int id)
         {
@@ -587,29 +611,29 @@ namespace MISTDO.Web.Controllers
             //    return NotFound();
             //}
 
-            var training = await dbcontext.Trainings.SingleOrDefaultAsync(m => m.Id == id);
-            if (training == null)
+            var calender = await dbcontext.Calenders.SingleOrDefaultAsync(m => m.Id == id);
+            if (calender == null)
             {
                 return NotFound();
             }
 
-            return View(training);
+            return View(calender);
         }
 
         // POST: Training/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteTraining")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var training = await dbcontext.Trainings.SingleOrDefaultAsync(m => m.Id == id);
-            dbcontext.Trainings.Remove(training);
+            var calenders = await dbcontext.Calenders.SingleOrDefaultAsync(m => m.Id == id);
+            dbcontext.Calenders.Remove(calenders);
             await dbcontext.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Training));
         }
 
         private bool TrainingExists(int id)
         {
-            return dbcontext.Trainings.Any(e => e.Id == id);
+            return dbcontext.Calenders.Any(e => e.Id == id);
         }
 
 
@@ -683,6 +707,11 @@ namespace MISTDO.Web.Controllers
         }
         public async Task<IActionResult> DetailsTrainees(string id)
         {
+           
+            var train = await dbcontext.Trainings.Where(t => t.TraineeId == id).ToListAsync();
+           
+            ViewBag.trainings = train;
+
             if (id == null)
             {
                 return View(await Traineedbcontext.Users.ToListAsync());
@@ -814,7 +843,7 @@ namespace MISTDO.Web.Controllers
             return RedirectToAction(nameof(Trainees));
         }
 
-        [HttpPost("UploadFile")]
+        [HttpPost]
         public async Task<IActionResult> TraineeUpload(Microsoft.AspNetCore.Http.IFormFile file)
         {
 
@@ -843,7 +872,7 @@ namespace MISTDO.Web.Controllers
                 }
                 await _exceltoTrainee.ConvertFileToTraineeString(filePath);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Trainees));
 
 
         }
