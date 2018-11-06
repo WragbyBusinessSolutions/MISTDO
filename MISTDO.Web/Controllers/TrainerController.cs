@@ -17,7 +17,7 @@ using MISTDO.Web.Services;
 
 namespace MISTDO.Web.Controllers
 {
-
+    [Authorize]
     public class TrainerController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

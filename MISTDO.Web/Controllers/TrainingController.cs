@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -15,6 +16,7 @@ using MISTDO.Web.Services;
 
 namespace MISTDO.Web.Views
 {
+    [Authorize]
     public class TrainingController : Controller
     {
         private readonly ApplicationDbContext _context;
