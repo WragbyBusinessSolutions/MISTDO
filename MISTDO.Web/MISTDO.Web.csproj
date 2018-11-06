@@ -15,12 +15,6 @@
     <Content Remove="Views\Shared\_LayoutRegisterAside.cshtml" />
     <Content Remove="Views\Shared\_LayoutTraineeHeader.cshtml" />
     <Content Remove="Views\Shared\_RegisterPartial.cshtml" />
-    <Content Remove="Views\Trainees\Certificate.cshtml" />
-    <Content Remove="Views\Trainees\EditProfile.cshtml" />
-    <Content Remove="Views\Trainees\Notification.cshtml" />
-    <Content Remove="Views\Trainees\NotificationDetails.cshtml" />
-    <Content Remove="Views\Trainees\RegTraining.cshtml" />
-    <Content Remove="Views\Trainees\Support.cshtml" />
     <Content Remove="Views\TrainerDashboard\Modules.cshtml" />
     <None Remove="Views\Shared\Error.cshtml" />
     <None Remove="Views\Shared\_LayoutDashboard.cshtml" />
@@ -83,6 +77,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
     <PackageReference Include="EPPlus.Core" Version="1.5.4" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.0.3" />
@@ -174,6 +169,9 @@
     <Folder Include="wwwroot\productfiles\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Views\Shared\_LayoutHeaderTrainee.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Trainees\Trainees.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
