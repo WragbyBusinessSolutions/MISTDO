@@ -50,7 +50,7 @@ namespace MISTDO.Web
 
             services.ConfigureApplicationCookie(options =>
             {
-
+              
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
                 options.LoginPath = "/trainer/Login";
