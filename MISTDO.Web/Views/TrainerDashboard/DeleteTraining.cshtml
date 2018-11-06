@@ -1,4 +1,4 @@
-﻿@model MISTDO.Web.Models.Training
+﻿@model MISTDO.Web.Models.Calender
 
 @{
     ViewData["Title"] = "Delete";
@@ -33,14 +33,14 @@
                                         var user = await userManager.GetUserAsync(User);
                                     }
                                     <div class="col-md-8 ml-auto mr-auto">
-                                        <form asp-action="Delete">
+                                        <form asp-action="DeleteTraining">
                                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                             <input type="hidden" asp-for="Id" />
 
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label asp-for="TrainingName" control-label"></label>
+                                                        <label control-label">Training Name</label>
                                                         <input asp-for="TrainingName" class="form-control" />
                                                         <span asp-validation-for="TrainingName" class="text-danger"></span>
                                                     </div>
@@ -70,9 +70,9 @@
 
 
                                                     <div class="form-group">
-                                                        <label class="control-label" hidden> Training Center Id</label>
-                                                        <input asp-for="CertificateId" class="form-control" hidden />
-                                                        <span asp-validation-for="CertificateId" class="text-danger"></span>
+                                                        <label class="control-label" hidden> Training Cost</label>
+                                                        <input asp-for="Cost" class="form-control" hidden />
+                                                        <span asp-validation-for="Cost" class="text-danger"></span>
                                                     </div>
 
                                                 </div>
@@ -80,9 +80,9 @@
 
 
                                                     <div class="form-group">
-                                                        <label class="control-label"> Payment Reference ID</label>
-                                                        <input asp-for="PaymentRefId" class="form-control" />
-                                                        <span asp-validation-for="PaymentRefId" class="text-danger"></span>
+                                                        <label class="control-label"> Training Venue</label>
+                                                        <input asp-for="Venue" class="form-control" />
+                                                        <span asp-validation-for="Venue" class="text-danger"></span>
                                                     </div>
 
                                                 </div>
@@ -101,9 +101,9 @@
                                                 <div class="col-md-12">
 
                                                     <div class="form-group">
-                                                        <label class="control-label"> Certificate Id</label>
-                                                        <input asp-for="CertificateId" class="form-control" />
-                                                        <span asp-validation-for="CertificateId" class="text-danger"></span>
+                                                        <label class="control-label">Training Start Time</label>
+                                                        <input asp-for="TrainingStartTime" class="form-control" />
+                                                        <span asp-validation-for="TrainingStartTime" class="text-danger"></span>
                                                     </div>
 
                                                 </div>
@@ -113,21 +113,13 @@
 
 
                                                     <div class="form-group">
-                                                        <label class="control-label"> Certificate Generation Date</label>
-                                                        <input asp-for="CertGenDate" class="form-control" />
-                                                        <span asp-validation-for="CertGenDate" class="text-danger"></span>
+                                                        <label class="control-label">Training End Time</label>
+                                                        <input asp-for="TrainingEndTime" class="form-control" />
+                                                        <span asp-validation-for="TrainingEndTime" class="text-danger"></span>
                                                     </div>
 
                                                 </div>
-                                                <div class="col-md-12">
-
-                                                    <div class="form-group">
-                                                        <label class="control-label"> Date Created</label>
-                                                        <input asp-for="DateCreated" class="form-control" />
-                                                        <span asp-validation-for="DateCreated" class="text-danger"></span>
-                                                    </div>
-
-                                                </div>
+                                                
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">

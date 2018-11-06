@@ -1,5 +1,4 @@
-﻿@model MISTDO.Web.Models.Training
-
+﻿@model MISTDO.Web.Models.Calender
 @{
     ViewData["Title"] = "Create New Training ";
     Layout = "_LayoutDashboard";
@@ -15,7 +14,7 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                <h4>Create New Training </h4>
+                <h4>Create New Training Calender </h4>
                 @*<p>
                         <a asp-action="Create">Create New</a>
                     </p>*@
@@ -30,67 +29,60 @@
 
                             }
                          
-                            <form asp-action="Create" enctype="multipart/form-data">
+                            <form asp-action="CreateTraining" enctype="multipart/form-data">
 
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                               
                                 <div class="form-group">
-                                    <label class="control-label"> Training Name</label>
-                                    <input asp-for="TrainingName" class="form-control" />
-                                    <span asp-validation-for="TrainingName" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label"> Module ID</label>
+                                    <label class="control-label"> Module Name</label>
                                     <select class="form-control" asp-for="ModuleId" asp-items="modules"></select>
+
 
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label" hidden> Training Center Id</label>
-                                    <input asp-for="@user.Id" class="form-control" hidden/>
+                                    <input asp-for="@user.Id" class="form-control" hidden />
                                     <span asp-validation-for="TrainingCentreId" class="text-danger"></span>
                                 </div>
 
-                                @*<div class="form-group">
-                                    <label class="control-label" hidden> Training Center Id</label>
-                                    <input asp-for="CertificateId" class="form-control" hidden />
-                                    <span asp-validation-for="CertificateId" class="text-danger"></span>
-                                </div>*@
 
-                                <div class="form-group">
-                                    <label class="control-label"> Payment Reference ID</label>
-                                    <input asp-for="PaymentRefId" class="form-control" />
-                                    <span asp-validation-for="PaymentRefId" class="text-danger"></span>
-                                </div>
                                 <div class="form-group">
                                     <label class="control-label"> Trainee Id</label>
                                     <input asp-for="TraineeId" class="form-control" />
                                     <span asp-validation-for="TraineeId" class="text-danger"></span>
                                 </div>
-                                @*<div class="form-group">
-                                    <label class="control-label"> Certificate Id</label>
-                                    <input asp-for="CertificateId" class="form-control" />
-                                    <span asp-validation-for="CertificateId" class="text-danger"></span>
-                                </div>*@
-                                @*<div class="form-group">
-                                    <label class="control-label"> Certificate Generation Date</label>
-                                    <input asp-for="CertGenDate" class="form-control" />
-                                    <span asp-validation-for="CertGenDate" class="text-danger"></span>
-                                </div>*@
-                                @*<div class="form-group">
-                                    <label class="control-label"> Date Created</label>
-                                    <input asp-for="DateCreated" class="form-control" />
-                                    <span asp-validation-for="DateCreated" class="text-danger"></span>
-                                </div>*@
                                 <div class="form-group">
-                                    <label class="control-label">Training Start When?</label>
+                                    <label class="control-label"> Training Cost</label>
+                                    <input asp-for="Cost" class="form-control" />
+                                    <span asp-validation-for="Cost" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"> Training Venue</label>
+                                    <input asp-for="Venue" class="form-control" />
+                                    <span asp-validation-for="Venue" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Training Start Time</label>
+                                    <input asp-for="TrainingStartTime" class="form-control" />
+                                    <span asp-validation-for="TrainingStartTime" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Training Ends Time</label>
+                                    <input asp-for="TrainingEndTime" class="form-control" />
+                                    <span asp-validation-for="TrainingEndTime" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Training Start Date</label>
                                     <input asp-for="TrainingStartDate" class="form-control" />
                                     <span asp-validation-for="TrainingStartDate" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Training Ends When?</label>
+                                    <label class="control-label">Training Ends Date</label>
                                     <input asp-for="TrainingEndDate" class="form-control" />
                                     <span asp-validation-for="TrainingEndDate" class="text-danger"></span>
                                 </div>
+
 
 
 

@@ -19,6 +19,7 @@ namespace MISTDO.Web.Services
         Task<IEnumerable<Certificate>> GetCertificate(string Id);
         Task<IEnumerable<TraineeApplicationUser>> GetTrainees();
         Task<IEnumerable<Modules>> GetAllModules();
+        Task<IEnumerable<Calender>> GetCalenders();
         Task<IEnumerable<ApplicationUser>> GetAllTrainingCenters();
         Task<Modules> GetModulebyId(int Id);
 
