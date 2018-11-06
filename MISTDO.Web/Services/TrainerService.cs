@@ -106,14 +106,14 @@ namespace MISTDO.Web.Services
 
             return users;
         }
-        public async Task<IEnumerable<ApplicationUser>> GetTrainingCentre(string id)
-        {
+        //public async Task<IEnumerable<ApplicationUser>> GetTrainingCentre(string id)
+        //{
 
-            var trainer = await dbcontext.Users.FirstOrDefaultAsync(i => i.Id == id);
+        //    var trainer = await dbcontext.Users.FirstOrDefaultAsync(i => i.Id == id);
 
 
 
-            return trainer;
-        }
+        //    return trainer;
+        //}
     }
 }
