@@ -19,7 +19,7 @@ using System.IO;
 
 namespace MISTDO.Web.Controllers
 {
-    [Authorize]
+    [Authorize/*(AuthenticationSchemes = "TrainerAuth")*/]
     public class TrainerDashboardController : Controller
     {
         private readonly UserManager<ApplicationUser> _usermanager;
@@ -229,8 +229,8 @@ namespace MISTDO.Web.Controllers
 
             return View();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

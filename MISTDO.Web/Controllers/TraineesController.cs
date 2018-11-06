@@ -26,7 +26,7 @@ using System.Net.Mime;
 
 namespace MISTDO.Web.Views.TrainerDashboard
 {
-    [Authorize]
+    [Authorize/*(AuthenticationSchemes = "TraineeAuth")*/]
     public class TraineesController : Controller
     {
         private readonly TraineeApplicationDbContext _context;
@@ -422,13 +422,13 @@ namespace MISTDO.Web.Views.TrainerDashboard
             }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
            
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(TraineesController.Login), "Trainee");
         }
         [HttpGet]
         [AllowAnonymous]

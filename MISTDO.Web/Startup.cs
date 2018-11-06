@@ -12,6 +12,9 @@ using MISTDO.Web.Data;
 using MISTDO.Web.Models;
 using MISTDO.Web.Services;
 using MISTDO.Web.Extensions;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace MISTDO.Web
 {
@@ -29,28 +32,68 @@ namespace MISTDO.Web
         {
             services.AddRouting(options => { options.LowercaseUrls = true; });
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("TrainerConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("TrainerConnection")) );
             services.AddDbContext<TraineeApplicationDbContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("TraineeConnection")));
             services.AddDbContext<AdminApplicationDbContext>(options =>
               options.UseSqlServer(Configuration.GetConnectionString("AdminConnection")));
 
+            services.AddSecondIdentity<TraineeApplicationUser, IdentityRole>(null)
+             .AddEntityFrameworkStores<TraineeApplicationDbContext>()
+             .AddDefaultTokenProviders();
 
-            services.AddDistributedMemoryCache();
-
-           
-
+            
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+            services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
-          
+            services.ConfigureApplicationCookie(options =>
+            {
 
-            services.AddSecondIdentity<TraineeApplicationUser, IdentityRole>(null)
-                .AddEntityFrameworkStores<TraineeApplicationDbContext>()
-                .AddDefaultTokenProviders();
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+                options.LoginPath = "/trainer/Login";
+
+                options.LogoutPath = "/trainer/Logout";
+                options.AccessDeniedPath = "/trainer/AccessDenied";
+                options.SlidingExpiration = true;
+            });
+            services.AddDistributedMemoryCache();
+
+    //        services
+    //.AddAuthentication(o =>
+    //{
+    //    o.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    //})
+    //.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
+    //{
+    //    o.LoginPath = new PathString("/account/login");
+    //})
+    //.AddCookie("TrainerAuth", o =>
+    //{
+    //    o.LoginPath = new PathString("/trainer/login/");
+    //    o.LogoutPath = new PathString("/trainer/logout/");
+
+    //});
 
 
+         //   services.AddAuthentication()
+         //     .AddCookie("TrainerAuth", options =>
+         //     {
+         //         options.LoginPath = "/trainer/login";
+         //         options.AccessDeniedPath = "/trainer/AccessDenied";
+         //         options.LogoutPath = "/trainer/logout";
+
+         //     })
+         //.AddCookie("TraineeAuth", options =>
+         //{
+         //    options.LoginPath = "/trainees/login";
+         //    options.AccessDeniedPath = "/trainees/AccessDenied/";
+
+         //});
+
+         
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<ITrainerService, TrainerService>();
@@ -61,7 +104,7 @@ namespace MISTDO.Web
             services.AddSession(options =>
             {
                 // Set a short timeout for easy testing.
-                options.IdleTimeout = TimeSpan.FromSeconds(60);
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
                 options.Cookie.HttpOnly = true;
             });
             services.AddMvc();
@@ -78,10 +121,10 @@ namespace MISTDO.Web
             }
             else
             {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+               // app.UseDeveloperExceptionPage();
+              //  app.UseDatabaseErrorPage();
 
-                //  app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
             app.UseSession();
 

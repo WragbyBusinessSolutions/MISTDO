@@ -17,7 +17,7 @@ using MISTDO.Web.Services;
 
 namespace MISTDO.Web.Controllers
 {
-    [Authorize]
+    [Authorize/*(AuthenticationSchemes = "TrainerAuth")*/]
     public class TrainerController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -333,8 +333,8 @@ namespace MISTDO.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-          //  _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            //  _logger.LogInformation("User logged out.");
+            return RedirectToAction(nameof(TrainerController.Login), "Trainer");
         }
         [HttpGet]
         [AllowAnonymous]
