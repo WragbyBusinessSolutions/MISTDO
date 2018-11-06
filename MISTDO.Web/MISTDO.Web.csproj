@@ -15,12 +15,6 @@
     <Content Remove="Views\Shared\_LayoutRegisterAside.cshtml" />
     <Content Remove="Views\Shared\_LayoutTraineeHeader.cshtml" />
     <Content Remove="Views\Shared\_RegisterPartial.cshtml" />
-    <Content Remove="Views\Trainees\Certificate.cshtml" />
-    <Content Remove="Views\Trainees\EditProfile.cshtml" />
-    <Content Remove="Views\Trainees\Notification.cshtml" />
-    <Content Remove="Views\Trainees\NotificationDetails.cshtml" />
-    <Content Remove="Views\Trainees\RegTraining.cshtml" />
-    <Content Remove="Views\Trainees\Support.cshtml" />
     <Content Remove="Views\TrainerDashboard\Modules.cshtml" />
     <None Remove="Views\Shared\Error.cshtml" />
     <None Remove="Views\Shared\_LayoutDashboard.cshtml" />
