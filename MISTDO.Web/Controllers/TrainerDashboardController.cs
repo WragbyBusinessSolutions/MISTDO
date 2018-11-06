@@ -23,6 +23,7 @@ namespace MISTDO.Web.Controllers
     public class TrainerDashboardController : Controller
     {
         private readonly UserManager<ApplicationUser> _usermanager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
         private readonly UserManager<TraineeApplicationUser> _traineeuserManager;
         private readonly IEmailSender _emailSender;
@@ -38,10 +39,11 @@ namespace MISTDO.Web.Controllers
         public IExcelToTraineeService _exceltoTrainee { get; }
 
 
-        public TrainerDashboardController(ITrainerService trainer, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext, AdminApplicationDbContext admindb, UserManager<ApplicationUser> userManager, UserManager<TraineeApplicationUser> traineeuserManager,
+        public TrainerDashboardController(ITrainerService trainer, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext, AdminApplicationDbContext admindb, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, UserManager<TraineeApplicationUser> traineeuserManager,
              IHostingEnvironment env,  IExcelToTrainingService excelToTrainingService,  IExcelToTraineeService excelToTraineeService, IEmailSender emailSender )
         {
             _usermanager = userManager;
+            _signInManager = signInManager;
             _traineeuserManager = traineeuserManager;
             _trainer = trainer;
             dbcontext = context;
@@ -226,6 +228,14 @@ namespace MISTDO.Web.Controllers
 
 
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            //  _logger.LogInformation("User logged out.");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         public async Task<IActionResult> Training()
@@ -479,7 +489,7 @@ namespace MISTDO.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AttachTraineeTraining([Bind("Id,ModuleId,CertificateId,TraineeId,CertificateId ,TrainingName,TrainingCentreId ,PaymentRefId,DateCreated ,CertGenDate ,TrainingStartDate,TrainingEndDate")] Training training, string id)
+        public async Task<IActionResult> AttachTraineeTraining( Training training, string id)
         {
 
 
@@ -494,13 +504,11 @@ namespace MISTDO.Web.Controllers
                 {
 
                     TrainingCentreId = user.Id,
-                    CertificateId = training.CertificateId,
+                    
                     ModuleId = training.ModuleId,
                     TrainingStartDate = training.TrainingStartDate,
                     TraineeId = training.TraineeId,
-                    PaymentRefId = training.PaymentRefId,
-                    CertGenDate = training.CertGenDate,
-                    DateCreated = training.DateCreated,
+                    DateCreated = DateTime.Now,
                     TrainingEndDate = training.TrainingEndDate,
                     TrainingName = training.TrainingName
 

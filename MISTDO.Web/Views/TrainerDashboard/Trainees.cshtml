@@ -19,10 +19,12 @@
             <div class="page-title">
                 <h4>Registered Trainees</h4>
                 <p>
-                    <a asp-action="CreateTrainees">Create New</a>
+                    <span style="float:left;"> <a asp-action="CreateTrainees">Create New</a></span>
+                    
+                   <span style="float:right;"><a asp-action="AttachTraineeTraining" align="right">Attach Trainee to a training</a></span> 
                 </p>
-                <p align="right">
-                    <a asp-action="AttachTraineeTraining">Attach Trainee to a training</a>
+                
+                   
                 </p>
             </div>
             <div class="row">
@@ -102,7 +104,7 @@
                                         }
                                     </tbody>
                                 </table>
-                                <table id="dt-opt" class="table table-lg table-hover">
+                                @*<table id="dt-opt" class="table table-lg table-hover">
                                     <thead>
                                         <tr>
                                             <th>
@@ -167,7 +169,7 @@
                                             }
                                         }
                                     </tbody>
-                                </table>
+                                </table>*@
 
                             </div>
 
