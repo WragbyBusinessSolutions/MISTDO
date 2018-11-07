@@ -62,7 +62,14 @@ namespace MISTDO.Web.Controllers
         public async Task<IActionResult> Certificate()
         {
             var certs = await _trainer.GetAllCertificates();
-            return View(certs);
+
+            var owners = new List<TraineeApplicationUser>();
+            foreach (var item in certs)
+            {
+                owners.Add(item.Owner);
+            }
+            ViewBag.Owners = owners;
+            return View(certs.ToList());
         }
 
 

@@ -26,7 +26,7 @@ namespace MISTDO.Web.Services
         }
         public async Task<IEnumerable<Certificate>> GetAllCertificates()
         {
-            var certs = await dbcontext.Certificates.ToListAsync();
+            var certs = await dbcontext.Certificates.Include(t=>t.Owner).Include(i => i.Trainer).ToListAsync();
             return certs;
         }
 

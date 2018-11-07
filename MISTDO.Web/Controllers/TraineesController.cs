@@ -428,7 +428,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
         {
             await _signInManager.SignOutAsync();
            
-            return RedirectToAction(nameof(TraineesController.Login), "Trainee");
+            return RedirectToAction(nameof(TraineesController.Login), "Trainees");
         }
         [HttpGet]
         [AllowAnonymous]

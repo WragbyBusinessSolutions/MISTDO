@@ -1,8 +1,8 @@
-﻿@model IEnumerable<Certificate>
+﻿@model List<Certificate>
 @{
     ViewData["Title"] = "Certificate";
     Layout = "_LayoutDashboard";
-
+    var owners = ViewBag.Owners as List<TraineeApplicationUser>;
 }
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
 <div class="page-container">
@@ -25,7 +25,9 @@
                                 <table id="dt-opt" class="table table-lg table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Image</th>
+                                            <th>Certificate Owner</th>
+                                            <th>Owner Email</th>
+
                                             <th>Certificate Number</th>
                                             <th>Certificate Status</th>
                                             <th>Date Generated</th>
@@ -35,44 +37,46 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var item in Model)
+                                        @for(int i = 0; i < Model.Count(); i++)
                                         {
+                                          
                                             <tr>
 
                                                 <td>
 
-                                                    <div class="list-info mrg-top-10">
-                                                        <img class="thumb-img" src="~/dist/assets/images/avatars/thumb-1.jpg" alt="">
-                                                        <div class="info">
-                                                            <span class="title">Jordan Hurst</span>
-                                                            <span class="sub-title">ID 860</span>
-                                                        </div>
+                                                    <div class="mrg-top-15">
+                                                        <span class="text-info"><b>@owners[i].FirstName  @owners[i].LastName</b></span>
+                                                    </div>
+                                                    </td>
+                                                <td>
+                                                    <div class="mrg-top-15">
+                                                        <span class="text-info"><b>@owners[i].Email</b></span>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="mrg-top-15">
-                                                        <span class="text-info"><b>@item.CertNumber</b></span>
+                                                        <span class="text-info"><b>@Model[i].CertNumber</b></span>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="relative mrg-top-15">
                                                         <span class="status online"> </span>
-                                                        <span class="pdd-left-20">@item.CertStatus</span>
+                                                        <span class="pdd-left-20">@Model[i].CertStatus</span>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="mrg-top-15">
-                                                        <span>@item.DateGenerated</span>
+                                                        <span>@Model[i].DateGenerated</span>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="mrg-top-15">
-                                                        <b class="text-dark font-size-16">@item.TrainerOrgId</b>
+                                                        <b class="text-dark font-size-16">@Model[i].TrainerOrgId</b>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="mrg-top-15">
-                                                        <b class="text-dark font-size-16">@item.TrainerOrg</b>
+                                                        <b class="text-dark font-size-16">@Model[i].TrainerOrg</b>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -84,7 +88,8 @@
                                                 </td>
                                             </tr>
 
-                                        }
+                                            }
+                                        
                                     </tbody>
                                 </table>
                             </div>
