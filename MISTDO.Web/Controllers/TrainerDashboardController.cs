@@ -503,41 +503,55 @@ namespace MISTDO.Web.Controllers
         {
             var modules = await _trainer.GetAllModules();
 
+            var modulescost = new List<SelectListItem>();
+            foreach (var item in modules)
+
+                modulescost.Add(new SelectListItem { Text = item.Cost.ToString(), Value = item.Id.ToString() });
+
             var modulesList = new List<SelectListItem>();
+           
+
             foreach (var item in modules)
 
                 modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+                
             ViewBag.modules = modulesList;
+
+            ViewBag.modulecosts = modulescost;
+
+            
+
+
 
 
 
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AttachTraineeTraining( Training training, string id)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> TraineeAttach(  RemitaResponse data, string TraineeId, string ModuleId, string ModuleCost, DateTime TrainingStartDate, DateTime TrainingEndDate)
         {
 
 
-
+            var module = await _trainer.GetModulebyId(int.Parse(ModuleId));
 
 
             var user = await _usermanager.GetUserAsync(User);
-            id = user.Id;
+            string id = user.Id;
             if (ModelState.IsValid)
             {
-                var bae = await _trainer.GetModulebyId(int.Parse(training.ModuleId));
+                var bae = await _trainer.GetModulebyId(int.Parse(ModuleId));
                 var train = new Training()
                 {
 
                     TrainingCentreId = user.Id,
-                    
-                    ModuleId = training.ModuleId,
-                    TrainingStartDate = training.TrainingStartDate,
-                    TraineeId = training.TraineeId,
+
+                    ModuleId = ModuleId,
+                    TrainingStartDate = TrainingStartDate,
+                    TraineeId = TraineeId,
                     DateCreated = DateTime.Now,
-                    TrainingEndDate = training.TrainingEndDate,
+                    TrainingEndDate = TrainingEndDate,
                     TrainingName = bae.Name
 
 
@@ -547,9 +561,10 @@ namespace MISTDO.Web.Controllers
                 dbcontext.Add(train);
 
                 await dbcontext.SaveChangesAsync();
-                return RedirectToAction(nameof(Trainees));
+                var url = Url.Action(nameof(Trainees));
+                return Json(new { isSuccess = true, redirectUrl = url });
             }
-            return View(training);
+            return View();
         }
 
         public async Task<IActionResult> CreateTraining()
@@ -718,6 +733,8 @@ namespace MISTDO.Web.Controllers
             var train = await dbcontext.Trainings.Where(t => t.TraineeId == id).ToListAsync();
            
             ViewBag.trainings = train;
+
+            
 
             if (id == null)
             {

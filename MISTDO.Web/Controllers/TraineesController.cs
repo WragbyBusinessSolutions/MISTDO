@@ -180,18 +180,29 @@ namespace MISTDO.Web.Views.TrainerDashboard
         }
         public async Task<IActionResult> Certificate(string id)
         {
-            var user = await _userManager.GetUserAsync(User);
-            id = user.Id; // initialize id  with user id
+            //var user = await _userManager.GetUserAsync(User);
+            //id = user.Id; // initialize id  with user id
 
 
-            if (id == null)
+            //if (id == null)
+            //{
+            //    return View(await _context.Users.ToListAsync());
+            //}
+            //var certificates = await _trainer.GetCertificate(id);
+
+
+            //return View(certificates.ToList());
+
+            var certs = await _trainer.GetAllCertificates();
+
+            var owners = new List<TraineeApplicationUser>();
+            foreach (var item in certs)
             {
-                return View(await _context.Users.ToListAsync());
+                owners.Add(item.Owner);
+               
             }
-            var certificates = await _trainer.GetCertificate(id);
-          
-
-            return View(certificates.ToList());
+            ViewBag.Owners = owners;
+            return View(certs.ToList());
         }
 
 

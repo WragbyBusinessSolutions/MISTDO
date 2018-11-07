@@ -27,61 +27,75 @@
                             @{
                                 var user = await userManager.GetUserAsync(User);
                                 var modules = ViewBag.modules as List<SelectListItem>;
+                                var module = ViewBag.modulecosts as List<SelectListItem>;
+                                var Mode = ViewBag.module as List<MISTDO.Web.Models.Modules>;
+
+
 
                             }
-                         
-                            <form asp-action="AttachTraineeTraining" enctype="multipart/form-data">
+                            
+
+
+                            <form>
+                                @*<p>
+                                        <input type="hidden" value="@Model.ModuleId" id="ModuleId" />
+                                        <input type="hidden" value="@module.Cost" id="ModuleCost" />
+                                        <input type="hidden" value="@user.Id" id="TrainingCenterId" />
+                                        <input type="hidden" value="@Model.TraineeId" id="TraineeId" />
+                                        <input type="hidden" value="@Model.TrainingStartDate" id="TrainingStartDate" />
+                                        <input type="hidden" value="@Model.TrainingEndDate" id="TrainingEndDate" />
+
+                                    </p>*@
+
 
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-group">
                                     <label class="control-label"> Trainee Id</label>
-                                    <input asp-for="TraineeId" class="form-control" />
+                                    <input asp-for="TraineeId" class="form-control" id="TraineeId" />
                                     <span asp-validation-for="TraineeId" class="text-danger"></span>
                                 </div>
-                               
+
+                                <div class="form-group">
+
+                                    <label class="control-label"> First Name</label>
+                                    <input class="form-control" id="firstname" />
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="control-label"> Last Name</label>
+                                    <input class="form-control" id="lastname" />
+                                </div>
+
                                 <div class="form-group">
                                     <label class="control-label"> Module ID</label>
-                                    <select class="form-control" asp-for="ModuleId" asp-items="modules"></select>
+                                    <select class="form-control" asp-for="ModuleId" asp-items="modules" id="ModuleId"></select>
 
                                 </div>
+
+                                <div class="form-group">
+
+                                    <label class="control-label"> Module Cost</label>
+                                    <select class="form-control" asp-items="module" id="ModuleCost"></select>
+                                </div>
+
 
                                 <div class="form-group">
                                     <label class="control-label"> Training Center Id</label>
-                                    <input asp-for="@user.Id" class="form-control" disabled />
+                                    <input asp-for="@user.Id" class="form-control" disabled id="TrainingCenterId" />
                                     <span asp-validation-for="TrainingCentreId" class="text-danger"></span>
                                 </div>
 
 
 
-                                @*<div class="form-group">
-                                    <label class="control-label" hidden> Payment Reference ID</label>
-                                    <input asp-for="PaymentRefId" class="form-control" type="hidden" />
 
-                                </div>*@
-
-                                @*<div class="form-group">
-                                    <label class="control-label" hidden> Certificate Id</label>
-                                    <input asp-for="CertificateId" class="form-control" type="hidden" />
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" hidden> Certificate Generation Date</label>
-                                    <input asp-for="CertGenDate" class="form-control" type="hidden" />
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" hidden> Date Created</label>
-                                    <input asp-for="DateCreated" class="form-control" type="hidden" />
-
-                                </div>*@
                                 <div class="form-group">
                                     <label class="control-label">Training Start When?</label>
-                                    <input asp-for="TrainingStartDate" class="form-control" />
+                                    <input asp-for="TrainingStartDate" class="form-control" id="TrainingStartDate" />
                                     <span asp-validation-for="TrainingStartDate" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Training Ends When?</label>
-                                    <input asp-for="TrainingEndDate" class="form-control" />
+                                    <input asp-for="TrainingEndDate" class="form-control" id="TrainingEndDate" />
                                     <span asp-validation-for="TrainingEndDate" class="text-danger"></span>
                                 </div>
 
@@ -90,7 +104,8 @@
 
 
                                 <div class="form-group">
-                                    <input type="submit" value="Create" class="btn btn-default" />
+                                    <script src="https://remitademo.net/payment/v1/remita-pay-inline.bundle.js"></script>
+                                    <button class="btn btn-primary" type="button" onclick="makePayment()"> Pay and Attach </button>
                                 </div>
                             </form>
 
@@ -104,29 +119,29 @@
                         </div>*@
                 </div>
                 @*<div class="col-md-6">
-                    <div class="card">
-                        <div class="card-block">
-                            <form asp-action="TrainingUpload" enctype="multipart/form-data">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <p>       @Html.ActionLink("Click here to download Template for Bulk Upload", "DownloadFile", new { })</p>
+                        <div class="card">
+                            <div class="card-block">
+                                <form asp-action="TrainingUpload" enctype="multipart/form-data">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <p>       @Html.ActionLink("Click here to download Template for Bulk Upload", "DownloadFile", new { })</p>
 
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <p><b>Upload Bulk Training Excel File</b></p>
-                                        <input type="file" name="file" multiple />
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            <p><b>Upload Bulk Training Excel File</b></p>
+                                            <input type="file" name="file" multiple />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <input type="submit" value="Upload" />
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            <input type="submit" value="Upload" />
+                                        </div>
                                     </div>
-                                </div>
 
 
-                            </form>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                </div>*@
+                    </div>*@
             </div>
         </div>
     </div>
@@ -147,5 +162,67 @@
     <!-- Footer END -->
     <!-- Page Container END -->
 </div>
+</div>
+
+<script>
+
+    function makePayment() {
+        var TraineeId = $('#TraineeId').val();
+        var ModuleId = $('#ModuleId ').val();
+
+
+
+        var ModuleCost = $('#ModuleCost option:selected').text();
+        var TrainingCenterId = $('#TrainingCenterId').val();
+        var firstname = $('#firstname').val();
+        var lastname = $('#lastname').val();
+        var TrainingStartDate = $('#TrainingStartDate').val();
+        var TrainingEndDate = $('#TrainingEndDate').val();
+
+        console.log(TraineeId);
+        console.log(ModuleId);
+        console.log(ModuleCost);
+        console.log(TrainingCenterId);
+        console.log(firstname);
+        console.log(lastname);
+        console.log(TrainingStartDate);
+        console.log(TrainingEndDate);
+
+        var paymentEngine = RmPaymentEngine.init({
+            key: 'dGFnYWJpZWxlc2luQHdyYWdieXNvbHV0aW9ucy5jb218NDEwNDkxNzR8ZTZhMzJhYmZjMjFjYmZkYWM0ZTI3ZTkzNTU5MzUxMWM5NDlhMDM1ZGU3MjQzNzk2ODViYjdlN2E1OTc0OGZhZDJjOTEyYjk1ZWZkYTAyYWM1NTU3MmZlZDZkMmQzMTM2Njc5YWIyZmFiYTNmOGZhMjIxNmJmYjM0ZjNhODMwMGU=',
+            customerId: TraineeId,
+            firstName: firstname,
+            lastName: lastname,
+            email: ModuleId,
+            amount: ModuleCost,
+
+
+            onSuccess: function (response) {
+
+                console.log('callback Successful Response', response);
+                $.post('@Url.Action("TraineeAttach", "TrainerDashboard")', {
+
+                    data: response, TraineeId: TraineeId , ModuleId: ModuleId, ModuleCost: ModuleCost,  TrainingStartDate:TrainingStartDate, TrainingEndDate:TrainingEndDate
+                }, function () {
+                    //
+                }).done(function (returndata) {
+                    if (returndata.isSuccess) {
+                        window.location = returndata.redirectUrl;
+                    };
+                });
+            },
+            onError: function (response) {
+                console.log('callback Error Response', response);
+            },
+            onClose: function () {
+                console.log("closed");
+            }
+        });
+
+        paymentEngine.showPaymentWidget();
+
+    }
+
+</script>
 
 
