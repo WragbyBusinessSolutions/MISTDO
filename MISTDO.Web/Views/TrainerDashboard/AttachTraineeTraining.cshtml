@@ -28,24 +28,22 @@
                                 var user = await userManager.GetUserAsync(User);
                                 var modules = ViewBag.modules as List<SelectListItem>;
                                 var module = ViewBag.modulecosts as List<SelectListItem>;
-                                var Mode = ViewBag.module as List<MISTDO.Web.Models.Modules>;
+                                var moduless = ViewBag.modules as List<SelectListItem>;
 
+                             }
 
-
-                            }
                             
-
 
                             <form>
                                 @*<p>
-                                        <input type="hidden" value="@Model.ModuleId" id="ModuleId" />
-                                        <input type="hidden" value="@module.Cost" id="ModuleCost" />
-                                        <input type="hidden" value="@user.Id" id="TrainingCenterId" />
-                                        <input type="hidden" value="@Model.TraineeId" id="TraineeId" />
-                                        <input type="hidden" value="@Model.TrainingStartDate" id="TrainingStartDate" />
-                                        <input type="hidden" value="@Model.TrainingEndDate" id="TrainingEndDate" />
+            <input type="hidden" value="@Model.ModuleId" id="ModuleId" />
+            <input type="hidden" value="@module.Cost" id="ModuleCost" />
+            <input type="hidden" value="@user.Id" id="TrainingCenterId" />
+            <input type="hidden" value="@Model.TraineeId" id="TraineeId" />
+            <input type="hidden" value="@Model.TrainingStartDate" id="TrainingStartDate" />
+            <input type="hidden" value="@Model.TrainingEndDate" id="TrainingEndDate" />
 
-                                    </p>*@
+        </p>*@
 
 
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -67,15 +65,16 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label"> Module ID</label>
+                                    <label class="control-label"> Module Details</label>
                                     <select class="form-control" asp-for="ModuleId" asp-items="modules" id="ModuleId"></select>
 
                                 </div>
+                            
 
                                 <div class="form-group">
 
-                                    <label class="control-label"> Module Cost</label>
-                                    <select class="form-control" asp-items="module" id="ModuleCost"></select>
+                                    <label class="control-label"> Module Cost  (Choose equivalent Module Cost)</label>
+                                    <select class="form-control"  asp-items="module" id="ModuleCost"></select>
                                 </div>
 
 

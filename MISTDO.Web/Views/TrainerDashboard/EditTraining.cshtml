@@ -18,10 +18,10 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                <h4>Edit Training </h4>>
+                <h4>Edit Training </h4>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="card">
                         <div class="card-heading border bottom">
                             <h4 class="card-title">Training Details </h4>
@@ -104,7 +104,7 @@
                                                 <div class="col-md-12">
 
                                                     <div class="form-group">
-                                                        <label class="control-label"> Certificate Id</label>
+                                                        <label class="control-label"> Training Start Time</label>
                                                         <input asp-for="TrainingStartTime" class="form-control" />
                                                         <span asp-validation-for="TrainingStartTime" class="text-danger"></span>
                                                     </div>
@@ -116,7 +116,7 @@
 
 
                                             <div class="form-group">
-                                                <label class="control-label"> Certificate Generation Date</label>
+                                                <label class="control-label"> Training End Time</label>
                                                 <input asp-for="TrainingEndTime" class="form-control" />
                                                 <span asp-validation-for="TrainingEndTime" class="text-danger"></span>
                                             </div>
@@ -126,7 +126,7 @@
                                 </div>
 
 
-                                    <div class="row">
+                                    
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -136,15 +136,16 @@
                                                 </div>
 
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="control-label">Training Ends When?</label>
-                                                <input asp-for="TrainingEndDate" class="form-control" />
-                                                <span asp-validation-for="TrainingEndDate" class="text-danger"></span>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Training Ends When?</label>
+                                                    <input asp-for="TrainingEndDate" class="form-control" />
+                                                    <span asp-validation-for="TrainingEndDate" class="text-danger"></span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    
 
 
 

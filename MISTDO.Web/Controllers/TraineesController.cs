@@ -214,6 +214,29 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
         }
 
+        public async Task<IActionResult> Calender()
+        {
+            return View(await tdbcontext.Calenders.ToListAsync());
+        }
+
+        public async Task<IActionResult> DetailsCalender(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var calenders = await tdbcontext.Calenders
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (calenders == null)
+            {
+                return NotFound();
+            }
+
+            return View(calenders);
+        }
+       
+
         public async Task<IActionResult> Training(string id,Training training)
         {
             var user = await _userManager.GetUserAsync(User);

@@ -1,39 +1,29 @@
-﻿@model IEnumerable<MISTDO.Web.Models.TraineeApplicationUser>
+﻿@model IEnumerable<MISTDO.Web.Models.Calender>
+
 @{
-    ViewData["Title"] = "Trainee";
-    Layout = "_LayoutDashboard";
+    ViewData["Title"] = "Training";
+    Layout = "_LayoutTraineeDashboard";
 }
+
 
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
 
 <!-- Page Container START -->
-@inject UserManager<ApplicationUser> userManager;
+
 <div class="page-container">
     <!-- Header START -->
-    @await Html.PartialAsync("_LayoutHeader");
+    @await Html.PartialAsync("_LayoutHeaderTrainee");
 
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
     <div class="main-content">
+       
         <div class="container-fluid">
             <div class="page-title">
-                <h4>Registered Trainees</h4>
-                <p>
-                    <span style="float:left;"> <a asp-action="CreateTrainees">Create New</a></span>
-                    
-                   <span style="float:right;"><a asp-action="AttachTraineeTraining" align="right">Attach Trainee to a training</a></span> 
-                </p>
-                
-                   
-                </p>
+                <h4>Trainings Calender</h4>
+               
             </div>
             <div class="row">
-                @{
-                    var user = await userManager.GetUserAsync(User);
-                    
-                    
-
-                }
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-block">
@@ -42,70 +32,60 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                First Name
+                                                Module Name
+                                            </th>
+                                            
+                                          
+                                            <th>
+                                                Trainee ID
                                             </th>
                                             <th>
-                                                Last Name
+                                                @Html.DisplayNameFor(model => model.Cost)
+                                            </th>
+                                          
+                                            <th>
+                                                Start Date
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Email)
+                                                End Date
                                             </th>
-                                            <th>
-                                                Phone Number
-                                            </th>
-                                            <th>
-                                                Company Name
-                                            </th>
-                                            <th>
-                                                Company Address
-                                            </th>
-                                            <th>
-                                                User Address
-                                            </th>
-
-                                            <th></th>
+                                            <th>Other Options</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                            if (ViewBag.TrainerCenter == user.Id )
+                                            if (item.TrainingEndDate >= DateTime.Today  )
                                             {
                                                 <tr>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                                        @Html.DisplayFor(modelItem => item.TrainingName)
+                                                    </td>
+                                                    
+                                                   
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.TraineeId)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.Cost)
+                                                    </th>
+                                                   
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.LastName)
+                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.Email)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.PhoneNumber)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.CompanyName)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.CompanyAddress)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.UserAddress)
-                                                    </td>
-
-                                                    <td>
-                                                        @*<a asp-action="EditTrainees" asp-route-id="@item.Id">Edit</a>*@ |
-                                                        <a asp-action="DetailsTrainees" asp-route-id="@item.Id">Details</a> |
-                                                        @*<a asp-action="DeleteTrainees" asp-route-id="@item.Id">Delete</a>*@
+                                                        
+                                                        |<a asp-action="DetailsCalender" asp-route-id="@item.Id">Details</a> |
+                                                        
                                                     </td>
                                                 </tr>
                                             }
                                         }
                                     </tbody>
                                 </table>
-                             
-
                             </div>
 
                         </div>
@@ -140,6 +120,7 @@
 
 <!-- page js -->
 <script src="~/dist/assets/js/table/data-table.js"></script>
+
 
 
 

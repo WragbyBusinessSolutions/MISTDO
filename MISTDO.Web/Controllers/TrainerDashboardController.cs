@@ -513,7 +513,7 @@ namespace MISTDO.Web.Controllers
 
             foreach (var item in modules)
 
-                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+                modulesList.Add(new SelectListItem { Text = item.Name + " #"+item.Cost, Value = item.Id.ToString() });
                 
             ViewBag.modules = modulesList;
 
@@ -687,7 +687,7 @@ namespace MISTDO.Web.Controllers
                 }
                 await _exceltoTraining.ConvertFileToTrainingString(filePath);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Training");
 
         }
         public ActionResult DownloadFile()
