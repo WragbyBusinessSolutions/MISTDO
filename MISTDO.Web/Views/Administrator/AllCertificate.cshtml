@@ -1,0 +1,126 @@
+﻿@model List<Certificate>
+@{
+    ViewData["Title"] = "Certificate";
+    Layout = "_LayoutAdminDashboard";
+    var owners = ViewBag.Owners as List<TraineeApplicationUser>;
+}
+<link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+<div class="page-container">
+    @await Html.PartialAsync("_LayoutHeaderAdmin");
+
+    <div class="main-content">
+        <div class="col-md-12">
+            <a class="float-right" asp-controller="TrainerDashboard" asp-action="Modules">Generate a New Certificate</a>
+        </div>
+        
+        <div class="container-fluid">
+            
+            <div class="page-title">
+                <h4>Certificates</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="table-overflow">
+                                <table id="dt-opt" class="table table-lg table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Certificate Owner</th>
+                                            <th>Owner Email</th>
+
+                                            <th>Certificate Number</th>
+                                            <th>Certificate Status</th>
+                                            <th>Date Generated</th>
+                                            <th>Trainer Organization Id</th>
+                                            <th>Trainer Organization</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.Count(); i++)
+                                        {
+
+                                            <tr>
+
+                                                <td>
+
+                                                    <div class="mrg-top-15">
+                                                        <span class="text-info"><b>@owners[i].FirstName  @owners[i].LastName</b></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="mrg-top-15">
+                                                        <span class="text-info"><b>@owners[i].Email</b></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="mrg-top-15">
+                                                        <span class="text-info"><b>@Model[i].CertNumber</b></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="relative mrg-top-15">
+                                                        <span class="status online"> </span>
+                                                        <span class="pdd-left-20">@Model[i].CertStatus</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="mrg-top-15">
+                                                        <span>@Model[i].DateGenerated</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="mrg-top-15">
+                                                        <b class="text-dark font-size-16">@Model[i].TrainerOrgId</b>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="mrg-top-15">
+                                                        <b class="text-dark font-size-16">@Model[i].TrainerOrg</b>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="mrg-top-10 text-center">
+                                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                                            <i class="ti-more-alt"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2017 <b class="text-dark">Wragby solutions</b>. All rights reserved.</span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+</div>
+<script src="~/dist/assets/js/vendor.js"></script>
+
+<script src="~/dist/assets/js/app.min.js"></script>
+
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>

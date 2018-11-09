@@ -41,7 +41,7 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="/trainees">
+                <a asp-controller="Administrator" asp-action="AllCertificate">
                     <span class="icon-holder">
                         <i class="ti-medall"></i>
                     </span>
@@ -80,13 +80,24 @@
                     <span class="title"> User Management</span>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a href="/trainer/notification">
+            <li class="nav-item dropdown ">
+                <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder">
-                        <i class="ti-bell pdd-right-10"></i>
+                        <i class="ti-id-badge"></i>
                     </span>
-                    <span class="title">Notification </span>
+                    <span class="title">Notifications</span>
+                    <span class="arrow">
+                        <i class="ti-angle-right"></i>
+                    </span>
                 </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a asp-conroller="Administrator" asp-action="NotifyTrainingCenter"> Training Centre Notification</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Administrator" asp-action="NotifyTrainees">Trainees Notification</a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item ">
                 <a href="/trainer/support">

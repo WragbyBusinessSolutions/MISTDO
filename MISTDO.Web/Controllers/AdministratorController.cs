@@ -11,7 +11,7 @@ using MISTDO.Web.Models;
 using Microsoft.Azure.KeyVault.Models;
 
 namespace MISTDO.Web.Controllers
-{
+{ 
     public class AdministratorController : Controller
     {
         public ITrainerService _trainer { get; }
@@ -37,6 +37,13 @@ namespace MISTDO.Web.Controllers
 
             // ViewData["ReturnUrl"] = returnUrl;
             return View();
+        }
+        public async Task<IActionResult> AllCertificate()
+        {
+            var certs = await _trainer.GetAllCertificates();
+
+         
+            return View(certs.ToList());
         }
 
         public async Task<IActionResult> AllRegisteredTrainees()

@@ -1,0 +1,136 @@
+﻿@model IEnumerable<MISTDO.Web.Models.Calender>
+
+@{
+    ViewData["Title"] = "Training";
+    Layout = "_LayoutDashboard";
+}
+
+@inject UserManager<ApplicationUser> userManager;
+<link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+
+<!-- Page Container START -->
+
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeader");
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        @{
+            var user = await userManager.GetUserAsync(User);
+
+
+        }
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Trainings Calender</h4>
+                <p>
+                    <span style="float:left;"> <a asp-action="CreateTraining">Create New</a></span>
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="table-overflow">
+                                <table id="dt-opt" class="table table-lg table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Module Name
+                                            </th>
+                                            <th>
+                                                Module ID
+                                            </th>
+                                          
+                                            <th>
+                                                Trainee ID
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Cost)
+                                            </th>
+                                          
+                                            <th>
+                                                Start Date
+                                            </th>
+                                            <th>
+                                                End Date
+                                            </th>
+                                            <th>Other Options</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.TrainingStartDate >= DateTime.Today && item.TrainingCentreId == user.Id)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.ModuleId)
+                                                    </td>
+                                                   
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.TraineeId)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.Cost)
+                                                    </th>
+                                                   
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                                    </td>
+                                                    <td>
+                                                        <a asp-action="EditTraining" asp-route-id="@item.Id">Edit</a> |
+                                                        <a asp-action="DetailsTraining" asp-route-id="@item.Id">Details</a> |
+                                                        <a asp-action="DeleteTraining" asp-route-id="@item.Id">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- Page Container END -->
+</div>
+<script src="~/dist/assets/js/vendor.js"></script>
+
+<script src="~/dist/assets/js/app.min.js"></script>
+
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>
+
+
+
+
