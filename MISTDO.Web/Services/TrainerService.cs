@@ -86,6 +86,16 @@ namespace MISTDO.Web.Services
             return Trainings;
 
         }
+        public async Task<IEnumerable<Training>> GetCentreTrainings(string TrainingCentreId)
+        {
+            var Trainings = await dbcontext.Trainings.Where(t => t.TrainingCentreId == TrainingCentreId).ToListAsync();
+
+
+            return Trainings;
+
+        }
+
+      
 
         public async Task<IEnumerable<Modules>> GetAllModules()
         {

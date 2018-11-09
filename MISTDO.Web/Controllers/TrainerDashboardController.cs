@@ -743,17 +743,21 @@ namespace MISTDO.Web.Controllers
         //Tranees 
         public async Task<IActionResult> Trainees()
         {
+            var user = await _usermanager.GetUserAsync(User);
+            List<TraineeApplicationUser> Trainees = new List<TraineeApplicationUser>();
 
-            var trainings = await _trainer.GetTrainee();
-            foreach (var item in trainings)
+            var trainings = await _trainer.GetCentreTrainings(user.Id);
+
+            foreach (var trainee in trainings)
             {
-
-                ViewBag.TrainerCenter = item.TrainingCentreId;
-                ViewBag.TraineeId = item.TraineeId;
+                var tra = Traineedbcontext.Trainees.Where(t => t.Id == trainee.TraineeId);
+                Trainees.AddRange(tra);
+                                                              
             }
+            
+            return View(Trainees.Distinct());
 
 
-            return View(await Traineedbcontext.Users.ToListAsync());
         }
         public async Task<IActionResult> DetailsTrainees(string id)
         {
