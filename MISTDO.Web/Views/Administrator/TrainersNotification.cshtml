@@ -1,0 +1,101 @@
+﻿@model MISTDO.Web.Models.Notification
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_LayoutAdminDashboard";
+}
+
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeaderAdmin");
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>Send Notification to Training Centres </h4>
+                @*<p>
+                        <a asp-action="Create">Create New</a>
+                    </p>*@
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-block">
+                                                    
+                            <form asp-action="TrainersNotification" enctype="multipart/form-data">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label class="control-label">Notification Date </label>
+                                    <input asp-for="NotificationDateTime" class="form-control" />
+                                    <span asp-validation-for="NotificationDateTime" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"> Notification Message</label>
+                                    <textarea type="" asp-for="NotificationMessage" class="form-control"> </textarea>
+                                    <span asp-validation-for="NotificationMessage" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </form>
+
+                        </div>
+
+
+
+                    </div>
+                    @*<div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>*@
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-block">
+                            @*<form asp-action="TrainingUpload" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <p>       @Html.ActionLink("Click here to download Template for Bulk Upload", "DownloadFile", new { })</p>
+
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <p><b>Upload Bulk Training Excel File</b></p>
+                                        <input type="file" name="file" multiple />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <input type="submit" value="Upload" />
+                                    </div>
+                                </div>
+
+
+                            </form>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- Page Container END -->
+</div>
+
+

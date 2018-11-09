@@ -2,32 +2,26 @@
 
 @{
     ViewData["Title"] = "Training";
-    Layout = "_LayoutDashboard";
+    Layout = "_LayoutAdminDashboard";
 }
 
-@inject UserManager<ApplicationUser> userManager;
+
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
 
 <!-- Page Container START -->
 
 <div class="page-container">
     <!-- Header START -->
-    @await Html.PartialAsync("_LayoutHeader");
+    @await Html.PartialAsync("_LayoutHeaderAdmin");
 
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
     <div class="main-content">
-        @{
-            var user = await userManager.GetUserAsync(User);
-
-
-        }
+      
         <div class="container-fluid">
             <div class="page-title">
                 <h4>Trainings Calender</h4>
-                <p>
-                    <span style="float:left;"> <a asp-action="CreateTraining">Create New</a></span>
-                </p>
+               
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -63,8 +57,7 @@
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                            if (item.TrainingStartDate >= DateTime.Today && item.TrainingCentreId == user.Id)
-                                            {
+                                            
                                                 <tr>
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.TrainingName)
@@ -87,12 +80,12 @@
                                                         @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
                                                     </td>
                                                     <td>
-                                                        <a asp-action="EditTraining" asp-route-id="@item.Id">Edit</a> |
-                                                        <a asp-action="DetailsTraining" asp-route-id="@item.Id">Details</a> |
-                                                        <a asp-action="DeleteTraining" asp-route-id="@item.Id">Delete</a>
+                                                       
+                                                        <a asp-action="DetailsCalender" asp-route-id="@item.Id">Details</a> 
+                                                        
                                                     </td>
                                                 </tr>
-                                            }
+                                            
                                         }
                                     </tbody>
                                 </table>

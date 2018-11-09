@@ -560,7 +560,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
         //GET: Trainees/Support
         public IActionResult Support()
         {
-            TempData["Message"] = "Operation successful!";
+            TempData["Message"] = "";
             return View();
         }
         // POST: Trainees/Suipport
@@ -568,15 +568,9 @@ namespace MISTDO.Web.Views.TrainerDashboard
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Support(Support support, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
         {
-
-
-
             if (ModelState.IsValid)
             {
               
-
-
-
                 _context.Add(support);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Support));

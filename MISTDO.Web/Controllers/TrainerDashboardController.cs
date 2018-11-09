@@ -307,6 +307,31 @@ namespace MISTDO.Web.Controllers
 
         }
 
+        public async Task<IActionResult> SupportTrainees()
+        {
+            var support = await Traineedbcontext.TraineeSupports.ToListAsync();
+            return View(support);
+        }
+        public async Task<IActionResult> SupportDetails(int? id)
+        {
+            if (id == null)
+            {
+                return View(await Traineedbcontext.TraineeSupports.ToListAsync());
+            }
+
+            var support = await Traineedbcontext.TraineeSupports.SingleOrDefaultAsync(m => m.SupportId == id);
+
+
+
+
+            if (support == null)
+            {
+                return NotFound();
+            }
+
+            return View(support);
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Profile(string id)

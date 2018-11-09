@@ -23,7 +23,7 @@
             </li>
 
             <li class="nav-item">
-                <a asp-controller="TrainerDashboard" asp-action="Profile" >
+                <a asp-controller="TrainerDashboard" asp-action="Profile">
                     <span class="icon-holder">
                         <i class="ti-user"></i>
                     </span>
@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a asp-controller="TrainerDashboard" asp-action="Trainees" >
+                <a asp-controller="TrainerDashboard" asp-action="Trainees">
                     <span class="icon-holder">
                         <i class="ti-id-badge"></i>
                     </span>
@@ -62,14 +62,26 @@
                     <span class="title">Notification </span>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a asp-controller="TrainerDashboard" asp-action="Support">
+            <li class="nav-item dropdown ">
+                <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder">
                         <i class="ti-help"></i>
                     </span>
-                    <span class="title">Help Support </span>
+                    <span class="title">Help Support</span>
+                    <span class="arrow">
+                        <i class="ti-angle-right"></i>
+                    </span>
                 </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a asp-controller="TrainerDashboard" asp-action="Support"> Create Support Ticket</a>
+                    </li>
+                    <li>
+                        <a asp-controller="TrainerDashboard" asp-action="SupportTrainees">Trainees Support Ticket</a>
+                    </li>
+                </ul>
             </li>
-    </div>
+           
+</div>
 </div>
 <!-- Side Nav END -->

@@ -14,7 +14,7 @@
         </div>
         <ul class="side-nav-menu scrollable">
             <li class="nav-item active">
-                <a class="mrg-top-30" href="/administrator">
+                <a asp-controller="Administrator" asp-action="Dashboard">
                     <span class="icon-holder">
                         <i class="ti-dashboard"></i>
                     </span>
@@ -33,7 +33,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a asp-conroller="Administrator" asp-action="AllRegisteredTrainees"> All Registered Trainee</a>
+                        <a asp-controller="Administrator" asp-action="AllRegisteredTrainees"> All Registered Trainee</a>
                     </li>
                     <li>
                         <a asp-controller="Administrator" asp-action="AllModuleTrainees">Registered Module By Trainees</a>
@@ -57,7 +57,7 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a asp-controller="Administrator" asp-action="AllTrainingCenter">
+                <a asp-controller="Administrator" asp-action="AllCalender">
                     <span class="icon-holder">
                         <i class="ei-calendar-flip"></i>
                     </span>
@@ -92,15 +92,15 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a asp-conroller="Administrator" asp-action="NotifyTrainingCenter"> Training Centre Notification</a>
+                        <a asp-controller="Administrator" asp-action="TrainersNotification"> Training Centre Notification</a>
                     </li>
                     <li>
-                        <a asp-controller="Administrator" asp-action="NotifyTrainees">Trainees Notification</a>
+                        <a asp-controller="Administrator" asp-action="TraineesNotification">Trainees Notification</a>
                     </li>
                 </ul>
             </li>
             <li class="nav-item ">
-                <a href="/trainer/support">
+                <a asp-controller="Administrator" asp-action="Support">
                     <span class="icon-holder">
                         <i class="ti-help"></i>
                     </span>
