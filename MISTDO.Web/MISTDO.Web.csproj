@@ -204,6 +204,9 @@
     <Content Update="Views\TrainerDashboard\Details.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Trainees\DetailsCalender.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\TrainerDashboard\DetailsTraining.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -223,6 +226,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\TrainerDashboard\Trainees.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Trainees\Calender.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\TrainerDashboard\Training.cshtml">
