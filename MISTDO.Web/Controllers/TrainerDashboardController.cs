@@ -197,7 +197,8 @@ namespace MISTDO.Web.Controllers
                 TrainingCentreId = training.TrainingCentreId,
                 TrainingEndDate = training.TrainingEndDate,
                 TrainingName = training.TrainingName,
-                TrainingStartDate = training.TrainingStartDate
+                TrainingStartDate = training.TrainingStartDate,
+                
             };
 
             var local = dbcontext.Set<Training>()
@@ -222,13 +223,15 @@ namespace MISTDO.Web.Controllers
                 Owner = trainee,
                 Trainer = centre,
                 TrainerOrg = centre.CentreName,
-                TrainerOrgId = centre.OGISPId
+                TrainerOrgId = centre.OGISPId,
+                Course = module,
+                Training = training
 
             };
 
             dbcontext.Add(certificate);
 
-            await dbcontext.SaveChangesAsync();
+             dbcontext.SaveChanges();
 
             ViewBag.Training = updateTraining;
 

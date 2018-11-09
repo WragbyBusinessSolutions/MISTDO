@@ -28,6 +28,8 @@ namespace MISTDO.Web.Models
         public DateTime DateGenerated { get; set; }
         public virtual TraineeApplicationUser Owner { get; set; }
         public virtual ApplicationUser Trainer { get; set; }
+        public virtual Modules Course { get; set; }
+        public virtual Training Training { get; set; }
 
 
     }
