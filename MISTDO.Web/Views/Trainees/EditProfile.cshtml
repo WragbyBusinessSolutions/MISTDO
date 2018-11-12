@@ -1,4 +1,4 @@
-﻿@model MISTDO.Web.Models.TraineeApplicationUser
+﻿@model MISTDO.Web.Models.AccountViewModels.TraineeViewModel
 @{
     ViewData["Title"] = "Edit Profile";
     Layout = "_LayoutTraineeDashboard";
@@ -28,10 +28,31 @@
                         <div class="card-block">
                             <div class="mrg-top-40">
                                 <div class="row">
+                                    <script type="text/javascript">
+                                        function ShowPreview(input) {
+                                            if (input.files && input.files[0]) {
+                                                var ImageDir = new FileReader();
+                                                ImageDir.onload = function (e) {
+                                                    $('#ImagePreview').attr('src', e.target.result);
+                                                }
+                                                ImageDir.readAsDataURL(input.files[0]);
+                                            }
+                                        }
+                                    </script>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Profile Image</label>
+                                                <img class="mrg-top-30" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(ViewBag.Image))" alt="Take a new Passport" height="150" width="180">
+
+
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-8 ml-auto mr-auto">
-                                        <form asp-action="EditProfile">
+                                        <form asp-action="EditProfile" enctype="multipart/form-data">
                                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                            <input type="hidden" asp-for="Id" />
+                                            <input type="hidden" asp-for="TraineeId" />
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -93,6 +114,21 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        Select Your File To Upload #:
+                                                        <input type="file" name="ImageUpload" multiple="multiple" class="input-files" onchange="ShowPreview(this)" />
+                                                        @*<input type="file" name="ImageUpload" class="input-files" onchange="ShowPreview(this)"/>*@
+                                                        @*<input asp-for="ImageUpload" class="form-control"/>*@
+                                                        <img id="ImagePreview" height="200" />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
 
                                             <div class="row">
 

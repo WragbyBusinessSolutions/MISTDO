@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,9 @@ namespace MISTDO.Web.Extensions
             services.TryAddScoped<UserManager<TUser>, AspNetUserManager<TUser>>();
             services.TryAddScoped<SignInManager<TUser>, SignInManager<TUser>>();
             services.TryAddScoped<RoleManager<TRole>, AspNetRoleManager<TRole>>();
+            // services.TryAddScoped<TotpSecurityStampBasedTokenProvider<TUser>, EmailTokenProvider<TUser>>();
+          //  services.TryAddScoped<IOptions<DataProtectorTokenProvider<TUser>>, DataProtectorTokenProvider<Tuser'>>();
+
 
             if (setupAction != null)
                 services.Configure(setupAction);
