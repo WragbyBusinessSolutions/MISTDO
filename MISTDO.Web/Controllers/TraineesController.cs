@@ -34,7 +34,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
         private readonly UserManager<TraineeApplicationUser> _userManager;
         private readonly SignInManager<TraineeApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
-       
+
         public TraineeApplicationDbContext dbcontext { get; }
         public IExcelToTraineeService _exceltoTrainee { get; }
 
@@ -42,7 +42,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
         private readonly IHostingEnvironment _envt;
         public ITrainerService _trainer { get; }
-        
+
         public TraineesController(UserManager<TraineeApplicationUser> userManager,
             SignInManager<TraineeApplicationUser> signInManager,
             IEmailSender emailSender,
@@ -57,20 +57,20 @@ namespace MISTDO.Web.Views.TrainerDashboard
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
-           
+
         }
 
         // GET: Trainees
         public async Task<IActionResult> Index()
         {
-            
+
             var trainings = await _trainer.GetTrainee();
             foreach (var item in trainings)
             {
-                
+
                 ViewBag.TrainerCenter = item.TrainingCentreId;
             }
-            
+
 
             return View(await _context.Users.ToListAsync());
         }
@@ -86,7 +86,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 return View(await _context.Notifications.ToListAsync());
             }
 
-            var notification = await _context.Notifications.SingleOrDefaultAsync(m => m.NotificationId== id);
+            var notification = await _context.Notifications.SingleOrDefaultAsync(m => m.NotificationId == id);
 
 
 
@@ -124,6 +124,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
         }
 
+        [HttpGet]
         // GET: Trainee/Edit/5
         public async Task<IActionResult> EditProfile(string id)
         {
@@ -140,44 +141,76 @@ namespace MISTDO.Web.Views.TrainerDashboard
             {
                 return NotFound();
             }
-            return View(trainee);
+          //  Stream stream = new MemoryStream(trainee.ImageUpload);
+         //   Microsoft.AspNetCore.Http.IFormFile file = new FormFile(stream, 0, stream.Length, trainee.FirstName, trainee.LastName);
+            TraineeViewModel model = new TraineeViewModel
+            {
+                TraineeId = trainee.Id,
+                CompanyAddress = trainee.CompanyAddress,
+                CompanyName = trainee.CompanyName,
+                PhoneNumber = trainee.PhoneNumber,
+                Email = trainee.Email,
+                UserAddress = trainee.FirstName,
+                LastName = trainee.LastName,
+                FirstName = trainee.FirstName,
+            //    ImageUpload = file
+            };
+
+            ViewBag.Image = trainee.ImageUpload;
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditProfile(string id, TraineeViewModel model)
         {
-            var user = await _userManager.GetUserAsync(User);
-            id = user.Id;
+            
+                byte[] imagebyte = null;
+                if (model.ImageUpload != null)
 
-            if (id != model.TraineeId)
-            {
-                return NotFound();
+                {
+                    if (model.ImageUpload.Length > 0)
+
+                    //Convert Image to byte and save to database
+
+                    {
+
+                        using (var fs1 = model.ImageUpload.OpenReadStream())
+                        using (var ms1 = new MemoryStream())
+                        {
+                            fs1.CopyTo(ms1);
+                            imagebyte = ms1.ToArray();
+
+
+                        }
+                    }
+
+                }
+            var AppUser = await _userManager.GetUserAsync(User);
+
+
+            AppUser.Id = model.TraineeId;
+            AppUser.CompanyAddress = model.CompanyAddress;
+            AppUser.CompanyName = model.CompanyName;
+            AppUser.FirstName = model.FirstName;
+            AppUser.LastName = model.LastName;
+            AppUser.PhoneNumber = model.PhoneNumber;
+            AppUser.UserAddress = model.UserAddress;
+            AppUser.Email = model.Email;
+            AppUser.ImageUpload = imagebyte;
+
+               
+
+            var idResult = await _userManager.UpdateAsync(AppUser);
+
+
+            return RedirectToAction(nameof(Profile));
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(model);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TraineeExists(model.TraineeId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Profile));
-            }
-            return View(model);
+          
 
-        }
+        
+
         public async Task<IActionResult> Certificate(string id)
         {
             //var user = await _userManager.GetUserAsync(User);
