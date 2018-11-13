@@ -178,6 +178,11 @@ namespace MISTDO.Web.Controllers
               var  trainee = await _traineeuserManager.FindByIdAsync(traineeid);
             var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
 
+            if (training.CertificateId != null)
+            {
+                return Content("Cert already Generated");
+            }
+
             var CertId = Helpers.GetCertId.RandomString(5);
 
             ViewBag.Trainee = trainee;
@@ -224,8 +229,8 @@ namespace MISTDO.Web.Controllers
                 Trainer = centre,
                 TrainerOrg = centre.CentreName,
                 TrainerOrgId = centre.OGISPId,
-                Course = module,
-                Training = training
+              //  Course = module,
+              //  Training = training
 
             };
 
