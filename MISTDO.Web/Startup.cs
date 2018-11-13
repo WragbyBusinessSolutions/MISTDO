@@ -52,11 +52,11 @@ namespace MISTDO.Web
             {
               
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
-                options.LoginPath = "/trainer/Login";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+                options.LoginPath = "/Home/Index";
 
-                options.LogoutPath = "/trainer/Logout";
-                options.AccessDeniedPath = "/trainer/AccessDenied";
+                options.LogoutPath = "/Home/Index";
+                options.AccessDeniedPath = "/Home/Index";
                 options.SlidingExpiration = true;
             });
             services.AddDistributedMemoryCache();

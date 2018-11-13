@@ -34,20 +34,15 @@ namespace MISTDO.Web.Services
 
                     traineeFromExcel.FirstName = ws.Cells[rw, 1].Value.ToString();
                     traineeFromExcel.LastName = ws.Cells[rw, 2].Value.ToString();
-                    traineeFromExcel.Email = ws.Cells[rw, 3].Value.ToString();
-                    traineeFromExcel.PhoneNumber = ws.Cells[rw, 4].Value.ToString();
-                    traineeFromExcel.CompanyName = ws.Cells[rw, 5].Value.ToString();
-                    traineeFromExcel.CompanyAddress= ws.Cells[rw, 6].Value.ToString();
-                    traineeFromExcel.UserAddress = ws.Cells[rw, 7].Value.ToString();
-                    //productFromExcel.TrainingCost = int.Parse(ws.Cells[rw, 2].Value.ToString());
-                    //productFromExcel.TrainingStartDate = DateTime.Parse(ws.Cells[rw, 3].Value.ToString());
-                    //productFromExcel.TrainingEndDate= DateTime.Parse(ws.Cells[rw, 4].Value.ToString());
+                    traineeFromExcel.PasswordHash = ws.Cells[rw, 3].Value.ToString();
+                    traineeFromExcel.Email = ws.Cells[rw, 4].Value.ToString();
+                    traineeFromExcel.PhoneNumber = ws.Cells[rw, 5].Value.ToString();
+                    traineeFromExcel.CompanyName = ws.Cells[rw, 6].Value.ToString();
+                    traineeFromExcel.CompanyAddress= ws.Cells[rw, 7].Value.ToString();
+                    traineeFromExcel.UserAddress = ws.Cells[rw, 8].Value.ToString();
                     
-                    // productFromExcel.category = ws.Cells[rw, 7].Value.ToString();
                 }
-                //ProductContext productContext = new ProductContext();
-                //productContext.Products.Add(productFromExcel);
-                //productContext.SaveChanges();
+                
                 traineesFromExcel.Add(traineeFromExcel);
                 dbcontext.Users.Add(traineeFromExcel);
                 await dbcontext.SaveChangesAsync();
