@@ -52,7 +52,7 @@ namespace MISTDO.Web
             {
               
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
                 options.LoginPath = "/Home/Index";
 
                 options.LogoutPath = "/Home/Index";
