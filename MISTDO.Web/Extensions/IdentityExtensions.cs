@@ -26,7 +26,7 @@ namespace MISTDO.Web.Extensions
             services.TryAddScoped<SignInManager<TUser>, SignInManager<TUser>>();
             services.TryAddScoped<RoleManager<TRole>, AspNetRoleManager<TRole>>();
             // services.TryAddScoped<TotpSecurityStampBasedTokenProvider<TUser>, EmailTokenProvider<TUser>>();
-          //  services.TryAddScoped<IOptions<DataProtectorTokenProvider<TUser>>, DataProtectorTokenProvider<Tuser'>>();
+            services.TryAddScoped<IUserTwoFactorTokenProvider<TUser>, DataProtectorTokenProvider<TUser>>();
 
 
             if (setupAction != null)

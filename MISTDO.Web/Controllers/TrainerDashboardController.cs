@@ -541,7 +541,7 @@ namespace MISTDO.Web.Controllers
 
             foreach (var item in modules)
 
-                modulesList.Add(new SelectListItem { Text = item.Name + " #"+item.Cost, Value = item.Id.ToString() });
+                modulesList.Add(new SelectListItem { Text = item.Name , Value = item.Id.ToString() });
                 
             ViewBag.modules = modulesList;
 
@@ -994,7 +994,7 @@ namespace MISTDO.Web.Controllers
                 var result = await _traineeuserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var code = await _traineeuserManager.GenerateEmailConfirmationTokenAsync(user);
+                  var code = await _traineeuserManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
