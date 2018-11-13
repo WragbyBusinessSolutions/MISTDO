@@ -172,7 +172,7 @@ namespace MISTDO.Web.Controllers
        
         public async Task<IActionResult> ViewCertificate(string traineeid, string moduleid)
         {
-            var training = dbcontext.Trainings.FirstOrDefault(t => t.TraineeId == traineeid && t.ModuleId == moduleid);
+            var training = dbcontext.Trainings.FirstOrDefault(t => t.TraineeId == traineeid && t.ModuleId == moduleid && t.TrainingCentreId == _usermanager.GetUserId(User));
                         var centre = await _usermanager.FindByIdAsync(training.TrainingCentreId);
 
               var  trainee = await _traineeuserManager.FindByIdAsync(traineeid);
@@ -203,12 +203,12 @@ namespace MISTDO.Web.Controllers
                 TrainingEndDate = training.TrainingEndDate,
                 TrainingName = training.TrainingName,
                 TrainingStartDate = training.TrainingStartDate,
-                
+
             };
 
             var local = dbcontext.Set<Training>()
     .Local
-    .FirstOrDefault(entry => entry.Id.Equals(updateTraining.Id));
+    .FirstOrDefault(entry => entry.Id == updateTraining.Id);
 
             // check if local is not null 
             if (local != null) // I'm using a extension method
@@ -219,6 +219,7 @@ namespace MISTDO.Web.Controllers
             // set Modified flag in your entry
             dbcontext.Entry(updateTraining).State = EntityState.Modified;
 
+            dbcontext.SaveChanges();
             // save 
             Certificate certificate = new Certificate
             {
@@ -236,7 +237,7 @@ namespace MISTDO.Web.Controllers
 
             dbcontext.Add(certificate);
 
-             dbcontext.SaveChanges();
+         await    dbcontext.SaveChangesAsync();
 
             ViewBag.Training = updateTraining;
 
@@ -302,7 +303,7 @@ namespace MISTDO.Web.Controllers
 
             if (ModelState.IsValid)
             {
-
+               
 
                 dbcontext.Add(support);
                 await dbcontext.SaveChangesAsync();
@@ -999,9 +1000,9 @@ namespace MISTDO.Web.Controllers
                 var result = await _traineeuserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                  var code = await _traineeuserManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                  //var code = await _traineeuserManager.GenerateEmailConfirmationTokenAsync(user);
+                  //  var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                  //  var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
 
 

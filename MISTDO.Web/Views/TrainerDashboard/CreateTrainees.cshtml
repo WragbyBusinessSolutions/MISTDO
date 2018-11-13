@@ -18,6 +18,17 @@
                 <a asp-action="Create">Create New</a>
             </p>*@
             </div>
+            <script type="text/javascript">
+                                        function ShowPreview(input) {
+                                            if (input.files && input.files[0]) {
+                                                var ImageDir = new FileReader();
+                                                ImageDir.onload = function (e) {
+                                                    $('#ImagePreview').attr('src', e.target.result);
+                                                }
+                                                ImageDir.readAsDataURL(input.files[0]);
+                                            }
+                                        }
+            </script>
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
@@ -75,30 +86,40 @@
                                 </div>
 
 
-                                <div class="row">
-                                    <span class="span4">
+                                <div class="form-group">
+                                    @*<span class="span4">
                                         <input type="file" name="ImageUpload" multiple="multiple" class="input-files" />
-                                    </span>
+                                    </span>*@
+                                     <div class="col-4" align="center">
+                                         <img id="ImagePreview" height="200" />
+                                    </div>
+                                    <div class="col-4" align="center">
+                                        Select Your File To Upload #:
+                                        <input type="file" name="ImageUpload" multiple="multiple" class="input-files" onchange="ShowPreview(this)" />
+                                    </div>
+                                   
+                                    
+                                  
 
                                 </div>
 
 
 
                                 @*<div class="form-group">
-            <label asp-for="FirstFinger" class="control-label"></label>
-            <input asp-for="FirstFinger" class="form-control" />
-            <span asp-validation-for="FirstFinger" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="MiddleFinger" class="control-label"></label>
-            <input asp-for="MiddleFinger" class="form-control" />
-            <span asp-validation-for="MiddleFinger" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="LastFinger" class="control-label"></label>
-            <input asp-for="LastFinger" class="form-control" />
-            <span asp-validation-for="LastFinger" class="text-danger"></span>
-        </div>*@
+                                <label asp-for="FirstFinger" class="control-label"></label>
+                                <input asp-for="FirstFinger" class="form-control" />
+                                <span asp-validation-for="FirstFinger" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="MiddleFinger" class="control-label"></label>
+                                <input asp-for="MiddleFinger" class="form-control" />
+                                <span asp-validation-for="MiddleFinger" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LastFinger" class="control-label"></label>
+                                <input asp-for="LastFinger" class="form-control" />
+                                <span asp-validation-for="LastFinger" class="text-danger"></span>
+                            </div>*@
                                 <div class="form-group">
                                     <input type="submit" value="Create" class="btn btn-default" />
                                 </div>
