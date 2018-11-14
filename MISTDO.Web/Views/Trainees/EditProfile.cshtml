@@ -39,21 +39,20 @@
                                             }
                                         }
                                     </script>
-                                    
-                                    <div class="col-md-8 ml-auto mr-auto">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-
-                                                    <div class="col-4" align="center">
-                                                        <label class="control-label">Profile Image</label>
-                                                        <img class="mrg-top-30" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(ViewBag.Image))" alt="Take a new Passport" height="150" width="180">
-
-                                                    </div>
-
-                                                </div>
+                                    <div class="col-4">
+                                        <div class="widget-profile-1 card">
+                                            <div class="profile border bottom">
+                                                <img class="mrg-top-30" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(ViewBag.Image))" alt="Take a new Passport" height="150" width="180">
+                                                <p>
+                                                    <h4 class="mrg-top-20 no-mrg-btm text-semibold">Profile Image </h4>
+                                                </p>
                                             </div>
                                         </div>
+
+                                    </div>
+
+                                    <div class="col-md-10 ml-auto mr-auto">
+
                                         <form asp-action="EditProfile" enctype="multipart/form-data">
                                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                             <input type="hidden" asp-for="TraineeId" />

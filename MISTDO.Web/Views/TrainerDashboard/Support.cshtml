@@ -31,7 +31,7 @@
             </div>
                </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="card">
                         <div class="card-block">
 
@@ -70,55 +70,91 @@
                     </div>
 
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-block">
+                <div class="col-md-7">
+                    
+                        
                             <div class="card">
-                                <div class="card-block">
-                                    <div class="table-overflow">
-                                        @*<form asp-action="Edit">
-                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                            
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label"> Issue</label>
-                                                        <input asp-for="Issue" class="form-control" />
-                                                       
+                                
+                                    
+                                        
+                                            <div class="container-fluid">
+                                                
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="card">
+                                                            <div class="card-block">
+                                                                <div class="table-overflow">
+                                                                    <table id="dt-opt" class="table table-lg table-hover">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    Recieved Date & Time
+                                                                                </th>
+                                                                                <th>
+                                                                                    @Html.DisplayNameFor(model => model.Subject)
+                                                                                </th>
+                                                                                <th>
+                                                                                    @Html.DisplayNameFor(model => model.Issue)
+                                                                                </th>
+                                                                                <th>
+                                                                                    @Html.DisplayNameFor(model => model.Response)
+                                                                                </th>
+                                                                                <th>
+                                                                                    @Html.DisplayNameFor(model => model.ResponseTimeStamp)
+                                                                                </th>
+
+
+                                                                                <th></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @{
+                                                                                // var data = ViewBag.Message as IEnumerable<MISTDO.Web.Models.Notification>;
+                                                                                var data = (IEnumerable<MISTDO.Web.Models.Support>)ViewBag.Message;
+                                                                            }
+                                                                            @foreach (var item in data)
+                                                                            {
+                                                                                <tr>
+                                                                                    <th>
+                                                                                        @Html.DisplayFor(model => item.SupportTimeStamp)
+                                                                                    </th>
+                                                                                    <td>
+                                                                                        @Html.DisplayFor(modelItem => item.Subject)
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @Html.DisplayFor(modelItem => item.Issue)
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @Html.DisplayFor(modelItem => item.Response)
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @Html.DisplayFor(modelItem => item.SupportTimeStamp)
+                                                                                    </td>
+
+
+                                                                                    <td>
+                                                                                        
+                                                                                         <a asp-action="SupportDetails" asp-route-id="@item.SupportId">Details</a>
+
+
+                                                                                    </td>
+                                                                                </tr>
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
                                                     </div>
-
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label"> Subject</label>
-                                                        <input asp-for="Subject" class="form-control" />
-                                                        
-                                                    </div>
-
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Created When?</label>
-                                                        <input asp-for="SupportTimeStamp" class="form-control" />
-                                                        
-                                                    </div>
+                                                                           
 
-                                                </div>
-                                            </div>
-                                            
-
-
-
-                                        </form>*@
-                                    </div>
-
-                                </div>
+                                
                             </div>
-                        </div>
-                    </div>
+                        
+                    
                 </div>
             </div>
         </div>

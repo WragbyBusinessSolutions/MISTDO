@@ -1,7 +1,7 @@
-﻿@model MISTDO.Web.Models.Support
+﻿@model MISTDO.Web.Models.Notification
 @{
-    ViewData["Title"] = "Support Details";
-     Layout = "_LayoutAdminDashboard";
+    ViewData["Title"] = "Notification Details";
+     Layout = "_LayoutDashboard";
 }
 
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
@@ -10,7 +10,7 @@
 
 <div class="page-container">
     <!-- Header START -->
-    @await Html.PartialAsync("_LayoutHeaderAdmin");
+    @await Html.PartialAsync("_LayoutHeader");
 
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
@@ -18,9 +18,9 @@
         <div class="container-fluid">
             <div class="page-title">
                 <p>
-                    <a asp-action="Support">Back</a>
+                    <a asp-action="Notification">Back</a>
                 </p>
-                
+                <h4>Notification </h4>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -29,60 +29,28 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-heading border bottom">
-                                    <h4 class="card-title">Support Ticket Details</h4>
+                                    <h4 class="card-title">General Info</h4>
                                 </div>
                                 <div class="card-block">
-
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Support Ticket Recieved Date</b></p>
+                                            <p class="mrg-top-10 text-dark"> <b>Notification Info</b></p>
                                         </div>
                                         <div class="col-md-6">
                                             <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10">@Html.DisplayFor(model => model.SupportTimeStamp)</p>
+                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.NotificationMessage)</p>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Subject</b></p>
+                                            <p class="mrg-top-10 text-dark"> <b>Notification Recieved</b></p>
                                         </div>
                                         <div class="col-md-6">
                                             <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.Subject)</p>
+                                            <p class="mrg-top-10">@Html.DisplayFor(model => model.NotificationDateTime)</p>
                                         </div>
                                     </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Support Issue</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10">@Html.DisplayFor(model => model.Issue)</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Response</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10">@Html.DisplayFor(model => model.Response)</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Response Date and Time</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10">@Html.DisplayFor(model => model.ResponseTimeStamp)</p>
-                                        </div>
-                                    </div>
-
 
 
 

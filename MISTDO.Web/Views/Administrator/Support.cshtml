@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="page-title">
                 <h4> Support Tickets From Training Centres</h4>
-                
+
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -29,13 +29,19 @@
                                     <thead>
                                         <tr>
                                             <th>
+                                                Recieved Date && Time
+                                            </th>
+                                            <th>
                                                 @Html.DisplayNameFor(model => model.Subject)
                                             </th>
                                             <th>
                                                 @Html.DisplayNameFor(model => model.Issue)
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.SupportTimeStamp)
+                                                @Html.DisplayNameFor(model => model.Response)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.ResponseTimeStamp)
                                             </th>
 
 
@@ -46,6 +52,9 @@
                                         @foreach (var item in Model)
                                         {
                                         <tr>
+                                            <th>
+                                                @Html.DisplayFor(model => item.SupportTimeStamp)
+                                            </th>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Subject)
                                             </td>
@@ -53,13 +62,17 @@
                                                 @Html.DisplayFor(modelItem => item.Issue)
                                             </td>
                                             <td>
+                                                @Html.DisplayFor(modelItem => item.Response)
+                                            </td>
+                                            <td>
                                                 @Html.DisplayFor(modelItem => item.SupportTimeStamp)
                                             </td>
 
 
                                             <td>
+                                                <a asp-action="SupportUpdate" asp-route-id="@item.SupportId">Update</a>
+                                                | <a asp-action="SupportDetails" asp-route-id="@item.SupportId">Details</a>
 
-                                                <a asp-action="SupportDetails" asp-route-id="@item.SupportId">Details</a> |
 
                                             </td>
                                         </tr>
@@ -73,7 +86,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>https://localhost:44369/administrator/support
 
     <!-- Content Wrapper END -->
     <!-- Footer START -->

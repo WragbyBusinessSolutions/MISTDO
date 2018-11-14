@@ -3,118 +3,130 @@
     ViewData["Title"] = "All Module Registered Trainees";
     Layout = "_LayoutAdminDashboard";
 }
-<link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
-<!-- Page Container START -->
-<div class="page-container">
-    <!-- Header START -->
-    @await Html.PartialAsync("_LayoutHeader");
 
-    <!-- Theme Toggle Button END -->
-    <!-- Content Wrapper START -->
-    <div class="main-content">
-        <div class="container-fluid">
+@inject UserManager<TraineeApplicationUser> userManager;
 
-            <div class="page-title">
-                <h4>All Registered Trainees For Training various Modules</h4>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-block">
-                            <div class="table-overflow">
-                                <table id="dt-opt" class="table table-lg table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                Trainee ID
-                                            </th>
-                                            <th>
-                                                Training Name
-                                            </th>
-                                            <th>
-                                                Training Center ID
-                                            </th>
-                                            <th>
-                                                Certificate ID
-                                            </th>
-                                            <th>
-                                                Date Registered
-                                            </th>
-                                            <th>
-                                                Training Start Date
-                                            </th>
-                                            <th>
-                                                Training End Date
-                                            </th>
-                                            <th>
-                                                Certificate Generation Date
-                                            </th>
-                                            <th>Other Options</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model)
-                                        {
+    <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+    <!-- Page Container START -->
+    <div class="page-container">
+        <!-- Header START -->
+        @await Html.PartialAsync("_LayoutHeader");
 
+        <!-- Theme Toggle Button END -->
+        <!-- Content Wrapper START -->
+        <div class="main-content">
+            <div class="container-fluid">
+                @{
+
+                var user = await userManager.GetUserAsync(User);
+                
+                    
+                }
+                <div class="page-title">
+                    <h4>All Registered Trainees For Training various Modules</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-overflow">
+                                    <table id="dt-opt" class="table table-lg table-hover">
+                                        <thead>
                                             <tr>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.TraineeId)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.TrainingName)
-                                                </td>
                                                 <th>
-                                                    @Html.DisplayFor(model => item.TrainingCentreId)
+                                                    Trainee ID
                                                 </th>
                                                 <th>
-                                                    @Html.DisplayFor(model => item.CertificateId)
-                                                </th>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.DateCreated)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.TrainingStartDate)
-                                                </td>
-                                                <th>
-                                                    @Html.DisplayFor(model => item.TrainingEndDate)
+                                                    Training Name
                                                 </th>
                                                 <th>
-                                                    @Html.DisplayFor(model => item.CertGenDate)
+                                                    Training Center ID
                                                 </th>
-                                                <td>
-                                                    <a asp-action="Delete" asp-route-id="@item.Id">Details</a>
-                                                </td>
+                                                <th>
+                                                    Certificate ID
+                                                </th>
+                                                <th>
+                                                    Date Registered
+                                                </th>
+                                                <th>
+                                                    Training Start Date
+                                                </th>
+                                                <th>
+                                                    Training End Date
+                                                </th>
+                                                <th>
+                                                    Certificate Generation Date
+                                                </th>
+                                                <th>Other Options</th>
                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
 
-                                        }
-                                    </tbody>
-                                </table>
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(model => item.TraineeId)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model=> item.TrainingName)
+                                                    </td>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.TrainingCentreId)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.CertificateId)
+                                                    </th>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.DateCreated)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate)
+                                                    </td>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.TrainingEndDate)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.CertGenDate)
+                                                    </th>
+                                                    <td>
+                                                        @{
+                                                            var t = item.TraineeId;
+
+                                                            <a asp-action="DetailsTrainees" asp-route-id="@item.TraineeId">Details</a>
+                                                        }
+                                                    </td>
+                                                </tr>
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Content Wrapper END -->
-    <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
+        <!-- Content Wrapper END -->
+        <!-- Footer START -->
+        <footer class="content-footer">
+            <div class="footer">
+                <div class="copyright">
+                    <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                    <span class="go-right">
+                        <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                        <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                    </span>
+                </div>
             </div>
-        </div>
-    </footer>
-    <!-- Footer END -->
-    <!-- Page Container END -->
-</div>
-<script src="~/dist/assets/js/vendor.js"></script>
-<script src="~/dist/assets/js/app.min.js"></script>
-<!-- page plugins js -->
-<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
-<!-- page js -->
-<script src="~/dist/assets/js/table/data-table.js"></script>
+        </footer>
+        <!-- Footer END -->
+        <!-- Page Container END -->
+    </div>
+    <script src="~/dist/assets/js/vendor.js"></script>
+    <script src="~/dist/assets/js/app.min.js"></script>
+    <!-- page plugins js -->
+    <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <!-- page js -->
+    <script src="~/dist/assets/js/table/data-table.js"></script>

@@ -23,9 +23,8 @@ namespace MISTDO.Web.Controllers
     public class TrainerDashboardController : Controller
     {
         private readonly UserManager<ApplicationUser> _usermanager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-
         private readonly UserManager<TraineeApplicationUser> _traineeuserManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
 
         public ITrainerService _trainer { get; }
@@ -39,12 +38,12 @@ namespace MISTDO.Web.Controllers
         public IExcelToTraineeService _exceltoTrainee { get; }
 
 
-        public TrainerDashboardController(ITrainerService trainer, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext, AdminApplicationDbContext admindb, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, UserManager<TraineeApplicationUser> traineeuserManager,
+        public TrainerDashboardController(ITrainerService trainer, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext, AdminApplicationDbContext admindb, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager,  UserManager<TraineeApplicationUser> traineeuserManager,
              IHostingEnvironment env,  IExcelToTrainingService excelToTrainingService,  IExcelToTraineeService excelToTraineeService, IEmailSender emailSender )
         {
             _usermanager = userManager;
-            _signInManager = signInManager;
             _traineeuserManager = traineeuserManager;
+            _signInManager = signInManager;
             _trainer = trainer;
             dbcontext = context;
             Traineedbcontext = traineedbcontext;
@@ -287,9 +286,9 @@ namespace MISTDO.Web.Controllers
 
         [HttpGet]
         //GET: Trainees/Support
-        public IActionResult Support(int id)
+        public async Task<IActionResult> Support(int id)
         {
-
+            ViewBag.Message = await dbcontext.TrainerSupports.ToListAsync();
 
             return View();
         }
@@ -352,7 +351,7 @@ namespace MISTDO.Web.Controllers
 
             var trainer = await dbcontext.Users.SingleOrDefaultAsync(m => m.Id == id);
 
-
+            
 
 
             if (trainer == null)

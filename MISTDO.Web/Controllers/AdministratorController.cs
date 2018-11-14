@@ -10,6 +10,8 @@ using MISTDO.Web.Services;
 using MISTDO.Web.Models;
 using Microsoft.Azure.KeyVault.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MISTDO.Web.Controllers
 { 
@@ -21,8 +23,14 @@ namespace MISTDO.Web.Controllers
         private readonly ApplicationDbContext dbcontext;
         private readonly TraineeApplicationDbContext Traineedbcontext;
 
-        public AdministratorController(ITrainerService trainer, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext, AdminApplicationDbContext _admindbcontext)
+        //user managers
+        private readonly UserManager<ApplicationUser> _usermanager;
+        private readonly UserManager<TraineeApplicationUser> _traineeuserManager;
+
+        public AdministratorController(ITrainerService trainer, UserManager<ApplicationUser> userManager, UserManager<TraineeApplicationUser> traineeuserManager, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext, AdminApplicationDbContext _admindbcontext)
         {
+            _usermanager = userManager;
+            _traineeuserManager = traineeuserManager;
             _trainer = trainer;
             admindbcontext = _admindbcontext;
             dbcontext = context;
@@ -47,13 +55,19 @@ namespace MISTDO.Web.Controllers
         {
             var certs = await _trainer.GetAllCertificates();
 
-         
+            var owners = new List<TraineeApplicationUser>();
+            foreach (var item in certs)
+            {
+                owners.Add(item.Owner);
+            }
+            ViewBag.Owners = owners;
             return View(certs.ToList());
         }
 
         public async Task<IActionResult> AllCalender()
         {
-
+            
+            
             return View(await dbcontext.Calenders.ToListAsync());
         }
 
@@ -66,6 +80,8 @@ namespace MISTDO.Web.Controllers
 
             var calenders = await dbcontext.Calenders
                 .SingleOrDefaultAsync(m => m.Id == id);
+           var trainer = await dbcontext.Users.SingleOrDefaultAsync(m => m.Id == calenders.TrainingCentreId);
+            ViewBag.center = trainer.CentreName;
             if (calenders == null)
             {
                 return NotFound();
@@ -80,7 +96,50 @@ namespace MISTDO.Web.Controllers
 
             return View(allRegistredtrainee);
         }
+        public async Task<IActionResult> DetailsModule(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var tcentre = await _trainer.GetAllTrainingCenters();
 
+            foreach (var item in tcentre)
+
+                ViewBag.Tcenter = item.CentreName;
+
+            var training = await dbcontext.Trainings
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (training == null)
+            {
+                return NotFound();
+            }
+
+            return View(training);
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> DetailsTrainingCenter(string id)
+        {
+           
+            if (id == null)
+            {
+                return View(await dbcontext.Users.ToListAsync());
+            }
+
+            var trainer = await dbcontext.Users.SingleOrDefaultAsync(m => m.Id == id);
+
+
+            
+
+            if (trainer == null)
+            {
+                return NotFound();
+            }
+
+            return View(trainer);
+
+        }
         public async Task<IActionResult> DetailsTrainees(string id)
         {
 
@@ -112,7 +171,8 @@ namespace MISTDO.Web.Controllers
         {
 
             var allModuletrainee = await _trainer.GetAllModuleTrainees();
-
+            
+            
             return View(allModuletrainee);
         }
 
@@ -127,7 +187,9 @@ namespace MISTDO.Web.Controllers
         // GET: Training/Create
         public async Task<IActionResult> TrainersNotification()
         {
-            
+            var notify = await dbcontext.Notifications.ToListAsync();
+           
+             ViewBag.Message = await dbcontext.Notifications.ToListAsync();
             return View();
         }
 
@@ -144,7 +206,7 @@ namespace MISTDO.Web.Controllers
                 {
 
                     NotificationMessage = notification.NotificationMessage,
-                    NotificationDateTime = notification.NotificationDateTime
+                    NotificationDateTime = DateTime.Now
 
 
                 };
@@ -159,7 +221,9 @@ namespace MISTDO.Web.Controllers
 
         public async Task<IActionResult> TraineesNotification()
         {
+            var notify = await Traineedbcontext.Notifications.ToListAsync();
 
+            ViewBag.Message = await Traineedbcontext.Notifications.ToListAsync();
             return View();
         }
 
@@ -212,6 +276,77 @@ namespace MISTDO.Web.Controllers
             }
 
             return View(support);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SupportUpdate(int id)
+        {
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
+
+            var support= await dbcontext.TrainerSupports.SingleOrDefaultAsync(m => m.SupportId == id);
+            if (support == null)
+            {
+                return NotFound();
+            }
+            return View(support);
+        }
+
+        // POST: Training/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SupportUpdate(int id, Support support)
+        {
+            var user = await _usermanager.GetUserAsync(User);
+            // id = user.Id;
+            support.SupportId = id;
+            if (id != support.SupportId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var train = new Support()
+                    {
+                        
+                        SupportId = support.SupportId,
+                        Subject = support.Subject,
+                        Issue = support.Issue,
+                        Response = support.Response,
+                        SupportTimeStamp = DateTime.Now,
+                        ResponseTimeStamp = DateTime.Now
+
+
+                    };
+                    dbcontext.Update(train);
+                    await dbcontext.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!SupportExists(support.SupportId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Support));
+            }
+            return View(support);
+        }
+
+        private bool SupportExists(int id)
+        {
+            return dbcontext.TrainerSupports.Any(e => e.SupportId == id);
         }
 
 

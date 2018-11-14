@@ -168,6 +168,15 @@
     <Folder Include="wwwroot\productfiles\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Views\Administrator\DetailsModule.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Administrator\DetailsTrainingCenter.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Administrator\TrainersNotificationDetails.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Administrator\SupportTrainees.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -187,6 +196,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Administrator\DetailsTrainees.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Administrator\SupportUpdate.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Shared\_LayoutHeaderTrainee.cshtml">

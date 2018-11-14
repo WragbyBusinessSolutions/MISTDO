@@ -9,11 +9,16 @@
     @await Html.PartialAsync("_LayoutHeaderAdmin");
 
     <div class="main-content">
-        
-        
+        <div class="col-md-12">
+           
+
+
+        </div>
+
         <div class="container-fluid">
-            
+
             <div class="page-title">
+                
                 <h4>Certificates</h4>
             </div>
             <div class="row">
@@ -59,8 +64,16 @@
                                                 </td>
                                                 <td>
                                                     <div class="relative mrg-top-15">
-                                                        <span class="status online"> </span>
-                                                        <span class="pdd-left-20">@Model[i].CertStatus</span>
+
+
+                                                        @if (Model[i].CertStatus == "Valid")
+                                                        {
+                                                            <span class="status online"> </span>
+
+                                                            <span class="pdd-left-20">@Model[i].CertStatus</span>
+
+                                                        }
+
                                                     </div>
                                                 </td>
                                                 <td>
@@ -80,9 +93,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="mrg-top-10 text-center">
-                                                        <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
-                                                            <i class="ti-more-alt"></i>
-                                                        </button>
+                                                        @*<a asp-action="ViewCertificate" asp-route-moduleid="@Model[i].Course.Id"  asp-route-traineeid="@owners[i].Id "> Details </a>*@
                                                     </div>
                                                 </td>
                                             </tr>

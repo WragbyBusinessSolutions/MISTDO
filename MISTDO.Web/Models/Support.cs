@@ -12,7 +12,10 @@ namespace MISTDO.Web.Models
         public int SupportId { get; set; }
         public string Subject { get; set; }
         public string Issue { get; set; }
+        public string Response { get; set; }
         public DateTime SupportTimeStamp{ get; set; }
+
+        public DateTime ResponseTimeStamp { get; set; }
 
     }
 }

@@ -5,7 +5,7 @@
     ViewData["Title"] = "Details";
     Layout = "_LayoutDashboard";
 }
-
+@inject UserManager<ApplicationUser> userManager;
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
 
 <!-- Page Container START -->
@@ -19,12 +19,16 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
+                <p>
+                    <a asp-action="AllCalender">Back</a>
+                </p>
                 <h4>Training Details </h4>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        
+                       
+
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-heading border bottom">
@@ -41,30 +45,23 @@
                                             <p class="mrg-top-10"> @Html.DisplayFor(model => model.TrainingName)</p>
                                         </div>
                                     </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Module ID</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.ModuleId)</p>
-                                        </div>
-                                    </div>
+
+
 
                                     <hr />
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Training Centre ID</b></p>
+                                   
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p class="mrg-top-10 text-dark"> <b>Training Centre Name</b></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span class="status online mrg-top-10"></span>
+                                                <p class="mrg-top-10"> @ViewBag.center</p>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.TrainingCentreId)</p>
-                                        </div>
-                                    </div>
+                                          
 
 
-                                  
                                     <hr />
                                     <div class="row">
                                         <div class="col-md-3">

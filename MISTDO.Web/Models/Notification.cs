@@ -17,6 +17,9 @@ namespace MISTDO.Web.Models
         public string NotificationMessage { get; set; }
 
         [DisplayName("Notification Time")]
+        [DataType(DataType.Date)]
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime NotificationDateTime { get; set; }
 
     }
