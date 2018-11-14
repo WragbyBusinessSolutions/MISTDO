@@ -30,69 +30,131 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="card">
                         <div class="card-block">
 
                             <form asp-action="Support" enctype="multipart/form-data">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                
                                 <div class="form-group">
-                                    <label  class="control-label"> Support Date and Time</label>
-                                    <input asp-for="SupportTimeStamp" class="form-control" />
-                                    <span asp-validation-for="SupportTimeStamp" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label">Subject</label>
-                                        <input asp-for="Subject" class="form-control" />
-                                        <span asp-validation-for="Subject" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="Issue" class="control-label"></label>
-                                        <textarea asp-for="Issue" class="form-control" rows="4" placeholder="Type your message ..."></textarea>
-                                        <span asp-validation-for="Issue" class="text-danger"></span>
-                                    </div>
-
-
-
-
-
-
-
-                                    <div class="form-group">
-                                        <input type="submit" value="Create" class="btn btn-default" />
-                                    </div>
-</form>
-
-                        </div>
-
-
-
-                    </div>
-
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-block">
-                            <form asp-action="TraineeUpload" enctype="multipart/form-data">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <p><b>Side Information here</b></p>
-
-                                    </div>
+                                    <label class="control-label">Subject</label>
+                                    <input asp-for="Subject" class="form-control" />
+                                    <span asp-validation-for="Subject" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-10">
-
-                                    </div>
+                                    <label asp-for="Issue" class="control-label"></label>
+                                    <textarea asp-for="Issue" class="form-control" rows="4" placeholder="Type your message ..."></textarea>
+                                    <span asp-validation-for="Issue" class="text-danger"></span>
                                 </div>
 
 
+
+
+
+
+
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
                             </form>
+
                         </div>
+
+
+
                     </div>
+
                 </div>
+                <div class="col-md-7">
+
+
+                    <div class="card">
+
+
+
+                        <div class="container-fluid">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-block">
+                                            <div class="table-overflow">
+                                                <table id="dt-opt" class="table table-lg table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                Recieved Date & Time
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => model.Subject)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => model.Issue)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => model.Response)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => model.ResponseTimeStamp)
+                                                            </th>
+
+
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{
+                                                            // var data = ViewBag.Message as IEnumerable<MISTDO.Web.Models.Notification>;
+                                                            var data = (IEnumerable<MISTDO.Web.Models.Support>)ViewBag.Message;
+                                                        }
+                                                        @foreach (var item in data)
+                                                        {
+                                                            <tr>
+                                                                <th>
+                                                                    @Html.DisplayFor(model => item.SupportTimeStamp)
+                                                                </th>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Subject)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Issue)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Response)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.SupportTimeStamp)
+                                                                </td>
+
+
+                                                                <td>
+
+                                                                    
+
+
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
             </div>
         </div>
     </div>

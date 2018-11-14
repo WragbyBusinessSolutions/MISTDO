@@ -256,7 +256,7 @@ namespace MISTDO.Web.Controllers
         public async Task<IActionResult> Training()
         {
 
-            return View(await dbcontext.Calenders.ToListAsync());
+            return View(await dbcontext.Calenders.OrderByDescending(t => t.TrainingStartDate).ThenBy(d => d.TrainingStartDate.Day).ToListAsync());
         }
 
         public async Task<IActionResult> Notification()
@@ -312,6 +312,7 @@ namespace MISTDO.Web.Controllers
 
         }
 
+
         public async Task<IActionResult> SupportTrainees()
         {
             var support = await Traineedbcontext.TraineeSupports.ToListAsync();
@@ -336,6 +337,74 @@ namespace MISTDO.Web.Controllers
 
             return View(support);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> SupportUpdate(int id)
+        {
+
+
+            var support = await Traineedbcontext.TraineeSupports.SingleOrDefaultAsync(m => m.SupportId == id);
+            if (support == null)
+            {
+                return NotFound();
+            }
+            return View(support);
+        }
+
+        // POST: support/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SupportUpdate(int id, Support support)
+        {
+            var user = await _usermanager.GetUserAsync(User);
+            // id = user.Id;
+            support.SupportId = id;
+            if (id != support.SupportId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var train = new Support()
+                    {
+
+                        SupportId = support.SupportId,
+                        Subject = support.Subject,
+                        Issue = support.Issue,
+                        Response = support.Response,
+                        SupportTimeStamp = DateTime.Now,
+                        ResponseTimeStamp = DateTime.Now
+
+
+                    };
+                    Traineedbcontext.Update(train);
+                    await Traineedbcontext.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!SupportExists(support.SupportId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(SupportTrainees));
+            }
+            return View(support);
+        }
+        private bool SupportExists(int id)
+        {
+            return Traineedbcontext.TraineeSupports.Any(e => e.SupportId == id);
+        }
+
 
         [HttpGet]
         [AllowAnonymous]
@@ -501,7 +570,7 @@ namespace MISTDO.Web.Controllers
                         Id = training.Id,
                         TrainingCentreId = user.Id,
                         Venue = training.Venue,
-                        ModuleId = training.ModuleId,
+                        
                         TrainingStartDate = training.TrainingStartDate,
                         TraineeId = training.TraineeId,
                         Cost = training.Cost,
@@ -547,18 +616,25 @@ namespace MISTDO.Web.Controllers
             foreach (var item in modules)
 
                 modulesList.Add(new SelectListItem { Text = item.Name , Value = item.Id.ToString() });
+
                 
             ViewBag.modules = modulesList;
 
             ViewBag.modulecosts = modulescost;
 
-            
+
+            //var trainee = new List<SelectListItem>();
+            //var allRegisteredTrainees = await _trainer.GetTrainees();
+            //foreach (var item in allRegisteredTrainees)
+
+                
 
 
 
 
 
-            return View();
+
+                return View();
         }
 
         //[HttpPost]

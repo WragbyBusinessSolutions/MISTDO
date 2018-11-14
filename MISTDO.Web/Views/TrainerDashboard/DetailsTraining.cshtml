@@ -6,6 +6,7 @@
     Layout = "_LayoutDashboard";
 }
 
+@inject UserManager<ApplicationUser> userManager;
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
 
 <!-- Page Container START -->
@@ -22,16 +23,20 @@
                 <p>
                     <a asp-action="Training">Back</a>
                 </p>
-                <h4>Training Details </h4>
+               
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        
+                        @{
+                            var user = await userManager.GetUserAsync(User);
+
+
+                        }
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-heading border bottom">
-                                    <h4 class="card-title">General Info</h4>
+                                    <h4 class="card-title">Training Details</h4>
                                 </div>
                                 <div class="card-block">
 
@@ -44,30 +49,21 @@
                                             <p class="mrg-top-10"> @Html.DisplayFor(model => model.TrainingName)</p>
                                         </div>
                                     </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Module ID</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.ModuleId)</p>
-                                        </div>
-                                    </div>
+                                   
 
                                     <hr />
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Training Centre ID</b></p>
+                                            <p class="mrg-top-10 text-dark"> <b>Training Centre Name</b></p>
                                         </div>
                                         <div class="col-md-6">
                                             <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.TrainingCentreId)</p>
+                                            <p class="mrg-top-10"> @Html.DisplayFor(model => user.CompanyName)</p>
                                         </div>
                                     </div>
 
 
-                                  
+
                                     <hr />
                                     <div class="row">
                                         <div class="col-md-3">

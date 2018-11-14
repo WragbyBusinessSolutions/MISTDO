@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Support";
-     Layout = "_LayoutAdminDashboard";
+     Layout = "_LayoutDashboard";
 }
 
 
@@ -12,7 +12,7 @@
 
 <div class="page-container">
     <!-- Header START -->
-    @await Html.PartialAsync("_LayoutHeaderAdmin");
+    @await Html.PartialAsync("_LayoutHeader");
 
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
@@ -20,7 +20,7 @@
         <div class="container-fluid">
             <div class="page-title">
                 <p>
-                    <a asp-action="Support">Back</a>
+                    <a asp-action="SupportTrainees">Back</a>
                 </p>
                 <h4>Help Center</h4>
 

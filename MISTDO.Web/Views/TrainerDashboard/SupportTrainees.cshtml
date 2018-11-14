@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MISTDO.Web.Models.Support>
 @{
     ViewData["Title"] = "Support";
-     Layout = "_LayoutAdminDashboard";
+     Layout = "_LayoutDashboard";
 }
 
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
@@ -10,14 +10,14 @@
 
 <div class="page-container">
     <!-- Header START -->
-    @await Html.PartialAsync("_LayoutHeaderAdmin");
+    @await Html.PartialAsync("_LayoutHeader");
 
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                <h4> Support Tickets From Training Centres</h4>
+                <h4> Support Tickets From Trainees</h4>
                 
             </div>
             <div class="row">
@@ -29,10 +29,16 @@
                                     <thead>
                                         <tr>
                                             <th>
+                                                Support Recieved Date & Time
+                                            </th>
+                                            <th>
                                                 @Html.DisplayNameFor(model => model.Subject)
                                             </th>
                                             <th>
                                                 @Html.DisplayNameFor(model => model.Issue)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Response)
                                             </th>
                                             <th>
                                                 @Html.DisplayNameFor(model => model.SupportTimeStamp)
@@ -47,19 +53,25 @@
                                         {
                                         <tr>
                                             <td>
+                                                @Html.DisplayFor(modelItem => item.SupportTimeStamp)
+                                            </td>
+                                            <td>
                                                 @Html.DisplayFor(modelItem => item.Subject)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Issue)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.SupportTimeStamp)
+                                                @Html.DisplayFor(modelItem => item.Response)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ResponseTimeStamp)
                                             </td>
 
 
                                             <td>
-
-                                                <a asp-action="SupportDetails" asp-route-id="@item.SupportId">Details</a> |
+                                                <a asp-action="SupportUpdate" asp-route-id="@item.SupportId">Update</a>
+                                                | <a asp-action="SupportDetails" asp-route-id="@item.SupportId">Details</a>
 
                                             </td>
                                         </tr>

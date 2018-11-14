@@ -591,9 +591,9 @@ namespace MISTDO.Web.Views.TrainerDashboard
             }
         }
         //GET: Trainees/Support
-        public IActionResult Support()
+        public async Task<IActionResult> Support()
         {
-            TempData["Message"] = "";
+            ViewBag.Message = await _context.TraineeSupports.ToListAsync();
             return View();
         }
         // POST: Trainees/Suipport

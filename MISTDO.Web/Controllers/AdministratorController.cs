@@ -281,10 +281,7 @@ namespace MISTDO.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> SupportUpdate(int id)
         {
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
+           
 
             var support= await dbcontext.TrainerSupports.SingleOrDefaultAsync(m => m.SupportId == id);
             if (support == null)
@@ -294,7 +291,7 @@ namespace MISTDO.Web.Controllers
             return View(support);
         }
 
-        // POST: Training/Edit/5
+        // POST: support/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
