@@ -623,11 +623,12 @@ namespace MISTDO.Web.Controllers
             ViewBag.modulecosts = modulescost;
 
 
-            //var trainee = new List<SelectListItem>();
-            //var allRegisteredTrainees = await _trainer.GetTrainees();
-            //foreach (var item in allRegisteredTrainees)
+            var trainee = new List<SelectListItem>();
+            var allRegisteredTrainees = await _trainer.GetTrainees();
+            foreach (var item in allRegisteredTrainees)
+                trainee.Add(new SelectListItem { Text = item.FirstName, Value = item.Id});
 
-                
+
 
 
 

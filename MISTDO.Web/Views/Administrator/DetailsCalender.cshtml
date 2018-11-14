@@ -3,7 +3,7 @@
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "_LayoutDashboard";
+    Layout = "_LayoutAdminDashboard";
 }
 @inject UserManager<ApplicationUser> userManager;
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
@@ -12,7 +12,7 @@
 
 <div class="page-container">
     <!-- Header START -->
-    @await Html.PartialAsync("_LayoutHeader");
+    @await Html.PartialAsync("_LayoutHeaderAdmin");
 
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
