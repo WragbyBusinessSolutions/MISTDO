@@ -5,12 +5,13 @@
     Layout = "_LayoutDashboard";
 }
 @inject UserManager<ApplicationUser> userManager;
+@inject UserManager<TraineeApplicationUser> usermanager;
 
 <div class="page-container">
     <!-- Header START -->
     @await Html.PartialAsync("_LayoutHeader");
 
-      <!-- Theme Toggle Button END -->
+    <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
     <div class="main-content">
         <div class="container-fluid">
@@ -30,7 +31,10 @@
                                 var module = ViewBag.modulecosts as List<SelectListItem>;
                                 var moduless = ViewBag.modules as List<SelectListItem>;
 
-                               var Tcenter = ViewBag.center  as List<SelectListItem>;
+                                var Tcenter = ViewBag.center as List<SelectListItem>;
+
+                                var trainee = await usermanager.GetUserAsync(User);
+                               
 
 
                             }
@@ -39,33 +43,37 @@
 
                             <form>
                                 @*<p>
-            <input type="hidden" value="@Model.ModuleId" id="ModuleId" />
-            <input type="hidden" value="@module.Cost" id="ModuleCost" />
-            <input type="hidden" value="@user.Id" id="TrainingCenterId" />
-            <input type="hidden" value="@Model.TraineeId" id="TraineeId" />
-            <input type="hidden" value="@Model.TrainingStartDate" id="TrainingStartDate" />
-            <input type="hidden" value="@Model.TrainingEndDate" id="TrainingEndDate" />
+                                        <input type="hidden" value="@Model.ModuleId" id="ModuleId" />
+                                        <input type="hidden" value="@module.Cost" id="ModuleCost" />
+                                        <input type="hidden" value="@user.Id" id="TrainingCenterId" />
+                                        <input type="hidden" value="@Model.TraineeId" id="TraineeId" />
+                                        <input type="hidden" value="@Model.TrainingStartDate" id="TrainingStartDate" />
+                                        <input type="hidden" value="@Model.TrainingEndDate" id="TrainingEndDate" />
 
-        </p>*@
+                                    </p>*@
 
 
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-group">
-                                    <label class="control-label"> Trainee Id</label>
+                                    <label asp-for="TraineeId" class="control-label"> Trainee Id</label>
                                     <input asp-for="TraineeId" class="form-control" id="TraineeId" />
                                     <span asp-validation-for="TraineeId" class="text-danger"></span>
                                 </div>
+                               
+                                    
+                                        <div class="form-group">
 
-                                <div class="form-group">
+                                            <label class="control-label"> First Name</label>
+                                            <input  class="form-control" id="firstname" onkeyup="showInput();" />
+                                        </div>
+                                        <div class="form-group">
 
-                                    <label class="control-label"> First Name</label>
-                                    <input class="form-control" id="firstname" onkeyup="showInput();" />
-                                </div>
-                                <div class="form-group">
+                                            <label class="control-label"> Last Name</label>
+                                            <input  class="form-control" id="lastname" />
+                                        </div>
+                                     
+                             
 
-                                    <label class="control-label"> Last Name</label>
-                                    <input class="form-control" id="lastname" />
-                                </div>
 
                                 <div class="form-group">
                                     <label class="control-label"> Module Details</label>

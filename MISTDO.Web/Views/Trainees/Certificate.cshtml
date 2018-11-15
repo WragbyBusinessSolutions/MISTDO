@@ -46,53 +46,59 @@
                                         {
                                             if (@owners[i].Email == user.Email)
                                             {
-                                                <tr>
+                                        <tr>
 
-                                                    <td>
+                                            <td>
 
-                                                        <div class="mrg-top-15">
-                                                            <span class="text-info"><b>@owners[i].FirstName  @owners[i].LastName</b></span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="mrg-top-15">
-                                                            <span class="text-info"><b>@owners[i].Email</b></span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="mrg-top-15">
-                                                            <span class="text-info"><b>@Model[i].CertNumber</b></span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="relative mrg-top-15">
-                                                            <span class="status online"> </span>
-                                                            <span class="pdd-left-20">@Model[i].CertStatus</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="mrg-top-15">
-                                                            <span>@Model[i].DateGenerated</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="mrg-top-15">
-                                                            <b class="text-dark font-size-16">@Model[i].TrainerOrgId</b>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="mrg-top-15">
-                                                            <b class="text-dark font-size-16">@Model[i].TrainerOrg</b>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="mrg-top-10 text-center">
-                                                            <button class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
-                                                                <i class="ti-more-alt"></i>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                <div class="mrg-top-15">
+                                                    <span class="text-info"><b>@owners[i].FirstName  @owners[i].LastName</b></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="mrg-top-15">
+                                                    <span class="text-info"><b>@owners[i].Email</b></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="mrg-top-15">
+                                                    <span class="text-info"><b>@Model[i].CertNumber</b></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="relative mrg-top-15">
+                                                    <span class="status online"> </span>
+                                                    <span class="pdd-left-20">@Model[i].CertStatus</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="mrg-top-15">
+                                                    <span>@owners[i].</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="mrg-top-15">
+                                                    <span>@Model[i].DateGenerated</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="mrg-top-15">
+                                                    <b class="text-dark font-size-16">@Model[i].TrainerOrgId</b>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="mrg-top-15">
+                                                    <b class="text-dark font-size-16">@Model[i].TrainerOrg</b>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="mrg-top-10 text-center">
+
+                                                    <button asp-action="ViewCertificate" asp-route-id="@Model[i].CertId" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
+                                                        <i class="ti-more-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
                                             }
 
                                         }

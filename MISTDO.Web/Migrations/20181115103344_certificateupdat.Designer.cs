@@ -11,8 +11,8 @@ using System;
 namespace MISTDO.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181102162810_.")]
-    partial class _
+    [Migration("20181115103344_certificateupdat")]
+    partial class certificateupdat
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -216,6 +216,36 @@ namespace MISTDO.Web.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("MISTDO.Web.Models.Calender", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<decimal>("Cost");
+
+                    b.Property<string>("ModuleId");
+
+                    b.Property<string>("TraineeId");
+
+                    b.Property<string>("TrainingCentreId");
+
+                    b.Property<DateTime>("TrainingEndDate");
+
+                    b.Property<DateTime>("TrainingEndTime");
+
+                    b.Property<string>("TrainingName");
+
+                    b.Property<DateTime>("TrainingStartDate");
+
+                    b.Property<DateTime>("TrainingStartTime");
+
+                    b.Property<string>("Venue");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Calenders");
+                });
+
             modelBuilder.Entity("MISTDO.Web.Models.Certificate", b =>
                 {
                     b.Property<int>("CertId")
@@ -227,6 +257,8 @@ namespace MISTDO.Web.Migrations
 
                     b.Property<DateTime>("DateGenerated");
 
+                    b.Property<int>("ModuleId");
+
                     b.Property<string>("OwnerId");
 
                     b.Property<string>("TrainerId");
@@ -234,6 +266,8 @@ namespace MISTDO.Web.Migrations
                     b.Property<string>("TrainerOrg");
 
                     b.Property<string>("TrainerOrgId");
+
+                    b.Property<int>("TrainingId");
 
                     b.HasKey("CertId");
 
@@ -264,6 +298,10 @@ namespace MISTDO.Web.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Issue");
+
+                    b.Property<string>("Response");
+
+                    b.Property<DateTime>("ResponseTimeStamp");
 
                     b.Property<string>("Subject");
 

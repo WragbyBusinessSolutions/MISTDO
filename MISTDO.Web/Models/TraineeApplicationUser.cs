@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MISTDO.Web.Models
 {
@@ -13,6 +14,7 @@ namespace MISTDO.Web.Models
         [Required]
         [DataType(DataType.Text)]
         [MaxLength(100)]
+        [Remote("doesUserNameExist", "Account", HttpMethod = "POST", ErrorMessage = "User name already exists. Please enter a different user name.")]
         public string FirstName { get; set; }
 
         [Required]

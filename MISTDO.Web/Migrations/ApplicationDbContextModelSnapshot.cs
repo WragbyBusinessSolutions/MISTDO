@@ -254,9 +254,9 @@ namespace MISTDO.Web.Migrations
 
                     b.Property<string>("CertStatus");
 
-                    b.Property<int?>("CourseId");
-
                     b.Property<DateTime>("DateGenerated");
+
+                    b.Property<int>("ModuleId");
 
                     b.Property<string>("OwnerId");
 
@@ -266,39 +266,15 @@ namespace MISTDO.Web.Migrations
 
                     b.Property<string>("TrainerOrgId");
 
-                    b.Property<int?>("TrainingId");
+                    b.Property<int>("TrainingId");
 
                     b.HasKey("CertId");
-
-                    b.HasIndex("CourseId");
 
                     b.HasIndex("OwnerId");
 
                     b.HasIndex("TrainerId");
 
-                    b.HasIndex("TrainingId");
-
                     b.ToTable("Certificates");
-                });
-
-            modelBuilder.Entity("MISTDO.Web.Models.Modules", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<double>("CertificateCost");
-
-                    b.Property<double>("Cost");
-
-                    b.Property<string>("Description");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("ShortCode");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Modules");
                 });
 
             modelBuilder.Entity("MISTDO.Web.Models.Notification", b =>
@@ -503,10 +479,6 @@ namespace MISTDO.Web.Migrations
 
             modelBuilder.Entity("MISTDO.Web.Models.Certificate", b =>
                 {
-                    b.HasOne("MISTDO.Web.Models.Modules", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId");
-
                     b.HasOne("MISTDO.Web.Models.TraineeApplicationUser", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId");
@@ -514,10 +486,6 @@ namespace MISTDO.Web.Migrations
                     b.HasOne("MISTDO.Web.Models.ApplicationUser", "Trainer")
                         .WithMany()
                         .HasForeignKey("TrainerId");
-
-                    b.HasOne("MISTDO.Web.Models.Training", "Training")
-                        .WithMany()
-                        .HasForeignKey("TrainingId");
                 });
 
             modelBuilder.Entity("MISTDO.Web.Models.TrainingCentre", b =>

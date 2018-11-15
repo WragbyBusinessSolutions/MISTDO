@@ -29,13 +29,17 @@ namespace MISTDO.Web.Views.TrainerDashboard
     [Authorize/*(AuthenticationSchemes = "TraineeAuth")*/]
     public class TraineesController : Controller
     {
-        private readonly TraineeApplicationDbContext _context;
-
+        
+        //application users
         private readonly UserManager<TraineeApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> _usermanager;
         private readonly SignInManager<TraineeApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
 
+        //db contexts
+        private readonly TraineeApplicationDbContext _context;
         public TraineeApplicationDbContext dbcontext { get; }
+        private readonly AdminApplicationDbContext Admindbcontext;
         public IExcelToTraineeService _exceltoTrainee { get; }
 
         private readonly ApplicationDbContext tdbcontext;
@@ -43,18 +47,20 @@ namespace MISTDO.Web.Views.TrainerDashboard
         private readonly IHostingEnvironment _envt;
         public ITrainerService _trainer { get; }
 
-        public TraineesController(UserManager<TraineeApplicationUser> userManager,
+        public TraineesController(UserManager<TraineeApplicationUser> userManager, UserManager<ApplicationUser> usermanager,
             SignInManager<TraineeApplicationUser> signInManager,
             IEmailSender emailSender,
-            IHostingEnvironment env, IExcelToTraineeService excelToTraineeService, ITrainerService trainer, TraineeApplicationDbContext context, ApplicationDbContext contexted)
+            IHostingEnvironment env, IExcelToTraineeService excelToTraineeService, ITrainerService trainer, AdminApplicationDbContext admindb, TraineeApplicationDbContext context, ApplicationDbContext contexted)
         {
             _context = context;
             tdbcontext = contexted;
             dbcontext = context;
+            Admindbcontext = admindb;
             _exceltoTrainee = excelToTraineeService;
             _envt = env;
             _trainer = trainer;
             _userManager = userManager;
+            _usermanager = usermanager;
             _signInManager = signInManager;
             _emailSender = emailSender;
 
@@ -681,6 +687,53 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 return View();
             
 
+        }
+
+        public async Task<IActionResult> ViewCertificate(string traineeid, string moduleid)
+        {
+            var training = dbcontext.Trainings.FirstOrDefault(t => t.TraineeId == traineeid && t.ModuleId == moduleid && t.TrainingCentreId == _usermanager.GetUserId(User));
+            var centre = await _usermanager.FindByIdAsync(training.TrainingCentreId);
+
+            var trainee = await _userManager.FindByIdAsync(traineeid);
+            var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
+
+            //if (training.CertificateId != null)
+            //{
+            //    return Content("Cert already Generated");
+            //}
+
+            var CertId = Helpers.GetCertId.RandomString(5);
+
+            ViewBag.Trainee = trainee;
+            ViewBag.Centre = centre;
+            ViewBag.Module = module;
+
+
+            var updateTraining = new Training
+            {
+                CertGenDate = DateTime.Now,
+                CertificateId = CertId,
+                DateCreated = training.DateCreated,
+                Id = training.Id,
+                ModuleId = training.ModuleId,
+                PaymentRefId = training.PaymentRefId,
+                TraineeId = training.TraineeId,
+                TrainingCentreId = training.TrainingCentreId,
+                TrainingEndDate = training.TrainingEndDate,
+                TrainingName = training.TrainingName,
+                TrainingStartDate = training.TrainingStartDate,
+
+            };
+
+         
+           
+           
+
+            ViewBag.Training = updateTraining;
+
+
+
+            return View();
         }
         // GET: Trainees/Edit/5
         public async Task<IActionResult> Edit(string id)

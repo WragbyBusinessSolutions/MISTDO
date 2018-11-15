@@ -240,7 +240,7 @@ namespace MISTDO.Web.Controllers
                 {
 
                     NotificationMessage = notification.NotificationMessage,
-                    NotificationDateTime = notification.NotificationDateTime
+                    NotificationDateTime = DateTime.Now
 
 
                 };

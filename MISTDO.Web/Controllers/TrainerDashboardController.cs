@@ -229,8 +229,10 @@ namespace MISTDO.Web.Controllers
                 Trainer = centre,
                 TrainerOrg = centre.CentreName,
                 TrainerOrgId = centre.OGISPId,
-              //  Course = module,
-              //  Training = training
+                ModuleId = int.Parse(moduleid),
+                TrainingId = updateTraining.Id
+                //  Course = module,
+                //  Training = training
 
             };
 
@@ -302,9 +304,20 @@ namespace MISTDO.Web.Controllers
 
             if (ModelState.IsValid)
             {
-               
+                var suport = new Support()
+                {
+                    SupportId = support.SupportId,
+                    Subject = support.Subject,
+                    Issue = support.Issue,
+                    
+                    SupportTimeStamp = DateTime.Now,
+                    
 
-                dbcontext.Add(support);
+
+
+                };
+
+                dbcontext.Add(suport);
                 await dbcontext.SaveChangesAsync();
                 return RedirectToAction(nameof(Support));
             }
@@ -622,20 +635,8 @@ namespace MISTDO.Web.Controllers
 
             ViewBag.modulecosts = modulescost;
 
-
-            var trainee = new List<SelectListItem>();
-            var allRegisteredTrainees = await _trainer.GetTrainees();
-            foreach (var item in allRegisteredTrainees)
-                trainee.Add(new SelectListItem { Text = item.FirstName, Value = item.Id});
-
-
-
-
-
-
-
-
-                return View();
+            
+             return View();
         }
 
         //[HttpPost]
