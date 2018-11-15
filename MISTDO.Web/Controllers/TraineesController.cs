@@ -382,9 +382,9 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                   // var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                   // var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                   // var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
                     
                    
