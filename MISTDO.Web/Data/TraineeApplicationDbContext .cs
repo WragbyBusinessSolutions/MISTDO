@@ -28,6 +28,8 @@ namespace MISTDO.Web.Data
         public DbSet<Certificate> Certificates { get; set; }
         public DbSet<TraineeApplicationUser> Trainees { get; set; }
 
+        public DbSet<Feedback> Feedbacks { get; set; }
+
 
     }
 }

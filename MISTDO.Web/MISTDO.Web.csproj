@@ -174,6 +174,9 @@
     <Content Update="Views\Administrator\DetailsTrainingCenter.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Administrator\Feedback.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Administrator\TrainersNotificationDetails.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -211,6 +214,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\TrainerDashboard\AccessDenied.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\TrainerDashboard\CompleteTraineeRegistration.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\TrainerDashboard\ConfirmEmail.cshtml">
@@ -256,6 +262,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\TrainerDashboard\Profile.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Trainees\Feedback.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\TrainerDashboard\Support.cshtml">

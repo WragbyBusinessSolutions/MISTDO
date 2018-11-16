@@ -613,6 +613,30 @@ namespace MISTDO.Web.Controllers
             }
             return View(training);
         }
+        public async Task<IActionResult> CompleteTraineeRegistration()
+        {
+            var modules = await _trainer.GetAllModules();
+
+            var modulescost = new List<SelectListItem>();
+            foreach (var item in modules)
+
+                modulescost.Add(new SelectListItem { Text = item.Cost.ToString(), Value = item.Id.ToString() });
+
+            var modulesList = new List<SelectListItem>();
+
+
+            foreach (var item in modules)
+
+                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+
+
+            ViewBag.modules = modulesList;
+
+            ViewBag.modulecosts = modulescost;
+
+
+            return View();
+        }
 
         public async Task<IActionResult> AttachTraineeTraining()
         {
@@ -719,7 +743,7 @@ namespace MISTDO.Web.Controllers
                     Cost= calender.Cost,
                     ModuleId = calender.ModuleId,
                     TrainingStartDate = calender.TrainingStartDate,
-                    TraineeId = calender.TraineeId,
+                    
                     TrainingEndTime = calender.TrainingEndTime,
                     TrainingStartTime = calender.TrainingStartTime,
                     Venue = calender.Venue,

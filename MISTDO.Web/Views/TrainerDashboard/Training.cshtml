@@ -40,15 +40,18 @@
                                             <th>
                                                 Module Name
                                             </th>
-                                            
-                                          <th>
+
+                                            <th>
                                                 Training Center Name
                                             </th>
-                                            
+
                                             <th>
                                                 @Html.DisplayNameFor(model => model.Cost)
                                             </th>
-                                          
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Venue)
+                                            </th>
+
                                             <th>
                                                 Start Date
                                             </th>
@@ -63,31 +66,34 @@
                                         {
                                             if (item.TrainingStartDate >= DateTime.Today && item.TrainingCentreId == user.Id)
                                             {
-                                                <tr>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingName)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => user.CompanyName)
-                                                    </td>
-                                                   
-                                                    
-                                                    <th>
-                                                        @Html.DisplayFor(model => item.Cost)
-                                                    </th>
-                                                   
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
-                                                    </td>
-                                                    <td>
-                                                        <a asp-action="EditTraining" asp-route-id="@item.Id">Edit</a> |
-                                                        <a asp-action="DetailsTraining" asp-route-id="@item.Id">Details</a> |
-                                                        <a asp-action="DeleteTraining" asp-route-id="@item.Id">Delete</a>
-                                                    </td>
-                                                </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TrainingName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => user.CompanyName)
+                                            </td>
+
+
+                                            <th>
+                                                @Html.DisplayFor(model => item.Cost)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayFor(model => item.Venue)
+                                            </th>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                            </td>
+                                            <td>
+                                                <a asp-action="EditTraining" asp-route-id="@item.Id">Edit</a> |
+                                                <a asp-action="DetailsTraining" asp-route-id="@item.Id">Details</a> |
+                                                <a asp-action="DeleteTraining" asp-route-id="@item.Id">Delete</a>
+                                            </td>
+                                        </tr>
                                             }
                                         }
                                     </tbody>
@@ -106,7 +112,7 @@
     <footer class="content-footer">
         <div class="footer">
             <div class="copyright">
-                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span>Copyright © 2018 <b class="text-dark">Department of Petroleum Resources</b>. All rights reserved.</span>
                 <span class="go-right">
                     <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
                     <a href="#" class="text-gray">Privacy &amp; Policy</a>

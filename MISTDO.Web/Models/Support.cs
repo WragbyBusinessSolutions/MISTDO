@@ -13,8 +13,12 @@ namespace MISTDO.Web.Models
         public string Subject { get; set; }
         public string Issue { get; set; }
         public string Response { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime SupportTimeStamp{ get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime ResponseTimeStamp { get; set; }
 
     }

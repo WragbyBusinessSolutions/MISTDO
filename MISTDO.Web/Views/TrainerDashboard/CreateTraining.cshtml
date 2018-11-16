@@ -42,16 +42,12 @@
 
                                 <div class="form-group">
                                     <label class="control-label" hidden> Training Center Id</label>
-                                    <input asp-for="@user.Id" class="form-control" hidden />
+                                    <input asp-for="@user.Id" class="form-control" type="hidden" />
                                     <span asp-validation-for="TrainingCentreId" class="text-danger"></span>
                                 </div>
 
 
-                                <div class="form-group">
-                                    <label class="control-label"> Trainee Id</label>
-                                    <input asp-for="TraineeId" class="form-control" />
-                                    <span asp-validation-for="TraineeId" class="text-danger"></span>
-                                </div>
+                               
                                 <div class="form-group">
                                     <label class="control-label"> Training Cost</label>
                                     <input asp-for="Cost" class="form-control" />
@@ -137,7 +133,7 @@
     <footer class="content-footer">
         <div class="footer">
             <div class="copyright">
-                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span>Copyright © 2018 <b class="text-dark"> Department of Petroleum Resources</b>. All rights reserved.</span>
                 <span class="go-right">
                     <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
                     <a href="#" class="text-gray">Privacy &amp; Policy</a>

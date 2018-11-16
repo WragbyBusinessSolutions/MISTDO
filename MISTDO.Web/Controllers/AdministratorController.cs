@@ -252,6 +252,11 @@ namespace MISTDO.Web.Controllers
             }
             return View(notification);
         }
+        public async Task<IActionResult> Feedback()
+        {
+            var feedback = await Traineedbcontext.Feedbacks.ToListAsync();
+            return View(feedback);
+        }
 
         public async Task<IActionResult> Support()
         {

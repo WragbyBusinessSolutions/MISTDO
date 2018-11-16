@@ -16,7 +16,7 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                <h4>Attach New Training to  Trainee </h4>
+                <h4>Complete Registration </h4>
                 @*<p>
                         <a asp-action="Create">Create New</a>
                     </p>*@
@@ -55,7 +55,7 @@
 
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-group">
-                                    <label asp-for="TraineeId" class="control-label"> Trainee Id</label>
+                                    <label asp-for="TraineeId" class="control-label"> Trainee ID</label>
                                     <input asp-for="TraineeId" class="form-control" id="TraineeId" />
                                     <span asp-validation-for="TraineeId" class="text-danger"></span>
                                 </div>
@@ -75,14 +75,14 @@
                              
 
 
-                                <div class="form-group">
+                                @*<div class="form-group">
                                     <label class="control-label"> Module Details</label>
                                     <select class="form-control" asp-for="ModuleId" asp-items="modules" id="ModuleId" onchange="myFunction()"></select>
 
-                                </div>
+                                </div>*@
 
 
-                                <div class="form-group">
+                                @*<div class="form-group">
 
                                     <label class="control-label"> Module Cost  (Choose equivalent Module Cost)</label>
                                     <select class="form-control" asp-items="module" id="ModuleCost" disabled></select>
@@ -130,7 +130,7 @@
                                 <div class="form-group">
                                     <script src="https://remitademo.net/payment/v1/remita-pay-inline.bundle.js"></script>
                                     <button class="btn btn-primary" type="button" onclick="makePayment()"> Pay and Attach </button>
-                                </div>
+                                </div>*@
                             </form>
 
                         </div>

@@ -31,7 +31,7 @@
                                     <div class="profile border bottom">
                                         <img class="mrg-top-30" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.ImageUpload))" alt="Take a new Passport" height="150" width="180">
                                         <p>
-                                            <h4 class="mrg-top-20 no-mrg-btm text-semibold"> @Html.DisplayFor(model => model.FirstName) </h4>
+                                            <h4 class="mrg-top-20 no-mrg-btm text-semibold"> @Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName)</h4>
                                         </p>
                                     </div>
 
@@ -58,11 +58,21 @@
                                 <div class="card-block">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.FirstName)</b></p>
+                                            <p class="mrg-top-10 text-dark"> <b>First Name</b></p>
                                         </div>
                                         <div class="col-md-6">
                                             <span class="status online mrg-top-10"></span>
                                             <p class="mrg-top-10"> @Html.DisplayFor(model => model.FirstName)</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="mrg-top-10 text-dark"> <b>Last Name</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="status online mrg-top-10"></span>
+                                            <p class="mrg-top-10">@Html.DisplayFor(model => model.LastName)</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -80,7 +90,7 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b> @Html.DisplayNameFor(model => model.PhoneNumber)</b></p>
+                                            <p class="mrg-top-10 text-dark"> <b> Phone Number</b></p>
                                         </div>
                                         <div class="col-md-6">
                                             <span class="status online mrg-top-10"></span>
@@ -90,7 +100,7 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.CompanyName)</b></p>
+                                            <p class="mrg-top-10 text-dark"> <b>Company Name</b></p>
                                         </div>
                                         <div class="col-md-6">
                                             <p class="mrg-top-10">
@@ -102,7 +112,7 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.CompanyAddress)</b></p>
+                                            <p class="mrg-top-10 text-dark"> <b>Company Address</b></p>
                                         </div>
                                         <div class="col-md-6">
                                             <p class="mrg-top-10">
@@ -114,7 +124,7 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.UserAddress)</b></p>
+                                            <p class="mrg-top-10 text-dark"> <b>User Address</b></p>
                                         </div>
                                         <div class="col-md-6">
                                             <p class="mrg-top-10">
@@ -239,7 +249,7 @@
     <footer class="content-footer">
         <div class="footer">
             <div class="copyright">
-                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span>Copyright © 2018 <b class="text-dark">Department of Petroleum Resources</b>. All rights reserved.</span>
                 <span class="go-right">
                     <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
                     <a href="#" class="text-gray">Privacy &amp; Policy</a>

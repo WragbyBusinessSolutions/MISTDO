@@ -1,8 +1,8 @@
-﻿@model MISTDO.Web.Models.Support
+﻿@model MISTDO.Web.Models.Feedback
 
 @{
     ViewData["Title"] = "Support";
-     Layout = "_LayoutDashboard";
+     Layout = "_LayoutTraineeDashboard";
 }
 
 
@@ -12,7 +12,7 @@
 
 <div class="page-container">
     <!-- Header START -->
-    @await Html.PartialAsync("_LayoutHeader");
+    @await Html.PartialAsync("_LayoutHeaderTrainee");
 
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
@@ -35,18 +35,18 @@
                     <div class="card">
                         <div class="card-block">
 
-                            <form asp-action="Support" enctype="multipart/form-data">
+                            <form asp-action="Feedback" enctype="multipart/form-data">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                
                                 <div class="form-group">
                                     <label  class="control-label">Subject</label>
-                                    <input asp-for="Subject" class="form-control" />
-                                    <span asp-validation-for="Subject" class="text-danger"></span>
+                                    <input asp-for="FeedbackSubject" class="form-control" />
+                                    <span asp-validation-for="FeedbackSubject" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="Issue" class="control-label"></label>
-                                    <textarea asp-for="Issue" class="form-control" rows="4" placeholder="Type your message ..." ></textarea>
-                                    <span asp-validation-for="Issue" class="text-danger"></span>
+                                    <label asp-for="FeedbackMessage" class="control-label"></label>
+                                    <textarea asp-for="FeedbackMessage" class="form-control" rows="4" placeholder="Type your message ..." ></textarea>
+                                    <span asp-validation-for="FeedbackMessage" class="text-danger"></span>
                                 </div>
 
 
@@ -56,7 +56,7 @@
 
 
                                 <div class="form-group">
-                                    <input type="submit" value="Create" class="btn btn-default" />
+                                    <input type="submit" value="Send Feedback" class="btn btn-default" />
                                 </div>
                             </form>
 
@@ -85,20 +85,15 @@
                                                                         <thead>
                                                                             <tr>
                                                                                 <th>
-                                                                                    Recieved Date & Time
+                                                                                     Date & Time
                                                                                 </th>
                                                                                 <th>
-                                                                                    @Html.DisplayNameFor(model => model.Subject)
+                                                                                  Feedback  Subject
                                                                                 </th>
                                                                                 <th>
-                                                                                    @Html.DisplayNameFor(model => model.Issue)
+                                                                                   Feedback Message
                                                                                 </th>
-                                                                                <th>
-                                                                                    @Html.DisplayNameFor(model => model.Response)
-                                                                                </th>
-                                                                                <th>
-                                                                                    @Html.DisplayNameFor(model => model.ResponseTimeStamp)
-                                                                                </th>
+                                                                                
 
 
                                                                                 
@@ -107,26 +102,21 @@
                                                                         <tbody>
                                                                             @{
                                                                                 // var data = ViewBag.Message as IEnumerable<MISTDO.Web.Models.Notification>;
-                                                                                var data = (IEnumerable<MISTDO.Web.Models.Support>)ViewBag.Message;
+                                                                                var data = (IEnumerable<MISTDO.Web.Models.Feedback>)ViewBag.Message;
                                                                             }
                                                                             @foreach (var item in data)
                                                                             {
                                                                                 <tr>
                                                                                     <th>
-                                                                                        @Html.DisplayFor(model => item.SupportTimeStamp)
+                                                                                        @Html.DisplayFor(model => item.FeedbackTimeStamp)
                                                                                     </th>
                                                                                     <td>
-                                                                                        @Html.DisplayFor(modelItem => item.Subject)
+                                                                                        @Html.DisplayFor(modelItem => item.FeedbackSubject)
                                                                                     </td>
                                                                                     <td>
-                                                                                        @Html.DisplayFor(modelItem => item.Issue)
+                                                                                        @Html.DisplayFor(modelItem => item.FeedbackMessage)
                                                                                     </td>
-                                                                                    <td>
-                                                                                        @Html.DisplayFor(modelItem => item.Response)
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        @Html.DisplayFor(modelItem => item.SupportTimeStamp)
-                                                                                    </td>
+                                                                                    
 
 
                                                                                     
@@ -153,7 +143,7 @@
             </div>
         </div>
     </div>
-</div>
+
     <!-- Content Wrapper END -->
     <!-- Footer START -->
     <footer class="content-footer">

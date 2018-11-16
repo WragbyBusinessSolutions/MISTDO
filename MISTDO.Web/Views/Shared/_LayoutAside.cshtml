@@ -2,8 +2,8 @@
 <div class="side-nav">
     <div class="side-nav-inner">
         <div class="side-nav-logo">
-            <a href="index-2.html">
-                <div class="logo" style="background-image: url('/dist/assets/images/logo/jepeg_logo.jpg')"></div>
+            <a href="#">
+                <div class="logo" > <img  src="~/dist/assets/images/logo/dpr logo.png" width="240" alt=""></div>
               
 
                 @*<div class="logo" style="background-image: url('/dist/assets/images/logo/jepeg_logo.jpg')"></div>*@
@@ -64,7 +64,23 @@
                     <span class="title">Notification </span>
                 </a>
             </li>
-            <li class="nav-item dropdown ">
+            <li class="nav-item ">
+                <a asp-controller="TrainerDashboard" asp-action="SupportTrainees">
+                    <span class="icon-holder">
+                        <i class="ti-light-bulb"></i>
+                    </span>
+                    <span class="title">Resolve  Support Tickets </span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a asp-controller="TrainerDashboard" asp-action="Support">
+                    <span class="icon-holder">
+                        <i class="ti-help"></i>
+                    </span>
+                    <span class="title">Help Support </span>
+                </a>
+            </li>
+            @*<li class="nav-item dropdown ">
                 <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder">
                         <i class="ti-help"></i>
@@ -82,8 +98,9 @@
                         <a asp-controller="TrainerDashboard" asp-action="SupportTrainees">Trainees Support Ticket</a>
                     </li>
                 </ul>
-            </li>
-           
+            </li>*@
+          </ul>
+
 </div>
 </div>
 <!-- Side Nav END -->

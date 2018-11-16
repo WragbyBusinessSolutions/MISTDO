@@ -617,6 +617,33 @@ namespace MISTDO.Web.Views.TrainerDashboard
             return View(support);
 
         }
+        public async Task<IActionResult> Feedback()
+        {
+            ViewBag.Message = await _context.Feedbacks.ToListAsync();
+            return View();
+        }
+        // POST: Trainees/Suipport
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Feedback(Feedback feedback, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
+        {
+            if (ModelState.IsValid)
+            {
+                var feeds = new Feedback()
+                {
+                    FeedbackSubject = feedback.FeedbackSubject,
+                    FeedbackMessage = feedback.FeedbackMessage,
+                    FeedbackTimeStamp = DateTime.Now
+
+                };
+
+                _context.Add(feeds);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Feedback));
+            }
+            return View(feedback);
+
+        }
         // GET: Trainees/Create
         public IActionResult Create()
         {
