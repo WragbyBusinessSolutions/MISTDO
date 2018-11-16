@@ -641,7 +641,7 @@ namespace MISTDO.Web.Controllers
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> TraineeAttach(  RemitaResponse data, string TraineeId, string ModuleId, string ModuleCost, DateTime TrainingStartDate, DateTime TrainingEndDate)
+        public async Task<IActionResult> TraineeAttach(/*  RemitaResponse data,*/ string TraineeId, string ModuleId, string ModuleCost, DateTime TrainingStartDate, DateTime TrainingEndDate)
         {
 
 
@@ -808,14 +808,14 @@ namespace MISTDO.Web.Controllers
             string fileName = "training.xlsx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
-        public IActionResult PaymentCompleted(RemitaResponse data, string traineeid, string moduleid)
+        public IActionResult PaymentCompleted(/*RemitaResponse data,*/ string traineeid, string moduleid)
         {
-            var training = new Training
-            {
-                PaymentRefId = data.PaymentReference,
+            //var training = new Training
+            //{
+            //    PaymentRefId = data.PaymentReference,
                 
 
-            };
+            //};
 
             //  var trainee = _traineeuserManager.FindByIdAsync(traineeid);
             var url = Url.Action(nameof(ViewCertificate), new { traineeid, moduleid });

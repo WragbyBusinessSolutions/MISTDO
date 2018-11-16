@@ -174,8 +174,17 @@
             onError: function (response) {
                 console.log('callback Error Response', response);
             },
-            onClose: function () {
+            onClose: function (response) {
                 console.log("closed");
+                 $.post('@Url.Action("PaymentCompleted", "TrainerDashboard")', {
+                    data: response, traineeid: customerid, moduleid: moduleid
+                }, function () {
+                    // 
+                }).done(function (returndata) {
+                    if (returndata.isSuccess) {
+                        window.location = returndata.redirectUrl;
+                    };
+                });
             }
         });
 
