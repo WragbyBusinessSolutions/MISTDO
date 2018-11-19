@@ -23,6 +23,7 @@ namespace MISTDO.Web.Services
         Task<IEnumerable<Calender>> GetCalenders();
         Task<IEnumerable<ApplicationUser>> GetAllTrainingCenters();
         Task<Modules> GetModulebyId(int Id);
+        Task<IEnumerable<Training>> GetOneTraining(int Id);
 
     }
 }

@@ -25,6 +25,10 @@ namespace MISTDO.Web.Models
         [Display(Name = "Trainer Organization")]
 
         public string TrainerOrg { get; set; }
+
+        [DataType(DataType.Date)]
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime DateGenerated { get; set; }
         public virtual TraineeApplicationUser Owner { get; set; }
         public virtual ApplicationUser Trainer { get; set; }

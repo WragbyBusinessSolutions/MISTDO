@@ -30,14 +30,16 @@
                                 <table id="dt-opt" class="table table-lg table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Certificate Owner</th>
-                                            <th>Owner Email</th>
+                                            <th>Full Name</th>
+                                            <th>Email</th>
 
                                             <th>Certificate Number</th>
                                             <th>Certificate Status</th>
+                                            
                                             <th>Date Generated</th>
-                                            <th>Trainer Organization Id</th>
-                                            <th>Trainer Organization</th>
+                                          
+                                            <th>Training Center Name</th>
+                                           
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -70,32 +72,24 @@
                                                     <span class="pdd-left-20">@Model[i].CertStatus</span>
                                                 </div>
                                             </td>
-                                            <td>
-                                                <div class="mrg-top-15">
-                                                    <span>@owners[i].</span>
-                                                </div>
-                                            </td>
+                                           
                                             <td>
                                                 <div class="mrg-top-15">
                                                     <span>@Model[i].DateGenerated</span>
                                                 </div>
                                             </td>
-                                            <td>
-                                                <div class="mrg-top-15">
-                                                    <b class="text-dark font-size-16">@Model[i].TrainerOrgId</b>
-                                                </div>
-                                            </td>
+                                           
                                             <td>
                                                 <div class="mrg-top-15">
                                                     <b class="text-dark font-size-16">@Model[i].TrainerOrg</b>
                                                 </div>
                                             </td>
+                                           
                                             <td>
-                                                <div class="mrg-top-10 text-center">
+                                                <div class="mrg-top-10">
 
-                                                    <button asp-action="ViewCertificate" asp-route-id="@Model[i].CertId" class="btn btn-icon btn-flat btn-rounded dropdown-toggle">
-                                                        <i class="ti-more-alt"></i>
-                                                    </button>
+                                                    
+                                                    <a  asp-action="ViewCertificate" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId">View Certificate</a>
                                                 </div>
                                             </td>
                                         </tr>

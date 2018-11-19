@@ -716,47 +716,20 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
         }
 
-        public async Task<IActionResult> ViewCertificate(string traineeid, string moduleid)
+        public async Task<IActionResult> ViewCertificate(string traineeid, string moduleid, string TrainingCentreId, int TrainingId)
         {
-            var training = dbcontext.Trainings.FirstOrDefault(t => t.TraineeId == traineeid && t.ModuleId == moduleid && t.TrainingCentreId == _usermanager.GetUserId(User));
-            var centre = await _usermanager.FindByIdAsync(training.TrainingCentreId);
+            var training = tdbcontext.Trainings.FirstOrDefault(t => t.TraineeId == traineeid && t.ModuleId == moduleid && t.TrainingCentreId == TrainingCentreId);
+            var centre = await _usermanager.FindByIdAsync(TrainingCentreId);
 
             var trainee = await _userManager.FindByIdAsync(traineeid);
             var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
 
-            //if (training.CertificateId != null)
-            //{
-            //    return Content("Cert already Generated");
-            //}
-
-            var CertId = Helpers.GetCertId.RandomString(5);
 
             ViewBag.Trainee = trainee;
             ViewBag.Centre = centre;
             ViewBag.Module = module;
 
-
-            var updateTraining = new Training
-            {
-                CertGenDate = DateTime.Now,
-                CertificateId = CertId,
-                DateCreated = training.DateCreated,
-                Id = training.Id,
-                ModuleId = training.ModuleId,
-                PaymentRefId = training.PaymentRefId,
-                TraineeId = training.TraineeId,
-                TrainingCentreId = training.TrainingCentreId,
-                TrainingEndDate = training.TrainingEndDate,
-                TrainingName = training.TrainingName,
-                TrainingStartDate = training.TrainingStartDate,
-
-            };
-
-         
-           
-           
-
-            ViewBag.Training = updateTraining;
+            ViewBag.Training = training;
 
 
 

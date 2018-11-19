@@ -9,10 +9,79 @@
                     <div class="full-height bg" style="background-image: url('../dist/assets/images/others/welcomepage.jpg')">
                         <div class="img-caption">
                             @*<h1 class="caption-title">We make spectacular</h1>
-                                <p class="caption-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>*@
+                    <p class="caption-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>*@
                         </div>
                     </div>
                 </div>
+                <script type="text/javascript">
+
+                    function mouseOver() {
+                        document.getElementById('des').innerText = 'hello';
+                    }
+                    function mouseout() {
+                        document.getElementById('des').innerText = '';
+                    }
+                   
+
+                </script>
+                <style>
+                    a[title]:hover:before {
+                        border: solid;
+                        border-color: #333 transparent;
+                        border-width: 0 6px 6px 6px;
+                        bottom: -4px;
+                        content: "";
+                        left: 100%;
+                       
+                       
+                    }
+                    a[title]:hover:after {
+                       
+                        position: relative;
+                        opacity: 1;
+                        transition: all 0.1s ease 0.5s;
+                        visibility: visible;
+                        content: attr(data-title);
+                        position: absolute;
+                        bottom: -1.6em;
+                        left: 100%;
+                        padding: 4px 4px 4px 8px;
+                        color: #222;
+                        white-space: nowrap;
+                        -moz-border-radius: 5px;
+                        -webkit-border-radius: 5px;
+                      
+                    }
+                        span  {
+                                width: 100px;
+                                height: 100px;
+   
+                                position: relative;
+                                -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+                                -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+                                -webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
+                                animation-name: example;
+                                animation-duration: 6s;
+                                animation-delay: -2s;
+                            }
+
+                            /* Safari 4.0 - 8.0 */
+                            @@-webkit-keyframes example {
+                                0%   {background-color:forestgreen; left:0px; top:0px;}
+   
+                                100% {background-color:green; left:0px; top:0px;}
+                            }
+
+                            /* Standard syntax */
+                            @@keyframes example {
+                                0%   {background-color:red; left:0px; top:0px;}
+                                50%  {background-color:forestgreen; left:100px; top:100px;}
+                                75%  {background-color:green; left:0px; top:0px;}
+                                100% {background-color:green; left:0px; top:0px;}
+                            }
+
+                </style>
+
                 <div class="col-md-4 no-pdd-horizon">
                     <div class="full-height bg-white height-100">
                         <div class="vertical-align full-height pdd-horizon-70">
@@ -21,21 +90,21 @@
                                     <img class="img-responsive inline-block" src="~/dist/assets/images/logo/dpr logo.png" width="700" height="250" alt=""><br /><br />
 
                                     <center>
-                                        <a asp-controller="Trainer" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;">Trainers Portal</a><br />
+                                        <a asp-controller="Trainer" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" title="This Portal is for Training Centers">Trainers Portal</a><br />
                                     </center>
-                                    <center><a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;">Trainee Portal</a><br /></center>
+                                    <center><a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a><br /></center>
                                 </div>
                                 <div>
 
                                 </div>
                                 <div style="position: center; bottom:0px; padding:5px; height:6px;bottom:30px; float:right; margin: 0;clear: both; ">
-                                    <p >
-                                        <center><a asp-controller="Administrator" asp-action="Login" class="btn" style="min-width:60%; min-height:initial; background-color: #0b9242; color: whitesmoke;">Administrative Portal</a><br /></center>
+                                    <p>
+                                        <center><a asp-controller="Administrator" asp-action="Login" class="btn" style="min-width:60%; min-height:initial; background-color: #0b9242; color: whitesmoke;"  title="This Portal is for SHE Department DPR"> Administrative Portal </a> <br /></center>
 
                                     </p>
                                 </div>
                             </div>
-                          
+
                         </div>
                         <div class="login-footer">
                             <img class="img-responsive inline-block" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt="">

@@ -45,6 +45,9 @@
                                             <th>
                                                 @Html.DisplayNameFor(model => model.Cost)
                                             </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Venue)
+                                            </th>
 
                                             <th>
                                                 Start Date
@@ -64,8 +67,8 @@
                                                 @Html.DisplayFor(modelItem => item.TrainingName)
                                             </td>
                                             @{
-                                                var user = await userManager.GetUserAsync(User);
-                                              
+                                                var user = await userManager.FindByIdAsync(item.TrainingCentreId);
+
                                                 <td>
                                                     @Html.DisplayFor(modelItem => user.CompanyName)
                                                 </td>
@@ -75,6 +78,9 @@
 
                                             <th>
                                                 @Html.DisplayFor(model => item.Cost)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayFor(model => item.Venue)
                                             </th>
 
                                             <td>
