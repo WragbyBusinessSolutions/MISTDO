@@ -56,6 +56,8 @@ namespace MISTDO.Web.Controllers
         }
         public IActionResult Index()
         {
+            //var trainings = dbcontext.Trainings.Where(t => t.Id == '1').Count();
+            //ViewBag.centers = trainings;
             return View();
         }
         public async Task<IActionResult> Certificate()
@@ -637,8 +639,27 @@ namespace MISTDO.Web.Controllers
 
             return View();
         }
+        public async Task<IActionResult> ViewTraineeCertificate(string traineeid, string moduleid, string TrainingCentreId, int TrainingId)
+        {
+            var training = dbcontext.Trainings.FirstOrDefault(t => t.TraineeId == traineeid && t.ModuleId == moduleid && t.TrainingCentreId == TrainingCentreId);
+            var centre = await _usermanager.FindByIdAsync(TrainingCentreId);
 
-        public async Task<IActionResult> AttachTraineeTraining()
+            var trainee = await _traineeuserManager.FindByIdAsync(traineeid);
+            var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
+
+
+            ViewBag.Trainee = trainee;
+            ViewBag.Centre = centre;
+            ViewBag.Module = module;
+
+            ViewBag.Training = training;
+
+
+
+            return View();
+        }
+
+        public async Task<IActionResult> AttachTraineeTraining(string TraineeId)
         {
             var modules = await _trainer.GetAllModules();
 
@@ -659,8 +680,11 @@ namespace MISTDO.Web.Controllers
 
             ViewBag.modulecosts = modulescost;
 
-            
-             return View();
+            ViewBag.Message = await _traineeuserManager.FindByIdAsync(TraineeId);
+
+
+
+            return View();
         }
 
         //[HttpPost]

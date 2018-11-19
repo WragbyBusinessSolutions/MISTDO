@@ -31,48 +31,42 @@
                                 var module = ViewBag.modulecosts as List<SelectListItem>;
                                 var moduless = ViewBag.modules as List<SelectListItem>;
 
-                                var Tcenter = ViewBag.center as List<SelectListItem>;
-
-                                var trainee = await usermanager.GetUserAsync(User);
-                               
-
-
-                            }
+                               }
 
 
 
                             <form>
-                                @*<p>
-                                        <input type="hidden" value="@Model.ModuleId" id="ModuleId" />
-                                        <input type="hidden" value="@module.Cost" id="ModuleCost" />
-                                        <input type="hidden" value="@user.Id" id="TrainingCenterId" />
-                                        <input type="hidden" value="@Model.TraineeId" id="TraineeId" />
-                                        <input type="hidden" value="@Model.TrainingStartDate" id="TrainingStartDate" />
-                                        <input type="hidden" value="@Model.TrainingEndDate" id="TrainingEndDate" />
-
-                                    </p>*@
+                               
 
 
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-group">
                                     <label asp-for="TraineeId" class="control-label"> Trainee Id</label>
-                                    <input asp-for="TraineeId" class="form-control" id="TraineeId" />
+                                    <input  asp-for="TraineeId" class="form-control" id="TraineeId1"/>
                                     <span asp-validation-for="TraineeId" class="text-danger"></span>
                                 </div>
-                               
-                                    
-                                        <div class="form-group">
 
-                                            <label class="control-label"> First Name</label>
-                                            <input  class="form-control" id="firstname" onkeyup="showInput();" />
-                                        </div>
-                                        <div class="form-group">
+                                @{
+                                    string id = Html.ValueFor(model => model.TraineeId);
 
-                                            <label class="control-label"> Last Name</label>
-                                            <input  class="form-control" id="lastname" />
-                                        </div>
-                                     
-                             
+                                  var trainee = await usermanager.FindByIdAsync(id);
+
+                                   // var trainee = ViewBag.Message as TraineeApplicationUser;
+
+
+                                }
+                                <div class="form-group">
+
+                                    <label class="control-label"> First Name</label>
+                                    <input class="form-control" id="firstname"  />
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="control-label"> Last Name</label>
+                                    <input class="form-control" id="lastname"  />
+                                </div>
+
+
 
 
                                 <div class="form-group">
@@ -105,7 +99,7 @@
                                 <div class="form-group">
                                     <label class="control-label"> Training Center Name</label>
                                     <input asp-for="@user.CompanyName" class="form-control" disabled id="TrainingCenterName" />
-                                    <span asp-validation-for="TrainingCentreId" class="text-danger"></span>
+
                                 </div>
 
 
@@ -257,6 +251,48 @@
 
     }
 
+
+    //function make() {
+
+
+    //    //form encoded data
+    //    var dataType = 'application/x-www-form-urlencoded; charset=utf-8';
+    //    var data = $('form').serialize();
+
+    //    //JSON data
+       
+    //    var data = {
+    //        TraineeId1 : $('#TraineeId').val(),
+
+    //    }
+    //    console.log('it got here');
+    //    console.log('Submitting form...');
+    //    $.ajax({
+    //        type: 'POST',
+    //        url: '/TrainerDashboard/AttachTraineeTraining',
+    //        dataType: 'json',
+    //        contentType: 'application/json',
+    //        data: data,
+            
+    //        success: function (result) {
+    //            console.log('Data received: ');
+    //            console.log(result);
+    //        },
+    //        onError: function () {
+    //            console.log('error');
+    //        }
+    //    });
+    //    console.log('it got here safely');
+    //    console.log(TraineeId1);
+
+
+    //}
+
 </script>
+
+    
+
+
+
 
 

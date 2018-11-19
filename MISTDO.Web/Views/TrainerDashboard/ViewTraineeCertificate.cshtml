@@ -3,7 +3,7 @@
     ViewData["Title"] = "View Certificate";
     Layout = "_LayoutDashboard";
 }
-@inject UserManager<TraineeApplicationUser> userManager;
+@inject UserManager<ApplicationUser> userManager;
 @{
     var training = ViewBag.Training as Training;
     var trainee = ViewBag.Trainee as TraineeApplicationUser;
@@ -118,7 +118,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
                         <div class="user-info">
-                            @if (user.ImageUpload != null)
+                            @*@if (user.ImageUpload != null)
                             {
 
                                 <span class="name pdd-right-5">
@@ -133,7 +133,7 @@
 
                                 <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
 
-                            }
+                            }*@
                             <span class="name pdd-right-5"> <label> @user.FirstName</label> &nbsp; @user.LastName </span>
                             <i class="ti-angle-down font-size-10"></i>
                         </div>
@@ -294,9 +294,6 @@
                                     </div>
                                     <div class="">
                                         <div class="text-dark text-uppercase inline-block"><b>Issued Date: @training.CertGenDate</b></div>
-                                    </div>
-                                    <div class="">
-                                        <div class="text-dark text-uppercase inline-block"><b>Valid Till: @training.CertGenDate.AddYears(2)</b></div>
                                     </div>
                                 </div>
                             </div>
