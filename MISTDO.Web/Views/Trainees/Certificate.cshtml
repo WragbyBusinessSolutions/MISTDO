@@ -67,10 +67,20 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="relative mrg-top-15">
-                                                    <span class="status online"> </span>
-                                                    <span class="pdd-left-20">@Model[i].CertStatus</span>
-                                                </div>
+                                                @if (DateTime.Now >= @Model[i].DateGenerated.AddDays(1))
+                                                {
+                                                    <div class="relative mrg-top-15">
+                                                        <span class="status danger"> </span>
+                                                        <span class="pdd-left-20">Invalid</span>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="relative mrg-top-15">
+                                                        <span class="status online"> </span>
+                                                        <span class="pdd-left-20">@Model[i].CertStatus</span>
+                                                    </div>
+                                                }
                                             </td>
                                            
                                             <td>
