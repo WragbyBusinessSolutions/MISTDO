@@ -423,7 +423,7 @@ namespace MISTDO.Web.Controllers
 
         [HttpGet]
         [Route("ExportCustomer")]
-        public IActionResult ExportTrainees(ExcelExportCellFormattingEventArgs e)
+        public IActionResult ExportTrainees()
         {
             string rootFolder = _env.WebRootPath;
             string fileName = @"ExportTrainees.xlsx";
@@ -446,11 +446,7 @@ namespace MISTDO.Web.Controllers
                 {
                     cells.Style.Font.Bold = true;
                 }
-                if (e.FormattedColumn.UniqueName == "Email" && e.FormattedColumn.UniqueName == "Company Name" && e.FormattedColumn.UniqueName == "Company Address" && e.FormattedColumn.UniqueName == "User Address")
-                    e.Cell.Style["padding-left"] = "60px";
-
-                if ( e.FormattedColumn.UniqueName == "Company Name" && e.FormattedColumn.UniqueName == "Company Address" && e.FormattedColumn.UniqueName == "User Address")
-                    e.Cell.Style["padding-left"] = "250px";
+               
                 int totalRows = traineeList.Count();
 
                 worksheet.Cells[1, 1].Value = "First Name";
