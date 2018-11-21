@@ -58,7 +58,8 @@ namespace MISTDO.Web.Controllers
             var owners = new List<TraineeApplicationUser>();
             foreach (var item in certs)
             {
-                owners.Add(item.Owner);
+                var user = await _traineeuserManager.FindByIdAsync(item.Owner);
+                owners.Add(user);
             }
             ViewBag.Owners = owners;
             return View(certs.ToList());

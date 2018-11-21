@@ -30,7 +30,7 @@ namespace MISTDO.Web.Models
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime DateGenerated { get; set; }
-        public virtual TraineeApplicationUser Owner { get; set; }
+        public string  Owner { get; set; }
         public virtual ApplicationUser Trainer { get; set; }
         public int TrainingId { get; set; }
 

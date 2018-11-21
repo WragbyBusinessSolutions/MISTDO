@@ -63,14 +63,17 @@ namespace MISTDO.Web.Controllers
         public async Task<IActionResult> Certificate()
         {
             var certs = await _trainer.GetAllCertificates();
+            var center = await _usermanager.GetUserAsync(User);
 
             var owners = new List<TraineeApplicationUser>();
+
             foreach (var item in certs)
             {
-                owners.Add(item.Owner);
+                var user = await _traineeuserManager.FindByIdAsync(item.Owner);
+                owners.Add(user);
             }
             ViewBag.Owners = owners;
-            return View(certs.ToList());
+            return View(certs.Where(t=>t.Trainer.Id == center.Id).ToList());
         }
 
 
@@ -173,10 +176,12 @@ namespace MISTDO.Web.Controllers
        
         public async Task<IActionResult> ViewCertificate(string traineeid, string moduleid)
         {
-            var training = dbcontext.Trainings.FirstOrDefault(t => t.TraineeId == traineeid && t.ModuleId == moduleid && t.TrainingCentreId == _usermanager.GetUserId(User));
-                        var centre = await _usermanager.FindByIdAsync(training.TrainingCentreId);
+            var user = await _usermanager.GetUserAsync(User);
+            var train = dbcontext.Trainings.ToList();
+            var training = train.FirstOrDefault(t => t.TraineeId == traineeid && t.ModuleId == moduleid && t.TrainingCentreId == user.Id);
+                        var centre = await _usermanager.FindByIdAsync(user.Id);
 
-              var  trainee = await _traineeuserManager.FindByIdAsync(traineeid);
+           var  trainee = await _traineeuserManager.FindByIdAsync(traineeid);
             var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
 
             if (training.CertificateId != null)
@@ -227,7 +232,7 @@ namespace MISTDO.Web.Controllers
                 CertNumber = updateTraining.CertificateId,
                 CertStatus = "Valid",
                 DateGenerated = updateTraining.CertGenDate,
-                Owner = trainee,
+                Owner = traineeid,
                 Trainer = centre,
                 TrainerOrg = centre.CentreName,
                 TrainerOrgId = centre.OGISPId,
@@ -240,7 +245,7 @@ namespace MISTDO.Web.Controllers
 
             dbcontext.Add(certificate);
 
-         await    dbcontext.SaveChangesAsync();
+           await dbcontext.SaveChangesAsync();
 
             ViewBag.Training = updateTraining;
 
@@ -659,7 +664,7 @@ namespace MISTDO.Web.Controllers
             return View();
         }
 
-        public async Task<IActionResult> AttachTraineeTraining(string TraineeId)
+        public async Task<IActionResult> AttachTraineeTraining()
         {
             var modules = await _trainer.GetAllModules();
 
@@ -680,7 +685,7 @@ namespace MISTDO.Web.Controllers
 
             ViewBag.modulecosts = modulescost;
 
-            ViewBag.Message = await _traineeuserManager.FindByIdAsync(TraineeId);
+           // ViewBag.Message = await _traineeuserManager.FindByIdAsync(TraineeId);
 
 
 

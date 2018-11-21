@@ -3,7 +3,7 @@
     ViewData["Title"] = "Payment";
     Layout = "_LayoutDashboard";
 }
-
+@inject UserManager<ApplicationUser> userManager;
 
 <div class="page-container">
     <!-- Header START -->
@@ -17,6 +17,7 @@
                 <h4>Make Payment</h4>
                 @{
                     var module = ViewBag.Module as Modules;
+                    var user = await userManager.GetUserAsync(User);
                 }
                 <p>
                     <a>Trainee Details</a>
@@ -29,13 +30,13 @@
 
                 </p>
             </div>
-          
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-block">
+                        <div class="card-block" >
 
-                            <dl class="dl-horizontal">
+                            <dl class="d-inline" >
                                 <dt>
                                     @Html.DisplayNameFor(model => model.FirstName)
                                 </dt>
@@ -98,14 +99,14 @@
                                 </dd>
 
                             </dl>
-                           
-                           
-                            <div>
-                                @*<a class="btn btn-primary" asp-action="ViewCertificate">Make Payment</a>*@
-                                <form>
+
+
+                            <div align="center">
+                                <a class="btn btn-primary" asp-route-TraineeId="@Model.TraineeId" asp-route-ModuleId="@module.Id" asp-action="ViewCertificate">Generate Certificate</a>
+                                @*<form>
                                     <script src="https://remitademo.net/payment/v1/remita-pay-inline.bundle.js"></script>
                                     <button class="btn btn-primary" type="button" onclick="makePayment()"> Pay </button>
-                                </form>
+                                </form>*@
                             </div>
 
                         </div>
@@ -164,7 +165,7 @@
                 $.post('@Url.Action("PaymentCompleted", "TrainerDashboard")', {
                     data: response, traineeid: customerid, moduleid: moduleid
                 }, function () {
-                    // 
+                    //
                 }).done(function (returndata) {
                     if (returndata.isSuccess) {
                         window.location = returndata.redirectUrl;
@@ -179,7 +180,7 @@
                  $.post('@Url.Action("PaymentCompleted", "TrainerDashboard")', {
                     data: response, traineeid: customerid, moduleid: moduleid
                 }, function () {
-                    // 
+                    //
                 }).done(function (returndata) {
                     if (returndata.isSuccess) {
                         window.location = returndata.redirectUrl;

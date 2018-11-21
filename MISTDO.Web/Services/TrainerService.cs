@@ -26,7 +26,7 @@ namespace MISTDO.Web.Services
         }
         public async Task<IEnumerable<Certificate>> GetAllCertificates()
         {
-            var certs = await dbcontext.Certificates.Include(t=>t.Owner).Include(i => i.Trainer).ToListAsync();
+            var certs = await dbcontext.Certificates.Include(i => i.Trainer).ToListAsync();
             return certs;
         }
 
@@ -61,7 +61,7 @@ namespace MISTDO.Web.Services
 
         public async Task<IEnumerable<Certificate>> GetCertificate(string Id)
         {
-            var certificate = await dbcontext.Certificates.Where(t => t.Owner.Id == Id).ToListAsync();
+            var certificate = await dbcontext.Certificates.Where(t => t.Owner == Id).ToListAsync();
             return certificate;
         }
 

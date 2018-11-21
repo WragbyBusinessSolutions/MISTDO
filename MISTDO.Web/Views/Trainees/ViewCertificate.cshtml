@@ -11,6 +11,8 @@
     var module = ViewBag.Module as Modules;
     var user = await userManager.GetUserAsync(User);
 }
+
+
 <div class="page-container">
     <!-- Header START -->
     <div class="header navbar">
@@ -359,6 +361,26 @@
     </footer>
     <!-- Footer END -->
 </div>
+
+
+<style type="text/css" media="print">
+    BODY {
+        display: none;
+        visibility: hidden;
+    }
+
+    body, html {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+</style>
+<script type="text/javascript">
+    document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
 
 
 

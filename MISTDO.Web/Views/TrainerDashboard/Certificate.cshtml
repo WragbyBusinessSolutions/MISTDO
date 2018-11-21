@@ -43,7 +43,7 @@
                                     <tbody>
                                         @for (int i = 0; i < Model.Count(); i++)
                                         {
-
+                                           
                                         <tr>
 
                                             <td>
@@ -92,11 +92,8 @@
                                             </td>
                                             <td>
                                                 <div class="mrg-top-10 text-center">
-                                                    <a type="button"
-                                                       class="btn"
-                                                       href="#article-editor"
-                                                       data-toggle="modal">Click me</a>
-                                                    <a asp-action="ViewTraineeCertificate" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId">View Certificate</a>
+                                                   
+                                                    <a  asp-action="ViewTraineeCertificate" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId"  >View Certificate</a>
                                                 </div>
                                             </td>
                                         </tr>
