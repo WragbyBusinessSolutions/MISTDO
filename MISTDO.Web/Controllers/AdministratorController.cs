@@ -12,6 +12,13 @@ using Microsoft.Azure.KeyVault.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using OfficeOpenXml;
+using System.Xml.Linq;
+using OfficeOpenXml.Style;
+using System.Net.Http.Headers;
+
 
 namespace MISTDO.Web.Controllers
 { 
@@ -22,12 +29,13 @@ namespace MISTDO.Web.Controllers
         private readonly AdminApplicationDbContext admindbcontext;
         private readonly ApplicationDbContext dbcontext;
         private readonly TraineeApplicationDbContext Traineedbcontext;
+        private readonly IHostingEnvironment _env;
 
         //user managers
         private readonly UserManager<ApplicationUser> _usermanager;
         private readonly UserManager<TraineeApplicationUser> _traineeuserManager;
 
-        public AdministratorController(ITrainerService trainer, UserManager<ApplicationUser> userManager, UserManager<TraineeApplicationUser> traineeuserManager, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext, AdminApplicationDbContext _admindbcontext)
+        public AdministratorController(ITrainerService trainer, UserManager<ApplicationUser> userManager, IHostingEnvironment env, UserManager<TraineeApplicationUser> traineeuserManager, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext, AdminApplicationDbContext _admindbcontext)
         {
             _usermanager = userManager;
             _traineeuserManager = traineeuserManager;
@@ -35,6 +43,7 @@ namespace MISTDO.Web.Controllers
             admindbcontext = _admindbcontext;
             dbcontext = context;
             Traineedbcontext = traineedbcontext;
+            _env = env;
         }
 
         // GET: /<controller>/
@@ -411,6 +420,155 @@ namespace MISTDO.Web.Controllers
                 return Content("OperationFailed");
             }
         }
+
+        [HttpGet]
+        [Route("ExportCustomer")]
+        public IActionResult ExportTrainees(ExcelExportCellFormattingEventArgs e)
+        {
+            string rootFolder = _env.WebRootPath;
+            string fileName = @"ExportTrainees.xlsx";
+            string URL = string.Format("{0}://{1}/{2}", Request.Scheme, Request.Host, fileName);
+
+            FileInfo file = new FileInfo(Path.Combine(rootFolder, fileName));
+            if (file.Exists)
+            {
+                file.Delete();
+                file = new FileInfo(Path.Combine(rootFolder, fileName));
+            }
+
+            using (ExcelPackage package = new ExcelPackage(file))
+            {
+
+                IList<TraineeApplicationUser> traineeList = Traineedbcontext.Users.ToList();
+
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("User");
+                using (var cells = worksheet.Cells[1, 1, 1, 10]) //(1,1) (1,5)
+                {
+                    cells.Style.Font.Bold = true;
+                }
+                if (e.FormattedColumn.UniqueName == "Email" && e.FormattedColumn.UniqueName == "Company Name" && e.FormattedColumn.UniqueName == "Company Address" && e.FormattedColumn.UniqueName == "User Address")
+                    e.Cell.Style["padding-left"] = "60px";
+
+                if ( e.FormattedColumn.UniqueName == "Company Name" && e.FormattedColumn.UniqueName == "Company Address" && e.FormattedColumn.UniqueName == "User Address")
+                    e.Cell.Style["padding-left"] = "250px";
+                int totalRows = traineeList.Count();
+
+                worksheet.Cells[1, 1].Value = "First Name";
+                worksheet.Cells[1, 2].Value = "Last Name";
+                worksheet.Cells[1, 3].Value = "Email";
+                worksheet.Cells[1, 4].Value = "Company Name";
+                worksheet.Cells[1, 5].Value = "Company Address";
+                worksheet.Cells[1, 6].Value = "User Address";
+                int i = 0;
+                for (int row = 2; row <= totalRows + 1; row++)
+                {
+                    worksheet.Cells[row, 1].Value = traineeList[i].FirstName;
+                    worksheet.Cells[row, 2].Value = traineeList[i].LastName;
+                    worksheet.Cells[row, 3].Value = traineeList[i].Email;
+                    worksheet.Cells[row, 4].Value = traineeList[i].CompanyName;
+                    worksheet.Cells[row, 5].Value = traineeList[i].CompanyAddress;
+                    worksheet.Cells[row, 6].Value = traineeList[i].CompanyAddress;
+                    i++;                            
+                }
+
+                package.Save();
+
+            }
+
+            var result = PhysicalFile(Path.Combine(rootFolder, fileName), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+            Response.Headers["Content-Disposition"] = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = file.Name
+            }.ToString();
+
+            return result;
+        }
+       
+
+
+
+        [HttpGet]
+        [Route("ExportTrainings")]
+        public IActionResult ExportTrainings()
+        {
+            string rootFolder = _env.WebRootPath;
+            string fileName = @"ExportTrainings.xlsx";
+            string URL = string.Format("{0}://{1}/{2}", Request.Scheme, Request.Host, fileName);
+           
+
+            FileInfo file = new FileInfo(Path.Combine(rootFolder, fileName));
+            if (file.Exists)
+            {
+                file.Delete();
+                file = new FileInfo(Path.Combine(rootFolder, fileName));
+            }
+
+           // byte[] result = null;
+            using (ExcelPackage package = new ExcelPackage(file))
+            {
+
+                IList<Training> trainingList = dbcontext.Trainings.ToList();
+
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Trainings");
+                using (var cells = worksheet.Cells[1, 1, 1, 10]) //(1,1) (1,5)
+                {
+                    cells.Style.Font.Bold = true;
+                }
+                int totalRows = trainingList.Count();
+                
+
+                worksheet.Cells[1, 1].Value = "Training Name";
+                worksheet.Cells[1, 2].Value = "Training Centre ID";
+                worksheet.Cells[1, 3].Value = "Trainee ID";
+                worksheet.Cells[1, 4].Value = "Training Start Date";
+                worksheet.Cells[1, 5].Value = "Training End Date";
+                worksheet.Cells[1, 6].Value = "Certifcate Gen  Date";
+
+            
+                int i = 0;
+                for (int row = 2; row <= totalRows + 1; row++)
+                {
+                    worksheet.Cells[row, 1].Value = trainingList[i].TrainingName;
+                    worksheet.Cells[row, 2].Value = trainingList[i].TrainingCentreId;
+                    worksheet.Cells[row, 3].Value = trainingList[i].TraineeId;
+                    worksheet.Cells[row, 4].Value = trainingList[i].TrainingStartDate.Date.ToString();
+                    worksheet.Cells[row, 5].Value = trainingList[i].TrainingEndDate.Date.ToString();
+                    worksheet.Cells[row, 6].Value = trainingList[i].CertGenDate.Date.ToString();
+                    i++;
+                }
+
+
+                package.Save();
+
+              //  result = package.GetAsByteArray();
+
+                
+
+            }
+
+            //  return File(result, "application/vnd.ms-excel", fileName );
+
+            var result = PhysicalFile(Path.Combine(rootFolder, fileName), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+            Response.Headers["Content-Disposition"] = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = file.Name
+            }.ToString();
+
+            return result;
+
+
+
+        }
+        public ActionResult DownloadTrainngFile()
+        {
+            string path = AppDomain.CurrentDomain.DynamicDirectory + "wwwroot/";
+            byte[] fileBytes = System.IO.File.ReadAllBytes(path + "ExportTrainees.xlsx");
+            string filename = "ExportTrainees.xlsx";
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, filename);
+        }
+
 
     }
 }

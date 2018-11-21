@@ -215,7 +215,7 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
 
                     b.Property<int>("ModuleId");
 
-                    b.Property<string>("OwnerId");
+                    b.Property<string>("Owner");
 
                     b.Property<string>("TrainerId");
 
@@ -226,8 +226,6 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
                     b.Property<int>("TrainingId");
 
                     b.HasKey("CertId");
-
-                    b.HasIndex("OwnerId");
 
                     b.HasIndex("TrainerId");
 
@@ -465,10 +463,6 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
 
             modelBuilder.Entity("MISTDO.Web.Models.Certificate", b =>
                 {
-                    b.HasOne("MISTDO.Web.Models.TraineeApplicationUser", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
-
                     b.HasOne("MISTDO.Web.Models.ApplicationUser", "Trainer")
                         .WithMany()
                         .HasForeignKey("TrainerId");
