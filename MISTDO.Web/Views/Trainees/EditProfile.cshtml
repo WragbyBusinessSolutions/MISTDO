@@ -42,10 +42,24 @@
                                     <div class="col-4">
                                         <div class="widget-profile-1 card">
                                             <div class="profile border bottom">
-                                                <img class="mrg-top-30" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(ViewBag.Image))" alt="Take a new Passport" height="150" width="180">
-                                                <p>
-                                                    <h4 class="mrg-top-20 no-mrg-btm text-semibold">Profile Image </h4>
-                                                </p>
+                                                @if (ViewBag.Image != null)
+                                                {
+
+                                                    <span class="name pdd-right-5">
+                                                        <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(ViewBag.Image))" alt="Take a new Passport" height="25" width="25">
+                                                    </span>
+                                                    <p>
+                                                        <h4 class="mrg-top-20 no-mrg-btm text-semibold">Profile Image </h4>
+                                                    </p>
+
+                                                }
+                                                else
+                                                {
+
+                                                    <img src="~/templates/avatar.png" alt="Take a new Passport" height="25" width="25">
+
+
+                                                }
                                             </div>
                                         </div>
 

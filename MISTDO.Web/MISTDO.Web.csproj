@@ -80,9 +80,10 @@
     <PackageReference Include="EPPlus.Core" Version="1.5.4" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.ComputerVision" Version="3.2.0" />
+    <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.2.0-preview" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" PrivateAssets="All" />
-    <PackageReference Include="Rotativa" Version="1.7.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -165,6 +166,7 @@
     <None Include="Views\Account\SignedOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="wwwroot\images\CamImages\" />
     <Folder Include="wwwroot\NewFolder\" />
     <Folder Include="wwwroot\productfiles\" />
   </ItemGroup>

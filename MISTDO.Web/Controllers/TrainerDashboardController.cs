@@ -17,6 +17,8 @@ using TraineeViewModel = MISTDO.Web.Models.AccountViewModels.TraineeViewModel;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 
+
+
 namespace MISTDO.Web.Controllers
 {
     [Authorize/*(AuthenticationSchemes = "TrainerAuth")*/]
@@ -1079,8 +1081,10 @@ namespace MISTDO.Web.Controllers
 
         public IActionResult CreateTrainees()
         {
+
             return View();
         }
+
 
         // POST: Trainees/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -1089,6 +1093,7 @@ namespace MISTDO.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateTrainees(TraineeViewModel model)
         {
+            
             if (ModelState.IsValid)
             {
 
@@ -1107,32 +1112,40 @@ namespace MISTDO.Web.Controllers
                     image = p1;
 
                 }
-                var user = new TraineeApplicationUser()
+               
+              
+                    var user = new TraineeApplicationUser()
+                    {
+
+                        UserName = model.Email,
+                        Email = model.Email,
+
+                        PhoneNumber = model.PhoneNumber,
+                        CompanyAddress = model.CompanyAddress,
+                        CompanyName = model.CompanyName,
+                        UserAddress = model.UserAddress,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+
+                        DateRegistered = DateTime.Now.Date,
+
+                        ImageUpload = image
+
+
+
+                    };
+                    
+               
+
+
+
+
+                var results = await _traineeuserManager.CreateAsync(user, model.Password);
+                if (results.Succeeded)
                 {
-
-                    UserName = model.Email,
-                    Email = model.Email,
-
-                    PhoneNumber = model.PhoneNumber,
-                    CompanyAddress = model.CompanyAddress,
-                    CompanyName = model.CompanyName,
-                    UserAddress = model.UserAddress,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-
-                    DateRegistered = DateTime.Now.Date,
-
-                    ImageUpload = image
-
-                };
-
-
-                var result = await _traineeuserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                  //var code = await _traineeuserManager.GenerateEmailConfirmationTokenAsync(user);
-                  //  var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                  //  var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                    //var code = await _traineeuserManager.GenerateEmailConfirmationTokenAsync(user);
+                    //  var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                    //  var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
 
 

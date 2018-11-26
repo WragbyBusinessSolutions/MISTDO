@@ -19,16 +19,28 @@
             </p>*@
             </div>
             <script type="text/javascript">
-                                        function ShowPreview(input) {
-                                            if (input.files && input.files[0]) {
-                                                var ImageDir = new FileReader();
-                                                ImageDir.onload = function (e) {
-                                                    $('#ImagePreview').attr('src', e.target.result);
-                                                }
-                                                ImageDir.readAsDataURL(input.files[0]);
-                                            }
-                                        }
+                function ShowPreview(input) {
+                    if (input.files && input.files[0]) {
+                        var ImageDir = new FileReader();
+                        ImageDir.onload = function (e) {
+                            $('#ImagePreview').attr('src', e.target.result);
+                        }
+                        ImageDir.readAsDataURL(input.files[0]);
+                    }
+                }
             </script>
+            <!-- Configure a few settings and attach camera -->
+            <script language="JavaScript">
+                Webcam.set({
+                    width: 320,
+                    height: 240,
+                    image_format: 'jpeg',
+                    jpeg_quality: 90
+                });
+                Webcam.attach('#my_camera');
+            </script>
+
+           
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
@@ -88,45 +100,90 @@
 
                                 <div class="form-group">
                                     @*<span class="span4">
-                                        <input type="file" name="ImageUpload" multiple="multiple" class="input-files" />
-                                    </span>*@
-                                     <div class="col-4" align="center">
-                                         <img id="ImagePreview" height="200" />
-                                    </div>
+            <input type="file" name="ImageUpload" multiple="multiple" class="input-files" />
+        </span>*@
                                     <div class="col-4" align="center">
-                                        Select Your File To Upload #:
-                                        <input type="file" name="ImageUpload" multiple="multiple" class="input-files" onchange="ShowPreview(this)" />
+                                        <img id="ImagePreview" height="200" />
+                                        @*<div id="my_camera" align="center"></div>*@
                                     </div>
-                                   
-                                    
-                                  
-
+                                
+                                    <div class="col-4" align="center">
+                                        Select Your File To Upload or Take a new Picture #:
+                                        <span><input type="file" class="btn btn-success" name="ImageUpload" multiple="multiple" onchange="ShowPreview(this)" /></span>
+                                        @*<span hidden><input type="file" id="ImageUpload" class="btn btn-success" name="ImageUpload" multiple="multiple" /></span>*@
+                                        @*<input type="button" class="btn btn-success" value="Take Snapshot" onClick="take_snapshot()">*@
+                                        <div id="result" align="center"></div>
+                                        <hr />
+                                    </div>
                                 </div>
 
 
 
-                                @*<div class="form-group">
-                                <label asp-for="FirstFinger" class="control-label"></label>
-                                <input asp-for="FirstFinger" class="form-control" />
-                                <span asp-validation-for="FirstFinger" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="MiddleFinger" class="control-label"></label>
-                                <input asp-for="MiddleFinger" class="form-control" />
-                                <span asp-validation-for="MiddleFinger" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="LastFinger" class="control-label"></label>
-                                <input asp-for="LastFinger" class="form-control" />
-                                <span asp-validation-for="LastFinger" class="text-danger"></span>
-                            </div>*@
-                                <div class="form-group">
-                                    <input type="submit" value="Create" class="btn btn-default" />
+                                <div class="form-group" align="center">
+
+                                    
+                                    <p> <input type="submit" class="btn btn-success" value="Create"/></p>
+
                                 </div>
                             </form>
 
-                        </div>
 
+                        </div>
+                        <!-- First, include the Webcam.js JavaScript Library -->
+                        <script src="~/js/webcam.js"></script>
+                        <!-- Configure a few settings and attach camera -->
+                        @*<script language="JavaScript">
+                            Webcam.set({
+                                width: 300,
+                                height: 150,
+                                image_format: 'jpeg',
+                                jpeg_quality: 120
+                            });
+                            Webcam.attach('#my_camera');
+                        </script>*@
+
+                        <!-- Code to handle taking the snapshot and displaying it locally -->
+                        @*<script language="JavaScript">
+                            function take_snapshot() {
+                                // take snapshot and get image data
+                                Webcam.snap(function (data_uri) {
+                                    // display results in page
+                                    document.getElementById('result').innerHTML =
+                                        '<img id="ImageUpload" src="' +
+                                        data_uri +
+                                        '"/>';
+                                    
+                                    var file = document.getElementById("ImageUpload").src;
+
+                                    var formdata = new FormData();
+                                    formdata.append("ImageUpload", file);
+
+                                     $.ajax({  
+                                                type: "POST",  
+                                                url: '@Url.Action("CreateTrainees")',  
+                                                data: { base64image: file },  
+                                                dataType: "json",  
+                                                contentType: "application/json; charset=utf-8",  
+                                                success: function (result) {                     
+                                                    alert(" data inserted");   //hide the modal
+                                                },  
+                                                error: function () {  
+                                                    alert("Error while inserting data");  
+                                                }  
+                                            });
+
+                                  
+
+                                    Webcam.upload(data_uri,
+                                        '/images/CamImages' ,
+                                        function (code, text) {
+                                            //alert('Photo Captured');
+                                        });
+                                });
+                            }
+                        </script>*@
+
+                       
 
 
                     </div>
@@ -160,7 +217,7 @@
                 </div>
             </div>
         </div>
-        </div>
+      
     </div>
 
     <!-- Content Wrapper END -->
