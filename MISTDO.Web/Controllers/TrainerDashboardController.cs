@@ -180,8 +180,9 @@ namespace MISTDO.Web.Controllers
         {
             var user = await _usermanager.GetUserAsync(User);
             var train = dbcontext.Trainings.ToList();
-            var training = train.FirstOrDefault(t => t.TraineeId == traineeid && t.ModuleId == moduleid && t.TrainingCentreId == user.Id);
-                        var centre = await _usermanager.FindByIdAsync(user.Id);
+            var training =  train.FirstOrDefault(t => t.TraineeId == traineeid & t.ModuleId == moduleid & t.TrainingCentreId == user.Id);
+   
+             var centre = await _usermanager.FindByIdAsync(user.Id);
 
            var  trainee = await _traineeuserManager.FindByIdAsync(traineeid);
             var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
@@ -197,6 +198,7 @@ namespace MISTDO.Web.Controllers
             ViewBag.Centre = centre;
             ViewBag.Module = module;
 
+            
 
             var updateTraining = new Training
             {

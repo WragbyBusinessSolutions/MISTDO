@@ -24,6 +24,7 @@ namespace MISTDO.Web.Services
         Task<IEnumerable<ApplicationUser>> GetAllTrainingCenters();
         Task<Modules> GetModulebyId(int Id);
         Task<IEnumerable<Training>> GetOneTraining(int Id);
+        Task<IEnumerable<Training>> GetSpecTraining(string traineeid, string moduleid);
 
     }
 }
