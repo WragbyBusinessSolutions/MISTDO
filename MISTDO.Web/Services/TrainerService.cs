@@ -87,7 +87,7 @@ namespace MISTDO.Web.Services
             return Trainings;
         }
 
-        public async Task<IEnumerable<Training>> GetAllModuleTrainees()
+        public async Task<List<Training>> GetAllModuleTrainees()
         {
             var Trainings = await dbcontext.Trainings.ToListAsync();
             return Trainings;

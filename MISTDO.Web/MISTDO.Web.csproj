@@ -171,6 +171,9 @@
     <Folder Include="wwwroot\productfiles\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Views\Administrator\Account.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Administrator\DetailsModule.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

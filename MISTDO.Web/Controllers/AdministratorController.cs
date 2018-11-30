@@ -18,7 +18,8 @@ using OfficeOpenXml;
 using System.Xml.Linq;
 using OfficeOpenXml.Style;
 using System.Net.Http.Headers;
-
+using MISTDO.Web.Models.AdminViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MISTDO.Web.Controllers
 { 
@@ -30,6 +31,7 @@ namespace MISTDO.Web.Controllers
         private readonly ApplicationDbContext dbcontext;
         private readonly TraineeApplicationDbContext Traineedbcontext;
         private readonly IHostingEnvironment _env;
+
 
         //user managers
         private readonly UserManager<ApplicationUser> _usermanager;
@@ -73,6 +75,43 @@ namespace MISTDO.Web.Controllers
             ViewBag.Owners = owners;
             return View(certs.ToList());
         }
+     
+        public async Task<IActionResult> Account()
+        {
+            var allModuletrainee = await _trainer.GetAllModuleTrainees();
+            var modules = new List<Modules>();
+            foreach (var item in allModuletrainee)
+            {
+                modules.Add(admindbcontext.Modules.FirstOrDefault(m => m.Id.ToString() == item.ModuleId));
+            }
+
+            //var modules = await _trainer.GetAllModules();
+                 ViewBag.modulecosts = modules;
+
+            double total = modules.Sum(item => item.Cost);
+            string cost = string.Format(new System.Globalization.CultureInfo("en-NG"), "{0:C2}", total);
+            ViewBag.totalcost = cost;
+
+            return View(allModuletrainee);
+
+        }
+
+        //private async List<Training> GetTraining()
+        //{
+        //    var modules = await _trainer.GetTrainee();
+        //    List<Training> training = new List<Training>();
+        //    foreach(var item in modules)
+        //        training.Add(new Training { Id = item.Id, ModuleId = item.ModuleId, TrainingCentreId = item.TrainingCentreId, CertificateId = item.CertificateId, DateCreated = item.DateCreated });
+
+        //    return training;
+        //}
+        //private List<Training> GetModeules()
+        //{
+        //    List<Modules> module = new List<Modules>();
+
+        //    return module;
+        //}
+
 
         public async Task<IActionResult> AllCalender()
         {
