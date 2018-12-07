@@ -129,6 +129,76 @@ namespace MISTDO.Web.Views.TrainerDashboard
             return View(trainee);
 
         }
+        [HttpGet]
+        // GET: Trainee/Edit/5
+        public async Task<IActionResult> EditPassword(string id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            id = user.Id;
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var trainee = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
+            if (trainee == null)
+            {
+                return NotFound();
+            }
+            //  Stream stream = new MemoryStream(trainee.ImageUpload);
+            //   Microsoft.AspNetCore.Http.IFormFile file = new FormFile(stream, 0, stream.Length, trainee.FirstName, trainee.LastName);
+            TraineeViewModel model = new TraineeViewModel
+            {
+               // Password = trainee.Id,
+                
+                
+                //    ImageUpload = file
+            };
+
+            ViewBag.message = "";
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPassword(string OldPassword,string Password, string ConfirmPassword)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            
+            
+           
+            if(Password != ConfirmPassword )
+            {
+
+                return View();
+            }
+            if (OldPassword == ConfirmPassword)
+            {
+                
+                return View();
+            }
+
+            //var idResult = await _userManager.UpdateAsync(AppUser);
+
+            var result = await _userManager.ChangePasswordAsync(user, OldPassword, ConfirmPassword);
+           
+            if (result.Succeeded == false)
+            {
+                AddErrors(result);
+                return View();
+            }
+            await _signInManager.SignInAsync(user, isPersistent: false);
+            await dbcontext.SaveChangesAsync();
+
+
+            return RedirectToAction(nameof(Profile));
+
+
+
+
+
+        }
 
         [HttpGet]
         // GET: Trainee/Edit/5
@@ -193,7 +263,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
                 }
             var AppUser = await _userManager.GetUserAsync(User);
-
+            
 
             AppUser.Id = model.TraineeId;
             AppUser.CompanyAddress = model.CompanyAddress;
@@ -208,6 +278,8 @@ namespace MISTDO.Web.Views.TrainerDashboard
                
 
             var idResult = await _userManager.UpdateAsync(AppUser);
+
+            
 
 
             return RedirectToAction(nameof(Profile));
@@ -246,14 +318,15 @@ namespace MISTDO.Web.Views.TrainerDashboard
         }
 
 
-        public IActionResult Dashboard()
+        public async Task<IActionResult> Dashboard()
         {
             
-            
+
             return View();
 
         }
 
+     
         public async Task<IActionResult> Calender()
         {
             return View(await tdbcontext.Calenders.ToListAsync());
@@ -408,6 +481,8 @@ namespace MISTDO.Web.Views.TrainerDashboard
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
+        
+
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -427,9 +502,18 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 {
                    
                     var user = await _userManager.FindByEmailAsync(model.Email);
-                   // var isTrainee = await _userManager.IsInRoleAsync(user, "Trainee");
+                    // var isTrainee = await _userManager.IsInRoleAsync(user, "Trainee");
                     //if (isTrainer)
                     //{
+                    var trainee = await _userManager.GetUserAsync(User);
+
+                    string pass = "Qwerty415#";
+                    
+                    if ( model.Password== pass)
+                    {
+
+                        return RedirectToAction(nameof(EditPassword));
+                    }
                     returnUrl = returnUrl ?? Url.Content("~/Trainees/Dashboard");
                     //     }
                     //      else
@@ -697,6 +781,8 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
 
                 var result = await _userManager.CreateAsync(user, model.Password);
+
+                
                 if (result.Succeeded)
                 {
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

@@ -166,7 +166,7 @@ namespace MISTDO.Web.Controllers
 
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
             if (!changePasswordResult.Succeeded)
-            {
+            {   
                 AddErrors(changePasswordResult);
                 return View(model);
             }

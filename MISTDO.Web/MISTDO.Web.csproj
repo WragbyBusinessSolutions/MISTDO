@@ -210,6 +210,9 @@
     <Content Update="Views\Administrator\SupportUpdate.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Trainees\EditPassword.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\TrainerDashboard\ViewTraineeCertificate.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
