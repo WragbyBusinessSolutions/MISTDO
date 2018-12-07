@@ -14,7 +14,6 @@
     <None Remove="Views\_ViewStart.cshtml" />
     <Content Remove="Views\Shared\_LayoutRegisterAside.cshtml" />
     <Content Remove="Views\Shared\_LayoutTraineeHeader.cshtml" />
-    <Content Remove="Views\Shared\_RegisterPartial.cshtml" />
     <None Remove="Views\Shared\Error.cshtml" />
     <None Remove="Views\Shared\_LayoutDashboard.cshtml" />
     <None Remove="Views\Shared\_LayoutHeader.cshtml" />
