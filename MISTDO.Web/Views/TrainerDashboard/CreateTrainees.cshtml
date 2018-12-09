@@ -101,20 +101,19 @@
                                 <div class="form-group">
                                     @*<span class="span4">
             <input type="file" name="ImageUpload" multiple="multiple" class="input-files" />
-        </span>*@
+        </span>*@<label>Profile Picture  </label> ( Select Your File To Upload or Take a new Picture:)
                                     <div class="col-4" align="center">
-                                        <img id="ImagePreview" height="200" />
-                                        
-                                        @*<div id="my_camera" align="center"></div>*@
+
+                                        <span align="center"><iframe id="ImagePreview" src="~/templates/avatar.png" scrolling="auto" allowtransparency="true" allowfullscreen></iframe></span>
+
+                                      
                                     </div>
-                                
+
                                     <div class="col-4" align="center">
-                                        Select Your File To Upload or Take a new Picture #:
+
                                         <span><input type="file" class="btn btn-success" name="ImageUpload" multiple="multiple" onchange="ShowPreview(this)" /></span>
-                                        
-                                        @*<span hidden><input type="file" id="ImageUpload" class="btn btn-success" name="ImageUpload" multiple="multiple" /></span>*@
-                                        @*<input type="button" class="btn btn-success" value="Take Snapshot" onClick="take_snapshot()">*@
-                                        <div id="result" align="center"></div>
+
+                                         <div id="result" align="center"></div>
                                         <hr />
                                     </div>
                                 </div>
@@ -189,22 +188,22 @@
 
 
                     </div>
-                    @*<div>
-                    <a asp-action="Index">Back to List</a>
-                </div>*@
+                  
                 </div>
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-block">
                             <form asp-action="TraineeUpload" enctype="multipart/form-data">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                                 <p>       @Html.ActionLink("Click here to download Template for Bulk Upload", "DownloadTraineeFile", new { })</p>
 
                                 <div class="form-group">
-                                    <div class="col-md-10">
+                                    <div class="col-md-6">
                                         <p><b>Upload Bulk Trainee with Excel File</b></p>
-                                        <input type="file" name="file" multiple />
+                                        <p><input type="file" name="file" multiple /></p>
                                     </div>
+
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-10">

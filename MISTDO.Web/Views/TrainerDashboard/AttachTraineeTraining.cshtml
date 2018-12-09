@@ -234,16 +234,7 @@
             },
             onClose: function (response) {
                 console.log("closed");
-                 $.post('@Url.Action("TraineeAttach", "TrainerDashboard")', {
-
-                    data: response, TraineeId: TraineeId , ModuleId: ModuleId, ModuleCost: ModuleCost,  TrainingStartDate:TrainingStartDate, TrainingEndDate:TrainingEndDate
-                }, function () {
-                    //
-                }).done(function (returndata) {
-                    if (returndata.isSuccess) {
-                        window.location = returndata.redirectUrl;
-                    };
-                });
+                
             }
         });
 

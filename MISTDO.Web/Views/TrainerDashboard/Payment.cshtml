@@ -34,9 +34,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-block" >
+                        <div class="card-block">
 
-                            <dl class="d-inline" >
+                            @*<dl class="d-inline">
                                 <dt>
                                     @Html.DisplayNameFor(model => model.FirstName)
                                 </dt>
@@ -98,15 +98,137 @@
                                     @module.Cost
                                 </dd>
 
-                            </dl>
+                            </dl>*@
+                            <form asp-action="EditTraining" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label"> First Name</label>
+                                            <input asp-for="FirstName" class="form-control" disabled />
+                                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group">
+                                            <label class="control-label"> Last Name</label>
+                                            <input asp-for="LastName" class="form-control" disabled />
+                                            <span asp-validation-for="LastName" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group">
+                                            <label class="control-label">Email</label>
+                                            <input asp-for="Email" class="form-control" disabled />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label"> Training Venue </label>
+                                            <input asp-for="PhoneNumber" class="form-control" disabled />
+                                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <div class="form-group">
+                                            <label class="control-label"> Company Name</label>
+                                            <input asp-for="CompanyName" class="form-control" disabled />
+                                            <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label"> Company Address</label>
+                                            <input asp-for="CompanyAddress" class="form-control" disabled />
+                                            <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">User Address</label>
+                                            <input asp-for="UserAddress" class="form-control" disabled />
+                                            <span asp-validation-for="UserAddress" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+
+                                    
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Module Name</label>
+                                            <input asp-for="@module.Name" class="form-control" disabled />
+                                            <span asp-validation-for="@module.Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Module Short Code</label>
+                                            <input asp-for="@module.ShortCode" class="form-control" disabled/>
+                                            <span asp-validation-for="@module.ShortCode" class="text-danger"></span>
+                                        </div>
+                                     </div>
+
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Module Cost</label>
+                                                <input asp-for="@module.Cost" class="form-control" disabled />
+                                                <span asp-validation-for="@module.Cost" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-6">
+                                            <div class="text-right mrg-top-5">
+                                                <div class="form-group">
+                                                    <a class="btn btn-primary" asp-route-ModuleId="@module.Id" asp-route-TraineeId="@Model.TraineeId" asp-action="ViewCertificate">Generate Certificate</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+</form>
 
 
                             <div align="center">
-                                <a class="btn btn-primary" asp-route-ModuleId="@module.Id"  asp-route-TraineeId="@Model.TraineeId" asp-action="ViewCertificate">Generate Certificate</a>
+                                
                                 @*<form>
-                                    <script src="https://remitademo.net/payment/v1/remita-pay-inline.bundle.js"></script>
-                                    <button class="btn btn-primary" type="button" onclick="makePayment()"> Pay </button>
-                                </form>*@
+                <script src="https://remitademo.net/payment/v1/remita-pay-inline.bundle.js"></script>
+                <button class="btn btn-primary" type="button" onclick="makePayment()"> Pay </button>
+            </form>*@
                             </div>
 
                         </div>
