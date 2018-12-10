@@ -13,10 +13,11 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
+                <p>
+                    <a asp-action="Trainees">Back</a>
+                </p>
                 <h4>Register Trainees</h4>
-                @*<p>
-                <a asp-action="Create">Create New</a>
-            </p>*@
+
             </div>
             <script type="text/javascript">
                 function ShowPreview(input) {
@@ -99,22 +100,41 @@
 
 
                                 <div class="form-group">
-                                    @*<span class="span4">
-            <input type="file" name="ImageUpload" multiple="multiple" class="input-files" />
-        </span>*@<label>Profile Picture  </label> ( Select Your File To Upload or Take a new Picture:)
+                                    <label>Profile Picture  </label><label style="color:crimson">( Select Your File To Upload or Take a new Picture:)</label> 
                                     <div class="col-4" align="center">
 
                                         <span align="center"><iframe id="ImagePreview" src="~/templates/avatar.png" scrolling="auto" allowtransparency="true" allowfullscreen></iframe></span>
 
-                                      
+
                                     </div>
 
                                     <div class="col-4" align="center">
 
                                         <span><input type="file" class="btn btn-success" name="ImageUpload" multiple="multiple" onchange="ShowPreview(this)" /></span>
 
-                                         <div id="result" align="center"></div>
+                                        <div id="result" align="center"></div>
                                         <hr />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Fingerprint </label> <label style="color:crimson">( Place your thumb on the device:)</label>
+                                    <div class="col-4" align="center">
+
+                                        <span align="center">
+                                            <img id="ImagePreview" src="~/templates/fprint1.bmp" alt="Take a new Passport" height="150" width="120">
+
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Fingerprint </label> <label style="color:crimson">( Place your Index on the device:) </label>
+                                    <div class="col-4" align="center">
+
+                                        <span align="center">
+                                            <img id="ImagePreview" src="~/templates/fprint.bmp" alt="Take a new Passport" height="150" width="120">
+
+                                        </span>
                                     </div>
                                 </div>
 
@@ -122,8 +142,8 @@
 
                                 <div class="form-group" align="center">
 
-                                    
-                                    <p> <input type="submit" class="btn btn-success" value="Create"/></p>
+
+                                    <p> <input type="submit" class="btn btn-success" value="Create" /></p>
 
                                 </div>
                             </form>
@@ -190,32 +210,35 @@
                     </div>
                   
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-block">
-                            <form asp-action="TraineeUpload" enctype="multipart/form-data">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <form asp-action="TraineeUpload" enctype="multipart/form-data">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                                <p>       @Html.ActionLink("Click here to download Template for Bulk Upload", "DownloadTraineeFile", new { })</p>
+                                    <p>@Html.ActionLink("Click here to download Template for Bulk Upload", "DownloadTraineeFile", new { })</p>
 
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <p><b>Upload Bulk Trainee with Excel File</b></p>
-                                        <p><input type="file" name="file" multiple /></p>
+                                    <div class="form-group">
+                                        
+                                            <p><b>Upload Bulk Trainee with Excel File</b></p>
+                                            <input type="file" name="file" multiple accept=".xlsx*" />
+                                    </div>
+                                    <div class="form-group">
+                                       
+                                            <input type="submit" value="Upload"  />
+                                        
                                     </div>
 
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <input type="submit" value="Upload" />
-                                    </div>
-                                </div>
 
+                                </form>
 
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
       

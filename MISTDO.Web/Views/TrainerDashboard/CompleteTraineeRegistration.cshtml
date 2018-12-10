@@ -1,9 +1,9 @@
-﻿@model MISTDO.Web.Models.Training
-
+﻿@model MISTDO.Web.Models.AccountViewModels.TraineeViewModel
 @{
-    ViewData["Title"] = "Attach Trainingto Trainee";
+    ViewData["Title"] = "Create New Trainee";
     Layout = "_LayoutDashboard";
 }
+
 @inject UserManager<ApplicationUser> userManager;
 @inject UserManager<TraineeApplicationUser> usermanager;
 
@@ -16,10 +16,33 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
+                <p>
+                    <a asp-action="Trainees">Back</a>
+                </p>
                 <h4>Complete Registration </h4>
-                @*<p>
-                        <a asp-action="Create">Create New</a>
-                    </p>*@
+
+                <script type="text/javascript">
+                    function ShowPreview(input) {
+                        if (input.files && input.files[0]) {
+                            var ImageDir = new FileReader();
+                            ImageDir.onload = function (e) {
+                                $('#ImagePreview').attr('src', e.target.result);
+                            }
+                            ImageDir.readAsDataURL(input.files[0]);
+                        }
+                    }
+                </script>
+                <!-- Configure a few settings and attach camera -->
+                <script language="JavaScript">
+                    Webcam.set({
+                        width: 320,
+                        height: 240,
+                        image_format: 'jpeg',
+                        jpeg_quality: 90
+                    });
+                    Webcam.attach('#my_camera');
+                </script>
+
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -34,7 +57,7 @@
                                 var Tcenter = ViewBag.center as List<SelectListItem>;
 
                                 var trainee = await usermanager.GetUserAsync(User);
-                               
+
 
 
                             }
@@ -42,95 +65,44 @@
 
 
                             <form>
-                                @*<p>
-                                        <input type="hidden" value="@Model.ModuleId" id="ModuleId" />
-                                        <input type="hidden" value="@module.Cost" id="ModuleCost" />
-                                        <input type="hidden" value="@user.Id" id="TrainingCenterId" />
-                                        <input type="hidden" value="@Model.TraineeId" id="TraineeId" />
-                                        <input type="hidden" value="@Model.TrainingStartDate" id="TrainingStartDate" />
-                                        <input type="hidden" value="@Model.TrainingEndDate" id="TrainingEndDate" />
-
-                                    </p>*@
-
-
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-group">
                                     <label asp-for="TraineeId" class="control-label"> Trainee ID</label>
                                     <input asp-for="TraineeId" class="form-control" id="TraineeId" />
                                     <span asp-validation-for="TraineeId" class="text-danger"></span>
                                 </div>
-                               
-                                    
-                                        <div class="form-group">
-
-                                            <label class="control-label"> First Name</label>
-                                            <input  class="form-control" id="firstname" onkeyup="showInput();" />
-                                        </div>
-                                        <div class="form-group">
-
-                                            <label class="control-label"> Last Name</label>
-                                            <input  class="form-control" id="lastname" />
-                                        </div>
-                                     
-                             
-
-
-                                @*<div class="form-group">
-                                    <label class="control-label"> Module Details</label>
-                                    <select class="form-control" asp-for="ModuleId" asp-items="modules" id="ModuleId" onchange="myFunction()"></select>
-
-                                </div>*@
-
-
-                                @*<div class="form-group">
-
-                                    <label class="control-label"> Module Cost  (Choose equivalent Module Cost)</label>
-                                    <select class="form-control" asp-items="module" id="ModuleCost" disabled></select>
-                                    <p><span id='ModuleCost'></span></p>
-                                </div>
-
-                                <script>
-                                    function myFunction() {
-                                        var x = document.getElementById("ModuleId").value;
-                                        document.getElementById("ModuleCost").selectedIndex = x - 1;
-                                    }
-                                </script>
-
-
-                                <div class="form-group">
-                                    <label class="control-label" hidden> Training Center Id</label>
-                                    <input asp-for="@user.Id" class="form-control" id="TrainingCenterId" type="hidden" />
-                                    <span asp-validation-for="TrainingCentreId" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label"> Training Center Name</label>
-                                    <input asp-for="@user.CompanyName" class="form-control" disabled id="TrainingCenterName" />
-                                    <span asp-validation-for="TrainingCentreId" class="text-danger"></span>
-                                </div>
-
-
 
 
 
                                 <div class="form-group">
-                                    <label class="control-label">Training Start When?</label>
-                                    <input asp-for="TrainingStartDate" class="form-control" id="TrainingStartDate" />
-                                    <span asp-validation-for="TrainingStartDate" class="text-danger"></span>
+                                    <label>Fingerprint </label> <label style="color:crimson">( Place your thumb on the device:)</label>
+                                    <div class="col-4" align="center">
+
+                                        <span align="center">
+                                            <img id="ImagePreview" src="~/templates/fprint1.bmp" alt="Take a new Passport" height="150" width="120">
+
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Training Ends When?</label>
-                                    <input asp-for="TrainingEndDate" class="form-control" id="TrainingEndDate" />
-                                    <span asp-validation-for="TrainingEndDate" class="text-danger"></span>
+                                    <label>Fingerprint </label> <label style="color:crimson">( Place your Index on the device:) </label>
+                                    <div class="col-4" align="center">
+
+                                        <span align="center">
+                                            <img id="ImagePreview" src="~/templates/fprint.bmp" alt="Take a new Passport" height="150" width="120">
+
+                                        </span>
+                                    </div>
                                 </div>
 
 
+                                <div class="form-group" align="center">
 
 
+                                    <p> <input type="submit" class="btn btn-success" value="Complete" /></p>
 
-                                <div class="form-group">
-                                    <script src="https://remitademo.net/payment/v1/remita-pay-inline.bundle.js"></script>
-                                    <button class="btn btn-primary" type="button" onclick="makePayment()"> Pay and Attach </button>
-                                </div>*@
+                                </div>
+
                             </form>
 
                         </div>

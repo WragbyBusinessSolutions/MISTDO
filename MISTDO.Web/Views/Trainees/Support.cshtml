@@ -84,23 +84,19 @@
                                                     <thead>
                                                         <tr>
                                                             <th>
-                                                                Recieved Date & Time
+                                                                Response Time
                                                             </th>
-                                                            <th>
-                                                                @Html.DisplayNameFor(model => model.Subject)
-                                                            </th>
+                                                           
                                                             <th>
                                                                 @Html.DisplayNameFor(model => model.Issue)
                                                             </th>
                                                             <th>
                                                                 @Html.DisplayNameFor(model => model.Response)
                                                             </th>
-                                                            <th>
-                                                                @Html.DisplayNameFor(model => model.ResponseTimeStamp)
-                                                            </th>
+                                                           
 
 
-                                                            <th></th>
+                                                            <th>...</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -112,26 +108,22 @@
                                                         {
                                                             <tr>
                                                                 <th>
-                                                                    @Html.DisplayFor(model => item.SupportTimeStamp)
+                                                                    @Html.DisplayFor(model => item.ResponseTimeStamp)
                                                                 </th>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.Subject)
-                                                                </td>
+                                                               
                                                                 <td>
                                                                     @Html.DisplayFor(modelItem => item.Issue)
                                                                 </td>
                                                                 <td>
                                                                     @Html.DisplayFor(modelItem => item.Response)
                                                                 </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.SupportTimeStamp)
-                                                                </td>
+                                                               
 
 
                                                                 <td>
 
                                                                     
-
+                                                                    <a asp-action="SupportDetails" asp-route-id="@item.SupportId">Details</a>
 
                                                                 </td>
                                                             </tr>

@@ -43,12 +43,12 @@
                                 <input type="hidden" asp-for="SupportId" />
                                 <div class="form-group">
                                     <label class="control-label">Subject</label>
-                                    <input asp-for="Subject" class="form-control" />
+                                    <input asp-for="Subject" class="form-control" disabled />
                                     <span asp-validation-for="Subject" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="Issue" class="control-label"></label>
-                                    <textarea asp-for="Issue" class="form-control" rows="4" placeholder="Type your message ..."></textarea>
+                                    <textarea asp-for="Issue" class="form-control" rows="4" placeholder="Type your message ..." disabled></textarea>
                                     <span asp-validation-for="Issue" class="text-danger"></span>
                                 </div>
 
@@ -60,7 +60,7 @@
 
 
                                 <div class="form-group">
-                                    <input type="submit" value="Response" class="btn btn-default" />
+                                    <input type="submit" value="Respond" class="btn btn-default" />
                                 </div>
                             </form>
 

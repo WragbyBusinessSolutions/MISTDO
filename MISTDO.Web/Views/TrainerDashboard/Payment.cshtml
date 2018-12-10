@@ -1,6 +1,6 @@
 ﻿@model TraineeViewModel
 @{
-    ViewData["Title"] = "Payment";
+    ViewData["Title"] = "Generate Certificate";
     Layout = "_LayoutDashboard";
 }
 @inject UserManager<ApplicationUser> userManager;
@@ -14,7 +14,7 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                <h4>Make Payment</h4>
+                <h4>Generate Certificate</h4>
                 @{
                     var module = ViewBag.Module as Modules;
                     var user = await userManager.GetUserAsync(User);
@@ -36,69 +36,7 @@
                     <div class="card">
                         <div class="card-block">
 
-                            @*<dl class="d-inline">
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.FirstName)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.FirstName)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.LastName)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.LastName)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Email)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.Email)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.PhoneNumber)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.PhoneNumber)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.CompanyName)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.CompanyName)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.CompanyAddress)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.CompanyAddress)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.UserAddress)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.UserAddress)
-                                </dd>
-                                <dt>
-                                    Module Name
-                                </dt>
-                                <dd>
-                                    @module.Name
-                                </dd>
-                                <dt>
-                                    Module Short Code
-                                </dt>
-                                <dd>
-                                    @module.ShortCode
-                                </dd>
-                                <dt>
-                                    Module Cost
-                                </dt>
-                                <dd>
-                                    @module.Cost
-                                </dd>
-
-                            </dl>*@
+                           
                             <form asp-action="EditTraining" enctype="multipart/form-data">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 

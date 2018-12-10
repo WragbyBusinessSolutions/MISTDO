@@ -3,6 +3,8 @@
     ViewData["Title"] = "Certificate";
     Layout = "_LayoutTraineeDashboard";
     var owners = ViewBag.Owners as List<TraineeApplicationUser>;
+    var modules = ViewBag.modulename as Modules;
+    
 }
 @inject UserManager<TraineeApplicationUser> userManager;
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
@@ -32,14 +34,15 @@
                                         <tr>
                                             <th>Full Name</th>
                                             <th>Email</th>
+                                            
 
                                             <th>Certificate Number</th>
                                             <th>Certificate Status</th>
-                                            
+
                                             <th>Date Generated</th>
-                                          
+
                                             <th>Training Center Name</th>
-                                           
+
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -61,11 +64,14 @@
                                                     <span class="text-info"><b>@owners[i].Email</b></span>
                                                 </div>
                                             </td>
+
                                             <td>
                                                 <div class="mrg-top-15">
                                                     <span class="text-info"><b>@Model[i].CertNumber</b></span>
                                                 </div>
                                             </td>
+                                           
+
                                             <td>
                                                 @if (DateTime.Now >= @Model[i].DateGenerated.AddYears(2))
                                                 {
@@ -82,24 +88,24 @@
                                                     </div>
                                                 }
                                             </td>
-                                           
+
                                             <td>
                                                 <div class="mrg-top-15">
                                                     <span>@Model[i].DateGenerated</span>
                                                 </div>
                                             </td>
-                                           
+
                                             <td>
                                                 <div class="mrg-top-15">
                                                     <b class="text-dark font-size-16">@Model[i].TrainerOrg</b>
                                                 </div>
                                             </td>
-                                           
+
                                             <td>
                                                 <div class="mrg-top-10">
 
-                                                    
-                                                    <a  asp-action="ViewCertificate" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId">View Certificate</a>
+
+                                                    <a asp-action="ViewCertificate" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId">View Certificate</a>
                                                 </div>
                                             </td>
                                         </tr>

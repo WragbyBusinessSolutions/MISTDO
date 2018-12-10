@@ -304,15 +304,21 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
             //return View(certificates.ToList());
 
+           
             var certs = await _trainer.GetAllCertificates();
-
+            var modules = new List<Modules>();
+           
+              
+         
             var owners = new List<TraineeApplicationUser>();
             foreach (var item in certs)
             {
                 var user = await _userManager.FindByIdAsync(item.Owner);
                 owners.Add(user);
-
+                
+              
             }
+            
             ViewBag.Owners = owners;
             return View(certs.ToList());
         }
@@ -701,6 +707,25 @@ namespace MISTDO.Web.Views.TrainerDashboard
             }
             return View(support);
 
+        }
+        public async Task<IActionResult>SupportDetails(int? id)
+        {
+            if (id == null)
+            {
+                return View(await _context.TraineeSupports.ToListAsync());
+            }
+
+            var support = await _context.TraineeSupports.SingleOrDefaultAsync(m => m.SupportId == id);
+
+
+
+
+            if (support == null)
+            {
+                return NotFound();
+            }
+
+            return View(support);
         }
         public async Task<IActionResult> Feedback()
         {

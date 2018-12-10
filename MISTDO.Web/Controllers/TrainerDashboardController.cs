@@ -315,13 +315,16 @@ namespace MISTDO.Web.Controllers
 
             if (ModelState.IsValid)
             {
+                
                 var suport = new Support()
                 {
+                    
                     SupportId = support.SupportId,
                     Subject = support.Subject,
                     Issue = support.Issue,
                     
                     SupportTimeStamp = DateTime.Now,
+                    ResponseTimeStamp =DateTime.UtcNow
                     
 
 
@@ -781,7 +784,8 @@ namespace MISTDO.Web.Controllers
                     TrainingStartTime = calender.TrainingStartTime,
                     Venue = calender.Venue,
                     TrainingEndDate = calender.TrainingEndDate,
-                    TrainingName = bae.Name
+                    TrainingName = bae.Name,
+                   TraineeId = user.Id
 
 
 

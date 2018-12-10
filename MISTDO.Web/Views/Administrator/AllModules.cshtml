@@ -18,6 +18,11 @@
                 <p>
                     <a asp-controller="Administrator" asp-action="AddNewModule">Add New Module</a>
                 </p>
+                <p>
+
+
+                    <span style="float:right;"><a asp-controller="Administrator" asp-action="ExportModules" align="right"><i> Export  All Modules via Excel</i></a></span>
+                </p>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -37,11 +42,9 @@
                                                 Module Desciption
                                             </th>
                                             <th>
-                                                Module Student Registration Course
+                                                Module  Registration Cost
                                             </th>
-                                            <th>
-                                                Module Certificate Generation Cost
-                                            </th>
+                                            
 
                                         </tr>
                                     </thead>
@@ -62,9 +65,7 @@
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.Cost)
                                                 </td>
-                                                <th>
-                                                    @Html.DisplayFor(model => item.CertificateCost)
-                                                </th>
+                                               
                                             </tr>
 
                                         }

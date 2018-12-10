@@ -17,6 +17,9 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
+                <p>
+                    <a asp-action="Profile">Back</a>
+                </p>
                 <h4>Edit Trainee</h4>
             </div>
             <div class="row">
@@ -46,7 +49,7 @@
                                                 {
 
                                                     <span class="name pdd-right-5">
-                                                        <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(ViewBag.Image))" alt="Take a new Passport" height="25" width="25">
+                                                        <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(ViewBag.Image))" alt="Take a new Passport" height="80" width="90">
                                                     </span>
                                                     <p>
                                                         <h4 class="mrg-top-20 no-mrg-btm text-semibold">Profile Image </h4>
@@ -135,35 +138,40 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="control-label">Select Your File To Upload #:</label>
+                                                        <label>Profile Picture  </label> ( Select Your File To Upload or Take a new Picture:)
+                                                        <div class="col-4" align="center">
+
+                                                            <span align="center"><iframe id="ImagePreview" src="~/templates/avatar.png" scrolling="auto" allowtransparency="true" allowfullscreen></iframe></span>
 
 
-                                                        <div class="col-4" align="center">
-                                                            <img id="ImagePreview" height="150" />
-                                                        </div>
-                                                        <div class="col-4" align="center">
-                                                            Select Your File To Upload #:
-                                                            <input type="file" name="ImageUpload" multiple="multiple" class="input-files" onchange="ShowPreview(this)" />
                                                         </div>
 
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                        <div class="col-4" align="center">
 
+                                                            <span><input type="file" class="btn btn-success" name="ImageUpload" multiple="multiple" onchange="ShowPreview(this)" /></span>
 
-
-                                            <div class="row">
-
-
-                                                <div class="col-md-6 col-xs-6">
-                                                    <div class="text-right mrg-top-5">
-                                                        <div class="form-group">
-                                                            <button type="submit" class="btn btn-primary">Save</button>
+                                                            <div id="result" align="center"></div>
+                                                            <hr />
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </form>
+                                                </div>
+
+
+
+
+                                                <div class="row">
+
+
+                                                    <div class="col-md-6 col-xs-6" align="center">
+                                                        <div class="text-right mrg-top-10">
+                                                            <div class="form-group">
+                                                                <button class="btn btn-success" type="submit">Save</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+</form>
                                     </div>
                                 </div>
                             </div>

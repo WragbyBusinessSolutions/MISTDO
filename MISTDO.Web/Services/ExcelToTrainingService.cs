@@ -32,7 +32,7 @@ namespace MISTDO.Web.Services
                     //Get value from exel file cells by column and populate the Table
                     productFromExcel.TrainingName = ws.Cells[rw, 1].Value.ToString();
                     productFromExcel.TrainingCentreId = ws.Cells[rw, 2].Value.ToString();
-                    productFromExcel.TraineeId = ws.Cells[rw, 3].Value.ToString();
+                    productFromExcel.TraineeId = ws.Cells[rw, 2].Value.ToString();
                     productFromExcel.ModuleId = ws.Cells[rw, 4].Value.ToString();
                     productFromExcel.Cost = decimal.Parse(ws.Cells[rw, 5].Value.ToString());
                     productFromExcel.Venue = ws.Cells[rw, 6].Value.ToString();
