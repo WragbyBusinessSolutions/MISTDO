@@ -235,10 +235,10 @@
                         <ul class="list-unstyle list-inline text-left">
                             <li class="list-inline-item">
 
-                                <a class="btn text-gray text-hover display-block padding-10 no-mrg-btm" asp-action="AllCertificate">
+                                <a class="btn text-gray text-hover display-block padding-10 no-mrg-btm" asp-action="Certificate">
 
                                     <i class="ti-back-left"></i>
-                                    <b>Back</b> 
+                                    <b>Back</b>
                                 </a>
                             </li>
                         </ul>
@@ -253,7 +253,7 @@
                                 </a>
                             </li>
                             <li class="list-inline-item">
-                               
+
                             </li>
                         </ul>
                     </div>
@@ -261,82 +261,109 @@
                         <div class="pdd-horizon-30">
                             <div class="mrg-top-15">
                                 <div class="inline-block">
-                                    <img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">
+                                    @*<img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">*@
+                                    <img class="img-fluid" src="~/css/JDF.KSDJ" alt="MISTDO LOGO" />
                                     <address class="pdd-left-10 mrg-top-20">
 
 
                                     </address>
                                 </div>
                                 <div class="pull-right">
-                                    <h2>Certificate ID: @training.CertificateId</h2>
-                                    <span>First Name: @trainee.FirstName</span><br />
-                                    <span>Last Name:   @trainee.LastName</span><br />
-                                    <span>Trainee ID: @trainee.Id</span><br />
-                                    <span>Trainee Address: @trainee.UserAddress</span><br>
+                                    <h2 class="text-dark">Certificate ID: @training.CertificateId</h2>
+                                    <span class="text-dark">First Name: @trainee.FirstName</span><br />
+                                    <span class="text-dark">Last Name:   @trainee.LastName</span><br />
+                                    <span class="text-dark">Trainee ID: @trainee.Id</span><br />
+                                    <span class="text-dark">Trainee Address: @trainee.UserAddress</span><br>
                                     <abbr class="text-dark" title="Phone">Phone:</abbr>
-                                    <span>@trainee.PhoneNumber</span>
+                                    <span class="text-dark">@trainee.PhoneNumber</span>
 
-
-                                </div>
-
-                            </div>
-                            <div class="row mrg-top-20">
-                                <div class="col-md-9 col-sm-9">
-                                    <h3 class="pdd-left-10 mrg-top-10">Training Center </h3>
-                                    <address class="pdd-left-10 mrg-top-10">
-                                        <b class="text-dark">Accreditation Id: @training.TrainingCentreId</b><br>
-                                        <span>Centre Address: @centre.CompanyAddress </span><br>
-                                    </address>
-                                </div>
-                                <div class="col-md-3 col-sm-3">
-                                    <div class="mrg-top-80">
-                                        <div class="text-dark text-uppercase inline-block"><b>Certificate Id: @training.CertificateId</b></div>
-                                    </div>
-                                    <div class="">
-                                        <div class="text-dark text-uppercase inline-block"><b>Issued Date: @training.CertGenDate</b></div>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="row mrg-top-20">
-                                <div class="col-md-12">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
+                        </div>
 
-                                                <th>Exam Name</th>
-                                                <th>Description</th>
-                                                @*<th>Score</th>*@
-                                                <th class="text-right">Remark</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                @*<td>@module.Id</td>*@
-                                                <td>@module.Name</td>
-                                                <td>@module.Description</td>
-                                                @*<td>Score</td>*@
-                                                <td class="text-right">Completed</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="row mrg-top-30">
-                                        <div class="col-md-12">
-                                            <div class="pull-right text-right">
 
-                                                <a class="btn btn-success">Passed</a>
-                                            </div>
+                        <div class="row mrg-top-20">
+                            <div class="col-md-12 col-sm-12">
+
+
+                                <p>
+
+                                    <h4>
+                                        <span style="float:left;"><b class="text-dark">Training Center</b>  </span>
+                                        <span style="float:right;"><b>Certificate Id: @training.CertificateId</b></span>
+                                    </h4>
+                                </p>
+
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+
+
+                                <p>
+
+                                    <h4>
+                                        <span style="float:left;"><b class="text-dark">Accreditation Id: @training.TrainingCentreId</b> </span>
+                                        <span style="float:right;"><b>Issued Date: @training.CertGenDate</b></span>
+                                    </h4>
+                                </p>
+
+                            </div>
+                            <div class="col-md-12">
+                                <p>
+                                    <h4>
+                                        <span style="float:left;"><b class="text-dark">Centre Address: @centre.CompanyAddress</b> </span>
+                                        <span style="float:right;"><b>Valid Till: @training.CertGenDate.AddYears(2)</b></span>
+                                    </h4>
+                                </p>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="row mrg-top-20">
+                            <div class="col-md-12">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Exam Name</th>
+                                            <th>Description</th>
+                                            @*
+                                            <th>Score</th>*@
+                                            <th class="text-right">Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            @*
+                                            <td>@module.Id</td>*@
+                                            <td>@module.Name</td>
+                                            <td>@module.Description</td>
+                                            @*
+                                            <td>Score</td>*@
+                                            <td class="text-right">Completed</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="row mrg-top-30">
+                                    <div class="col-md-12">
+                                        <div class="pull-right text-right">
+
+                                            <a class="btn btn-success">Passed</a>
                                         </div>
                                     </div>
-                                    <div class="row mrg-vertical-20">
-                                        <div class="col-md-6">
-                                            
-                                            <span class="font-size-13 pull-right pdd-top-10">MISTDO Portal &copy; 2018</span>
-                                        </div>
+                                </div>
+                                <div class="row mrg-vertical-20">
+                                    <div class="col-md-8" align="center">
+
+                                        <span class="font-size-13 pull-right pdd-top-10"><img src="~/dist/assets/images/logo/seal2.jpg" width="20%" height="10%"></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

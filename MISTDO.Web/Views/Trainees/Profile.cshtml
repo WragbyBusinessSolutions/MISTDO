@@ -32,8 +32,9 @@
                                     <div class="profile border bottom">
                                         <img class="mrg-top-30" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.ImageUpload))" alt="Take a new Passport" height="150" width="180">
                                         <p>
-                                            <h4 class="mrg-top-20 no-mrg-btm text-semibold"> @Html.DisplayFor(model => model.FirstName) </h4>
+                                            <h4 class="mrg-top-20 no-mrg-btm text-semibold"> @Html.DisplayFor(model => model.FirstName) &nbsp; @Html.DisplayFor(model => model.LastName) </h4>
                                         </p>
+                                        <p class="mrg-top-10"><label>ID:</label> @Html.DisplayFor(model => model.Id)</p>
                                     </div>
 
                                 </div>
