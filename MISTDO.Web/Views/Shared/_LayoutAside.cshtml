@@ -2,7 +2,7 @@
 <div class="side-nav">
     <div class="side-nav-inner">
         <div class="side-nav-logo">
-            <a href="#">
+            <a asp-controller="Home" asp-action="Index">
                 <div class="logo" > <img  src="~/dist/assets/images/logo/dpr logo.png" width="240" alt=""></div>
               
 
@@ -51,7 +51,7 @@
             <li class="nav-item ">
                 <a asp-controller="TrainerDashboard" asp-action="Training">
                     <span class="icon-holder">
-                        <i class="ti-view-list"></i>
+                        <i class="ti-calendar"></i>
                     </span>
                     <span class="title">Training Calender</span>
                 </a>
@@ -59,7 +59,7 @@
             <li class="nav-item ">
                 <a asp-controller="TrainerDashboard" asp-action="Notification">
                     <span class="icon-holder">
-                        <i class="ti-bell pdd-right-10"></i>
+                        <i class="ti-bell"></i>
                     </span>
                     <span class="title">Notification </span>
                 </a>
@@ -80,25 +80,7 @@
                     <span class="title">Help Support </span>
                 </a>
             </li>
-            @*<li class="nav-item dropdown ">
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <span class="icon-holder">
-                        <i class="ti-help"></i>
-                    </span>
-                    <span class="title">Help Support</span>
-                    <span class="arrow">
-                        <i class="ti-angle-right"></i>
-                    </span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a asp-controller="TrainerDashboard" asp-action="Support"> Create Support Ticket</a>
-                    </li>
-                    <li>
-                        <a asp-controller="TrainerDashboard" asp-action="SupportTrainees">Trainees Support Ticket</a>
-                    </li>
-                </ul>
-            </li>*@
+            
           </ul>
 
 </div>
