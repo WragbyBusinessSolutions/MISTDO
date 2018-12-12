@@ -29,7 +29,7 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                Recieved Date && Time
+                                                Recieved Date & Time
                                             </th>
                                             <th>
                                                 @Html.DisplayNameFor(model => model.Subject)
@@ -41,7 +41,7 @@
                                                 @Html.DisplayNameFor(model => model.Response)
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.ResponseTimeStamp)
+                                               Response Time Stamp
                                             </th>
 
 
@@ -70,8 +70,8 @@
 
 
                                             <td>
-                                                <a asp-action="SupportUpdate" asp-route-id="@item.SupportId">Update</a>
-                                                | <a asp-action="SupportDetails" asp-route-id="@item.SupportId">Details</a>
+                                                <a asp-action="SupportUpdate" asp-route-id="@item.SupportId"  title="Respond to this Ticket">Respond</a>
+                                                | <a asp-action="SupportDetails" asp-route-id="@item.SupportId"  title="Check more details on this Ticket">Details</a>
 
 
                                             </td>

@@ -350,6 +350,93 @@ namespace MISTDO.Web.Controllers
 
             return View(support);
         }
+        [HttpGet]
+        public async Task<IActionResult> EditModule(int id)
+        {
+
+
+            var modules = await admindbcontext.Modules.SingleOrDefaultAsync(m => m.Id == id);
+            if (modules == null)
+            {
+                return NotFound();
+            }
+            return View(modules);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditModule(int id, Modules modules)
+        {
+            var user = await _usermanager.GetUserAsync(User);
+            // id = user.Id;
+            modules.Id = id;
+            if (id != modules.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var train = new Modules()
+                    {
+
+                        Id = modules.Id,
+                        Cost = modules.Cost,
+                        Description = modules.Description,
+                        ShortCode = modules.ShortCode,
+                        CertificateCost = modules.CertificateCost,
+                        Name = modules.Name
+
+
+                    };
+                    admindbcontext.Update(train);
+                    await admindbcontext.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ModuleExists(modules.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(AllModules));
+            }
+            return View(modules);
+        }
+
+        private bool ModuleExists(int id)
+        {
+            return admindbcontext.Modules.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> DeleteModule(int id)
+        {
+            
+
+            var modules = await admindbcontext.Modules.SingleOrDefaultAsync(m => m.Id == id);
+            if (modules == null)
+            {
+                return NotFound();
+            }
+
+            return View(modules);
+        }
+
+        // POST: Training/Delete/5
+        [HttpPost, ActionName("DeleteModule")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var modules = await admindbcontext.Modules.SingleOrDefaultAsync(m => m.Id == id);
+            admindbcontext.Modules.Remove(modules);
+            await admindbcontext.SaveChangesAsync();
+            return RedirectToAction(nameof(AllModules));
+        }
 
         [HttpGet]
         public async Task<IActionResult> SupportUpdate(int id)

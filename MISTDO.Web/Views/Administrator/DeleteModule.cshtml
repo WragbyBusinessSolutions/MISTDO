@@ -1,0 +1,120 @@
+﻿@model MISTDO.Web.Models.Modules
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_LayoutAdminDashboard";
+}
+@inject UserManager<ApplicationUser> userManager;
+<link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+
+<!-- Page Container START -->
+
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeader");
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <p>
+                    <a asp-action="Training">Back</a>
+                </p>
+                <h4>Delete Training </h4>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-heading border bottom">
+                            <h4 class="card-title">Training Details </h4>
+                        </div>
+                        <div class="card-block">
+                            <div class="mrg-top-40">
+                                <div class="row">
+                                    @{
+                                        var user = await userManager.GetUserAsync(User);
+                                    }
+                                    <div class="col-md-8">
+                                        <form asp-action="DeleteModule">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <input type="hidden" asp-for="Id" />
+
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="control-label">Subject</label>
+                                                    <input asp-for="Name" class="form-control" />
+                                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="ShortCode" class="control-label"></label>
+                                                    <textarea asp-for="ShortCode" class="form-control" rows="4" placeholder="Type your message ..."></textarea>
+                                                    <span asp-validation-for="ShortCode" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label asp-for="Description" class="control-label"></label>
+                                                    <textarea asp-for="Description" class="form-control" rows="4" placeholder="Type your message ..."></textarea>
+                                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label asp-for="Cost" class="control-label"></label>
+                                                    <textarea asp-for="Cost" class="form-control" rows="4" placeholder="Type your message ..."></textarea>
+                                                    <span asp-validation-for="Cost" class="text-danger"></span>
+                                                </div>
+
+                                            </div>
+
+                                           
+                                             
+                                   
+                                  
+
+                                            <div class="row">
+
+                                                <div class="col-md-6 col-xs-6">
+                                                    <div class="text-right mrg-top-5">
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-primary">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- Content Wrapper END -->
+<!-- Footer START -->
+<footer class="content-footer">
+    <div class="footer">
+        <div class="copyright">
+            <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
+            <span class="go-right">
+                <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                <a href="#" class="text-gray">Privacy &amp; Policy</a>
+            </span>
+        </div>
+    </div>
+</footer>
+<!-- Footer END -->
+<!-- Page Container END -->
+</div>
+<script src="~/dist/assets/js/vendor.js"></script>
+
+<script src="~/dist/assets/js/app.min.js"></script>
+
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>

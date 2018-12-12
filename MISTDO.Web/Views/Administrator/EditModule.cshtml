@@ -1,0 +1,113 @@
+﻿@model MISTDO.Web.Models.Modules
+
+@{
+    ViewData["Title"] = "Support";
+     Layout = "_LayoutAdminDashboard";
+}
+
+
+<link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+
+<!-- Page Container START -->
+
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeaderAdmin");
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <p>
+                    <a asp-action="Support"  title="Go Back to Support Page">Back</a>
+                </p>
+                <h4>Help Center</h4>
+
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+                <h4></h4>
+            </div>
+            <div class="col-md-6">
+                <h4 align="right">@TempData["Message"]</h4>
+            </div>
+               </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-block">
+
+                            <form asp-action="EditModule" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="Id" />
+                                <div class="form-group">
+                                    <label class="control-label">Subject</label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ShortCode" class="control-label"></label>
+                                    <textarea asp-for="ShortCode" class="form-control" rows="4" placeholder="Type your message ..." ></textarea>
+                                    <span asp-validation-for="ShortCode" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Description" class="control-label"></label>
+                                    <textarea asp-for="Description" class="form-control" rows="4" placeholder="Type your message ..."></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Cost" class="control-label"></label>
+                                    <textarea asp-for="Cost" class="form-control" rows="4" placeholder="Type your message ..."></textarea>
+                                    <span asp-validation-for="Cost" class="text-danger"></span>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <input type="submit" value="Edit" class="btn btn-success" title="Respond" />
+                                </div>
+                            </form>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <b class="text-dark">SHE Division, The Department of Petroleum Resources</b>. All rights reserved.</span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- Page Container END -->
+</div>
+<script src="~/dist/assets/js/vendor.js"></script>
+
+<script src="~/dist/assets/js/app.min.js"></script>
+
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>
+
+
+

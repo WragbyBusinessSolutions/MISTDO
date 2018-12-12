@@ -91,6 +91,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\bower_components\datatables\media\css\buttons.dataTables.min.css" />
+    <Content Include="wwwroot\bower_components\datatables\media\css\dataTables.bootstrap4.min.css" />
     <Content Include="wwwroot\bower_components\PACE\pace.min.js" />
     <Content Include="wwwroot\bower_components\PACE\themes\blue\pace-theme-minimal.css" />
     <Content Include="wwwroot\bower_components\bootstrap\dist\css\bootstrap.css" />
@@ -131,6 +133,16 @@
     <Content Include="wwwroot\bower_components\photoswipe\dist\photoswipe-ui-default.min.js" />
     <Content Include="wwwroot\bower_components\photoswipe\dist\photoswipe.css" />
     <Content Include="wwwroot\bower_components\photoswipe\dist\photoswipe.js" />
+    <None Include="wwwroot\bower_components\datatables\media\js\buttons.html5.min.js" />
+    <None Include="wwwroot\bower_components\datatables\media\js\buttons.print.min.js" />
+    <None Include="wwwroot\bower_components\datatables\media\js\data-table-custom.js" />
+    <None Include="wwwroot\bower_components\datatables\media\js\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\bower_components\datatables\media\js\dataTables.responsive.min.js" />
+    <None Include="wwwroot\bower_components\datatables\media\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\bower_components\datatables\media\js\jszip.min.js" />
+    <None Include="wwwroot\bower_components\datatables\media\js\pdfmake.min.js" />
+    <None Include="wwwroot\bower_components\datatables\media\js\responsive.bootstrap4.min.js" />
+    <None Include="wwwroot\bower_components\datatables\media\js\vfs_fonts.js" />
     <None Include="wwwroot\bower_components\photoswipe\dist\default-skin\default-skin.css" />
     <None Include="wwwroot\bower_components\photoswipe\dist\default-skin\default-skin.png" />
     <None Include="wwwroot\bower_components\photoswipe\dist\default-skin\default-skin.svg" />
@@ -182,6 +194,9 @@
     <Content Update="Views\Administrator\Feedback.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Administrator\EditModule.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Administrator\TrainersNotificationDetails.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -209,10 +224,16 @@
     <Content Update="Views\Administrator\SupportUpdate.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Shared\_LayoutAdminDash.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Trainees\EditPassword.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Trainees\SupportDetails.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Administrator\DeleteModule.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\TrainerDashboard\ViewTraineeCertificate.cshtml">

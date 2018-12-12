@@ -19,7 +19,7 @@
             <p>
                 
 
-                <span style="float:right;"><a asp-action="ExportTrainees" align="right"><i> Export All Trainees via Excel</i></a></span>
+                <span style="float:right;"><a asp-action="ExportTrainees" align="right" title="Export All Registered Trainees to Microsoft Excel file"><i> Export All Trainees via Excel</i></a></span>
             </p>
 
         </div>
@@ -88,7 +88,7 @@
                                                     @Html.DisplayFor(model => item.DateRegistered)
                                                 </th>
                                                 <td>
-                                                    <a asp-action="DetailsTrainees" asp-route-id="@item.Id">Details</a>
+                                                    <a asp-action="DetailsTrainees" asp-route-id="@item.Id" title="Check Trainee Details">Details</a>
                                                 </td>
                                             </tr>
 
