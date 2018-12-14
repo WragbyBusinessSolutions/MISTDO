@@ -224,8 +224,6 @@ namespace MISTDO.Web.Migrations
 
                     b.Property<string>("ModuleId");
 
-                    b.Property<string>("TraineeId");
-
                     b.Property<string>("TrainingCentreId");
 
                     b.Property<DateTime>("TrainingEndDate");

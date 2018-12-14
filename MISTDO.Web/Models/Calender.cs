@@ -11,7 +11,7 @@ namespace MISTDO.Web.Models
         [Key]
          
         public int Id { get; set; }
-        public string TraineeId { get; set; }
+       
         public string ModuleId { get; set; }
        
         public string TrainingName { get; set; }

@@ -599,7 +599,7 @@ namespace MISTDO.Web.Controllers
                         Venue = training.Venue,
                         
                         TrainingStartDate = training.TrainingStartDate,
-                        TraineeId = training.TraineeId,
+                       // TraineeId = training.TraineeId,
                         Cost = training.Cost,
                         TrainingStartTime = training.TrainingStartTime,
                         TrainingEndTime = training.TrainingEndTime,
@@ -785,7 +785,7 @@ namespace MISTDO.Web.Controllers
                     Venue = calender.Venue,
                     TrainingEndDate = calender.TrainingEndDate,
                     TrainingName = bae.Name,
-                   TraineeId = user.Id
+                   //TraineeId = user.Id
 
 
 
