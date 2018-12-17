@@ -1,151 +1,169 @@
 ﻿@{
     ViewData["Title"] = "Welcome | MISTDO Portal";
 }
-<style>
-    @@media screen and (max-width: 700px) and (min-width: 520px) {
-        body {
-            background: red;
-        }
-    }
-</style>
-<div class="app">
-    <div class="authentication">
-        <div class="sign-in">
-            <div class="row no-mrg-horizon">
-                <div class="col-md-4 no-pdd-horizon d-none d-md-block">
-                    <div class="full-height bg" style="background-image: url('../dist/assets/images/others/welcomepage.jpg')">
-                        
-                    </div>
-                </div>
-               
-                <div class="col-md-4 no-pdd-horizon d-none d-md-block">
-                    <div class="row-border" align="center">
-                        <div style="bottom:0">
-                            <h1 align="center" class="caption-title">MISTDO -DPR</h1>
-                            <div align="center">  <img class="img-responsive inline-block" src="~/dist/assets/images/others/hse.jpg" width="150" height="100" alt="" sizes="60"><br /> </div>
 
-                            <p class="timeline-title" >Awaiting some more text of the printing and typesetting industry. <br />Lorem Ipsum has been the industry's<br /> standard dummy text ever since the 1500s<a href="#">...more</a></p>
-                        </div>
-                        <div style="float:unset; position:relative">
-                            <img class="img-responsive inline-block" src="~/dist/assets/images/others/saf.jpg" width="100" height="80" alt="">
-                        </div>
-                    </div>
-                    <hr />
 
-                    <div class="row-border" align="center">
-                        <div align="center">
-                            <h1 align="center" class="caption-title">Awaiting Data</h1>
-                            <p align="center" class="timeline-title">Awaiting some more text <br />of the printing and typesetting <br /> Lorem Ipsum has been the <br />industry's standard dummy text<br /> ever since the 1500s<a href="#">...more</a></p>
-                        </div>
-                    </div>
+<head>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--- Basic Page Needs  -->
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/assets2/vendor/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/assets2/css/heroic-features.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Favicon -->
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">
+        <div class="container">
+            <a class="navbar-brand" href="#"><b>MISTDO</b></a>
+            @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>*@
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
+                            <b>Home</b>
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><b>About</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><b>FAQs</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><b>Contact</b></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="w3-content w3-section"  style="max-width:1200px">
+            <img class="mySlides" src="../dist/assets/images/others/welcomepage.jpg" style="width:100%">
+            <img class="mySlides" src="../dist/assets/images/others/welcomepage4.jpg" style="width:100%">
+            <img class="mySlides" src="../dist/assets/images/others/welcomepage3.jpg" style="width:100%">
+        </div>
+
+
+        <!-- Jumbotron Header -->
+        <div class="row text-center">
+            <div class="col-lg-10 col-md-6 mb-4">
+                <div class="card">
                    
-                    
-                </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Administrator's Portal</h4>
+                        <p class="card-text">DPR MISTDO department.</p>
+                    </div>
+                    <div class="card-footer">
+                        <center><a asp-controller="Administrator" asp-action="Login" class="btn" style="min-width:60%; min-height:initial; background-color: #0b9242; color: whitesmoke;" title="This Portal is for SHE Department DPR"> Administrative Portal </a> <br /></center>
 
-                <script type="text/javascript">
-
-                    function mouseOver() {
-                        document.getElementById('des').innerText = 'hello';
-                    }
-                    function mouseout() {
-                        document.getElementById('des').innerText = '';
-                    }
-
-
-                </script>
-                <style>
-
-                    a[title]:hover:after {
-                        position: relative;
-                        opacity: 1;
-                        transition: all 0.1s ease 0.5s;
-                        visibility: visible;
-                    }
-
-                    span {
-                       
-                        -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
-                        -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
-                        -webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
-                        animation-name: example;
-                        animation-duration: 6s;
-                        animation-delay: -2s;
-                    }
-
-                    /* Safari 4.0 - 8.0 */
-                    @@-webkit-keyframes example {
-                        0% {
-                            background-color: forestgreen;
-                            left: 0px;
-                            top: 0px;
-                        }
-
-                        100% {
-                            background-color: green;
-                            left: 0px;
-                            top: 0px;
-                        }
-                    }
-
-                    /* Standard syntax */
-                    @@keyframes example {
-                        0% {
-                            background-color: red;
-                            left: 0px;
-                            top: 0px;
-                        }
-
-                        50% {
-                            background-color: forestgreen;
-                            left: 100px;
-                            top: 100px;
-                        }
-
-                        75% {
-                            background-color: green;
-                            left: 0px;
-                            top: 0px;
-                        }
-
-                        100% {
-                            background-color: green;
-                            left: 0px;
-                            top: 0px;
-                        }
-                    }
-                </style>
-
-                <div class="col-md-4 no-pdd-horizon">
-                    <div class="full-height bg-white height-100">
-                        <div class="vertical-align full-height pdd-horizon-70">
-                            <div class="table-cell">
-                                <div class="pdd-horizon-15">
-                                    <img class="img-responsive inline-block" src="~/dist/assets/images/logo/dpr logo.png" width="700" height="250" alt=""><br /><br />
-
-                                    <center>
-                                        <a asp-controller="Trainer" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" title="This Portal is for Training Centers">Trainers Portal</a><br />
-                                    </center>
-                                    <center><a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a><br /></center>
-                                </div>
-                                <div>
-
-                                </div>
-                                <div style="position: center; bottom:0px; padding:5px; height:6px;bottom:30px; float:right; margin: 0;clear: both; ">
-                                    <p>
-                                        <center><a asp-controller="Administrator" asp-action="Login" class="btn" style="min-width:60%; min-height:initial; background-color: #0b9242; color: whitesmoke;" title="This Portal is for SHE Department DPR"> Administrative Portal </a> <br /></center>
-
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="login-footer">
-                            Copyright © 2018 <img class="img-responsive inline-block" src="~/dist/assets/images/logo/dpr logo.png" width="40%" height="20">
-                            
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Page Features -->
+        <div class="row text-center">
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img class="card-img-top" src="../dist/assets/images/others/welcomepage4.jpg" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title">Administrator's Portal</h4>
+                        <p class="card-text">DPR MISTDO department.</p>
+                    </div>
+                    <div class="card-footer">
+                        <center><a asp-controller="Administrator" asp-action="Login" class="btn" style="min-width:60%; min-height:initial; background-color: #0b9242; color: whitesmoke;" title="This Portal is for SHE Department DPR"> Administrative Portal </a> <br /></center>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img class="card-img-top" src="../dist/assets/images/others/welcomepage3.jpg" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title">Trainee's Portal</h4>
+                        <p class="card-text">Trainee's intending to register for courses from DPR approved centres</p>
+                    </div>
+                    <div class="card-footer">
+                        <center><a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a><br /></center>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img class="card-img-top" src="../dist/assets/images/others/welcomepage2.jpg" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title">Training Centre's Porter</h4>
+                        <p class="card-text">DPR pproved training centres .</p>
+                    </div>
+                    <div class="card-footer">
+                        <center>
+                            <a asp-controller="Trainer" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" title="This Portal is for Training Centers">Trainers Portal</a><br />
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <!-- /.row -->
+
     </div>
-</div>
+    <!-- /.container -->
+    <!-- Footer -->
+    <footer class="py-5 " style="background-color:forestgreen">
+        <div class="container">
+            <span style="float:left;color:aliceblue">Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="40%" height="25%"></span>
+            <span class="go-right" style="float:right">
+                <a href="#" class="text-white mrg-right-15">Term &amp; Conditions</a>
+                <a href="#" class="text-white">Privacy &amp; Policy</a>
+            </span>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script>
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) { myIndex = 1 }
+            x[myIndex - 1].style.display = "block";
+            setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+    </script>
+
+
+</body>
+
