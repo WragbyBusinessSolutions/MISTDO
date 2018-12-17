@@ -1247,5 +1247,83 @@ namespace MISTDO.Web.Controllers
 
             return result;
         }
+
+        [HttpGet]
+        [Route("ExportCalenders1")]
+        public IActionResult ExportCalender()
+        {
+            string rootFolder = _env.WebRootPath;
+            string fileName = @"ExportCalendar.xlsx";
+            string URL = string.Format("{0}://{1}/{2}", Request.Scheme, Request.Host, fileName);
+
+
+            FileInfo file = new FileInfo(Path.Combine(rootFolder, fileName));
+            if (file.Exists)
+            {
+                file.Delete();
+                file = new FileInfo(Path.Combine(rootFolder, fileName));
+            }
+
+            // byte[] result = null;
+            using (ExcelPackage package = new ExcelPackage(file))
+            {
+
+                IList<Calender> trainingList = dbcontext.Calenders.ToList();
+
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Trainings");
+                using (var cells = worksheet.Cells[1, 1, 1, 10]) //(1,1) (1,5)
+                {
+                    cells.Style.Font.Bold = true;
+                }
+                int totalRows = trainingList.Count();
+
+
+                worksheet.Cells[1, 1].Value = "Training Name";
+                worksheet.Cells[1, 2].Value = "Training Centre ID";
+                worksheet.Cells[1, 3].Value = "Cost";
+                worksheet.Cells[1, 4].Value = "Training Start Date";
+                worksheet.Cells[1, 5].Value = "Training End Date";
+                worksheet.Cells[1, 6].Value = "Training Start Date";
+                worksheet.Cells[1, 7].Value = "Training End Date";
+                worksheet.Cells[1, 8].Value = "Venue";
+
+
+                int i = 0;
+                for (int row = 2; row <= totalRows + 1; row++)
+                {
+                    worksheet.Cells[row, 1].Value = trainingList[i].TrainingName;
+                    worksheet.Cells[row, 2].Value = trainingList[i].TrainingCentreId;
+                    worksheet.Cells[row, 3].Value = trainingList[i].Cost;
+                    worksheet.Cells[row, 4].Value = trainingList[i].TrainingStartTime.TimeOfDay.ToString();
+                    worksheet.Cells[row, 5].Value = trainingList[i].TrainingEndTime.TimeOfDay.ToString();
+                    worksheet.Cells[row, 6].Value = trainingList[i].TrainingStartDate.Date.ToString();
+                    worksheet.Cells[row, 7].Value = trainingList[i].TrainingEndDate.Date.ToString();
+                    worksheet.Cells[row, 8].Value = trainingList[i].Venue.ToString();
+                    i++;
+                }
+
+
+                package.Save();
+
+                //  result = package.GetAsByteArray();
+
+
+
+            }
+
+            //  return File(result, "application/vnd.ms-excel", fileName );
+
+            var result = PhysicalFile(Path.Combine(rootFolder, fileName), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+            Response.Headers["Content-Disposition"] = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = file.Name
+            }.ToString();
+
+            return result;
+
+
+
+        }
     }
 }
