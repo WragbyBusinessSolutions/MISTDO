@@ -17,7 +17,9 @@
         <div class="container-fluid">
             <div class="page-title">
                 <h4>Select The Trainee</h4>
-
+                <p>
+                    <a class="btn btn-success" asp-action="Modules">Back</a>
+                </p>
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -40,7 +42,7 @@
                                     <Input class="form-control" value="@ViewBag.ModuleId" asp-for="ModuleId" type="hidden" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" value="Next" class="btn btn-default" />
+                                    <input type="submit" value="Next" class="btn btn-success" />
                                 </div>
                             </form>
                         </div>

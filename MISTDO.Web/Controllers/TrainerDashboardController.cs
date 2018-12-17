@@ -16,8 +16,8 @@ using Microsoft.AspNetCore.Identity;
 using TraineeViewModel = MISTDO.Web.Models.AccountViewModels.TraineeViewModel;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
-
-
+using OfficeOpenXml;
+using System.Net.Http.Headers;
 
 namespace MISTDO.Web.Controllers
 {
@@ -1165,6 +1165,87 @@ namespace MISTDO.Web.Controllers
             return View();
 
 
+        }
+
+        [HttpGet]
+        [Route("ExportCertificates1")]
+        public async Task<IActionResult> ExportCertificates()
+        {
+            string rootFolder = _env.WebRootPath;
+            string fileName = @"ExportCertificate.xlsx";
+            string URL = string.Format("{0}://{1}/{2}", Request.Scheme, Request.Host, fileName);
+
+            FileInfo file = new FileInfo(Path.Combine(rootFolder, fileName));
+            if (file.Exists)
+            {
+                file.Delete();
+                file = new FileInfo(Path.Combine(rootFolder, fileName));
+            }
+
+            using (ExcelPackage package = new ExcelPackage(file))
+            {
+
+                var center = await _usermanager.GetUserAsync(User);
+                IList<Certificate> certs = dbcontext.Certificates.Where(t => t.Trainer.Id == center.Id).ToList();
+
+
+                var owners = new List<TraineeApplicationUser>();
+
+
+
+
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("User");
+                using (var cells = worksheet.Cells[1, 1, 1, 10]) //(1,1) (1,5)
+                {
+                    cells.Style.Font.Bold = true;
+                }
+
+                int totalRows = certs.Count();
+
+                worksheet.Cells[1, 1].Value = "Full Name";
+                worksheet.Cells[1, 2].Value = "Email";
+                worksheet.Cells[1, 3].Value = "Certificate Number";
+                worksheet.Cells[1, 4].Value = "Certificate";
+                worksheet.Cells[1, 5].Value = "Date Generated";
+                worksheet.Cells[1, 6].Value = "Training Center Name";
+
+                int i = 0;
+                for (int row = 2; row <= totalRows + 1; row++)
+                {
+                    foreach (var item in certs)
+                    {
+                        var user = await _traineeuserManager.FindByIdAsync(item.Owner);
+                        owners.Add(user);
+
+                        worksheet.Cells[row, 1].Value = owners[i].FirstName + " " + owners[i].LastName;
+                        worksheet.Cells[row, 2].Value = owners[i].Email;
+                        worksheet.Cells[row, 3].Value = certs[i].CertNumber;
+                        worksheet.Cells[row, 4].Value = certs[i].CertStatus;
+
+                        worksheet.Cells[row, 5].Value = certs[i].DateGenerated.ToString();
+                        worksheet.Cells[row, 6].Value = certs[i].TrainerOrg.ToString();
+
+
+                    }
+                    i++;
+
+
+
+
+                }
+
+                package.Save();
+
+            }
+
+            var result = PhysicalFile(Path.Combine(rootFolder, fileName), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+            Response.Headers["Content-Disposition"] = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = file.Name
+            }.ToString();
+
+            return result;
         }
     }
 }

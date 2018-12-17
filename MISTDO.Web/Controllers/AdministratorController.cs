@@ -671,7 +671,7 @@ namespace MISTDO.Web.Controllers
         public async Task<IActionResult> ExportCertificates()
         {
             string rootFolder = _env.WebRootPath;
-            string fileName = @"ExportTrainees.xlsx";
+            string fileName = @"ExportCertificate.xlsx";
             string URL = string.Format("{0}://{1}/{2}", Request.Scheme, Request.Host, fileName);
 
             FileInfo file = new FileInfo(Path.Combine(rootFolder, fileName));

@@ -20,6 +20,10 @@
                     var user = await userManager.GetUserAsync(User);
                 }
                 <p>
+                    <a class="btn btn-success" asp-action="Modules">Back</a>
+                </p>
+
+                <p>
                     <a>Trainee Details</a>
                     <input type="hidden" value="@Model.FirstName" id="FirstName" />
                     <input type="hidden" value="@Model.LastName" id="LastName" />
@@ -153,7 +157,7 @@
                                         <div class="col-md-6 col-xs-6">
                                             <div class="text-right mrg-top-5">
                                                 <div class="form-group">
-                                                    <a class="btn btn-primary" asp-route-ModuleId="@module.Id" asp-route-TraineeId="@Model.TraineeId" asp-action="ViewCertificate">Generate Certificate</a>
+                                                    <a class="btn btn-success" asp-route-ModuleId="@module.Id" asp-route-TraineeId="@Model.TraineeId" asp-action="ViewCertificate">Generate Certificate</a>
                                                 </div>
                                             </div>
                                         </div>

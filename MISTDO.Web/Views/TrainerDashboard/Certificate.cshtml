@@ -248,7 +248,9 @@
                 <h4>Certificates</h4>
                
                 <p>
-                    <button class="btn btn-success" asp-controller="TrainerDashboard" asp-action="Modules">Generate a New Certificate</button>
+                    <a class="btn btn-success" asp-controller="TrainerDashboard" asp-action="Modules">Generate a New Certificate</a>
+                    <span style="float:right;"><a asp-controller="TrainerDashboard" class="btn btn-success" asp-action="ExportCertificates" align="right" title="Export Certificates to Microsoft Excel file"><i> Export  All Certificates via Excel</i></a></span>
+
                 </p>
                
             </div>
@@ -338,26 +340,26 @@
                                     <tfoot>
                                         <tr>
                                             <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Search for names.." title="Type in a name">
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="filter column" title="filter">
                                             </th>
                                             <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Search for names.." title="Type in a name">
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="filter column" title="">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Search for names.." title="Type in a name">
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="filter column." title="">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Search for names.." title="Type in a name">
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="filter column" title="">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="Search for names.." title="Type in a name">
+                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="filter column" title="">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="Search for names.." title="Type in a name">
+                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="filter column" title="">
 
                                             </th>
                                           
