@@ -815,7 +815,7 @@ namespace MISTDO.Web.Controllers
         public async Task<IActionResult> ExportModuleTrainees()
         {
             string rootFolder = _env.WebRootPath;
-            string fileName = @"ExportModuleTrainees.xlsx";
+            string fileName = @"ExportTraineeWithModules.xlsx";
             string URL = string.Format("{0}://{1}/{2}", Request.Scheme, Request.Host, fileName);
 
             FileInfo file = new FileInfo(Path.Combine(rootFolder, fileName));

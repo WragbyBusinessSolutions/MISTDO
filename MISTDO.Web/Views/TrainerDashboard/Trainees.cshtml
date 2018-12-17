@@ -132,6 +132,8 @@
             }
         }
     }
+
+   
 </script>
 <style>
     * {
@@ -247,19 +249,25 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                <h4>Registered Trainees</h4>
+                
                 <p>
-                    <h4>
-                        <span style="float:left;"> <a asp-action="CreateTrainees" class="btn btn-success">Create New&nbsp;<i class="ti-user">+</i> &nbsp;</a></span> | <span> <a class="btn btn-success" asp-action="CompleteTraineeRegistration">Complete Existing Trainee Registration <i class="ti-user"><i class="ti-settings"></i></i> </a></span>
 
-                        <span style="float:right;"><a asp-action="AttachTraineeTraining" align="right" class="btn btn-success">Assign Course Module to Trainee </a></span>
-                    </h4>
-                </p>
-                <p>
-                    <span style="float:right;"><a asp-controller="TrainerDashboard" class="btn btn-success" asp-action="ExportCertificates" align="right" title="Export Certificates to Microsoft Excel file"><i> Export  All Certificates via Excel</i></a></span>
+                    <h4>Registered Trainees</h4>
+                    <span style="float:right;"><a asp-controller="TrainerDashboard" class="btn btn-success" asp-action="ExportCenterTrainees" align="right" title="Export Certificates to Microsoft Excel file"><i> Export  Trainees via Excel</i></a></span>
 
 
                 </p>
+                
+                    <div>
+                        <p>
+                            <h4>
+                                <span style="float:left;"> <a asp-action="CreateTrainees" class="btn btn-success">Create New&nbsp;<i class="ti-user">+</i> &nbsp;</a></span> | <span> <a class="btn btn-success" asp-action="CompleteTraineeRegistration">Complete Existing Trainee Registration <i class="ti-user"><i class="ti-settings"></i></i> </a></span>
+
+                                <span style="float:right;"><a asp-action="AttachTraineeTraining" align="right" class="btn btn-success">Assign Course Module to Trainee </a></span>
+                            </h4>
+                        </p>
+                    </div>
+
 
 
             </div>
@@ -345,30 +353,30 @@
                                     <tfoot>
                                         <tr>
                                             <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Search for names.." title="Type in a name">
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="First Name" title="Type in a name">
                                             </th>
                                             <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Search for names.." title="Type in a name">
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Last Name" title="Type in a name">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Search for names.." title="Type in a name">
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Email" title="Type in a name">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Search for names.." title="Type in a name">
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Phone Number" title="Type in a name">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="Search for names.." title="Type in a name">
+                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="Company Name" title="Type in a name">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="Search for names.." title="Type in a name">
+                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="Company Address" title="Type in a name">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input7" onkeyup="input7f()" placeholder="Search for names.." title="Type in a name">
+                                                <input type="text" id="input7" onkeyup="input7f()" placeholder="UserAddress" title="Type in a name">
 
                                             </th>
 
