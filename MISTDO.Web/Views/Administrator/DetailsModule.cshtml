@@ -12,7 +12,7 @@
 
 <div class="page-container">
     <!-- Header START -->
-    @await Html.PartialAsync("_LayoutHeader");
+    @await Html.PartialAsync("_LayoutHeaderAdmin");
 
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
@@ -20,15 +20,15 @@
         <div class="container-fluid">
             <div class="page-title">
                 <p>
-            <a asp-action="DetailsTrainees" asp-route-id="@Model.TraineeId">Back</a>
-              </p>
+                    <a asp-action="DetailsTrainees" asp-route-id="@Model.TraineeId">Back</a>
+                </p>
                 <h4>Training Details </h4>
 
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        
+
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-heading border bottom">
@@ -78,8 +78,8 @@
                                             <p class="mrg-top-10"> @Html.DisplayFor(model => model.TraineeId)</p>
                                         </div>
                                     </div>
-                                   
-                                    
+
+
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-3">

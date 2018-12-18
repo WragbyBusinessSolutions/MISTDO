@@ -34,7 +34,7 @@
                 </button>*@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
+                    @*<li class="nav-item active">
                         <a class="nav-link" href="#">
                             <b>Home</b>
                             <span class="sr-only">(current)</span>
@@ -45,7 +45,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><b>FAQs</b></a>
-                    </li>
+                    </li>*@
                     <li class="nav-item">
                         <a class="nav-link" href="#"><b>Contact</b></a>
                     </li>
@@ -69,19 +69,7 @@
         <!-- Page Features -->
         <div class="row text-center">
 
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card">
-                    <img class="card-img-top" src="../dist/assets/images/others/welcomepage4.jpg" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Administrator's Portal</h4>
-                        <p class="card-text">DPR MISTDO department.</p>
-                    </div>
-                    <div class="card-footer">
-                        <center><a asp-controller="Administrator" asp-action="Login" class="btn" style="min-width:60%; min-height:initial; background-color: #0b9242; color: whitesmoke;" title="This Portal is for SHE Department DPR"> Administrative Portal </a> <br /></center>
 
-                    </div>
-                </div>
-            </div>
 
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card">
@@ -91,8 +79,9 @@
                         <p class="card-text">Trainee's intending to register for courses from DPR approved centres</p>
                     </div>
                     <div class="card-footer">
-                        <center><a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a><br /></center>
+                        <center><a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a><br/></center>
 
+                        @*<center><a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:40%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a>|<a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:40%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a></center>*@
                     </div>
                 </div>
             </div>
@@ -101,13 +90,27 @@
                 <div class="card">
                     <img class="card-img-top" src="../dist/assets/images/others/welcomepage2.jpg" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">Training Centre's Porter</h4>
-                        <p class="card-text">DPR pproved training centres .</p>
+                        <h4 class="card-title">Training Provider's Portal</h4>
+                        <p class="card-text">DPR approved training centres .</p>
                     </div>
                     <div class="card-footer">
                         <center>
                             <a asp-controller="Trainer" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" title="This Portal is for Training Centers">Trainers Portal</a><br />
                         </center>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img class="card-img-top" src="../dist/assets/images/others/welcomepage4.jpg" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title">Administrator's Portal</h4>
+                        <p class="card-text"> </p>
+                    </div>
+                    <div class="card-footer">
+                        <center><a asp-controller="Administrator" asp-action="Login" class="btn" style="min-width:100%; min-height:initial; background-color: #0b9242; color: whitesmoke;" title="This Portal is for SHE Department DPR"> Administrative Portal </a> <br /></center>
+
                     </div>
                 </div>
             </div>

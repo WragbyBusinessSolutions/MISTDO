@@ -267,7 +267,7 @@
 <!-- Page Container START -->
 <div class="page-container">
     <!-- Header START -->
-    @await Html.PartialAsync("_LayoutHeader");
+    @await Html.PartialAsync("_LayoutHeaderAdmin");
 
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
@@ -309,7 +309,7 @@
                                         <th>
                                             Company Name
                                         </th>
-                                       
+
                                         </th>
                                         <th>Other Options</th>
                                     </tr>
@@ -337,7 +337,7 @@
                                             <td>
                                                 @item.CompanyName
                                             </td>
-                                            
+
                                             <td>
                                                 <a asp-action="DetailsTrainees" asp-route-id="@item.Id" title="Check Trainee Details">Details</a>
                                             </td>
@@ -370,7 +370,7 @@
                                             <input type="text" id="input6" onkeyup="input6f()" placeholder="Company Name" title="Type in a name">
 
                                         </th>
-                                       
+
                                         <th></th>
                                     </tr>
                                 </tfoot>

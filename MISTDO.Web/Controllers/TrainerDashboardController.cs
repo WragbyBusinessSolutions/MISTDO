@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using OfficeOpenXml;
 using System.Net.Http.Headers;
+using System.Diagnostics;
 
 namespace MISTDO.Web.Controllers
 {
@@ -263,7 +264,8 @@ namespace MISTDO.Web.Controllers
         {
             await _signInManager.SignOutAsync();
             //  _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+           // return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(TrainerController.Login), "Trainer");
         }
 
         public async Task<IActionResult> Training()
@@ -628,28 +630,49 @@ namespace MISTDO.Web.Controllers
             return View(training);
         }
         public async Task<IActionResult> CompleteTraineeRegistration()
+
         {
-            var modules = await _trainer.GetAllModules();
-
-            var modulescost = new List<SelectListItem>();
-            foreach (var item in modules)
-
-                modulescost.Add(new SelectListItem { Text = item.Cost.ToString(), Value = item.Id.ToString() });
-
-            var modulesList = new List<SelectListItem>();
 
 
-            foreach (var item in modules)
+            //var modules = await _trainer.GetAllModules();
 
-                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+            //var modulescost = new List<SelectListItem>();
+            //foreach (var item in modules)
+
+            //    modulescost.Add(new SelectListItem { Text = item.Cost.ToString(), Value = item.Id.ToString() });
+
+            //var modulesList = new List<SelectListItem>();
 
 
-            ViewBag.modules = modulesList;
+            //foreach (var item in modules)
 
-            ViewBag.modulecosts = modulescost;
+            //    modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
 
 
-            return View();
+            //ViewBag.modules = modulesList;
+
+            //ViewBag.modulecosts = modulescost;
+
+
+            //return View();
+
+          
+          
+                try
+                {
+                    Process.Start(@"C:\Users\Femi Ogunyomi\Desktop\misdobio\MistdoBio.exe", "readme.txt"); // load training Centers application  file path
+
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception Occurred :{0},{1}",
+                              ex.Message, ex.StackTrace.ToString());
+                }
+
+                return RedirectToAction(nameof(Trainees));
+           
+          
         }
         public async Task<IActionResult> ViewTraineeCertificate(string traineeid, string moduleid, string TrainingCentreId, int TrainingId)
         {

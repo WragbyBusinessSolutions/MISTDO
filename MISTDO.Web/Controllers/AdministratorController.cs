@@ -111,7 +111,13 @@ namespace MISTDO.Web.Controllers
 
         //    return module;
         //}
-
+    
+        public async Task<IActionResult> Logout()
+            {
+                //await _signInManager.SignOutAsync();
+           
+                return RedirectToAction(nameof(AdministratorController.Login), "Administrator");
+            }
 
         public async Task<IActionResult> AllCalender()
         {
