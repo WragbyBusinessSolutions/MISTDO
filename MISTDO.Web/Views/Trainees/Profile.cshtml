@@ -1,5 +1,5 @@
 ﻿@model MISTDO.Web.Models.TraineeApplicationUser
-@{ 
+@{
     ViewData["Title"] = "Profile";
     Layout = "_LayoutTraineeDashboard";
 }
@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
 
 <!-- Page Container START -->
+
+
 
 <div class="page-container">
     <!-- Header START -->
@@ -18,9 +20,9 @@
         <div class="container-fluid">
             <div class="page-title">
                 <h4>Account Setting</h4>
-                
+
             </div>
-          
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
@@ -150,112 +152,112 @@
                         </div>
                         @*<div class="col-md-4">
 
-                            <div class="widget-profile-1 card">
-                                <div class="profile border bottom">
-                                    <p>
-                                        <center>
-                                            <a class="btn btn-success" href="#" style="min-width:40%;  background-color: #0b9242; color: white;">STEP 1</a>| <a class="btn btn-success" style="min-width:40%;" asp-action="EditProfile">Edit Basic Information</a>
-                                        </center>
-                                    </p>
+                                <div class="widget-profile-1 card">
+                                    <div class="profile border bottom">
+                                        <p>
+                                            <center>
+                                                <a class="btn btn-success" href="#" style="min-width:40%;  background-color: #0b9242; color: white;">STEP 1</a>| <a class="btn btn-success" style="min-width:40%;" asp-action="EditProfile">Edit Basic Information</a>
+                                            </center>
+                                        </p>
+                                    </div>
+
                                 </div>
 
-                            </div>
 
-
-                            <div class="widget-profile-1 card">
-                                <div class="profile border bottom">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Trainee ID</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.Id)</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>First Name</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.FirstName)</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Last Name</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10">@Html.DisplayFor(model => model.LastName)</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.Email)</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10">@Html.DisplayFor(model => model.Email)</p>
-                                        </div>
-                                    </div>
-
-
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b> Phone Number</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span class="status online mrg-top-10"></span>
-                                            <p class="mrg-top-10">@Html.DisplayFor(model => model.PhoneNumber)</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Company Name</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="mrg-top-10">
+                                <div class="widget-profile-1 card">
+                                    <div class="profile border bottom">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p class="mrg-top-10 text-dark"> <b>Trainee ID</b></p>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <span class="status online mrg-top-10"></span>
-                                                <span class="mrg-left-10">@Html.DisplayFor(model => model.CompanyName)</span>
-                                            </p>
+                                                <p class="mrg-top-10"> @Html.DisplayFor(model => model.Id)</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Company Address</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="mrg-top-10">
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p class="mrg-top-10 text-dark"> <b>First Name</b></p>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <span class="status online mrg-top-10"></span>
-                                                <span class="mrg-left-10">@Html.DisplayFor(model => model.CompanyAddress)</span>
-                                            </p>
+                                                <p class="mrg-top-10"> @Html.DisplayFor(model => model.FirstName)</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>User Address</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="mrg-top-10">
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p class="mrg-top-10 text-dark"> <b>Last Name</b></p>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <span class="status online mrg-top-10"></span>
-                                                <span class="mrg-left-10">@Html.DisplayFor(model => model.UserAddress)</span>
-                                            </p>
+                                                <p class="mrg-top-10">@Html.DisplayFor(model => model.LastName)</p>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.Email)</b></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span class="status online mrg-top-10"></span>
+                                                <p class="mrg-top-10">@Html.DisplayFor(model => model.Email)</p>
+                                            </div>
+                                        </div>
 
 
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p class="mrg-top-10 text-dark"> <b> Phone Number</b></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span class="status online mrg-top-10"></span>
+                                                <p class="mrg-top-10">@Html.DisplayFor(model => model.PhoneNumber)</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p class="mrg-top-10 text-dark"> <b>Company Name</b></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="mrg-top-10">
+                                                    <span class="status online mrg-top-10"></span>
+                                                    <span class="mrg-left-10">@Html.DisplayFor(model => model.CompanyName)</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p class="mrg-top-10 text-dark"> <b>Company Address</b></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="mrg-top-10">
+                                                    <span class="status online mrg-top-10"></span>
+                                                    <span class="mrg-left-10">@Html.DisplayFor(model => model.CompanyAddress)</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p class="mrg-top-10 text-dark"> <b>User Address</b></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="mrg-top-10">
+                                                    <span class="status online mrg-top-10"></span>
+                                                    <span class="mrg-left-10">@Html.DisplayFor(model => model.UserAddress)</span>
+                                                </p>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
                                 </div>
-                            </div>
-                        </div>*@
+                            </div>*@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-heading border bottom">
@@ -346,35 +348,34 @@
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
+        <!-- Content Wrapper END -->
+        <!-- Footer START -->
+        <footer class="content-footer">
+            <div class="footer">
+                <div class="copyright">
+                    <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
+                    <span class="go-right">
+                        <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                        <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                    </span>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer END -->
+        <!-- Page Container END -->
     </div>
-    <!-- Content Wrapper END -->
-   
-    <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer END -->
-    <!-- Page Container END -->
-</div>
-<script src="~/dist/assets/js/vendor.js"></script>
+    <script src="~/dist/assets/js/vendor.js"></script>
 
-<script src="~/dist/assets/js/app.min.js"></script>
+    <script src="~/dist/assets/js/app.min.js"></script>
 
-<!-- page plugins js -->
-<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <!-- page plugins js -->
+    <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
 
-<!-- page js -->
-<script src="~/dist/assets/js/table/data-table.js"></script>
+    <!-- page js -->
+    <script src="~/dist/assets/js/table/data-table.js"></script>
 
 
 
