@@ -14,8 +14,16 @@
             </div>
         </div>
         <ul class="side-nav-menu scrollable">
-            <li class="nav-item active">
-                <a class="mrg-top-30" asp-controller="Trainees" asp-action="Dashboard">
+            <li class="nav-item ">
+                <a class="mrg-top-30" asp-controller="Home" asp-action="Index">
+                    <span class="icon-holder">
+                        <i class="ti-home"></i>
+                    </span>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a  asp-controller="Trainees" asp-action="Dashboard">
                     <span class="icon-holder">
                         <i class="ti-dashboard"></i>
                     </span>
@@ -60,6 +68,7 @@
                     <span class="title">Training Calender </span>
                 </a>
             </li>
+
             <li class="nav-item ">
                 <a asp-controller="Trainees" asp-action="Notification">
                     <span class="icon-holder">
