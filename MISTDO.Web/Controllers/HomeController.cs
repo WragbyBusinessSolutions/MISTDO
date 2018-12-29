@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MISTDO.Web.Data;
 using MISTDO.Web.Models;
@@ -19,6 +20,7 @@ namespace MISTDO.Web.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
+
 
         public ApplicationDbContext dbcontext { get; }
 
@@ -34,9 +36,9 @@ namespace MISTDO.Web.Controllers
            
             dbcontext = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await dbcontext.Calenders.ToListAsync());
         }
 
         public IActionResult About()

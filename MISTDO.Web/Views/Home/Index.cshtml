@@ -1,12 +1,15 @@
-﻿@{
+﻿@model IEnumerable<MISTDO.Web.Models.Calender>
+@{
     ViewData["Title"] = "Welcome | MISTDO Portal";
 }
-
+@inject UserManager<ApplicationUser> userManager;
 
 <head>
-
+    <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--- Basic Page Needs  -->
+    <link rel="stylesheet" href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
+    <link rel="stylesheet" href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
     <meta charset="utf-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,8 +20,257 @@
 
     <link rel="stylesheet" href="~/assets2/css/heroic-features.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script>
+        function input1f() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("input1");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dt-opt");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function input2f() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("input2");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dt-opt");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function input3f() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("input3");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dt-opt");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function input4f() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("input4");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dt-opt");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[3];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function input5f() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("input3");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dt-opt");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[4];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function input6f() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("input3");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dt-opt");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[5];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function input7f() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("input3");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dt-opt");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[6];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        #input1 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #input2 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #input3 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #input4 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #input5 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #input6 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #input7 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #dt-opt {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-size: 18px;
+        }
+
+            #dt-opt th, #dt-opt td {
+                text-align: left;
+                padding: 12px;
+            }
+
+            #dt-opt tr {
+                border-bottom: 1px solid #ddd;
+            }
+
+                #dt-opt tr.header, #dt-opt tr:hover {
+                    background-color: #f1f1f1;
+                }
+    </style>
+    <style>
+        body {
+            border: 0
+        }
+
+        .dataTables_scroll {
+            position: relative
+        }
+
+        .dataTables_scrollHead {
+            margin-bottom: 40px;
+        }
+
+        .dataTables_scrollFoot {
+            position: absolute;
+            top: 38px
+        }
+    </style>
 
     <!-- Favicon -->
+
 
 </head>
 
@@ -29,23 +281,12 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">
         <div class="container">
             <a class="navbar-brand" href="#"><b>MISTDO</b></a>
-            @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>*@
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    @*<li class="nav-item active">
-                        <a class="nav-link" href="#">
-                            <b>Home</b>
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><b>Training Modules</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><b>FAQs</b></a>
-                    </li>*@
+
                     <li class="nav-item">
                         <a class="nav-link" href="#"><b>Contact</b></a>
                     </li>
@@ -56,16 +297,132 @@
 
     <!-- Page Content -->
     <div class="container">
-        <div class="w3-content w3-section"  style="max-width:1200px; max-height:350px">
+        <div class="w3-content w3-section" style="max-width:1200px; max-height:350px">
             <img class="mySlides" src="../dist/assets/images/others/welcomepage.jpg" style="width:100%; max-height:350px">
             <img class="mySlides" src="../dist/assets/images/others/welcomepage4.jpg" style="width:100%; max-height:350px">
             <img class="mySlides" src="../dist/assets/images/others/welcomepage3.jpg" style="width:100%; max-height:350px">
         </div>
 
+        <div class="line text-center">
+            <i class="icon-sli-heart text-primary text-size-40"></i>
+            <h2 class="text-dark text-size-50 text-m-size-40">Training  <b>Schedules</b></h2>
+            <hr class="break background-primary break-small break-center margin-bottom-50">
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="table-overflow">
+                            <table id="dt-opt" class="display" >
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Module Name
+                                        </th>
+                                        <th>
+                                            Training Center
+                                        </th>
+
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Cost)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Venue)
+                                        </th>
+
+                                        @*<th>
+                                            Start Date
+                                        </th>
+                                        <th>
+                                            End Date
+                                        </th>*@
+                                        <th>Other Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TrainingName)
+                                            </td>
+                                            @{
+                                                var user = await userManager.FindByIdAsync(item.TrainingCentreId);
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => user.CompanyName)
+                                                </td>
+
+                                            }
+
+
+                                            <th>
+                                                @Html.DisplayFor(model => item.Cost)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayFor(model => item.Venue)
+                                            </th>
+
+                                            @*<td>
+                                                @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                            </td>*@
+                                            <td>
+
+                                                <a asp-action="Index" title="Check for more details?">Details</a>
+
+                                            </td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            <input type="text" id="input1" onkeyup="input1f()" placeholder="Module Name" title="Type in a name">
+                                        </th>
+                                        <th>
+                                            <input type="text" id="input2" onkeyup="input2f()" placeholder="Training Center Name" title="Type in a name">
+
+                                        </th>
+                                        <th>
+                                            <input type="text" id="input3" onkeyup="input3f()" placeholder="Cost" title="Type in a name">
+
+                                        </th>
+                                        <th>
+                                            <input type="text" id="input4" onkeyup="input4f()" placeholder="Venue" title="Type in a name">
+
+                                        </th>
+                                        @*<th>
+                                            <input type="text" id="input5" onkeyup="input5f()" placeholder="Start Date" title="Type in a name">
+
+                                        </th>
+                                        <th>
+                                            <input type="text" id="input6" onkeyup="input6f()" placeholder="End Date" title="Type in a name">
+
+                                        </th>*@
+                                        <th>
+
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
 
         <!-- Jumbotron Header -->
-        
-
         <!-- Page Features -->
         <div class="row text-center">
 
@@ -79,7 +436,7 @@
                         <p class="card-text">Trainee's intending to register for courses from DPR approved centres</p>
                     </div>
                     <div class="card-footer">
-                        <center><a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a><br/></center>
+                        <center><a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a><br /></center>
 
                         @*<center><a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:40%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a>|<a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:40%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a></center>*@
                     </div>
@@ -129,6 +486,15 @@
         </div>
         <!-- /.container -->
     </footer>
+    <script src="~/dist/assets/js/vendor.js"></script>
+    <script src="~/dist/assets/js/app.min.js"></script>
+
+    <!-- page plugins js -->
+    <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+    <!-- page js -->
+    <script src="~/dist/assets/js/table/data-table.js"></script>
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
