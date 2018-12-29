@@ -520,7 +520,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
                         return RedirectToAction(nameof(EditPassword));
                     }
-                    returnUrl = returnUrl ?? Url.Content("~/Trainees/Dashboard");
+                    returnUrl = returnUrl ?? Url.Content("~/Trainees/Profile");
                     //     }
                     //      else
                     //      {
