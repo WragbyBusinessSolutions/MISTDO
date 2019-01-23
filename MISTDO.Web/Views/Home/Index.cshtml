@@ -303,123 +303,13 @@
             <img class="mySlides" src="../dist/assets/images/others/welcomepage3.jpg" style="width:100%; max-height:350px">
         </div>
 
-        <div class="line text-center">
+        @*<div class="line text-center">
             <i class="icon-sli-heart text-primary text-size-40"></i>
             <h2 class="text-dark text-size-50 text-m-size-40">Training  <b>Schedules</b></h2>
             <hr class="break background-primary break-small break-center margin-bottom-50">
-        </div>
+        </div>*@
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-block">
-                        <div class="table-overflow">
-                            <table id="dt-opt" class="display" >
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Module Name
-                                        </th>
-                                        <th>
-                                            Training Center
-                                        </th>
-
-
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Cost)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Venue)
-                                        </th>
-
-                                        @*<th>
-                                            Start Date
-                                        </th>
-                                        <th>
-                                            End Date
-                                        </th>*@
-                                        <th>Other Options</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingName)
-                                            </td>
-                                            @{
-                                                var user = await userManager.FindByIdAsync(item.TrainingCentreId);
-
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => user.CompanyName)
-                                                </td>
-
-                                            }
-
-
-                                            <th>
-                                                @Html.DisplayFor(model => item.Cost)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayFor(model => item.Venue)
-                                            </th>
-
-                                            @*<td>
-                                                @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
-                                            </td>*@
-                                            <td>
-
-                                                <a asp-action="Index" title="Check for more details?">Details</a>
-
-                                            </td>
-                                        </tr>
-
-                                    }
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>
-                                            <input type="text" id="input1" onkeyup="input1f()" placeholder="Module Name" title="Type in a name">
-                                        </th>
-                                        <th>
-                                            <input type="text" id="input2" onkeyup="input2f()" placeholder="Training Center Name" title="Type in a name">
-
-                                        </th>
-                                        <th>
-                                            <input type="text" id="input3" onkeyup="input3f()" placeholder="Cost" title="Type in a name">
-
-                                        </th>
-                                        <th>
-                                            <input type="text" id="input4" onkeyup="input4f()" placeholder="Venue" title="Type in a name">
-
-                                        </th>
-                                        @*<th>
-                                            <input type="text" id="input5" onkeyup="input5f()" placeholder="Start Date" title="Type in a name">
-
-                                        </th>
-                                        <th>
-                                            <input type="text" id="input6" onkeyup="input6f()" placeholder="End Date" title="Type in a name">
-
-                                        </th>*@
-                                        <th>
-
-                                        </th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+   
 
 
         <!-- Jumbotron Header -->
@@ -482,7 +372,7 @@
     <!-- Footer -->
     <footer style="background-color:forestgreen">
         <div class="container">
-            <span style="float:left;color:aliceblue">Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="40%" height="25%" style="margin:15px"></span>
+            <span style="float:left;color:aliceblue">Copyright © @DateTime.Now.Year <img src="~/dist/assets/images/logo/footerlogo.png" width="40%" height="25%" style="margin:15px"></span>
         </div>
         <!-- /.container -->
     </footer>
