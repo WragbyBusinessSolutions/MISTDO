@@ -391,7 +391,7 @@ namespace MISTDO.Web.Controllers
                         Cost = modules.Cost,
                         Description = modules.Description,
                         ShortCode = modules.ShortCode,
-                        CertificateCost = modules.CertificateCost,
+                      
                         Name = modules.Name
 
 
@@ -540,7 +540,7 @@ namespace MISTDO.Web.Controllers
                     Description = modules.Description,
                     Cost = modules.Cost,
                     ShortCode = modules.ShortCode,
-                    CertificateCost = modules.CertificateCost
+                  
                 };
 
                 admindbcontext.Add(updatemodule);

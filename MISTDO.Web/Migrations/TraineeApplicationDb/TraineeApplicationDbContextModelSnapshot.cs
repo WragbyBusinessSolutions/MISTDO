@@ -269,6 +269,9 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
 
                     b.Property<string>("Issue");
 
+                    b.Property<string>("OwnerId")
+                        .IsRequired();
+
                     b.Property<string>("Response");
 
                     b.Property<DateTime>("ResponseTimeStamp");

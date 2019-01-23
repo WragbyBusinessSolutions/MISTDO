@@ -184,8 +184,6 @@ namespace MISTDO.Web.Migrations.AdminApplicationDb
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<double>("CertificateCost");
-
                     b.Property<double>("Cost");
 
                     b.Property<string>("Description");
