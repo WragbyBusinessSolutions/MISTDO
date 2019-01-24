@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ApplicationUser>
 @{
-    ViewData["Title"] = "All Registered Training Centers";
+    ViewData["Title"] = "Registered Training Centers";
     Layout = "_LayoutTraineeDashboard";
 }
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
@@ -318,7 +318,7 @@
                                                     @Html.DisplayFor(model => item.DateRegistered)
                                                 </th>
                                                 <td>
-                                                    <a asp-action="DetailsTrainingCenter" asp-controller="Trainees" asp-route-id="@item.Id" title="Check more details">Details</a>
+                                                    <a asp-action="DetailsTrainingCenters" asp-controller="Trainees" asp-route-id="@item.Id" title="Check more details">Details</a>
                                                 </td>
                                             </tr>
 

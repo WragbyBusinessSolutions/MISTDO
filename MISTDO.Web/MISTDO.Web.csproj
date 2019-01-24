@@ -246,7 +246,7 @@
     <Content Update="Views\Shared\_LayoutAdminDash.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Trainees\DetailsTrainingCenter.cshtml">
+    <Content Update="Views\Trainees\DetailsTrainingCenters.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Trainees\TrainingCenters.cshtml">

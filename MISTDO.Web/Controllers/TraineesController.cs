@@ -114,15 +114,15 @@ namespace MISTDO.Web.Views.TrainerDashboard
         }
 
       
-        public async Task<IActionResult> DetailsTrainingCenter(string id)
+        public async Task<IActionResult> DetailsTrainingCenters(string id)
         {
 
             if (id == null)
             {
-                return View(await dbcontext.Users.ToListAsync());
+                return View(await tdbcontext.Users.ToListAsync());
             }
 
-            var trainer = await dbcontext.Users.SingleOrDefaultAsync(m => m.Id == id);
+            var trainer = await tdbcontext.Users.SingleOrDefaultAsync(m => m.Id == id);
 
 
 
