@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Support";
-     Layout = "_LayoutTraineeDashboard";
+    Layout = "_LayoutTraineeDashboard";
 }
 
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
@@ -36,7 +36,7 @@
 
                             <form asp-action="Support" enctype="multipart/form-data">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                
+
                                 <div class="form-group">
                                     <label class="control-label">Subject</label>
                                     <input asp-for="Subject" class="form-control" />
@@ -86,14 +86,14 @@
                                                             <th>
                                                                 Response Time
                                                             </th>
-                                                           
+
                                                             <th>
                                                                 @Html.DisplayNameFor(model => model.Issue)
                                                             </th>
                                                             <th>
                                                                 @Html.DisplayNameFor(model => model.Response)
                                                             </th>
-                                                           
+
 
 
                                                             <th>...</th>
@@ -110,19 +110,19 @@
                                                                 <th>
                                                                     @Html.DisplayFor(model => item.ResponseTimeStamp)
                                                                 </th>
-                                                               
+
                                                                 <td>
                                                                     @Html.DisplayFor(modelItem => item.Issue)
                                                                 </td>
                                                                 <td>
                                                                     @Html.DisplayFor(modelItem => item.Response)
                                                                 </td>
-                                                               
+
 
 
                                                                 <td>
 
-                                                                    
+
                                                                     <a asp-action="SupportDetails" asp-route-id="@item.SupportId">Details</a>
 
                                                                 </td>
@@ -163,6 +163,15 @@
     <!-- Footer END -->
     <!-- Page Container END -->
 </div>
+<script src="~/dist/assets/js/vendor.js"></script>
+
+<script src="~/dist/assets/js/app.min.js"></script>
+
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>
 
 
 

@@ -17,11 +17,11 @@
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
     <div class="main-content">
-       
+
         <div class="container-fluid">
             <div class="page-title">
                 <h4>Trainings Calender</h4>
-               
+
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -56,32 +56,32 @@
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                            if (item.TrainingEndDate >= DateTime.Today  )
+                                            if (item.TrainingEndDate >= DateTime.Today)
                                             {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingName)
-                                            </td>
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingName)
+                                                    </td>
 
-                                            <th>
-                                                @Html.DisplayFor(model => item.Cost)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayFor(model => item.Venue)
-                                            </th>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.Cost)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.Venue)
+                                                    </th>
 
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
-                                            </td>
-                                            <td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                                    </td>
+                                                    <td>
 
-                                                <a asp-action="DetailsCalender" asp-route-id="@item.Id">Details</a>
+                                                        <a asp-action="DetailsCalender" asp-route-id="@item.Id">Details</a>
 
-                                            </td>
-                                        </tr>
+                                                    </td>
+                                                </tr>
                                             }
                                         }
                                     </tbody>
@@ -111,6 +111,15 @@
     <!-- Footer END -->
     <!-- Page Container END -->
 </div>
+<script src="~/dist/assets/js/vendor.js"></script>
+
+<script src="~/dist/assets/js/app.min.js"></script>
+
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>
 
 
 

@@ -4,7 +4,7 @@
     Layout = "_LayoutTraineeDashboard";
     var owners = ViewBag.Owners as List<TraineeApplicationUser>;
     var modules = ViewBag.modulename as Modules;
-    
+
 }
 @inject UserManager<TraineeApplicationUser> userManager;
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
@@ -18,7 +18,7 @@
 
         }
         <div class="col-md-12">
-            
+
         </div>
         <div class="container-fluid">
             <div class="page-title">
@@ -34,7 +34,7 @@
                                         <tr>
                                             <th>Full Name</th>
                                             <th>Email</th>
-                                            
+
 
                                             <th>Certificate Number</th>
                                             <th>Certificate Status</th>
@@ -51,64 +51,64 @@
                                         {
                                             if (@owners[i].Email == user.Email)
                                             {
-                                        <tr>
+                                                <tr>
 
-                                            <td>
+                                                    <td>
 
-                                                <div class="mrg-top-15">
-                                                    <span class="text-info"><b>@owners[i].FirstName  @owners[i].LastName</b></span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="mrg-top-15">
-                                                    <span class="text-info"><b>@owners[i].Email</b></span>
-                                                </div>
-                                            </td>
+                                                        <div class="mrg-top-15">
+                                                            <span class="text-info"><b>@owners[i].FirstName  @owners[i].LastName</b></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mrg-top-15">
+                                                            <span class="text-info"><b>@owners[i].Email</b></span>
+                                                        </div>
+                                                    </td>
 
-                                            <td>
-                                                <div class="mrg-top-15">
-                                                    <span class="text-info"><b>@Model[i].CertNumber</b></span>
-                                                </div>
-                                            </td>
-                                           
-
-                                            <td>
-                                                @if (DateTime.Now >= @Model[i].DateGenerated.AddYears(2))
-                                                {
-                                                    <div class="relative mrg-top-15">
-                                                        <span class="status danger"> </span>
-                                                        <span class="pdd-left-20">Invalid</span>
-                                                    </div>
-                                                }
-                                                else
-                                                {
-                                                    <div class="relative mrg-top-15">
-                                                        <span class="status online"> </span>
-                                                        <span class="pdd-left-20">@Model[i].CertStatus</span>
-                                                    </div>
-                                                }
-                                            </td>
-
-                                            <td>
-                                                <div class="mrg-top-15">
-                                                    <span>@Model[i].DateGenerated</span>
-                                                </div>
-                                            </td>
-
-                                            <td>
-                                                <div class="mrg-top-15">
-                                                    <b class="text-dark font-size-16">@Model[i].TrainerOrg</b>
-                                                </div>
-                                            </td>
-
-                                            <td>
-                                                <div class="mrg-top-10">
+                                                    <td>
+                                                        <div class="mrg-top-15">
+                                                            <span class="text-info"><b>@Model[i].CertNumber</b></span>
+                                                        </div>
+                                                    </td>
 
 
-                                                    <a asp-action="ViewCertificate" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId">View Certificate</a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                    <td>
+                                                        @if (DateTime.Now >= @Model[i].DateGenerated.AddYears(2))
+                                                        {
+                                                            <div class="relative mrg-top-15">
+                                                                <span class="status danger"> </span>
+                                                                <span class="pdd-left-20">Invalid</span>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="relative mrg-top-15">
+                                                                <span class="status online"> </span>
+                                                                <span class="pdd-left-20">@Model[i].CertStatus</span>
+                                                            </div>
+                                                        }
+                                                    </td>
+
+                                                    <td>
+                                                        <div class="mrg-top-15">
+                                                            <span>@Model[i].DateGenerated</span>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div class="mrg-top-15">
+                                                            <b class="text-dark font-size-16">@Model[i].TrainerOrg</b>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div class="mrg-top-10">
+
+
+                                                            <a asp-action="ViewCertificate" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId">View Certificate</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             }
 
                                         }
@@ -137,3 +137,12 @@
     </footer>
     <!-- Footer END -->
 </div>
+<script src="~/dist/assets/js/vendor.js"></script>
+
+<script src="~/dist/assets/js/app.min.js"></script>
+
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>

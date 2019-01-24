@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MISTDO.Web.Models.Notification>
 @{
     ViewData["Title"] = "Notifications";
-     Layout = "_LayoutTraineeDashboard";
+    Layout = "_LayoutTraineeDashboard";
 }
 
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
@@ -21,7 +21,7 @@
 
             </div>
             <div class="row">
-                <div class="col-md-12"> 
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-block">
                             <div class="table-overflow">
@@ -53,7 +53,7 @@
 
                                                 <td>
 
-                                                    <a asp-action="NotificationDetails" asp-route-id="@item.NotificationId">Details</a> 
+                                                    <a asp-action="NotificationDetails" asp-route-id="@item.NotificationId">Details</a>
 
                                                 </td>
                                             </tr>
@@ -84,9 +84,18 @@
     </footer>
     <!-- Footer END -->
     <!-- Page Container END -->
-   
+
 </div>
 
 
+<script src="~/dist/assets/js/vendor.js"></script>
+
+<script src="~/dist/assets/js/app.min.js"></script>
+
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>
 
 
