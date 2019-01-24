@@ -246,6 +246,12 @@
     <Content Update="Views\Shared\_LayoutAdminDash.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Trainees\DetailsTrainingCenter.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Trainees\TrainingCenters.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Trainees\EditPassword.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

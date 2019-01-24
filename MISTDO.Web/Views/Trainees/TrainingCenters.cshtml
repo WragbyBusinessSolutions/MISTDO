@@ -1,0 +1,387 @@
+﻿@model IEnumerable<ApplicationUser>
+@{
+    ViewData["Title"] = "All Registered Training Centers";
+    Layout = "_LayoutTraineeDashboard";
+}
+<link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+<script>
+    function input1f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input1");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input2f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input2");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input3f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input3");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input4f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input4");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input5f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input3");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[4];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input6f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input3");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[5];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input7f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input3");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[6];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    #input1 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input2 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input3 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input4 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input5 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input6 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input7 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #dt-opt {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+        font-size: 18px;
+    }
+
+        #dt-opt th, #dt-opt td {
+            text-align: left;
+            padding: 12px;
+        }
+
+        #dt-opt tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+            #dt-opt tr.header, #dt-opt tr:hover {
+                background-color: #f1f1f1;
+            }
+</style>
+<!-- Page Container START -->
+<div class="page-container">
+    <!-- Header START -->
+    @await Html.PartialAsync("_LayoutHeaderTrainee");
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h4>All Registered Training Centers</h4>
+                <p>
+
+
+                    @*<span style="float:right;"><button class="btn btn-success" asp-controller="Administrator" asp-action="ExportCenters" align="right" title="Export Approved Training Providers to Microsoft Excel file"><i> Export  All Training Centres via Excel</i></button></span>*@
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="table-overflow">
+                                <table id="dt-opt" class="display">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Training Center ID
+                                            </th>
+                                            <th>
+                                                Training Center Name
+                                            </th>
+                                            <th>
+                                                Address
+                                            </th>
+                                            <th>
+                                                City
+                                            </th>
+                                            <th>
+                                                Email
+                                            </th>
+                                            <th>
+                                                Phone Number
+                                            </th>
+                                            <th>
+                                                OGISP Permit ID
+                                            </th>
+                                            <th>
+                                                Registration Date
+                                            </th>
+                                            <th>
+                                                Others
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Id)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.CentreName)
+                                                </td>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.CompanyAddress)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.City)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.Email)
+                                                </th>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.OGISPId)
+                                                </td>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.DateRegistered)
+                                                </th>
+                                                <td>
+                                                    <a asp-action="DetailsTrainingCenter" asp-controller="Trainees" asp-route-id="@item.Id" title="Check more details">Details</a>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+
+                                    <tfoot>
+                                        <tr>
+                                            <th>
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Search " title="Type in a name">
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Search " title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Search" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Search" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="Search " title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="Search " title="Type in a name">
+
+                                            </th>
+
+
+                                            <th></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- Page Container END -->
+</div>
+<script src="~/dist/assets/js/vendor.js"></script>
+<script src="~/dist/assets/js/app.min.js"></script>
+<!-- page plugins js -->
+<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+<!-- page js -->
+<script src="~/dist/assets/js/table/data-table.js"></script>

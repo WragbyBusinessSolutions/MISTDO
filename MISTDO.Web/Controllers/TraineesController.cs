@@ -104,6 +104,37 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
             return View(notification);
         }
+
+        public async Task<IActionResult> TrainingCenters()
+        {
+
+            var allTrainingCenter = await _trainer.GetAllTrainingCenters();
+
+            return View(allTrainingCenter);
+        }
+
+      
+        public async Task<IActionResult> DetailsTrainingCenter(string id)
+        {
+
+            if (id == null)
+            {
+                return View(await dbcontext.Users.ToListAsync());
+            }
+
+            var trainer = await dbcontext.Users.SingleOrDefaultAsync(m => m.Id == id);
+
+
+
+
+            if (trainer == null)
+            {
+                return NotFound();
+            }
+
+            return View(trainer);
+
+        }
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Profile(string id, TraineeViewModel model)
