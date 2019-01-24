@@ -12,7 +12,6 @@
     <None Remove="Views\Account\**" />
     <None Remove="Views\_ViewImports.cshtml" />
     <None Remove="Views\_ViewStart.cshtml" />
-    <Content Remove="Views\Shared\_LayoutRegisterAside.cshtml" />
     <Content Remove="Views\Shared\_LayoutTraineeHeader.cshtml" />
     <None Remove="Views\Shared\Error.cshtml" />
     <None Remove="Views\Shared\_LayoutDashboard.cshtml" />

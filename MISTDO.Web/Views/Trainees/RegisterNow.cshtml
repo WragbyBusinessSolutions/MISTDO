@@ -16,9 +16,7 @@
         <div class="container-fluid">
             <div class="page-title">
                 <h4>Registration </h4>
-                @*<p>
-                <a asp-action="Create">Create New</a>
-            </p>*@
+              
             </div>
             <form id="msform" asp-action="RegisterNow"  method="post" enctype="multipart/form-data">
                 <div class="row">
@@ -39,11 +37,7 @@
                                     <input asp-for="LastName" class="form-control" />
                                     <span asp-validation-for="LastName" class="text-danger"></span>
                                 </div>
-                                @*<div class="form-group">
-            <label asp-for="Email" class="control-label"></label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>*@
+                             
                                 <div class="form-group">
                                     <label asp-for="PhoneNumber" class="control-label"></label>
                                     <input asp-for="PhoneNumber" class="form-control" />
@@ -74,37 +68,8 @@
                                     <input asp-for="City" class="form-control" />
                                     <span asp-validation-for="City" class="text-danger"></span>
                                 </div>
-
-
-
-
-
-                                @*<div class="form-group">
-            <label asp-for="FirstFinger" class="control-label"></label>
-            <input asp-for="FirstFinger" class="form-control" />
-            <span asp-validation-for="FirstFinger" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="MiddleFinger" class="control-label"></label>
-            <input asp-for="MiddleFinger" class="form-control" />
-            <span asp-validation-for="MiddleFinger" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="LastFinger" class="control-label"></label>
-            <input asp-for="LastFinger" class="form-control" />
-            <span asp-validation-for="LastFinger" class="text-danger"></span>
-        </div>*@
-
-
-
                             </div>
-
-
-
                         </div>
-                        @*<div>
-                    <a asp-action="Index">Back to List</a>
-                </div>*@
                     </div>
                     <div class="col-md-6">
                         <div class="card">
@@ -129,21 +94,15 @@
                                     </div>
                                     <div class="form-group">
 
-
                                         <label asp-for="ImageUpload"></label>
 
                                         <input type="file" name="ImageUpload" multiple="multiple" class="input-files" />
-
-
 
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" value="Create" class="btn btn-default" />
                                 </div>
-
-
-
                             </div>
                         </div>
                     </div>
@@ -152,7 +111,7 @@
             </form>
         </div>
     </div>
-</div>
+
 
 <!-- Content Wrapper END -->
 <!-- Footer START -->
