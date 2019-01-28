@@ -240,7 +240,10 @@
     <Content Update="Views\Administrator\SupportUpdate.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Home\Index - Copy.cshtml">
+    <Content Update="Views\Home\Calender.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Home\Index2.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Shared\_LayoutAdminDash.cshtml">

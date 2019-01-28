@@ -280,7 +280,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">
         <div class="container">
-            <a class="navbar-brand" href="#"><b>MISTDO</b></a>
+            <a class="navbar-brand" asp-action="Index" asp-controller="Home"><b>MISTDO</b></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -288,10 +288,10 @@
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><b>Contact</b></a>
+                        <a class="nav-link" asp-action="Contact" asp-controller="Home"><b>Contact</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><b>Training Calendar</b></a>
+                        <a class="nav-link" asp-action="Calender" asp-controller="Home"><b>Training Calendar</b></a>
                     </li>
                 </ul>
             </div>

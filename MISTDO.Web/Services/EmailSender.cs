@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
@@ -10,10 +11,14 @@ namespace MISTDO.Web.Services
     // For more details see https://go.microsoft.com/fwlink/?LinkID=532713
     public class EmailSender : IEmailSender
     {
+        public SmtpOptions _smtpOptions { get; }
+       public IMistdo _mistdo { get; }
         SmtpClient SmtpServer;
         string MailerResponse;
-        public EmailSender()
+        public EmailSender(IOptions<SmtpOptions> smtpOptions, IMistdo mistdo)
         {
+            _smtpOptions = smtpOptions.Value;
+            _mistdo = mistdo;
 
             SmtpClient smtpClient = new SmtpClient("smtp.office365.com");
             SmtpServer = smtpClient;
@@ -23,11 +28,33 @@ namespace MISTDO.Web.Services
             MailerResponse = "";
 
         }
+      
         public Task SendEmailAsync(string email, string subject, string message)
         {
+            //send email using sendgrid via dotnetdesk
+            //_dotnetdesk.SendEmailBySendGridAsync(_sendGridOptions.SendGridKey, 
+            //    _sendGridOptions.FromEmail, 
+            //    _sendGridOptions.FromFullName, 
+            //    subject, 
+            //    message, 
+            //    email).Wait();
+
+            //send email using smtp via dotnetdesk. uncomment to use it
+
+         _mistdo.SendEmailByGmailAsync(_smtpOptions.fromEmail,
+                _smtpOptions.fromFullName,
+                subject,
+                message,
+                email,
+                email,
+                _smtpOptions.smtpUserName,
+                _smtpOptions.smtpPassword,
+                _smtpOptions.smtpHost,
+                _smtpOptions.smtpPort,
+                _smtpOptions.smtpSSL).Wait();
+
             return Task.CompletedTask;
         }
-
 
         public string SendLinkEmailAsync(string emailAdd, string subject, string message)
         {

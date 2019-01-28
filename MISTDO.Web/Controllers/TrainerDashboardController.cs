@@ -19,6 +19,17 @@ using System.IO;
 using OfficeOpenXml;
 using System.Net.Http.Headers;
 using System.Diagnostics;
+using System.Text.Encodings.Web;
+
+//FingerPrint Assembly 
+using DPFP;
+using DPFP.Capture;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Text;
+
 
 namespace MISTDO.Web.Controllers
 {
@@ -1171,6 +1182,11 @@ namespace MISTDO.Web.Controllers
                 var results = await _traineeuserManager.CreateAsync(user, model.Password);
                 if (results.Succeeded)
                 {
+                    var code = await _traineeuserManager.GenerateEmailConfirmationTokenAsync(user);
+                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+
+                    await _emailSender.SendEmailAsync(model.Email, "Confirm your email and Registration",
+                      $"Your email has been registered. With username: '{model.Email}' .Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>link</a>");
                     //var code = await _traineeuserManager.GenerateEmailConfirmationTokenAsync(user);
                     //  var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     //  var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);

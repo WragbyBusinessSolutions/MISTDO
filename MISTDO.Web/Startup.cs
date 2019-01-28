@@ -48,6 +48,9 @@ namespace MISTDO.Web
                 .AddDefaultTokenProviders();
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
+            // Get SMTP configuration options
+            services.Configure<SmtpOptions>(Configuration.GetSection("SmtpOptions"));
+
             services.ConfigureApplicationCookie(options =>
             {
               
@@ -61,40 +64,42 @@ namespace MISTDO.Web
             });
             services.AddDistributedMemoryCache();
 
-    //        services
-    //.AddAuthentication(o =>
-    //{
-    //    o.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    //})
-    //.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
-    //{
-    //    o.LoginPath = new PathString("/account/login");
-    //})
-    //.AddCookie("TrainerAuth", o =>
-    //{
-    //    o.LoginPath = new PathString("/trainer/login/");
-    //    o.LogoutPath = new PathString("/trainer/logout/");
+            //        services
+            //.AddAuthentication(o =>
+            //{
+            //    o.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //})
+            //.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
+            //{
+            //    o.LoginPath = new PathString("/account/login");
+            //})
+            //.AddCookie("TrainerAuth", o =>
+            //{
+            //    o.LoginPath = new PathString("/trainer/login/");
+            //    o.LogoutPath = new PathString("/trainer/logout/");
 
-    //});
+            //});
 
 
-         //   services.AddAuthentication()
-         //     .AddCookie("TrainerAuth", options =>
-         //     {
-         //         options.LoginPath = "/trainer/login";
-         //         options.AccessDeniedPath = "/trainer/AccessDenied";
-         //         options.LogoutPath = "/trainer/logout";
+            //   services.AddAuthentication()
+            //     .AddCookie("TrainerAuth", options =>
+            //     {
+            //         options.LoginPath = "/trainer/login";
+            //         options.AccessDeniedPath = "/trainer/AccessDenied";
+            //         options.LogoutPath = "/trainer/logout";
 
-         //     })
-         //.AddCookie("TraineeAuth", options =>
-         //{
-         //    options.LoginPath = "/trainees/login";
-         //    options.AccessDeniedPath = "/trainees/AccessDenied/";
+            //     })
+            //.AddCookie("TraineeAuth", options =>
+            //{
+            //    options.LoginPath = "/trainees/login";
+            //    options.AccessDeniedPath = "/trainees/AccessDenied/";
 
-         //});
+            //});
 
-         
+
             // Add application services.
+
+            services.AddTransient<IMistdo, Mistdo>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<ITrainerService, TrainerService>();
             services.AddTransient<IExcelToTrainingService, ExcelToTrainingService>();

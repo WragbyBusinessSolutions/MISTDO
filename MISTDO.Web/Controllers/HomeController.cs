@@ -20,6 +20,7 @@ namespace MISTDO.Web.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext tdbcontext;
 
 
         public ApplicationDbContext dbcontext { get; }
@@ -28,8 +29,9 @@ namespace MISTDO.Web.Controllers
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-             ApplicationDbContext context)
+             ApplicationDbContext context, ApplicationDbContext contexted)
         {
+            tdbcontext = contexted;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
@@ -65,6 +67,11 @@ namespace MISTDO.Web.Controllers
         {
 
             return View();
+        }
+
+        public async Task<IActionResult> Calender()
+        {
+            return View(await tdbcontext.Calenders.ToListAsync());
         }
 
 
