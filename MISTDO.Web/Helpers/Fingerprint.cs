@@ -7,7 +7,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing.Drawing2D;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -35,14 +34,20 @@ namespace MISTDO.Web.Helpers
             ((Capture)capture).StopCapture();
 
             var sampleConvertor = new SampleConversion();
-           
 
-           
-            Bitmap bitmap = null;
-            byte[] image = sample.Bytes;
 
-           
-            bitmap.Save(@"C:\Users\jeremy\Desktop\fingerprint.bmp");
+
+            Bitmap image;
+            byte[] imagesample = sample.Bytes;
+
+            using (MemoryStream stream = new MemoryStream(imagesample))
+            {
+                image = new Bitmap(stream);
+            }
+            var picture = image;
+
+
+            //bitmap.Save(@"C:\Users\jeremy\Desktop\fingerprint.bmp");
         }
 
         public void OnFingerGone(object capture, string readerSerialNumber) { }
