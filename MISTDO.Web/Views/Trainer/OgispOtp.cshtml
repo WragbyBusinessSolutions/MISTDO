@@ -1,0 +1,78 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Trainer Portal | MISTDO Portal";
+}
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<style>
+    html, body {
+        height: 100%;
+        background-image: url('../dist/assets/images/others/2.jpg');
+        background-repeat: no-repeat;
+        background-size:cover;
+        /*background-color: #82a43a;*/
+    }
+    #form {
+        background-color: #ffffff;
+        border-radius: 25px;
+        border: 2px solid #ffffff;
+        padding: 20px;
+     
+    }
+    .outer-wrapper {
+        display: table;
+        width: 100%;
+        height: 100%;
+    }
+
+    .inner-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+        padding: 15px;
+    }
+
+    .login-btn {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+    }
+</style>
+
+<!-- Optional theme
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
+<a class="btn btn-default login-btn" asp-controller="Home" asp-action="Index">Home</a>
+<section id="loginform" class="outer-wrapper">
+
+    <div class="inner-wrapper">
+        <div class="container">
+            <div class="row">
+                <div id="form" class="col-sm-4 col-sm-offset-4">
+                    <h3 class="text-center">OGISP Authentication</h3>
+                    <br />
+                    <form role="form">
+                        @*<div class="form-group">
+                            <label for="exampleInputEmail1">OGISP Number*</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter OGISP NUMBER">
+                        </div>*@
+                        <div class="form-group">
+                            <h5>Please Enter check your Email provided on OGISP registration for your OTP and enter it below</h5>
+                          
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">O.T.P*</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="One Time Password">
+                        </div>
+
+                        @*<div class="checkbox">
+            <label>
+                <input type="checkbox" style="color:green"> Remember me
+            </label>
+        </div>*@
+                        <a class="btn btn-success">Submit</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

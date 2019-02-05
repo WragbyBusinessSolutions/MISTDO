@@ -104,6 +104,7 @@ namespace MISTDO.Web
             services.AddTransient<ITrainerService, TrainerService>();
             services.AddTransient<IExcelToTrainingService, ExcelToTrainingService>();
             services.AddTransient<IExcelToTraineeService, ExcelToTraineeService>();
+            services.AddTransient<Iogisp, Ogisp>();
 
 
             services.AddSession(options =>

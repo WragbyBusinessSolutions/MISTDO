@@ -23,18 +23,20 @@ namespace MISTDO.Web.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
-       // private readonly ILogger _logger;
+
+        private readonly Iogisp _ogisp;
+        // private readonly ILogger _logger;
         public ApplicationDbContext dbcontext { get; }
         
 
-        public TrainerController(
+        public TrainerController( Iogisp ogisp,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
              ApplicationDbContext context)
         {
             dbcontext = context;
-         
+            _ogisp = ogisp;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
@@ -216,7 +218,56 @@ namespace MISTDO.Web.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> OgispCheck(OgispResponse data)
+        {
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
+          
+            return View();
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> IDCheck(String PermitNumber)
+        {
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+            var verifyID = await _ogisp.GetOgisp(PermitNumber);
+            if(verifyID != null && verifyID.PermitNumber == PermitNumber)
+            {
+                return View("OgispOtp");
+            }
+
+            return View("OgispCheck");
+        }
+
+        private IActionResult View(Func<OgispResponse, Task<IActionResult>> ogispCheck)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> OgispOtp(string returnUrl = null)
+        {
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> OtpCheck(OgispResponse data)
+        {
+           
+
+
+            return View();
+        }
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)

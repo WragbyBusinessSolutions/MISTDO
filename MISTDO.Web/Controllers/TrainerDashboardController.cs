@@ -1185,11 +1185,11 @@ namespace MISTDO.Web.Controllers
                 var results = await _traineeuserManager.CreateAsync(user, model.Password);
                 if (results.Succeeded)
                 {
-                    var code = await _traineeuserManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                    //var code = await _traineeuserManager.GenerateEmailConfirmationTokenAsync(user);
+                    //var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(model.Email, "Confirm your email and Registration",
-                      $"Your email has been registered. With username: '{model.Email}' .Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>link</a>");
+                    //await _emailSender.SendEmailAsync(model.Email, "Confirm your email and Registration",
+                    //  $"Your email has been registered. With username: '{model.Email}' .Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>link</a>");
                     //var code = await _traineeuserManager.GenerateEmailConfirmationTokenAsync(user);
                     //  var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     //  var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
