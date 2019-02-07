@@ -82,6 +82,7 @@
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.Face" Version="2.2.0-preview" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" PrivateAssets="All" />
+    <PackageReference Include="Otp.NET" Version="1.2.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -244,6 +245,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Home\Index2.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_LayoutRegisterHeader.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Shared\_LayoutOgisp.cshtml">

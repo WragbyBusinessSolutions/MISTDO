@@ -135,6 +135,10 @@ namespace MISTDO.Web.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<string>("CentreAddress")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
                     b.Property<string>("CentreName")
                         .IsRequired()
                         .HasMaxLength(100);
@@ -142,15 +146,15 @@ namespace MISTDO.Web.Migrations
                     b.Property<string>("City");
 
                     b.Property<string>("CompanyAddress")
+                        .IsRequired()
                         .HasMaxLength(100);
 
                     b.Property<string>("CompanyName")
+                        .IsRequired()
                         .HasMaxLength(100);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
-
-                    b.Property<string>("Country");
 
                     b.Property<DateTime>("DateRegistered");
 
@@ -159,11 +163,7 @@ namespace MISTDO.Web.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("LastName")
+                    b.Property<string>("LicenseExpDate")
                         .IsRequired()
                         .HasMaxLength(100);
 
@@ -177,14 +177,14 @@ namespace MISTDO.Web.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256);
 
-                    b.Property<string>("OGISPId")
-                        .IsRequired();
-
-                    b.Property<string>("OGISPUserName")
+                    b.Property<string>("Otp")
                         .IsRequired()
                         .HasMaxLength(100);
 
                     b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PermitNumber")
+                        .IsRequired();
 
                     b.Property<string>("PhoneNumber");
 
@@ -195,9 +195,6 @@ namespace MISTDO.Web.Migrations
                     b.Property<string>("State");
 
                     b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserAddress")
-                        .HasMaxLength(100);
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
@@ -287,6 +284,32 @@ namespace MISTDO.Web.Migrations
                     b.ToTable("Notifications");
                 });
 
+            modelBuilder.Entity("MISTDO.Web.Models.OgispTemp", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CompanyAddress");
+
+                    b.Property<string>("CompanyName");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("LicenseExpDate");
+
+                    b.Property<string>("Otp");
+
+                    b.Property<string>("PermitNumber");
+
+                    b.Property<DateTime>("Time");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OgispTemps");
+                });
+
             modelBuilder.Entity("MISTDO.Web.Models.Support", b =>
                 {
                     b.Property<int>("SupportId")
@@ -294,14 +317,15 @@ namespace MISTDO.Web.Migrations
 
                     b.Property<string>("Issue");
 
-                    b.Property<string>("OwnerId")
-                        .IsRequired();
+                    b.Property<string>("OwnerId");
 
                     b.Property<string>("Response");
 
                     b.Property<DateTime>("ResponseTimeStamp");
 
                     b.Property<string>("Subject");
+
+                    b.Property<string>("SubjectId");
 
                     b.Property<DateTime>("SupportTimeStamp");
 

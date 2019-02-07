@@ -1,7 +1,7 @@
 ﻿@model MISTDO.Web.Models.Support
 @{
     ViewData["Title"] = "Support Details";
-     Layout = "_LayoutAdminDashboard";
+     Layout = "_LayoutDashboard";
 }
 
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
@@ -10,7 +10,7 @@
 
 <div class="page-container">
     <!-- Header START -->
-    @await Html.PartialAsync("_LayoutHeaderAdmin");
+    @await Html.PartialAsync("_LayoutHeader");
 
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="page-title">
                 <p>
-                    <a asp-action="SupportTrainees">Back</a>
+                    <a asp-action="SupportTrainees" class="btn btn-success">Back</a>
                 </p>
                 
             </div>

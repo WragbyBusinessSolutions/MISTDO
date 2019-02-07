@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MISTDO.Web.Data;
@@ -23,6 +26,8 @@ namespace MISTDO.Web.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
+
+        SmtpClient SmtpServer;
 
         private readonly Iogisp _ogisp;
         // private readonly ILogger _logger;
@@ -116,16 +121,16 @@ namespace MISTDO.Web.Controllers
                     user.PhoneNumber = model.PhoneNumber;
                     user.CompanyAddress = model.CompanyAddress;
                     user.CompanyName = model.CompanyName;
-                    user.UserAddress = model.UserAddress;
-                    user.FirstName = model.FirstName;
-                    user.LastName = model.LastName;
+                    //user.UserAddress = model.UserAddress;
+                    //user.FirstName = model.FirstName;
+                    //user.LastName = model.LastName;
 
                     user.State = model.State;
                     user.City = model.City;
-                    user.Country = model.Country;
+                    user.PermitNumber = model.PermitNumber;
                     user.CentreName = model.CentreName;
-                    user.OGISPUserName = model.OGISPUserName;
-                    user.OGISPId = model.OGISPId;
+                    user.LicenseExpDate = model.LicenseExpDate;
+                    user.Otp = model.PermitNumber; //NB
                     user.EmailConfirmed = true;//Custom Column
 
                     var idResult = await _userManager.UpdateAsync(user);//update
@@ -147,70 +152,77 @@ namespace MISTDO.Web.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult RegisterNow(string returnUrl = null)
+        public async Task<IActionResult>  RegisterNow()
         {
-            ViewData["ReturnUrl"] = returnUrl;
+           
             return View();
+
+         
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterNow(RegisterViewModel model, string returnUrl = null)
+        //[HttpPost]
+       [AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterPay(RegisterViewModel model,string Companyname ,string  Companyaddress, string CentreName, string CenterAddress, string Permitnumber,string email, string Licenseexpdate, string otp, string PhoneNumber,string State,string City,string Password,string ConfirmPassword,string fee, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser()
+                var center = await _userManager.FindByEmailAsync(email);
+
+                if (center == null)
                 {
-
-                    UserName = model.Email,
-                    Email = model.Email,
-
-                    PhoneNumber = model.PhoneNumber,
-                    CompanyAddress = model.CompanyAddress,
-                    CompanyName = model.CompanyName,
-                    UserAddress = model.UserAddress,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-
-                    State = model.State,
-                    City = model.City,
-                    Country = model.Country,
-                    CentreName = model.CentreName,
-                    OGISPUserName = model.OGISPUserName,
-                    OGISPId = model.OGISPId,
-                    DateRegistered = DateTime.Now.Date,
-
-
-
-                };
-
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    
-                    var centredetails = new TrainingCentre
+                    var user = new ApplicationUser()
                     {
-                        CentreName = model.CentreName,
-                        OGISPUserName = model.OGISPUserName,
-                        OGISPId = model.OGISPId,
-                        User = user
 
+                        UserName = email,
+                        Email = email,
+
+                        PhoneNumber = PhoneNumber,
+                        CompanyAddress = Companyaddress,
+                        CompanyName = Companyname,
+                        //UserAddress = model.UserAddress,
+                        //FirstName = model.FirstName,
+                        //LastName = model.LastName,
+                        //temp
+                        Otp = otp,
+
+                        State = State,
+                        City = City,
+                        CentreName = CentreName,
+                        CentreAddress = CenterAddress,
+                        PermitNumber = Permitnumber,
+                        LicenseExpDate = Licenseexpdate,
+                        DateRegistered = DateTime.Now.Date,
 
                     };
-                    dbcontext.Add(centredetails);
-                    dbcontext.SaveChanges();
+
+                    var result = await _userManager.CreateAsync(user, Password);
+                    if (result.Succeeded)
+                    {
+
+                        var og = await dbcontext.OgispTemps.SingleOrDefaultAsync(m => m.Otp == otp);
+                        dbcontext.OgispTemps.Remove(og);
+                        if (og !=null)
+                        {
+                            await dbcontext.SaveChangesAsync();
+                        }
 
 
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                        var response = _emailSender.SendEmailConfirmationAsync(email, callbackUrl);
 
 
-                    return View("ConfirmMail");
+                //        return View("ConfirmMail");
+                        var url = Url.Action(nameof(Login));
+                        return  Json(new { isSuccess = true, redirectUrl = url });
 
+                    }
+
+                   
                 }
+               
 
 
             }
@@ -234,36 +246,123 @@ namespace MISTDO.Web.Controllers
         {
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
+            //Verify OGISP Permit Number
             var verifyID = await _ogisp.GetOgisp(PermitNumber);
-            if(verifyID != null && verifyID.PermitNumber == PermitNumber)
+
+            if(verifyID != null && verifyID.PermitNumber == PermitNumber)//If Success
             {
+                //Generate OTP
+
+                string alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                string small_alphabets = "abcdefghijklmnopqrstuvwxyz";
+                string numbers = "1234567890";
+
+                string characters = numbers;
+              
+               characters += alphabets + small_alphabets + numbers;
+              
+                int length = 10;
+                string otps = string.Empty;
+                for (int i = 0; i < length; i++)
+                {
+                    string character = string.Empty;
+                    do
+                    {
+                        int index = new Random().Next(0, characters.Length);
+                        character = characters.ToCharArray()[index].ToString();
+                    } while (otps.IndexOf(character) != -1);
+                    otps += character;
+                }
+                string permitotp = otps.ToUpper();
+
+                //Send Mail
+                SmtpClient client = new SmtpClient("smtp.office365.com"); //set client 
+                client.Port = 587;
+                client.EnableSsl = true;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("SPOC@wragbysolutions.com", "@$Wbst@m!n18"); //Mailing credential
+
+                MailMessage mailMessage = new MailMessage(); 
+                mailMessage.From = new MailAddress("SPOC@wragbysolutions.com");
+                mailMessage.To.Add("Femi4god2010@gmail.com");
+                mailMessage.Body = "Your OTP is: "+ permitotp;
+                mailMessage.Subject = "OGISP AUTHENTICATION";
+                client.Send(mailMessage);
+
+                var centredetails = new OgispTemp
+                {
+                    PermitNumber = verifyID.PermitNumber,
+                    CompanyName = verifyID.CompanyName,
+                    CompanyAddress = verifyID.CompanyAddress,
+                    Email = verifyID.ComppanyEmail,
+                    LicenseExpDate = verifyID.expiryDate,
+                    Otp =  permitotp,
+                    DateCreated = DateTime.Now,
+                    Time = DateTime.Now.ToLocalTime()
+
+                };
+                dbcontext.Add(centredetails);
+                dbcontext.SaveChanges();
+
+               
                 return View("OgispOtp");
             }
 
             return View("OgispCheck");
         }
 
-        private IActionResult View(Func<OgispResponse, Task<IActionResult>> ogispCheck)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> OgispOtp(string returnUrl = null)
+        public async Task<IActionResult> OgispOtp()
         {
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> OtpCheck(OgispResponse data)
+        public async Task<IActionResult> OtpCheck(String otp)
         {
-           
+            var ogisp = await dbcontext.OgispTemps.Where(t => t.Otp == otp).ToListAsync();
+            if (ogisp != null)
+            {
+                              
+                var centre = ogisp.FirstOrDefault(t => t.Otp == otp);
+                ViewBag.permit = centre.PermitNumber;
+                ViewBag.email = centre.Email;
+                ViewBag.companyname = centre.CompanyName;
+                ViewBag.companyaddress = centre.CompanyAddress;
+                ViewBag.expdate = centre.LicenseExpDate;
+                ViewBag.otp = otp;
+
+                return View(nameof(RegisterNow));
+
+            }
+
+
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmMail(OgispResponse data)
+        {
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+
+            return View();
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmail(OgispResponse data)
+        {
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
 
             return View();
@@ -274,7 +373,7 @@ namespace MISTDO.Web.Controllers
         {
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
+            
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -301,6 +400,7 @@ namespace MISTDO.Web.Controllers
                     //     }
                     //      else
                     //      {
+                    ViewBag.msg = "Success";
                     return RedirectToLocal(returnUrl);
                     //      }
                 }

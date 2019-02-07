@@ -1,10 +1,21 @@
 ﻿@{
     ViewData["Title"] = "Confirm email";
+    Layout = "_RegisterPartial";
 }
 
-<h2>@ViewData["Title"]</h2>
-<div>
-    <p>
-        Thank you for confirming your email.
-    </p>
+<div class="page-container">
+    @await Html.PartialAsync("_LayoutRegisterHeader")
+    <div class="main-content">
+        <div class="container-fluid">
+
+
+            <h2>Welcome on board</h2>
+            <div class="alert alert-success">
+                <strong>Email Confirm Successfull!!!</strong>  <a asp-action="Login" class="alert-link">Go back to Login</a>.
+            </div>
+            <p>
+
+            </p>
+        </div>
+    </div>
 </div>

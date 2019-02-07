@@ -1,14 +1,22 @@
 ﻿
 @{
     ViewData["Title"] = "Email Confirmation";
+    Layout = "_RegisterPartial";
 }
 
-<div>
-    <p>
-        A confirmation Link has been sent to your mail
-    </p>
-    <p>
-        <a asp-action="Login">Go back to Login</a>
-    </p>
-</div>
+<div class="page-container">
+    @await Html.PartialAsync("_LayoutRegisterHeader")
+    <div class="main-content">
+        <div class="container-fluid">
 
+            <h2>Success!</h2>
+            <p><b>On your registration as a "Trainee"</b>.</p>
+            <div class="alert alert-success">
+                <strong>Registration Successfull!!!</strong>  A confirmation Link has been sent to your mail  <a asp-action="Login" class="alert-link">Go back to Login</a>.
+            </div>
+            <p>
+
+            </p>
+        </div>
+    </div>
+</div>

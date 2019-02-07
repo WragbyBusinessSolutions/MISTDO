@@ -721,19 +721,42 @@ namespace MISTDO.Web.Views.TrainerDashboard
         //GET: Trainees/Support
         public async Task<IActionResult> Support()
         {
-            ViewBag.Message = await _context.TraineeSupports.ToListAsync();
+            var user = await _userManager.GetUserAsync(User);
+            ViewBag.us = "user";
+            ViewBag.res = "No Response";
+            ViewBag.Message = await _context.TraineeSupports.Where(t=>t.OwnerId ==user.Id).ToListAsync();
             return View();
         }
         // POST: Trainees/Suipport
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Support(Support support, Microsoft.AspNetCore.Http.IFormFile ImageUpload)
+        public async Task<IActionResult> Support(Support support)
         {
+
+            var user = await _userManager.GetUserAsync(User);
+            //support.OwnerId = user.Id;
+            //support.Response = "No Response";
+
             if (ModelState.IsValid)
             {
-              
+                //var supports = new Support
+                //{
+                //    Subject = support.Subject,
+                //    OwnerId = user.Id,
+                //    SubjectId = support.SubjectId,
+                //    Issue = support.Issue,
+                //    SupportTimeStamp = DateTime.Now,
+
+                //};
+
+                support.OwnerId = user.Id;
+                support.Response = "---";
+                support.SupportTimeStamp = DateTime.Now;
                 _context.Add(support);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
+
+                //_context.Add(support);
+                //await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Support));
             }
             return View(support);

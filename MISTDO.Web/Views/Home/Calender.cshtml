@@ -23,7 +23,13 @@
         <div class="container-fluid">
             <div class="page-title">
                 <h4>Trainings Calender</h4>
+                @if (ViewData["Success"] != null)
+                {
+                    <div id="successMessage">
+                        @ViewData["Success"]
+                    </div>
 
+                }
             </div>
             <div class="row">
                 <div class="col-md-12">

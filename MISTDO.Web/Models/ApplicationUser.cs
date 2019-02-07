@@ -11,28 +11,14 @@ namespace MISTDO.Web.Models
     public class ApplicationUser : IdentityUser
     {
 
-        [Required]
-        [DataType(DataType.Text)]
-        [MaxLength(100)]
-        public string FirstName { get; set; }
+       
 
         [Required]
-        [DataType(DataType.Text)]
-
-        [MaxLength(100)]
-        public string LastName { get; set; }
-        [MaxLength(100)]
-        public string CompanyAddress { get; set; }
-
         [MaxLength(100)]
         public string CompanyName { get; set; }
-        
+        [Required]
         [MaxLength(100)]
-        public string UserAddress { get; set; }
-        public string Country { get; set; }
-        public string State { get; set; }
-        public string City { get; set; }
-        public DateTime DateRegistered { get; set; }
+        public string CompanyAddress { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
@@ -41,13 +27,30 @@ namespace MISTDO.Web.Models
 
         [Required]
         [DataType(DataType.Text)]
-
         [MaxLength(100)]
-        public string OGISPUserName { get; set; }
+        public string CentreAddress { get; set; }
+     
+        public string State { get; set; }
+        public string City { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
+        public DateTime DateRegistered { get; set; }
 
         [Required]
+        [DataType(DataType.Text)]
+        [MaxLength(100)]
+        public string Otp { get; set; }
 
-        public string OGISPId { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        [MaxLength(100)]
+        public string LicenseExpDate { get; set; }
+
+        [Required]
+        public string PermitNumber { get; set; }
+
+
 
     }
 }

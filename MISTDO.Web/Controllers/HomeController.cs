@@ -40,6 +40,7 @@ namespace MISTDO.Web.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            ViewData["Success"] = "Data was saved successfully.";
             return View(await dbcontext.Calenders.ToListAsync());
         }
 
@@ -83,67 +84,7 @@ namespace MISTDO.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterNow(RegisterViewModel model, string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser()
-                {
-
-                    UserName = model.Email,
-                    Email = model.Email,
-
-                    PhoneNumber = model.PhoneNumber,
-                    CompanyAddress = model.CompanyAddress,
-                    CompanyName = model.CompanyName,
-                    UserAddress = model.UserAddress,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-
-                    State = model.State,
-                    City = model.City,
-                    Country = model.Country,
-                    DateRegistered = DateTime.Now.Date,
-
-
-
-                };
-
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    var centredetails = new TrainingCentre
-                    {
-                        CentreName = model.CentreName,
-                        OGISPUserName = model.OGISPUserName,
-                        OGISPId = model.OGISPId,
-                        User = user
-
-
-                    };
-                    dbcontext.Add(centredetails);
-                    dbcontext.SaveChanges();
-
-
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-
-
-                    return View("ConfirmMail");
-
-                }
-
-
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
+        
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

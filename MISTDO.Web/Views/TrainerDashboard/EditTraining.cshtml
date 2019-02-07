@@ -19,7 +19,7 @@
         <div class="container-fluid">
             <div class="page-title">
                 <p>
-                    <a asp-action="Training">Back</a>
+                    <a asp-action="Training" class="btn btn-success">Back</a>
                 </p>
                 <h4>Edit Training </h4>
             </div>
@@ -44,15 +44,15 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label"> Training Name</label>
-                                                        <input asp-for="TrainingName" class="form-control" />
+                                                        <input asp-for="TrainingName" class="form-control" disabled/>
                                                         <span asp-validation-for="TrainingName" class="text-danger"></span>
                                                     </div>
 
 
                                                 </div>
-                                                
-                                            </div>
 
+                                            </div>
+                                          
                                             <div class="row">
                                                 <div class="col-md-12">
 
@@ -61,7 +61,7 @@
                                                         <label class="control-label"> Training Center Id</label>
                                                         <input asp-for="@user.Id" class="form-control" disabled />
                                                         <span asp-validation-for="TrainingCentreId" class="text-danger"></span>
-                                                    </div>
+                                                    </div> 
 
                                                 </div>
                                             </div>
@@ -133,7 +133,7 @@
                                                 <div class="col-md-6 col-xs-6">
                                                     <div class="text-right mrg-top-5">
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn btn-primary">Save</button>
+                                                            <button type="submit" class="btn btn-success">Save</button>
                                                         </div>
                                                     </div>
                                                 </div>

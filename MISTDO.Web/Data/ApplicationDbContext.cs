@@ -32,6 +32,7 @@ namespace MISTDO.Web.Data
         public DbSet<Support> TrainerSupports { get; set; }
 
         public DbSet<Calender> Calenders{ get; set; }
+        public DbSet<OgispTemp> OgispTemps { get; set; }
 
 
     }

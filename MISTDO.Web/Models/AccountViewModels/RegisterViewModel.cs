@@ -26,22 +26,6 @@ namespace MISTDO.Web.Models.AccountViewModels
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "First Name")]
-        [Required]
-        [DataType(DataType.Text)]
-        [MaxLength(100)]
-        public string FirstName { get; set; }
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Last Name")]
-        [MaxLength(100)]
-        public string LastName { get; set; }
-        [Required]
-        [DataType(DataType.Text)]
-        [MaxLength(100)]
-        [Display(Name = "Company Address")]
-        public string CompanyAddress { get; set; }
         [Required]
         [DataType(DataType.Text)]
         [MaxLength(100)]
@@ -50,12 +34,21 @@ namespace MISTDO.Web.Models.AccountViewModels
         [Required]
         [DataType(DataType.Text)]
         [MaxLength(100)]
-        [Display(Name = "User Address")]
-        public string UserAddress { get; set; }
-        [Display(Name = "Country")]
+        [Display(Name = "Company Address")]
+        public string CompanyAddress { get; set; }
+        [Display(Name = "Training Centre Name")]
         [Required]
         [DataType(DataType.Text)]
-        public string Country { get; set; }
+        [MaxLength(100)]
+        public string CentreName { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Training Center Address")]
+        [MaxLength(100)]
+        public string CenterAddress { get; set; }
+
+           
         [Display(Name = "State")]
         [Required]
         [DataType(DataType.Text)]
@@ -72,23 +65,15 @@ namespace MISTDO.Web.Models.AccountViewModels
         public string PhoneNumber { get; set; }
 
         [Required]
-        public string OGISPId { get; set; }
-
-
-        [Display(Name = "Training Centre Name")]
-        [Required]
         [DataType(DataType.Text)]
-        [MaxLength(100)]
-        public string CentreName { get; set; }
+        [Display(Name = "Training Center OGISP Permit Number")]
+        public string PermitNumber { get; set; }
+       
+        public string LicenseExpDate { get; set; }
 
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "OGISP UserName")]
-        [MaxLength(100)]
-        public string OGISPUserName { get; set; }
-        [Required]
+       
 
-        public string TrainingModule { get; set; }
+
     }
 }
 

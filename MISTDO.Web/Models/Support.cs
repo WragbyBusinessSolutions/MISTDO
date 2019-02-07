@@ -12,8 +12,10 @@ namespace MISTDO.Web.Models
         public int SupportId { get; set; }
         public string Subject { get; set; }
         public string Issue { get; set; }
-        [Required]
+        
         public string OwnerId { get; set; }
+      
+        public string SubjectId { get; set; }
         public string Response { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]

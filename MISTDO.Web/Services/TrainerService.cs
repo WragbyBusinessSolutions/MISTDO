@@ -48,6 +48,7 @@ namespace MISTDO.Web.Services
         {
             
             var training = await dbcontext.Trainings.Where(t => t.TraineeId == traineeid && t.ModuleId == moduleid ).ToListAsync();
+            
             return training;
         }
 

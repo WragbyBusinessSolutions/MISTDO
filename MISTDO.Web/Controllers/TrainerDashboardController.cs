@@ -73,6 +73,7 @@ namespace MISTDO.Web.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.Message = ViewBag.msg;
             //var trainings = dbcontext.Trainings.Where(t => t.Id == '1').Count();
             //ViewBag.centers = trainings;
             return View();
@@ -254,7 +255,7 @@ namespace MISTDO.Web.Controllers
                 Owner = traineeid,
                 Trainer = centre,
                 TrainerOrg = centre.CentreName,
-                TrainerOrgId = centre.OGISPId,
+                TrainerOrgId = user.Id,
                 ModuleId = int.Parse(moduleid),
                 TrainingId = updateTraining.Id
                 //  Course = module,
@@ -317,7 +318,10 @@ namespace MISTDO.Web.Controllers
         //GET: Trainees/Support
         public async Task<IActionResult> Support(int id)
         {
-            ViewBag.Message = await dbcontext.TrainerSupports.ToListAsync();
+            var user = await _usermanager.GetUserAsync(User);
+            ViewBag.us = "user";
+            ViewBag.res = "No Response";
+            ViewBag.Message = await dbcontext.TrainerSupports.Where(t=>t.OwnerId == user.Id).ToListAsync();
 
             return View();
         }
@@ -326,28 +330,30 @@ namespace MISTDO.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Support(Support support)
         {
-
+            var user = await _usermanager.GetUserAsync(User);
 
 
             if (ModelState.IsValid)
             {
-                
-                var suport = new Support()
-                {
-                    
-                    SupportId = support.SupportId,
-                    Subject = support.Subject,
-                    Issue = support.Issue,
-                    
-                    SupportTimeStamp = DateTime.Now,
-                    ResponseTimeStamp =DateTime.UtcNow
-                    
+
+                //var suport = new Support()
+                //{
+
+                //    Subject = support.Subject,
+                //    Issue = support.Issue,
+
+                //    SupportTimeStamp = DateTime.Now,
+                //    ResponseTimeStamp =DateTime.UtcNow
 
 
 
-                };
 
-                dbcontext.Add(suport);
+                //};
+                support.SubjectId = "---";
+                support.OwnerId = user.Id;
+                support.Response = "---";
+                support.SupportTimeStamp = DateTime.Now;
+                dbcontext.Add(support);
                 await dbcontext.SaveChangesAsync();
                 return RedirectToAction(nameof(Support));
             }
@@ -403,7 +409,7 @@ namespace MISTDO.Web.Controllers
         {
             var user = await _usermanager.GetUserAsync(User);
             // id = user.Id;
-            support.SupportId = id;
+           
             if (id != support.SupportId)
             {
                 return NotFound();
@@ -413,19 +419,10 @@ namespace MISTDO.Web.Controllers
             {
                 try
                 {
-                    var train = new Support()
-                    {
-
-                        SupportId = support.SupportId,
-                        Subject = support.Subject,
-                        Issue = support.Issue,
-                        Response = support.Response,
-                        SupportTimeStamp = DateTime.Now,
-                        ResponseTimeStamp = DateTime.Now
-
-
-                    };
-                    Traineedbcontext.Update(train);
+                    support.ResponseTimeStamp = DateTime.Now;
+                    support.SupportTimeStamp = DateTime.Now;
+                    support.Response = support.Response;
+                    Traineedbcontext.Update(support);
                     await Traineedbcontext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -518,16 +515,16 @@ namespace MISTDO.Web.Controllers
                     user.PhoneNumber = model.PhoneNumber;
                     user.CompanyAddress = model.CompanyAddress;
                     user.CompanyName = model.CompanyName;
-                    user.UserAddress = model.UserAddress;
-                    user.FirstName = model.FirstName;
-                    user.LastName = model.LastName;
+                    //user.UserAddress = model.UserAddress;
+                    //user.FirstName = model.FirstName;
+                    //user.LastName = model.LastName;
 
                     user.State = model.State;
                     user.City = model.City;
-                    user.Country = model.Country;
                     user.CentreName = model.CentreName;
-                    user.OGISPUserName = model.OGISPUserName;
-                    user.OGISPId = model.OGISPId;
+                    user.CentreAddress = model.CentreAddress;
+                    user.PermitNumber = model.PermitNumber;
+                    user.LicenseExpDate = model.LicenseExpDate;
                     user.EmailConfirmed = true;//Custom Column
 
                     var idResult = await _usermanager.UpdateAsync(user);//update

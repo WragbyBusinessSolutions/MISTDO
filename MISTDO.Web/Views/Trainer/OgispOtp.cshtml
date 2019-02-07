@@ -49,26 +49,18 @@
                 <div id="form" class="col-sm-4 col-sm-offset-4">
                     <h3 class="text-center">OGISP Authentication</h3>
                     <br />
-                    <form role="form">
-                        @*<div class="form-group">
-                            <label for="exampleInputEmail1">OGISP Number*</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter OGISP NUMBER">
-                        </div>*@
+                    <form asp-action="OtpCheck" asp-controller="Trainer" enctype="multipart/form-data">
+                      
                         <div class="form-group">
                             <h5>Please Enter check your Email provided on OGISP registration for your OTP and enter it below</h5>
                           
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">O.T.P*</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="One Time Password">
+                            <input type="password" class="form-control" name="otp" id="otp" placeholder="One Time Password">
                         </div>
 
-                        @*<div class="checkbox">
-            <label>
-                <input type="checkbox" style="color:green"> Remember me
-            </label>
-        </div>*@
-                        <a class="btn btn-success">Submit</a>
+                        <button type="submit" class="btn btn-success">Submit</button>
                     </form>
                 </div>
             </div>
