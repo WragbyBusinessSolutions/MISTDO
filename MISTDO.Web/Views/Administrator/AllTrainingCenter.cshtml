@@ -248,7 +248,7 @@
                 <p>
 
 
-                    <span style="float:right;"><button class="btn btn-success" asp-controller="Administrator" asp-action="ExportCenters" align="right" title="Export Approved Training Providers to Microsoft Excel file"><i> Export  All Training Centres via Excel</i></button></span>
+                    <span style="float:right;"><a class="btn btn-success" asp-controller="Administrator" asp-action="ExportCenters" align="right" title="Export Approved Training Providers to Microsoft Excel file"><i> Export  All Training Centres via Excel</i></a></span>
                 </p>
             </div>
             <div class="row">
@@ -278,7 +278,7 @@
                                                 Phone Number
                                             </th>
                                             <th>
-                                                OGISP Permit ID
+                                                OGISP Permit Number
                                             </th>
                                             <th>
                                                 Registration Date
@@ -312,13 +312,13 @@
                                                     @Html.DisplayFor(modelItem => item.PhoneNumber)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.OGISPId)
+                                                    @Html.DisplayFor(modelItem => item.PermitNumber)
                                                 </td>
                                                 <th>
                                                     @Html.DisplayFor(model => item.DateRegistered)
                                                 </th>
                                                 <td>
-                                                    <a asp-action="DetailsTrainingCenter" asp-route-id="@item.Id" title="Check more details">Details</a>
+                                                    <a asp-action="DetailsTrainingCenter" asp-route-id="@item.Id" title="Check more details" class="btn btn-success">Details</a>
                                                 </td>
                                             </tr>
 

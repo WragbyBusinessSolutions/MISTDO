@@ -20,6 +20,9 @@ using OfficeOpenXml.Style;
 using System.Net.Http.Headers;
 using MISTDO.Web.Models.AdminViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
+using System.Security.Claims;
+using MISTDO.Web.Models.AccountViewModels;
 
 namespace MISTDO.Web.Controllers
 { 
@@ -31,15 +34,21 @@ namespace MISTDO.Web.Controllers
         private readonly ApplicationDbContext dbcontext;
         private readonly TraineeApplicationDbContext Traineedbcontext;
         private readonly IHostingEnvironment _env;
-
-
+        private readonly SignInManager<AdminApplicationUser> _signInManager;
+        private readonly ILogger _logger;
+        [TempData]
+        public string ErrorMessage { get; set; }
         //user managers
+        private readonly UserManager<AdminApplicationUser> _userManager;
         private readonly UserManager<ApplicationUser> _usermanager;
         private readonly UserManager<TraineeApplicationUser> _traineeuserManager;
 
-        public AdministratorController(ITrainerService trainer, UserManager<ApplicationUser> userManager, IHostingEnvironment env, UserManager<TraineeApplicationUser> traineeuserManager, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext, AdminApplicationDbContext _admindbcontext)
+        public AdministratorController(ITrainerService trainer, UserManager<AdminApplicationUser> usermanager, SignInManager<AdminApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IHostingEnvironment env, UserManager<TraineeApplicationUser> traineeuserManager, ApplicationDbContext context, TraineeApplicationDbContext traineedbcontext, AdminApplicationDbContext _admindbcontext, ILogger<AccountController> logger)
         {
+            _userManager = usermanager;
             _usermanager = userManager;
+            _signInManager = signInManager;
+            _logger = logger;
             _traineeuserManager = traineeuserManager;
             _trainer = trainer;
             admindbcontext = _admindbcontext;
@@ -62,6 +71,110 @@ namespace MISTDO.Web.Controllers
             // ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public IActionResult ExternalLogin(string provider, string returnUrl = null)
+        {
+            // Request a redirect to the external login provider.
+            var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Administrator", new { returnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+            return Challenge(properties, provider);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
+        {
+            if (remoteError != null)
+            {
+                ErrorMessage = $"Error from external provider: {remoteError}";
+                return RedirectToAction(nameof(Login));
+            }
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                return RedirectToAction(nameof(Login));
+            }
+
+            // Sign in the user with this external login provider if the user already has a login.
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
+                return RedirectToAction(nameof(Dashboard));
+            }
+            if (result.IsLockedOut)
+            {
+                return RedirectToAction(nameof(Lockout));
+            }
+            else
+            {
+                // If the user does not have an account, then ask the user to create an account.
+                ViewData["ReturnUrl"] = returnUrl;
+                ViewData["LoginProvider"] = info.LoginProvider;
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+                return View("ExternalLogin", new ExternalLoginViewModel { Email = email });
+            }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginViewModel model, string returnUrl = null)
+        {
+            if (ModelState.IsValid)
+            {
+                // Get the information about the user from the external login provider
+                var info = await _signInManager.GetExternalLoginInfoAsync();
+                if (info == null)
+                {
+                    throw new ApplicationException("Error loading external login information during confirmation.");
+                }
+                var user = new AdminApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await _userManager.CreateAsync(user);
+                if (result.Succeeded)
+                {
+                    result = await _userManager.AddLoginAsync(user, info);
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+                        return RedirectToAction(nameof(Dashboard));
+                    }
+                }
+                AddErrors(result);
+            }
+
+            ViewData["ReturnUrl"] = returnUrl;
+            return View(nameof(ExternalLogin), model);
+        }
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+        }
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Lockout()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> AllCertificate()
         {
             var certs = await _trainer.GetAllCertificates();
@@ -557,7 +670,7 @@ namespace MISTDO.Web.Controllers
         public IActionResult ExportCenters()
         {
             string rootFolder = _env.WebRootPath;
-            string fileName = @"ExportTrainees.xlsx";
+            string fileName = @"ExportAllCenters.xlsx";
             string URL = string.Format("{0}://{1}/{2}", Request.Scheme, Request.Host, fileName);
 
             FileInfo file = new FileInfo(Path.Combine(rootFolder, fileName));
@@ -585,6 +698,7 @@ namespace MISTDO.Web.Controllers
                 worksheet.Cells[1, 3].Value = "Email";
                 worksheet.Cells[1, 4].Value = "Address";
                 worksheet.Cells[1, 5].Value = "Phone NUmber";
+                worksheet.Cells[1, 6].Value = "Permit NUmber";
 
                 int i = 0;
                 for (int row = 2; row <= totalRows + 1; row++)
@@ -594,6 +708,7 @@ namespace MISTDO.Web.Controllers
                     worksheet.Cells[row, 3].Value = traineeList[i].Email;
                     worksheet.Cells[row, 4].Value = traineeList[i].CompanyAddress;
                     worksheet.Cells[row, 5].Value = traineeList[i].PhoneNumber;
+                    worksheet.Cells[row, 6].Value = traineeList[i].PermitNumber;
 
                     i++;
                 }
@@ -617,7 +732,7 @@ namespace MISTDO.Web.Controllers
         public IActionResult ExportModules()
         {
             string rootFolder = _env.WebRootPath;
-            string fileName = @"ExportTrainees.xlsx";
+            string fileName = @"ExportApprovedModules.xlsx";
             string URL = string.Format("{0}://{1}/{2}", Request.Scheme, Request.Host, fileName);
 
             FileInfo file = new FileInfo(Path.Combine(rootFolder, fileName));

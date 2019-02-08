@@ -1,24 +1,30 @@
-﻿@model TraineeLoginViewModel
+﻿@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@model LoginViewModel
+@inject SignInManager<AdminApplicationUser> SignInManager
 @{
+    var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
     ViewData["Title"] = "SHE Administrative Portal | MISTDO Portal";
 }
 
 <style>
     @@media screen and (max-width: 700px) and (min-width: 520px) {
-  body {
-    background: red;
-  }
-}
+        body {
+            background: red;
+        }
+    }
 </style>
 <div class="app">
     <div class="authentication">
         <div class="sign-in">
             <div class="col-md-8 no-pdd-horizon d-none d-md-block">
                 <div class="full-height bg" style="background-image: url('../dist/assets/images/others/welcomepage4.jpg')">
-                   
+
                 </div>
             </div>
-            
+
 
             <div class="col-md-4 no-pdd-horizon">
                 <div class="full-height bg-white height-100">
@@ -27,28 +33,16 @@
                             <div class="pdd-horizon-15">
                                 <img class="img-responsive inline-block" src="~/dist/assets/images/logo/dpr logo.png" width="700" height="250" alt=""><br /><br />
                                 <h2>SHE Administrative Portal Login</h2>
-                                <p class="mrg-btm-15 font-size-13">Please enter your user name and password to login</p>
-                                <form asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                <p class="mrg-btm-15 font-size-13">Active Directory Login</p>
+                              
+                                <form asp-action="ExternalLogin" asp-controller="Administrator" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" c>
                                     <div class="form-group">
-                                        <input asp-for="Email" class="form-control" placeholder="User name" />
-                                        <span asp-validation-for="Email" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <input asp-for="Password" class="form-control" placeholder="Password" />
-                                        <span asp-validation-for="Password" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="RememberMe">
-                                            <input asp-for="RememberMe" />
-                                            @Html.DisplayNameFor(m => m.RememberMe)
-                                        </label>
-                                    </div>
-
-                                    @*<button type="submit" class="btn" style="min-width:100%; background-color: #0b9242; color: white;">Login</button>*@
-                                    <a asp-controller="Administrator" asp-action="Dashboard" class="btn" style="min-width:100%; background-color: #0b9242; color: white;"> Login</a><div class="form-group">
-                                        <span class="font-size-13  pdd-top-30"><a asp-action="ForgotPassword" style="color:#888da8;">Forget Password?</a></span>
-                                        <span class="font-size-13 pull-right pdd-top-10"><a asp-action="RegisterNow" style="color:#888da8;">Register Now</a></span>
+                                        <p>
+                                            @foreach (var provider in loginProviders)
+                                            {
+                                                <button type="submit" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">Login with Organization Email</button>
+                                            }
+                                        </p>
                                     </div>
                                 </form>
                                 @*<center><a href="#" class="btn" style="min-width:100%; background-color: #0b9242; color: white;">Trainee Portal</a><br /></center>*@

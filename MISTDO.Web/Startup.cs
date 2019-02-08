@@ -15,11 +15,15 @@ using MISTDO.Web.Extensions;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using MISTDO.Web.Helpers;
+using FieldService.Web.Extensions;
 
 namespace MISTDO.Web
 {
     public class Startup
     {
+        public const string ObjectIdentifierType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
+        public const string TenantIdType = "http://schemas.microsoft.com/identity/claims/tenantid";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -41,8 +45,10 @@ namespace MISTDO.Web
             services.AddSecondIdentity<TraineeApplicationUser, IdentityRole>(null)
              .AddEntityFrameworkStores<TraineeApplicationDbContext>()
              .AddDefaultTokenProviders();
+            services.AddSecondIdentity<AdminApplicationUser, IdentityRole>(null)
+               .AddEntityFrameworkStores<AdminApplicationDbContext>()
+               .AddDefaultTokenProviders();
 
-            
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
@@ -50,6 +56,26 @@ namespace MISTDO.Web
 
             // Get SMTP configuration options
             services.Configure<SmtpOptions>(Configuration.GetSection("SmtpOptions"));
+
+
+            services.AddAuthentication(sharedOptions =>
+            {
+                //sharedOptions.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                //sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                //sharedOptions.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            })
+         .AddAzureAd(options => Configuration.Bind("AzureAd", options))
+         .AddCookie(options =>
+         {
+             options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+             options.SlidingExpiration = true;
+
+         }).
+           Services.AddSession(
+                      options => options.IdleTimeout = TimeSpan.FromMinutes(10)
+            );
+
+
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -105,6 +131,8 @@ namespace MISTDO.Web
             services.AddTransient<IExcelToTrainingService, ExcelToTrainingService>();
             services.AddTransient<IExcelToTraineeService, ExcelToTraineeService>();
             services.AddTransient<Iogisp, Ogisp>();
+            services.AddSingleton<IGraphAuthProvider, GraphAuthProvider>();
+            services.AddTransient<IGraphSdkHelper, GraphSdkHelper>();
 
 
             services.AddSession(options =>

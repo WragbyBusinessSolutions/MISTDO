@@ -20,14 +20,14 @@ namespace MISTDO.Web.Controllers
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<AdminApplicationUser> _userManager;
+        private readonly SignInManager<AdminApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
         public AccountController(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
+            UserManager<AdminApplicationUser> userManager,
+            SignInManager<AdminApplicationUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger)
         {
@@ -305,7 +305,7 @@ namespace MISTDO.Web.Controllers
             if (result.Succeeded)
             {
                 _logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
-                return RedirectToLocal(returnUrl);
+                return View("Dashboard","Administrator");
             }
             if (result.IsLockedOut)
             {
@@ -334,7 +334,7 @@ namespace MISTDO.Web.Controllers
                 {
                     throw new ApplicationException("Error loading external login information during confirmation.");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new AdminApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

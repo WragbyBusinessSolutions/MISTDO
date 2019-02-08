@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="page-title">
                 <p>
-                    <a asp-action="AllTrainingCenter" asp-route-id="@Model.Id">Back</a>
+                    <a asp-action="AllTrainingCenter" asp-route-id="@Model.Id" class="btn btn-success">Back</a>
                 </p>
                 <h4>Account Setting</h4>
 
@@ -31,21 +31,24 @@
                         <div class="col-md-10">
                             <div class="card">
                                 <div class="card-heading border bottom">
-                                    <div>  <h4 class="card-title">General Info</h4></div>
-                                    <div align="right"> <a asp-action="EditProfile">Edit Your Profile</a></div>
+                                    <div>  <h4 class="card-title">Training Providers Information</h4></div>
+                                    @*<div align="right"> <a asp-action="EditProfile" class="btn btn-success">Edit Your Profile</a></div>*@
 
                                 </div>
                                 <div class="col-md-push-10">
 
 
                                     <div class="card-block">
+                                        <hr>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.FirstName)</b></p>
+                                                <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.CompanyName)</b></p>
                                             </div>
                                             <div class="col-md-6">
-                                                <span class="status online mrg-top-10"></span>
-                                                <p class="mrg-top-10"> @Html.DisplayFor(model => model.FirstName)</p>
+                                                <p class="mrg-top-10">
+                                                    <span class="status online mrg-top-10"></span>
+                                                    <span class="mrg-left-10">@Html.DisplayFor(model => model.CompanyName)</span>
+                                                </p>
                                             </div>
                                         </div>
                                         <hr>
@@ -70,18 +73,7 @@
                                                 <p class="mrg-top-10">@Html.DisplayFor(model => model.PhoneNumber)</p>
                                             </div>
                                         </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.CompanyName)</b></p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="mrg-top-10">
-                                                    <span class="status online mrg-top-10"></span>
-                                                    <span class="mrg-left-10">@Html.DisplayFor(model => model.CompanyName)</span>
-                                                </p>
-                                            </div>
-                                        </div>
+
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-3">
@@ -97,16 +89,28 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.UserAddress)</b></p>
+                                                <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.PermitNumber)</b></p>
                                             </div>
                                             <div class="col-md-6">
                                                 <p class="mrg-top-10">
                                                     <span class="status online mrg-top-10"></span>
-                                                    <span class="mrg-left-10">@Html.DisplayFor(model => model.UserAddress)</span>
+                                                    <span class="mrg-left-10">@Html.DisplayFor(model => model.PermitNumber)</span>
                                                 </p>
                                             </div>
                                         </div>
 
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.CentreName)</b></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="mrg-top-10">
+                                                    <span class="status online mrg-top-10"></span>
+                                                    <span class="mrg-left-10">@Html.DisplayFor(model => model.CentreName)</span>
+                                                </p>
+                                            </div>
+                                        </div>
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-3">
@@ -133,18 +137,8 @@
                                             </div>
                                         </div>
 
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.CentreName)</b></p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="mrg-top-10">
-                                                    <span class="status online mrg-top-10"></span>
-                                                    <span class="mrg-left-10">@Html.DisplayFor(model => model.CentreName)</span>
-                                                </p>
-                                            </div>
-                                        </div>
+
+
 
                                     </div>
                                 </div>
