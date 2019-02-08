@@ -155,10 +155,11 @@ namespace MISTDO.Web
             }
             else
             {
-                //app.UseDeveloperExceptionPage();
-                //app.UseDatabaseErrorPage();
+                app.UseBrowserLink();
+                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
 
-                 app.UseExceptionHandler("/Home/Error");
+                //  app.UseExceptionHandler("/Home/Error");
             }
             app.UseSession();
 
