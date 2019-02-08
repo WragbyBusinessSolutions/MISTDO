@@ -38,13 +38,16 @@
 
 
                                     <div class="card-block">
+
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.FirstName)</b></p>
+                                                <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.CompanyName)</b></p>
                                             </div>
                                             <div class="col-md-6">
-                                                <span class="status online mrg-top-10"></span>
-                                                <p class="mrg-top-10"> @Html.DisplayFor(model => model.FirstName)</p>
+                                                <p class="mrg-top-10">
+                                                    <span class="status online mrg-top-10"></span>
+                                                    <span class="mrg-left-10">@Html.DisplayFor(model => model.CompanyName)</span>
+                                                </p>
                                             </div>
                                         </div>
                                         <hr>
@@ -70,18 +73,7 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.CompanyName)</b></p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="mrg-top-10">
-                                                    <span class="status online mrg-top-10"></span>
-                                                    <span class="mrg-left-10">@Html.DisplayFor(model => model.CompanyName)</span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <hr>
+
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.CompanyAddress)</b></p>
@@ -96,12 +88,12 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.UserAddress)</b></p>
+                                                <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.PermitNumber)</b></p>
                                             </div>
                                             <div class="col-md-6">
                                                 <p class="mrg-top-10">
                                                     <span class="status online mrg-top-10"></span>
-                                                    <span class="mrg-left-10">@Html.DisplayFor(model => model.UserAddress)</span>
+                                                    <span class="mrg-left-10">@Html.DisplayFor(model => model.PermitNumber)</span>
                                                 </p>
                                             </div>
                                         </div>
