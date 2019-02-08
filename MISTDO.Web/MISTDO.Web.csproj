@@ -186,23 +186,6 @@
     <Folder Include="wwwroot\productfiles\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DPFPDevNET">
-      <HintPath>..\..\..\..\..\Program Files\DigitalPersona\U.are.U SDK\dpfpdevnet.dll</HintPath>
-    </Reference>
-    <Reference Include="DPFPEngNET">
-      <HintPath>..\..\..\..\..\Program Files\DigitalPersona\U.are.U SDK\dpfpengnet.dll</HintPath>
-    </Reference>
-    <Reference Include="DPFPGuiNET">
-      <HintPath>..\..\..\..\..\Program Files\DigitalPersona\U.are.U SDK\dpfpguinet.dll</HintPath>
-    </Reference>
-    <Reference Include="DPFPShrNET">
-      <HintPath>..\..\..\..\..\Program Files\DigitalPersona\U.are.U SDK\dpfpshrnet.dll</HintPath>
-    </Reference>
-    <Reference Include="DPFPVerNET">
-      <HintPath>..\..\..\..\..\Program Files\DigitalPersona\U.are.U SDK\dpfpvernet.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Update="Views\Administrator\Account.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
