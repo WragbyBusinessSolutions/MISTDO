@@ -22,16 +22,7 @@ using System.Diagnostics;
 using System.Text.Encodings.Web;
 
 //FingerPrint Assembly 
-using DPFP;
-using DPFP.Capture;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+
 
 
 namespace MISTDO.Web.Controllers
