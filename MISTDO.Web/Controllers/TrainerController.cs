@@ -285,7 +285,7 @@ namespace MISTDO.Web.Controllers
 
                 MailMessage mailMessage = new MailMessage(); 
                 mailMessage.From = new MailAddress("SPOC@wragbysolutions.com");
-                mailMessage.To.Add("Femi4god2010@gmail.com");
+                mailMessage.To.Add("Femi4god2010@gmail.com"); //swap with verifyID.ComppanyEmail on go live
                 mailMessage.Body = "Your OTP is: "+ permitotp;
                 mailMessage.Subject = "OGISP AUTHENTICATION";
                 client.Send(mailMessage);
