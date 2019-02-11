@@ -74,6 +74,22 @@ namespace MISTDO.Web.Controllers
         {
             return View(await tdbcontext.Calenders.ToListAsync());
         }
+        public async Task<IActionResult> DetailsCalender(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var calenders = await tdbcontext.Calenders
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (calenders == null)
+            {
+                return NotFound();
+            }
+
+            return View(calenders);
+        }
 
 
         [HttpGet]

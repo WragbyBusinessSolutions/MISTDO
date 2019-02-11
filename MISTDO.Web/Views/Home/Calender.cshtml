@@ -8,13 +8,11 @@
 
 
 <!-- page plugins css -->
-<link rel="stylesheet" href="~/bower_components/fullcalendar/dist/fullcalendar.min.css" />
-<link rel="stylesheet" href="~/bower_components/bootstrap-daterangepicker/daterangepicker.css" />
-<link rel="stylesheet" href="~/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" />
+<link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
 
 <div class="page-container">
     <!-- Header START -->
-    @await Html.PartialAsync("_LayoutHeader");
+    @await Html.PartialAsync("_LayoutRegisterHeader");
 
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
@@ -86,7 +84,7 @@
                                             </td>
                                             <td>
 
-                                                <a asp-action="DetailsCalender" asp-route-id="@item.Id">Details</a>
+                                                <a asp-action="DetailsCalender" class="btn btn-success" asp-route-id="@item.Id">Details</a>
 
                                             </td>
                                         </tr>
