@@ -168,7 +168,6 @@
     <None Include="Views\Account\AccessDenied.cshtml" />
     <None Include="Views\Account\ConfirmEmail.cshtml" />
     <None Include="Views\Account\ConfirmMail.cshtml" />
-    <None Include="Views\Account\ExternalLogin.cshtml" />
     <None Include="Views\Account\ForgotPassword.cshtml" />
     <None Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <None Include="Views\Account\Lockout.cshtml" />
