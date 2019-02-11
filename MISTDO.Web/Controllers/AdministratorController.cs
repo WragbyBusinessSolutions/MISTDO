@@ -114,7 +114,7 @@ namespace MISTDO.Web.Controllers
                 ViewData["ReturnUrl"] = returnUrl;
                 ViewData["LoginProvider"] = info.LoginProvider;
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-                return View("~/Views/Administrator/ExternalLogin.cshtml", new ExternalLoginViewModel { Email = email });
+                return View("../Administrator/ExternalLogin", new ExternalLoginViewModel { Email = email });
             }
         }
 
