@@ -12,7 +12,6 @@
     <None Remove="Views\Account\**" />
     <None Remove="Views\_ViewImports.cshtml" />
     <None Remove="Views\_ViewStart.cshtml" />
-    <Content Remove="Views\Administrator\ExternalLogin.cshtml" />
     <Content Remove="Views\Shared\_LayoutTraineeHeader.cshtml" />
     <None Remove="Views\Shared\Error.cshtml" />
     <None Remove="Views\Shared\_LayoutDashboard.cshtml" />
@@ -111,7 +110,6 @@
     <Content Include="wwwroot\bower_components\chart.js\dist\Chart.min.js" />
     <Content Include="wwwroot\bower_components\d3\d3.min.js" />
     <Content Include="wwwroot\bower_components\datatables\media\css\jquery.dataTables.css" />
-    <None Include="Views\Administrator\ExternalLogin.cshtml" />
     <None Include="wwwroot\bower_components\datatables\media\images\sort_asc.png" />
     <None Include="wwwroot\bower_components\datatables\media\images\sort_asc_disabled.png" />
     <None Include="wwwroot\bower_components\datatables\media\images\sort_both.png" />
