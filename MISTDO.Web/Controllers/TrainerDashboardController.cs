@@ -1195,7 +1195,7 @@ namespace MISTDO.Web.Controllers
                     MailMessage mailMessage = new MailMessage();
                     mailMessage.From = new MailAddress("Wragbydev@wragbysolutions.com");
                     mailMessage.To.Add(model.Email); //Trainee mail here
-                    mailMessage.Body ="Hello "+ model.FirstName + "You have just been onboarded on MISTDO, Your email is " + model.Email + ". Please confirm your account by clicking this link: mistdo.azurewebsites.net.";
+                    mailMessage.Body ="Hello "+ model.FirstName + " You have just been onboarded on MISTDO, Your email is " + model.Email + ". Please confirm your account by clicking this link: mistdo.azurewebsites.net.";
                     mailMessage.Subject = "MISTDO Account Created";
                     client.Send(mailMessage);
 
