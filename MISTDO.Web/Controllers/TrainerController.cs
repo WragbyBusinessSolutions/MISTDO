@@ -281,15 +281,15 @@ namespace MISTDO.Web.Controllers
                 client.EnableSsl = true;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("SPOC@wragbysolutions.com", "@$Wbst@m!n18"); //Mailing credential
-
+                client.Credentials = new NetworkCredential("Wragbydev@wragbysolutions.com", "@Devops19"); //Mailing credential
+                //mail body
                 MailMessage mailMessage = new MailMessage(); 
-                mailMessage.From = new MailAddress("SPOC@wragbysolutions.com");
+                mailMessage.From = new MailAddress("Wragbydev@wragbysolutions.com");
                 mailMessage.To.Add("Femi4god2010@gmail.com"); //swap with verifyID.ComppanyEmail on go live
                 mailMessage.Body = "Your OTP is: "+ permitotp;
                 mailMessage.Subject = "OGISP AUTHENTICATION";
                 client.Send(mailMessage);
-
+                //Save to Temp db
                 var centredetails = new OgispTemp
                 {
                     PermitNumber = verifyID.PermitNumber,

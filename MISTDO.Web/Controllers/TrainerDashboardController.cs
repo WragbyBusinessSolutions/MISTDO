@@ -20,6 +20,8 @@ using OfficeOpenXml;
 using System.Net.Http.Headers;
 using System.Diagnostics;
 using System.Text.Encodings.Web;
+using System.Net.Mail;
+using System.Net;
 
 //FingerPrint Assembly 
 
@@ -1182,7 +1184,20 @@ namespace MISTDO.Web.Controllers
                     //  var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     //  var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
-
+                    //Send Mail
+                    SmtpClient client = new SmtpClient("smtp.office365.com"); //set client 
+                    client.Port = 587;
+                    client.EnableSsl = true;
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    client.UseDefaultCredentials = false;
+                    client.Credentials = new NetworkCredential("Wragbydev@wragbysolutions.com", "@Devops19"); //Mailing credential
+                    //mail body
+                    MailMessage mailMessage = new MailMessage();
+                    mailMessage.From = new MailAddress("Wragbydev@wragbysolutions.com");
+                    mailMessage.To.Add(model.Email); //Trainee mail here
+                    mailMessage.Body ="Hello "+ model.FirstName + "You have just been onboarded on MISTDO, Your email is " + model.Email + ". Please confirm your account by clicking this link: mistdo.azurewebsites.net.";
+                    mailMessage.Subject = "MISTDO Account Created";
+                    client.Send(mailMessage);
 
                     return RedirectToAction(nameof(Trainees));
 
