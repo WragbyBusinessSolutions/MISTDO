@@ -328,10 +328,10 @@ namespace MISTDO.Web.Controllers
         public async Task<IActionResult> OtpCheck(String otp)
         {
             var ogisp = await dbcontext.OgispTemps.Where(t => t.Otp == otp).ToListAsync();
-            if (ogisp != null)
+            var centre = ogisp.FirstOrDefault(t => t.Otp == otp);
+            if (centre != null && centre.Otp == otp)
             {
-                              
-                var centre = ogisp.FirstOrDefault(t => t.Otp == otp);
+
                 ViewBag.permit = centre.PermitNumber;
                 ViewBag.email = centre.Email;
                 ViewBag.companyname = centre.CompanyName;
@@ -344,7 +344,7 @@ namespace MISTDO.Web.Controllers
             }
 
 
-            return View();
+            return View(nameof(OgispOtp));
         }
 
         [HttpGet]
