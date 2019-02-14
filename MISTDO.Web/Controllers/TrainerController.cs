@@ -275,20 +275,21 @@ namespace MISTDO.Web.Controllers
                 }
                 string permitotp = otps.ToUpper();
 
-                //Send Mail
-                SmtpClient client = new SmtpClient("smtp.office365.com"); //set client 
-                client.Port = 587;
-                client.EnableSsl = true;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("Wragbydev@wragbysolutions.com", "@Devops19"); //Mailing credential
-                //mail body
-                MailMessage mailMessage = new MailMessage(); 
-                mailMessage.From = new MailAddress("Wragbydev@wragbysolutions.com");
-                mailMessage.To.Add("Femi4god2010@gmail.com"); //swap with verifyID.ComppanyEmail on go live
-                mailMessage.Body = "Your OTP is: "+ permitotp;
-                mailMessage.Subject = "OGISP AUTHENTICATION";
-                client.Send(mailMessage);
+
+                
+                var ogisp = await dbcontext.OgispTemps.Where(t => t.Email == verifyID.ComppanyEmail).ToListAsync();// pulls the schema or instance of the db with corresponding otp
+                var centre = ogisp.FirstOrDefault(t => t.Email == verifyID.ComppanyEmail);// pulls the table with corresponding otp
+                if (centre != null && centre.Email == verifyID.ComppanyEmail)
+                {
+
+                    dbcontext.OgispTemps.Remove(centre);
+                    if (ogisp != null)
+                    {
+                        await dbcontext.SaveChangesAsync();
+                    }
+
+
+                }
                 //Save to Temp db
                 var centredetails = new OgispTemp
                 {
@@ -297,7 +298,7 @@ namespace MISTDO.Web.Controllers
                     CompanyAddress = verifyID.CompanyAddress,
                     Email = verifyID.ComppanyEmail,
                     LicenseExpDate = verifyID.expiryDate,
-                    Otp =  permitotp,
+                    Otp = permitotp,
                     DateCreated = DateTime.Now,
                     Time = DateTime.Now.ToLocalTime()
 
@@ -305,7 +306,22 @@ namespace MISTDO.Web.Controllers
                 dbcontext.Add(centredetails);
                 dbcontext.SaveChanges();
 
-               
+                // Then Send Mail
+                SmtpClient client = new SmtpClient("smtp.office365.com"); //set client 
+                client.Port = 587;
+                client.EnableSsl = true;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("Wragbydev@wragbysolutions.com", "@Devops19"); //Mailing credential
+                //mail body
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress("Wragbydev@wragbysolutions.com");
+                mailMessage.To.Add("Femi4god2010@gmail.com"); //swap with verifyID.ComppanyEmail on go live
+                mailMessage.Body = "Your OTP is: " + permitotp;
+                mailMessage.Subject = "OGISP AUTHENTICATION";
+                client.Send(mailMessage);
+
+
                 return View("OgispOtp");
             }
 
