@@ -48,15 +48,22 @@
         <div class="container">
             <div class="row">
                 <div id="form" class="col-sm-4 col-sm-offset-4">
-                    <h3 class="text-center">OGISP Authentication</h3>
+                    <h2 class="text-center" style="color:darkgreen"><strong>OGISP Authentication</strong></h2>
                     <br />
-                    <form asp-action="IDCheck" asp-controller="Trainer"  enctype="multipart/form-data">
+                    <form asp-action="IDCheck" asp-controller="Trainer" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <h4><strong>Please Enter Your Oil and Gas Industry Service Permit Portal (OGISP) Permit Number below</strong></h4>
+                            
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">OGISP Number*</label>
                             <input type="Text" class="form-control" name="PermitNumber" id="PermitNumber" placeholder="Enter OGISP NUMBER">
                         </div>
-                       
-                        <button  type="submit" class="btn btn-success">Submit</button>
+
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        <div class="form-group">
+                            <h5><i><strong>you can log on to <a href="https://ogisp.dpr.gov.ng/">ogisp.dpr.gov.ng</a> to get your OGISP permit number</strong></i></h5>
+                        </div>
                     </form>
                 </div>
             </div>

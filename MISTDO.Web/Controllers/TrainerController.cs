@@ -249,7 +249,7 @@ namespace MISTDO.Web.Controllers
             //Verify OGISP Permit Number
             var verifyID = await _ogisp.GetOgisp(PermitNumber);
 
-            if(verifyID != null && verifyID.PermitNumber == PermitNumber)//If Success
+            if(verifyID != null && verifyID.PermitNumber == PermitNumber && DateTime.Parse(verifyID.expiryDate) >= DateTime.Now)//If Success
             {
                 //Generate OTP
 
