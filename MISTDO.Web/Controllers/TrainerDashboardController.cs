@@ -771,7 +771,7 @@ namespace MISTDO.Web.Controllers
             var modulesList = new List<SelectListItem>();
             foreach (var item in modules)
 
-                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+            modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
             ViewBag.modules = modulesList;
 
 
