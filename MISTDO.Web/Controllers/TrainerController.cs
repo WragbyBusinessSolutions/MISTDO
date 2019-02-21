@@ -408,25 +408,25 @@ namespace MISTDO.Web.Controllers
                 //Update User (Training center) Information
                 var center = await _userManager.FindByEmailAsync(verifyID.ComppanyEmail);
 
-                if (center == null)
+                if (center != null)
                 {
-                    var user = new ApplicationUser()
-                    {
-                      
-                        //Otp = center.Otp,
-                        PermitNumber = center.PermitNumber,
-                        LicenseExpDate = center.LicenseExpDate,
-                        DateRegistered = DateTime.Now.Date,
-                    };
 
-                    var result = await _userManager.UpdateAsync(user);
+
+                    //Otp = center.Otp,
+                    center.PermitNumber = verifyID.PermitNumber;
+                    center.LicenseExpDate = verifyID.expiryDate;
+                    center.DateRegistered = DateTime.Now.Date;
+                  
+
+                    var result = await _userManager.UpdateAsync(center);
                     if (result.Succeeded)
                     {
 
                         var og = await dbcontext.OgispTemps.SingleOrDefaultAsync(m => m.Otp == center.Otp);
-                        dbcontext.OgispTemps.Remove(og);
+                        
                         if (og != null)
                         {
+                            dbcontext.OgispTemps.Remove(og);
                             await dbcontext.SaveChangesAsync();
                         }
 
@@ -457,7 +457,7 @@ namespace MISTDO.Web.Controllers
                 //return View("OgispOtp");
             }
 
-            return View("OgispCheck");
+            return View("OgispRenew");
         }
 
 
