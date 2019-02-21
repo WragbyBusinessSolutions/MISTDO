@@ -348,6 +348,9 @@
     <Content Update="Views\TrainerDashboard\Training.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Trainer\OgispRenew.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Trainer\OgispOtp.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

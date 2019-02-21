@@ -327,8 +327,139 @@ namespace MISTDO.Web.Controllers
 
             return View("OgispCheck");
         }
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> OgispRenew(OgispResponse data)
+        {
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-       
+
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> PermitRenew(String PermitNumber)
+        {
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            //Verify OGISP Permit Number
+            var verifyID = await _ogisp.GetOgisp(PermitNumber);
+
+            if (verifyID != null && verifyID.PermitNumber == PermitNumber )//If Success
+            {
+                //&& DateTime.Parse(verifyID.expiryDate) >= DateTime.Now
+                //Generate OTP
+
+                //string alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                //string small_alphabets = "abcdefghijklmnopqrstuvwxyz";
+                //string numbers = "1234567890";
+
+                //string characters = numbers;
+
+                //characters += alphabets + small_alphabets + numbers;
+
+                //int length = 10;
+                //string otps = string.Empty;
+                //for (int i = 0; i < length; i++)
+                //{
+                //    string character = string.Empty;
+                //    do
+                //    {
+                //        int index = new Random().Next(0, characters.Length);
+                //        character = characters.ToCharArray()[index].ToString();
+                //    } while (otps.IndexOf(character) != -1);
+                //    otps += character;
+                //}
+                //string permitotp = otps.ToUpper();
+
+
+
+                //var ogisp = await dbcontext.OgispTemps.Where(t => t.Email == verifyID.ComppanyEmail).ToListAsync();// pulls the schema or instance of the db with corresponding otp
+                //var centre = ogisp.FirstOrDefault(t => t.Email == verifyID.ComppanyEmail);// pulls the table with corresponding otp
+                //if (centre != null && centre.Email == verifyID.ComppanyEmail)
+                //{
+
+                //    dbcontext.OgispTemps.Remove(centre);
+                //    if (ogisp != null)
+                //    {
+                //        await dbcontext.SaveChangesAsync();
+                //    }
+
+
+                //}
+                //Save to Temp db
+                //var centredetails = new OgispTemp
+                //{
+                //    PermitNumber = verifyID.PermitNumber,
+                //    CompanyName = verifyID.CompanyName,
+                //    CompanyAddress = verifyID.CompanyAddress,
+                //    Email = verifyID.ComppanyEmail,
+                //    LicenseExpDate = verifyID.expiryDate,
+                //    Otp = permitotp,
+                //    DateCreated = DateTime.Now,
+                //    Time = DateTime.Now.ToLocalTime()
+
+                //};
+                //dbcontext.Add(centredetails);
+                //dbcontext.SaveChanges();
+
+                //Update User (Training center) Information
+                var center = await _userManager.FindByEmailAsync(verifyID.ComppanyEmail);
+
+                if (center == null)
+                {
+                    var user = new ApplicationUser()
+                    {
+                      
+                        //Otp = center.Otp,
+                        PermitNumber = center.PermitNumber,
+                        LicenseExpDate = center.LicenseExpDate,
+                        DateRegistered = DateTime.Now.Date,
+                    };
+
+                    var result = await _userManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+
+                        var og = await dbcontext.OgispTemps.SingleOrDefaultAsync(m => m.Otp == center.Otp);
+                        dbcontext.OgispTemps.Remove(og);
+                        if (og != null)
+                        {
+                            await dbcontext.SaveChangesAsync();
+                        }
+
+
+                        return View("Login");
+                    }
+
+
+                }
+
+
+                // Then Send Mail
+                //SmtpClient client = new SmtpClient("smtp.office365.com"); //set client 
+                //client.Port = 587;
+                //client.EnableSsl = true;
+                //client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                //client.UseDefaultCredentials = false;
+                //client.Credentials = new NetworkCredential("Wragbydev@wragbysolutions.com", "@Devops19"); //Mailing credential
+                ////mail body
+                //MailMessage mailMessage = new MailMessage();
+                //mailMessage.From = new MailAddress("Wragbydev@wragbysolutions.com");
+                //mailMessage.To.Add("Femi4god2010@gmail.com"); //swap with verifyID.ComppanyEmail on go live
+                //mailMessage.Body = "Your OTP is: " + permitotp;
+                //mailMessage.Subject = "OGISP AUTHENTICATION";
+                //client.Send(mailMessage);
+
+
+                //return View("OgispOtp");
+            }
+
+            return View("OgispCheck");
+        }
+
 
         [HttpGet]
         [AllowAnonymous]
@@ -407,18 +538,26 @@ namespace MISTDO.Web.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    
                     var user = await _userManager.FindByEmailAsync(model.Email);
-                    var isTrainer = await _userManager.IsInRoleAsync(user, "Trainer");
-                    //if (isTrainer)
-                    //{
-                    returnUrl = returnUrl ?? Url.Content("~/TrainerDashboard/");
-                    //     }
-                    //      else
-                    //      {
-                    ViewBag.msg = "Success";
-                    return RedirectToLocal(returnUrl);
-                    //      }
+                    //Verify OGISP Permit Number
+                    var verifyID = await _ogisp.GetOgisp(user.PermitNumber);
+
+                    if (verifyID != null && verifyID.PermitNumber == user.PermitNumber && DateTime.Parse(verifyID.expiryDate) >= DateTime.Now)//If Success
+                    {
+                       
+                        var isTrainer = await _userManager.IsInRoleAsync(user, "Trainer");
+                        //if (isTrainer)
+                        //{
+                        returnUrl = returnUrl ?? Url.Content("~/TrainerDashboard/");
+                        //     }
+                        //      else
+                        //      {
+                        ViewBag.msg = "Success";
+                        return RedirectToLocal(returnUrl);
+                        //      }
+
+                    }
+                    return RedirectToAction(nameof(OgispRenew));
                 }
                 if (result.RequiresTwoFactor)
                 {
