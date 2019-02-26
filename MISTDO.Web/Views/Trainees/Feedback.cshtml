@@ -1,7 +1,7 @@
 ﻿@model MISTDO.Web.Models.Feedback
 
 @{
-    ViewData["Title"] = "Support";
+    ViewData["Title"] = "Feedback Support";
     Layout = "_LayoutTraineeDashboard";
 }
 
@@ -44,7 +44,7 @@
                                     <span asp-validation-for="FeedbackSubject" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="FeedbackMessage" class="control-label"></label>
+                                    <label  class="control-label">Feedback Message</label>
                                     <textarea asp-for="FeedbackMessage" class="form-control" rows="4" placeholder="Type your message ..."></textarea>
                                     <span asp-validation-for="FeedbackMessage" class="text-danger"></span>
                                 </div>
