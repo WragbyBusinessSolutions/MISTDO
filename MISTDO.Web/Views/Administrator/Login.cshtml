@@ -28,13 +28,25 @@
 
             <div class="col-md-4 no-pdd-horizon">
                 <div class="full-height bg-white height-100">
-                    <div class="vertical-align full-height pdd-horizon-70">
+                    <div class="full-height pdd-horizon-70">
                         <div class="table-cell">
                             <div class="pdd-horizon-15">
-                                <img class="img-responsive inline-block" src="~/dist/assets/images/logo/dpr logo.png" width="700" height="250" alt=""><br /><br />
-                                <h2> Administrative Portal Login</h2>
-                                <p class="mrg-btm-15 font-size-13">Active Directory Login</p>
-                              
+                                <img class="img-responsive inline-block" src="~/images/dprlogo.jpg" width="700" height="250" alt=""><br /><br />
+                              <div class="full-height pdd-horizon-190">
+                                  <br />
+                                  <br />
+                                  <br />
+                                  <br />
+                                  <br />
+                                  <br />
+                                   <br />
+                                  <br />
+                                  <br />
+                                  <h1 align="center"> <b>DPR Admin</b></h1>
+                                  <p class="mrg-btm-15 font-size-13" align="center">Active Directory Login</p>
+                                  <br />
+                                  <br />
+                                 
                                 <form asp-action="ExternalLogin" asp-controller="Administrator" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" c>
                                     <div class="form-group">
                                         <p>
@@ -45,6 +57,7 @@
                                         </p>
                                     </div>
                                 </form>
+                                </div>
                                 @*<center><a href="#" class="btn" style="min-width:100%; background-color: #0b9242; color: white;">Trainee Portal</a><br /></center>*@
                             </div>
                         </div>

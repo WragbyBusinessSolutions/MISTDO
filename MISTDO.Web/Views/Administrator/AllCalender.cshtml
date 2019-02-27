@@ -306,7 +306,7 @@
                                             <th>Other Options</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style="font-size:small;">
                                         @foreach (var item in Model)
                                         {
 
@@ -324,9 +324,9 @@
                                                 }
 
 
-                                                <th>
+                                                <td>
                                                     @Html.DisplayFor(model => item.Cost)
-                                                </th>
+                                                </td>
                                                 <th>
                                                     @Html.DisplayFor(model => item.Venue)
                                                 </th>
