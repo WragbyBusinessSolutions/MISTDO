@@ -63,6 +63,11 @@ namespace MISTDO.Web.Controllers
 
             return View();
         }
+        public IActionResult CertificateCheck()
+        {
+
+            return View();
+        }
 
         public IActionResult ForgetPassword()
         {

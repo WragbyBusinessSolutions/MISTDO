@@ -577,6 +577,14 @@ namespace MISTDO.Web.Controllers
             {
                 return NotFound();
             }
+            var modules = await _trainer.GetAllModules();
+
+            var modulesList = new List<SelectListItem>();
+            foreach (var item in modules)
+
+                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+            ViewBag.modules = modulesList;
+
             return View(calenders);
         }
 

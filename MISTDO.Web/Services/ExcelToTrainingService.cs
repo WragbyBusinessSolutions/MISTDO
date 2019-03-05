@@ -33,13 +33,13 @@ namespace MISTDO.Web.Services
                     productFromExcel.TrainingName = ws.Cells[rw, 1].Value.ToString();
                     productFromExcel.TrainingCentreId = ws.Cells[rw, 2].Value.ToString();
                    // productFromExcel.TraineeId = ws.Cells[rw, 2].Value.ToString();
-                    productFromExcel.ModuleId = ws.Cells[rw, 4].Value.ToString();
-                    productFromExcel.Cost = decimal.Parse(ws.Cells[rw, 5].Value.ToString());
-                    productFromExcel.Venue = ws.Cells[rw, 6].Value.ToString();
-                    productFromExcel.TrainingStartTime = DateTime.Parse(ws.Cells[rw, 7].Value.ToString());
-                    productFromExcel.TrainingEndTime = DateTime.Parse(ws.Cells[rw, 8].Value.ToString());
-                    productFromExcel.TrainingStartDate = DateTime.Parse(ws.Cells[rw, 9].Value.ToString());
-                    productFromExcel.TrainingEndDate = DateTime.Parse(ws.Cells[rw, 10].Value.ToString());
+                    productFromExcel.ModuleId = ws.Cells[rw, 3].Value.ToString();
+                    productFromExcel.Cost = decimal.Parse(ws.Cells[rw, 4].Value.ToString());
+                    productFromExcel.Venue = ws.Cells[rw, 5].Value.ToString();
+                    productFromExcel.TrainingStartTime = DateTime.Parse(ws.Cells[rw, 6].Value.ToString());
+                    productFromExcel.TrainingEndTime = DateTime.Parse(ws.Cells[rw, 7].Value.ToString());
+                    productFromExcel.TrainingStartDate = DateTime.Parse(ws.Cells[rw, 8].Value.ToString());
+                    productFromExcel.TrainingEndDate = DateTime.Parse(ws.Cells[rw, 9].Value.ToString());
 
                 }
                

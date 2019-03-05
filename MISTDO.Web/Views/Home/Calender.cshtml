@@ -288,6 +288,33 @@
                                             <th>Other Options</th>
                                         </tr>
                                     </thead>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Module Name" title="Type in a name">
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Cost" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Venue" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Start Date" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="End Date" title="Type in a name">
+
+                                            </th>
+                                           
+                                            <th>
+
+                                            </th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
@@ -320,36 +347,7 @@
                                             }
                                         }
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Module Name" title="Type in a name">
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Cost" title="Type in a name">
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Venue" title="Type in a name">
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Start Date" title="Type in a name">
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="End Date" title="Type in a name">
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input6" onkeyup="input6f()" placeholder=" " title="Type in a name">
-
-                                            </th>
-                                            <th>
-
-                                            </th>
-                                        </tr>
-                                    </tfoot>
+                                 
                                 </table>
                             </div>
 
@@ -387,3 +385,8 @@
 
 <!-- page js -->
 <script src="~/dist/assets/js/table/data-table.js"></script>
+<script>
+    $('table.dataTable tfoot').each(function () {
+        $(this).insertAfter($(this).siblings('tbody'));
+    });
+</script>

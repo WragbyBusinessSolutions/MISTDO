@@ -59,6 +59,14 @@ namespace MISTDO.Web.Models.AccountViewModels
         [Required]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+        [Display(Name = "State")]
+        [Required]
+        [DataType(DataType.Text)]
+        public string State { get; set; }
+        [Display(Name = "City")]
+        [Required]
+        [DataType(DataType.Text)]
+        public string City { get; set; }
 
         public string TraineeId { get; set; }
         public string ModuleId { get; set; }

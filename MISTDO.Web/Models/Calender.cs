@@ -24,13 +24,13 @@ namespace MISTDO.Web.Models
        
         [DataType(DataType.Date)]
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
 
         public DateTime TrainingStartDate{ get; set; }
 
        
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}") ]
 
         public DateTime TrainingEndDate { get; set; }
 

@@ -97,10 +97,57 @@
                                     <input asp-for="UserAddress" class="form-control" />
                                     <span asp-validation-for="UserAddress" class="text-danger"></span>
                                 </div>
-
-
                                 <div class="form-group">
-                                    <label>Profile Picture  </label><label style="color:crimson">( Select Your File To Upload or Take a new Picture:)</label> 
+                                    <label asp-for="State" class="control-label"></label>
+                                    <select asp-for="State" class="form-control" name="State" id="State">
+                                        <option value="Abuja FCT" selected="selected">Abuja FCT</option>
+                                        <option value="Abia">Abia</option>
+                                        <option value="Adamawa">Adamawa</option>
+                                        <option value="Akwa Ibom">Akwa Ibom</option>
+                                        <option value="Anambra">Anambra</option>
+                                        <option value="Bauchi">Bauchi</option>
+                                        <option value="Bayelsa">Bayelsa</option>
+                                        <option value="Benue">Benue</option>
+                                        <option value="Borno">Borno</option>
+                                        <option value="Cross River">Cross River</option>
+                                        <option value="Delta">Delta</option>
+                                        <option value="Ebonyi">Ebonyi</option>
+                                        <option value="Edo">Edo</option>
+                                        <option value="Ekiti">Ekiti</option>
+                                        <option value="Enugu">Enugu</option>
+                                        <option value="Gombe">Gombe</option>
+                                        <option value="Imo">Imo</option>
+                                        <option value="Jigawa">Jigawa</option>
+                                        <option value="Kaduna">Kaduna</option>
+                                        <option value="Kano">Kano</option>
+                                        <option value="Katsina">Katsina</option>
+                                        <option value="Kebbi">Kebbi</option>
+                                        <option value="Kogi">Kogi</option>
+                                        <option value="Kwara">Kwara</option>
+                                        <option value="Lagos">Lagos</option>
+                                        <option value="Nassarawa">Nassarawa</option>
+                                        <option value="Niger">Niger</option>
+                                        <option value="Ogun">Ogun</option>
+                                        <option value="Ondo">Ondo</option>
+                                        <option value="Osun">Osun</option>
+                                        <option value="Oyo">Oyo</option>
+                                        <option value="Plateau">Plateau</option>
+                                        <option value="Rivers">Rivers</option>
+                                        <option value="Sokoto">Sokoto</option>
+                                        <option value="Taraba">Taraba</option>
+                                        <option value="Yobe">Yobe</option>
+                                        <option value="Zamfara">Zamfara</option>
+                                        <option value="Outside Nigeria">Outside Nigeria</option>
+                                    </select>
+                                    <span asp-validation-for="State" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="City"></label>
+                                    <input asp-for="City" class="form-control" />
+                                    <span asp-validation-for="City" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Profile Picture  </label><label style="color:crimson">( Select Your File To Upload or Take a new Picture:)</label>
                                     <div class="col-4" align="center">
 
                                         <span align="center"><iframe id="ImagePreview" src="~/templates/avatar.png" scrolling="auto" allowtransparency="true" allowfullscreen></iframe></span>
@@ -118,25 +165,25 @@
                                 </div>
 
                                 @*<div class="form-group">
-                                    <label>Fingerprint </label> <label style="color:crimson">( Place your thumb on the device:)</label>
-                                    <div class="col-4" align="center">
+            <label>Fingerprint </label> <label style="color:crimson">( Place your thumb on the device:)</label>
+            <div class="col-4" align="center">
 
-                                        <span align="center">
-                                            <img id="ImagePreview" src="~/templates/fprint1.bmp" alt="Take a new Passport" height="150" width="120">
+                <span align="center">
+                    <img id="ImagePreview" src="~/templates/fprint1.bmp" alt="Take a new Passport" height="150" width="120">
 
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Fingerprint </label> <label style="color:crimson">( Place your Index on the device:) </label>
-                                    <div class="col-4" align="center">
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Fingerprint </label> <label style="color:crimson">( Place your Index on the device:) </label>
+            <div class="col-4" align="center">
 
-                                        <span align="center">
-                                            <img id="ImagePreview" src="~/templates/fprint.bmp" alt="Take a new Passport" height="150" width="120">
+                <span align="center">
+                    <img id="ImagePreview" src="~/templates/fprint.bmp" alt="Take a new Passport" height="150" width="120">
 
-                                        </span>
-                                    </div>
-                                </div>*@
+                </span>
+            </div>
+        </div>*@
 
 
 

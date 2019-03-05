@@ -542,7 +542,7 @@ namespace MISTDO.Web.Controllers
                     //Verify OGISP Permit Number
                     var verifyID = await _ogisp.GetOgisp(user.PermitNumber);
 
-                    if (verifyID != null && verifyID.PermitNumber == user.PermitNumber && DateTime.Parse(verifyID.expiryDate) >= DateTime.Now)//If Success
+                    if (verifyID != null && verifyID.PermitNumber == user.PermitNumber )//If Success
                     {
                        
                         var isTrainer = await _userManager.IsInRoleAsync(user, "Trainer");

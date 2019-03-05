@@ -24,7 +24,7 @@
                 <h4>Delete Training </h4>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <div class="card">
                         <div class="card-heading border bottom">
                             <h4 class="card-title">Training Details </h4>
@@ -41,33 +41,16 @@
                                             <input type="hidden" asp-for="Id" />
 
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label control-label">Training Name</label>
                                                         <input asp-for="TrainingName" class="form-control" />
                                                         <span asp-validation-for="TrainingName" class="text-danger"></span>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label"> Module ID</label>
-                                                        <input asp-for="ModuleId" class="form-control" />
-                                                        <span asp-validation-for="ModuleId" class="text-danger"></span>
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-
-
-                                                    <div class="form-group">
-                                                        <label class="control-label"> Training Center Id</label>
-                                                        <input asp-for="@user.Id" class="form-control" disabled />
-                                                        <span asp-validation-for="TrainingCentreId" class="text-danger"></span>
-                                                    </div>
-
-                                                </div>
-                                            </div>
+                                            
                                             <div class="row">
                                                 <div class="col-md-12">
 
@@ -90,7 +73,7 @@
 
                                                 </div>
                                             </div>
-                                            
+                                            <div class="row">
                                                 <div class="col-md-12">
 
                                                     <div class="form-group">
@@ -135,7 +118,7 @@
 
                                             <div class="row">
 
-                                                <div class="col-md-6 col-xs-6">
+                                                <div class="col-md-8">
                                                     <div class="text-right mrg-top-5">
                                                         <div class="form-group">
                                                             <button type="submit" class="btn btn-primary">Delete</button>
