@@ -63,10 +63,33 @@ namespace MISTDO.Web.Controllers
 
             return View();
         }
-        public IActionResult CertificateCheck()
+        [HttpGet]
+        public async Task<IActionResult> CertificateCheck()
         {
-
+            ViewBag.Message = "";
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Certificate(string cert)
+        {
+            if (cert == null)
+            {
+                return NotFound();
+            }
+
+            var certificate = await tdbcontext.Certificates
+                .SingleOrDefaultAsync(m => m.CertNumber.ToString() == cert);
+            if (certificate == null)
+            {
+                ViewBag.Message = ViewBag.Message + "Certificate is not Valid";
+                return View(nameof(CertificateCheck));
+            }
+           
+            ViewBag.Message = ViewBag.Message + "Certificate is Valid";
+
+         
+
+            return View(nameof(CertificateCheck));
         }
 
         public IActionResult ForgetPassword()

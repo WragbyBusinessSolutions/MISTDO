@@ -1,10 +1,34 @@
 ﻿<!-- Side Nav START -->
 <div class="side-nav">
-    <div class="side-nav-inner active">
+    <div class="side-nav-inner">
+      
+        <style>
+            /* Style the buttons */
+            .nav-item {
+                border: none;
+                outline: none;
+              
+                background-color: white;
+                cursor: pointer;
+             
+            }
+
+                /* Style the active class, and buttons on mouse-over */
+                .nav-item a:hover {
+                    background-color: forestgreen;
+                    color: white;
+                }
+            .side-nav-menu > .active > a,
+            .side-nav-menu > .active > a:hover,
+            .side-nav-menu > .active > a:focus {
+                background-color: #7dc290;
+            }
+           
+        </style>
         <div class="side-nav-logo">
             <a asp-controller="Home" asp-action="Index">
-                <div class="logo" > <img  src="~/dist/assets/images/logo/dpr logo.png" width="240" alt=""></div>
-              
+                <div class="logo"> <img src="~/dist/assets/images/logo/dpr logo.png" width="240" alt=""></div>
+
 
                 @*<div class="logo" style="background-image: url('/dist/assets/images/logo/jepeg_logo.jpg')"></div>*@
             </a>
@@ -14,10 +38,10 @@
                 </a>
             </div>
         </div>
-        <ul class="side-nav-menu ">
-           
-            <li class="nav-item active">
-                <a  asp-action="Index">
+        <ul class="side-nav-menu" >
+
+            <li class="nav-item">
+                <a asp-action="Index">
                     <span class="icon-holder">
                         <i class="ti-dashboard"></i>
                     </span>
@@ -25,7 +49,7 @@
                 </a>
             </li>
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a asp-controller="TrainerDashboard" asp-action="Profile">
                     <span class="icon-holder">
                         <i class="ti-user"></i>
@@ -41,7 +65,7 @@
                     <span class="title">Trainees</span>
                 </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a asp-controller="TrainerDashboard" asp-action="Certificate">
                     <span class="icon-holder">
                         <i class="ti-medall"></i>
@@ -49,7 +73,7 @@
                     <span class="title">Certificate</span>
                 </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a asp-controller="TrainerDashboard" asp-action="Training">
                     <span class="icon-holder">
                         <i class="ti-calendar"></i>
@@ -57,7 +81,7 @@
                     <span class="title">Training Calender</span>
                 </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a asp-controller="TrainerDashboard" asp-action="Notification">
                     <span class="icon-holder">
                         <i class="ti-bell"></i>
@@ -65,7 +89,7 @@
                     <span class="title">Notification </span>
                 </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a asp-controller="TrainerDashboard" asp-action="SupportTrainees">
                     <span class="icon-holder">
                         <i class="ti-light-bulb"></i>
@@ -73,7 +97,7 @@
                     <span class="title">Resolve  Support Tickets </span>
                 </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a asp-controller="TrainerDashboard" asp-action="Support">
                     <span class="icon-holder">
                         <i class="ti-help"></i>
@@ -84,6 +108,21 @@
 
         </ul>
 
-</div>
+    </div>
 </div>
 <!-- Side Nav END -->
+
+@*<script>
+    // Add active class to the current button (highlight it)
+    var header = document.getElementById("myDIV");
+    var btns = header.getElementsByClassName("nav-item");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            if (current.length > 0) {
+                current[0].className = current[0].className.replace(" active", "");
+            }
+            this.className += " active";
+        });
+    }
+</script>*@

@@ -47,17 +47,24 @@
     <div class="inner-wrapper">
         <div class="container">
             <div class="row">
+                @{
+                  string cert="";
+                }
                 <div id="form" class="col-sm-4 col-sm-offset-4">
                     <h2 class="text-center" style="color:darkgreen"><strong>Certificate Verification</strong></h2>
                     <br />
-                    <form asp-action="IDCheck" asp-controller="Trainer" enctype="multipart/form-data">
+                    <form asp-action="Certificate" asp-controller="Home"  method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <h4><strong>Please Enter Certificate Number below</strong></h4>
-                            
+
+                        </div>
+                        <div class="form-group" align="center">
+                            <h4><strong>@ViewBag.Message </strong></h4>
+
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Certificate Number*</label>
-                            <input type="Text" class="form-control" name="PermitNumber" id="PermitNumber" placeholder="Enter Certificate NUMBER">
+                            <input type="Text" class="form-control" name="cert" id="cert" placeholder="Enter Certificate NUMBER">
                         </div>
 
                         <button type="submit" class="btn btn-success">Submit</button>

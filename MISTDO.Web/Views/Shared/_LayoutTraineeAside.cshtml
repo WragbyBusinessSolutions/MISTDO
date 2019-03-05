@@ -1,6 +1,27 @@
 ﻿<!-- Side Nav START -->
+<style>
+    /* Style the buttons */
+    .nav-item {
+        border: none;
+        outline: none;
+        background-color: white;
+        cursor: pointer;
+    }
 
+        /* Style the active class, and buttons on mouse-over */
+        .nav-item a:hover {
+            background-color: forestgreen;
+            color: white;
+        }
+
+    .side-nav-menu > .active > a,
+    .side-nav-menu > .active > a:hover,
+    .side-nav-menu > .active > a:focus {
+        background-color: #7dc290;
+    }
+</style>
 <div class="side-nav">
+
     <div class="side-nav-inner">
         <div class="side-nav-logo">
             <a asp-controller="Home" asp-action="Index">
@@ -14,9 +35,9 @@
             </div>
         </div>
         <ul class="side-nav-menu scrollable">
-        
+
             <li class="nav-item ">
-                <a  asp-controller="Trainees" asp-action="Dashboard" title="Your Dashboard">
+                <a asp-controller="Trainees" asp-action="Dashboard" title="Your Dashboard">
                     <span class="icon-holder">
                         <i class="ti-dashboard"></i>
                     </span>
@@ -86,7 +107,7 @@
                     <span class="title">Feedbacks </span>
                 </a>
             </li>
-            
+
         </ul>
     </div>
 </div>
