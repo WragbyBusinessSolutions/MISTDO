@@ -8,6 +8,236 @@
 }
 @inject UserManager<TraineeApplicationUser> userManager;
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+<script>
+    function input1f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input1");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input2f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input2");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input3f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input3");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input4f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input4");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input5f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input5");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[4];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input6f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input6");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[5];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input7f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input7");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[6];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    #input1 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input2 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input3 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input4 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input5 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input6 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input7 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #dt-opt {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+        font-size: 18px;
+    }
+
+        #dt-opt th, #dt-opt td {
+            text-align: left;
+            padding: 12px;
+        }
+
+        #dt-opt tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+            #dt-opt tr.header, #dt-opt tr:hover {
+                background-color: #f1f1f1;
+            }
+</style>
 <div class="page-container">
     @await Html.PartialAsync("_LayoutHeaderTrainee");
 
@@ -44,6 +274,33 @@
                                             <th>Training Center Name</th>
 
                                             <th></th>
+                                        </tr>
+                                    </thead>
+                                     <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Full Name" title="Type in a name">
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Email" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Certificate Number" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Status" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="Date Generated" title="Type in a name">
+
+                                            </th>
+                                           
+                                            <th>
+                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="Training Center Name" title="Type in a name">
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody style="font-size:small;">

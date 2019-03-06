@@ -1193,19 +1193,19 @@ namespace MISTDO.Web.Controllers
                     //  var response = _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
                     //Send Mail
-                    SmtpClient client = new SmtpClient("smtp.office365.com"); //set client 
-                    client.Port = 587;
-                    client.EnableSsl = true;
-                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    client.UseDefaultCredentials = false;
-                    client.Credentials = new NetworkCredential("Wragbydev@wragbysolutions.com", "@Devops19"); //Mailing credential
-                    //mail body
-                    MailMessage mailMessage = new MailMessage();
-                    mailMessage.From = new MailAddress("Wragbydev@wragbysolutions.com");
-                    mailMessage.To.Add(model.Email); //Trainee mail here
-                    mailMessage.Body ="Hello "+ model.FirstName + " You have just been onboarded on MISTDO, Your email is " + model.Email + ". Please confirm your account by clicking this link: mistdo.azurewebsites.net.";
-                    mailMessage.Subject = "MISTDO Account Created";
-                    client.Send(mailMessage);
+                    //SmtpClient client = new SmtpClient("smtp.office365.com"); //set client 
+                    //client.Port = 587;
+                    //client.EnableSsl = true;
+                    //client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    //client.UseDefaultCredentials = false;
+                    //client.Credentials = new NetworkCredential("Wragbydev@wragbysolutions.com", "@Devops19"); //Mailing credential
+                    ////mail body
+                    //MailMessage mailMessage = new MailMessage();
+                    //mailMessage.From = new MailAddress("Wragbydev@wragbysolutions.com");
+                    //mailMessage.To.Add(model.Email); //Trainee mail here
+                    //mailMessage.Body ="Hello "+ model.FirstName + " You have just been onboarded on MISTDO, Your email is " + model.Email + ". Please confirm your account by clicking this link: mistdo.azurewebsites.net.";
+                    //mailMessage.Subject = "MISTDO Account Created";
+                    //client.Send(mailMessage);
 
                     return RedirectToAction(nameof(Trainees));
 

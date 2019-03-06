@@ -293,43 +293,7 @@
                                             <th>Other Options</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach (var item in Model)
-                                        {
-                                            if (item.TrainingStartDate >= DateTime.Today && item.TrainingCentreId == user.Id)
-                                            {
-                                                <tr>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingName)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => user.CompanyName)
-                                                    </td>
-
-
-                                                    <td>
-                                                        @Html.DisplayFor(model => item.Cost)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(model => item.Venue)
-                                                    </td>
-
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate) 
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate)
-                                                    </td>
-                                                    <td>
-                                                        <a asp-action="EditTraining" asp-route-id="@item.Id">Edit</a> |
-                                                        <a asp-action="DetailsTraining" asp-route-id="@item.Id">Details</a> |
-                                                        <a asp-action="DeleteTraining" asp-route-id="@item.Id">Delete</a>
-                                                    </td>
-                                                </tr>
-                                            }
-                                        }
-                                    </tbody>
-                                    <tfoot>
+                                    <thead>
                                         <tr>
                                             <th>
                                                 <input type="text" id="input1" onkeyup="input1f()" placeholder="Module Name" title="Type in a name">
@@ -358,7 +322,44 @@
 
                                             </th>
                                         </tr>
-                                    </tfoot>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.TrainingStartDate >= DateTime.Today && item.TrainingCentreId == user.Id)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => user.CompanyName)
+                                                    </td>
+
+
+                                                    <td>
+                                                        @Html.DisplayFor(model => item.Cost)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => item.Venue)
+                                                    </td>
+
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate)
+                                                    </td>
+                                                    <td>
+                                                        <a asp-action="EditTraining" asp-route-id="@item.Id">Edit</a> |
+                                                        <a asp-action="DetailsTraining" asp-route-id="@item.Id">Details</a> |
+                                                        <a asp-action="DeleteTraining" asp-route-id="@item.Id">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+
                                 </table>
                             </div>
 

@@ -276,6 +276,38 @@
                                             <th></th>
                                         </tr>
                                     </thead>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Full name" title="filter">
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Email" title="">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Certificate ID" title="">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Status" title="">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="Date Generated" title="">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="centre name" title="">
+
+                                            </th>
+
+
+                                            <th>
+
+                                            </th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
                                         @for (int i = 0; i < Model.Count(); i++)
                                         {
@@ -337,38 +369,7 @@
                                         }
 
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="full name" title="filter">
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="email" title="">
 
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="certi id" title="">
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="cert status" title="">
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="cert gen date" title="">
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="centre name" title="">
-
-                                            </th>
-                                          
-
-                                            <th>
-
-                                            </th>
-                                        </tr>
-                                    </tfoot>
                                 </table>
                             </div>
                         </div>

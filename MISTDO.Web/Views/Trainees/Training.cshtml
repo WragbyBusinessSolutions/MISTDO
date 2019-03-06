@@ -6,13 +6,243 @@
 }
 
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+<script>
+    function input1f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input1");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input2f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input2");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input3f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input3");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input4f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input4");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input5f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input3");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[4];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input6f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input3");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[5];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input7f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input3");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[6];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
+    #input1 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input2 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input3 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input4 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input5 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input6 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #input7 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #dt-opt {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+        font-size: 18px;
+    }
+
+        #dt-opt th, #dt-opt td {
+            text-align: left;
+            padding: 12px;
+        }
+
+        #dt-opt tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+            #dt-opt tr.header, #dt-opt tr:hover {
+                background-color: #f1f1f1;
+            }
+</style>
 <!-- Page Container START -->
 
 <div class="page-container">
     <!-- Header START -->
     @await Html.PartialAsync("_LayoutHeaderTrainee");
-
+    @inject UserManager<TraineeApplicationUser> userManager;
+    @inject UserManager<ApplicationUser> usermanager;
     <!-- Theme Toggle Button END -->
     <!-- Content Wrapper START -->
     <div class="main-content">
@@ -30,14 +260,14 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                Module ID
+                                                Module Name
                                             </th>
                                             <th>
-                                                Module ID
+                                                Training Center Name
                                             </th>
 
                                             <th>
-                                                Trainee ID
+                                                Trainee Name
                                             </th>
 
 
@@ -50,9 +280,37 @@
                                             <th>Other Options</th>
                                         </tr>
                                     </thead>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Module Name" title="Type in a name">
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Center Name" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Trainee ID" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Start Date" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="End Date" title="Type in a name">
+
+                                            </th>
+
+                                            <th>
+
+                                            </th>
+                                        </tr>
+                                    </thead>
                                     <tbody style="font-size:small;">
                                         @foreach (var item in Model)
-                                        {
+                                        { var centername =await usermanager.FindByIdAsync(item.TrainingCentreId);
+                                            var traineename = await userManager.FindByIdAsync(item.TraineeId);
                                             if (item.TrainingEndDate >= DateTime.Today)
                                             {
                                                 <tr>
@@ -60,11 +318,12 @@
                                                         @Html.DisplayFor(modelItem => item.TrainingName)
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.ModuleId)
+                                                       @centername.CompanyName
+                                                        
                                                     </td>
 
                                                     <th>
-                                                        @Html.DisplayFor(model => item.TraineeId)
+                                                        @traineename
                                                     </th>
 
                                                     <td>
@@ -105,14 +364,14 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                Module ID
+                                                Module Name
                                             </th>
                                             <th>
-                                                Module ID
+                                                Training Center Name
                                             </th>
 
                                             <th>
-                                                Trainee ID
+                                                Trainee Name
                                             </th>
 
 
@@ -125,9 +384,39 @@
                                             <th>Other Options</th>
                                         </tr>
                                     </thead>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Module Name" title="Type in a name">
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Center Name" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Trainee ID" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Start Date" title="Type in a name">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="End Date" title="Type in a name">
+
+                                            </th>
+
+                                            <th>
+
+                                            </th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
+                                            var centername = await usermanager.FindByIdAsync(item.TrainingCentreId);
+                                            var traineename = await userManager.FindByIdAsync(item.TraineeId);
+                                            var trainee = traineename.FirstName + " " + traineename.LastFinger;
                                             if (item.TrainingEndDate < DateTime.Today)
                                             {
                                                 <tr>
@@ -135,12 +424,12 @@
                                                         @Html.DisplayFor(modelItem => item.TrainingName)
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.ModuleId)
+                                                        @centername.CompanyName
                                                     </td>
 
-                                                    <th>
-                                                        @Html.DisplayFor(model => item.TraineeId)
-                                                    </th>
+                                                    <td>
+                                                       @trainee
+                                                    </td>
 
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.TrainingStartDate)
@@ -149,9 +438,9 @@
                                                         @Html.DisplayFor(modelItem => item.TrainingEndDate)
                                                     </td>
                                                     <td>
-                                                        
-                                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
-                                                       
+
+                                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+
                                                     </td>
                                                 </tr>
                                             }
@@ -188,7 +477,7 @@
 <script src="~/dist/assets/js/app.min.js"></script>
 
 <!-- page plugins js -->
-<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+@*<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>*@
 
 <!-- page js -->
 <script src="~/dist/assets/js/table/data-table.js"></script>
