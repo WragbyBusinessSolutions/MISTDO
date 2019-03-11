@@ -1,4 +1,10 @@
 ﻿<!-- Side Nav START -->
+@inject UserManager<TraineeApplicationUser> userManager;
+@{
+    var user = await userManager.GetUserAsync(User);
+
+
+}
 <style>
     /* Style the buttons */
     .nav-item {
@@ -36,77 +42,108 @@
         </div>
         <ul class="side-nav-menu scrollable">
 
-            <li class="nav-item ">
-                <a asp-controller="Trainees" asp-action="Dashboard" title="Your Dashboard">
-                    <span class="icon-holder">
-                        <i class="ti-dashboard"></i>
-                    </span>
-                    <span class="title">Dashboard</span>
-                </a>
-            </li>
+            @if (user.ImageUpload != null && user.RightIndex != null)
+            {
+                <li class="nav-item ">
+                    <a asp-controller="Trainees" asp-action="Dashboard" title="Your Dashboard">
+                        <span class="icon-holder">
+                            <i class="ti-dashboard"></i>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
 
 
 
-            <li class="nav-item">
-                <a asp-action="Profile" asp-controller="Trainees" title=" Profile Page">
-                    <span class="icon-holder">
-                        <i class="ti-user"></i>
-                    </span>
-                    <span class="title">Profile</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a asp-action="Profile" asp-controller="Trainees" title=" Profile Page">
+                        <span class="icon-holder">
+                            <i class="ti-user"></i>
+                        </span>
+                        <span class="title">Profile</span>
+                    </a>
+                </li>
 
 
 
-            <li class="nav-item ">
-                <a asp-controller="Trainees" asp-action="Certificate" title="Certificates">
-                    <span class="icon-holder">
-                        <i class="ti-medall"></i>
-                    </span>
-                    <span class="title">Certificates</span>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a asp-controller="Trainees" asp-action="Training" title="Trainings">
-                    <span class="icon-holder">
-                        <i class="ti-agenda"></i>
-                    </span>
-                    <span class="title">Trainings </span>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a asp-controller="Trainees" asp-action="Calender" title="Training Calenders from Training Providers ">
-                    <span class="icon-holder">
-                        <i class="ti-calendar"></i>
-                    </span>
-                    <span class="title">Training Calenders </span>
-                </a>
-            </li>
+                <li class="nav-item ">
+                    <a asp-controller="Trainees" asp-action="Certificate" title="Certificates">
+                        <span class="icon-holder">
+                            <i class="ti-medall"></i>
+                        </span>
+                        <span class="title">Certificates</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a asp-controller="Trainees" asp-action="Training" title="Trainings">
+                        <span class="icon-holder">
+                            <i class="ti-agenda"></i>
+                        </span>
+                        <span class="title">Trainings </span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a asp-controller="Trainees" asp-action="Calender" title="Training Calenders from Training Providers ">
+                        <span class="icon-holder">
+                            <i class="ti-calendar"></i>
+                        </span>
+                        <span class="title">Training Calenders </span>
+                    </a>
+                </li>
 
-            <li class="nav-item ">
-                <a asp-controller="Trainees" asp-action="Notification" title="Notifications from DPR">
-                    <span class="icon-holder">
-                        <i class="ti-bell"></i>
-                    </span>
-                    <span class="title">Notifications </span>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a asp-controller="Trainees" asp-action="Support" title="Support Tickets to Training Providers">
-                    <span class="icon-holder">
-                        <i class="ti-help"></i>
-                    </span>
-                    <span class="title">Help Supports </span>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a asp-controller="Trainees" asp-action="Feedback" title="Feedbacks to DPR">
-                    <span class="icon-holder">
-                        <i class="ti-receipt"></i>
-                    </span>
-                    <span class="title">Feedbacks </span>
-                </a>
-            </li>
+                <li class="nav-item ">
+                    <a asp-controller="Trainees" asp-action="Notification" title="Notifications from DPR">
+                        <span class="icon-holder">
+                            <i class="ti-bell"></i>
+                        </span>
+                        <span class="title">Notifications </span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a asp-controller="Trainees" asp-action="Support" title="Support Tickets to Training Providers">
+                        <span class="icon-holder">
+                            <i class="ti-help"></i>
+                        </span>
+                        <span class="title">Help Supports </span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a asp-controller="Trainees" asp-action="Feedback" title="Feedbacks to DPR">
+                        <span class="icon-holder">
+                            <i class="ti-receipt"></i>
+                        </span>
+                        <span class="title">Feedbacks </span>
+                    </a>
+                </li>
+
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a asp-action="Profile" asp-controller="Trainees" title=" Profile Page">
+                        <span class="icon-holder">
+                            <i class="ti-user"></i>
+                        </span>
+                        <span class="title">Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a asp-controller="Trainees" asp-action="Calender" title="Training Calenders from Training Providers ">
+                        <span class="icon-holder">
+                            <i class="ti-calendar"></i>
+                        </span>
+                        <span class="title">Training Calenders </span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a asp-controller="Trainees" asp-action="Support" title="Support Tickets to Training Providers">
+                        <span class="icon-holder">
+                            <i class="ti-help"></i>
+                        </span>
+                        <span class="title">Help Supports </span>
+                    </a>
+                </li>
+            }
 
         </ul>
     </div>

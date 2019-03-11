@@ -518,6 +518,7 @@ namespace MISTDO.Web.Controllers
                     user.CentreAddress = model.CentreAddress;
                     user.PermitNumber = model.PermitNumber;
                     user.LicenseExpDate = model.LicenseExpDate;
+                    user.UID = model.UID;
                     user.EmailConfirmed = true;//Custom Column
 
                     var idResult = await _usermanager.UpdateAsync(user);//update
@@ -1136,7 +1137,30 @@ namespace MISTDO.Web.Controllers
             
             if (ModelState.IsValid)
             {
+                //Generate OTP
 
+                string alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                string small_alphabets = "abcdefghijklmnopqrstuvwxyz";
+                string numbers = "1234567890";
+
+                string characters = numbers;
+
+                characters += alphabets + small_alphabets + numbers;
+
+                int length = 10;
+                string otps = string.Empty;
+                for (int i = 0; i < length; i++)
+                {
+                    string character = string.Empty;
+                    do
+                    {
+                        int index = new Random().Next(0, characters.Length);
+                        character = characters.ToCharArray()[index].ToString();
+                    } while (otps.IndexOf(character) != -1);
+                    otps += character;
+                }
+                string permitotp = otps.ToUpper();
+                //Image upload
                 byte[] image = null;
 
                 if (model.ImageUpload != null)
@@ -1169,8 +1193,9 @@ namespace MISTDO.Web.Controllers
 
                         DateRegistered = DateTime.Now.Date,
 
-                        ImageUpload = image
-
+                        ImageUpload = image,
+                         UID =  "MISTDO/"+ permitotp ,
+                        
 
 
                     };

@@ -308,7 +308,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
             AppUser.UserAddress = model.UserAddress;
             AppUser.Email = model.Email;
             AppUser.ImageUpload = imagebyte;
-            AppUser.UID = model.UID;
+            
 
                
 
@@ -450,6 +450,31 @@ namespace MISTDO.Web.Views.TrainerDashboard
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                //Generate unique id 
+
+                string alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                string small_alphabets = "abcdefghijklmnopqrstuvwxyz";
+                string numbers = "1234567890";
+
+                string characters = numbers;
+
+                characters += alphabets + small_alphabets + numbers;
+
+                int length = 10;
+                string otps = string.Empty;
+                for (int i = 0; i < length; i++)
+                {
+                    string character = string.Empty;
+                    do
+                    {
+                        int index = new Random().Next(0, characters.Length);
+                        character = characters.ToCharArray()[index].ToString();
+                    } while (otps.IndexOf(character) != -1);
+                    otps += character;
+                }
+                string permitotp = otps.ToUpper();
+
+                //Image Upload
                 byte[] p1 = null;
 
                 TraineeViewModel trainee = new TraineeViewModel();
@@ -489,7 +514,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
                     LastName = model.LastName,
                     ImageUpload = p1,
                     DateRegistered = DateTime.Now.Date,
-
+                    UID = "MISTDO/" + permitotp,
 
 
                 };
@@ -906,6 +931,8 @@ namespace MISTDO.Web.Views.TrainerDashboard
             var trainee = await _userManager.FindByIdAsync(traineeid);
             var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
 
+           
+            
 
             ViewBag.Trainee = trainee;
             ViewBag.Centre = centre;
