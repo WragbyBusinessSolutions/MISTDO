@@ -11,9 +11,10 @@ using System;
 namespace MISTDO.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190311093424_userupdate")]
+    partial class userupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -197,8 +198,6 @@ namespace MISTDO.Web.Migrations
                     b.Property<string>("State");
 
                     b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UID");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);

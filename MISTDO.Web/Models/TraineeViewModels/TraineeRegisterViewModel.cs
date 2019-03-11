@@ -71,6 +71,7 @@ namespace MISTDO.Web.Models.AccountViewModels
         [Required]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+        public string UID { get; set; }
 
         //[Required]
         //public string OGISPId { get; set; }

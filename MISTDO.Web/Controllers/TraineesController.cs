@@ -262,7 +262,8 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 UserAddress = trainee.FirstName,
                 LastName = trainee.LastName,
                 FirstName = trainee.FirstName,
-            //    ImageUpload = file
+               
+                //    ImageUpload = file
             };
 
             ViewBag.Image = trainee.ImageUpload;
@@ -307,6 +308,7 @@ namespace MISTDO.Web.Views.TrainerDashboard
             AppUser.UserAddress = model.UserAddress;
             AppUser.Email = model.Email;
             AppUser.ImageUpload = imagebyte;
+            AppUser.UID = model.UID;
 
                
 

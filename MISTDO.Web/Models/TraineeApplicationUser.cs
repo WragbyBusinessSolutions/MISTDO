@@ -32,9 +32,11 @@ namespace MISTDO.Web.Models
         public string UserAddress { get; set; }
         public DateTime DateRegistered { get; set; }
 
-        public byte[] FirstFinger { get; set; }
-        public byte[] MiddleFinger { get; set; }
-        public byte[] LastFinger { get; set; }
+        public byte[] RightThumb { get; set; }
+        public byte[] LeftThumb { get; set; }
+        public byte[] RightIndex { get; set; }
+        public byte[] LeftIndex { get; set; }
+        public string UID { get; set; }
 
         public byte[] ImageUpload { get; set; }
 

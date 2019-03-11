@@ -72,6 +72,7 @@ namespace MISTDO.Web.Models.AccountViewModels
         public string ModuleId { get; set; }
 
         public IFormFile ImageUpload { get; set; }
+        public string UID { get; set; }
     }
 }
 

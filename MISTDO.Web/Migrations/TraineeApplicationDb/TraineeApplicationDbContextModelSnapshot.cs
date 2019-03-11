@@ -161,6 +161,8 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<byte[]>("ImageUpload");
+
                     b.Property<string>("LicenseExpDate")
                         .IsRequired()
                         .HasMaxLength(100);
@@ -306,25 +308,23 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<byte[]>("FirstFinger");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(100);
 
                     b.Property<byte[]>("ImageUpload");
 
-                    b.Property<byte[]>("LastFinger");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<byte[]>("LeftIndex");
+
+                    b.Property<byte[]>("LeftThumb");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<byte[]>("MiddleFinger");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -338,9 +338,15 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<byte[]>("RightIndex");
+
+                    b.Property<byte[]>("RightThumb");
+
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UID");
 
                     b.Property<string>("UserAddress")
                         .HasMaxLength(100);

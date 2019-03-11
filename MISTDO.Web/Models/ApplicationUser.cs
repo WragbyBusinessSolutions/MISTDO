@@ -49,8 +49,9 @@ namespace MISTDO.Web.Models
 
         [Required]
         public string PermitNumber { get; set; }
+        public string UID { get; set; }
 
-
+        public byte[] ImageUpload { get; set; }
 
     }
 }
