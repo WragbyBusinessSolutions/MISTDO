@@ -261,6 +261,9 @@
     <Content Update="Views\Administrator\DeleteModule.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\TrainerDashboard\UploadLogo.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\TrainerDashboard\ViewTraineeCertificate.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

@@ -101,6 +101,7 @@ namespace MISTDO.Web.Controllers
             ViewBag.modules = modulesList;
             return View();
         }
+       
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -113,8 +114,46 @@ namespace MISTDO.Web.Controllers
             }
             return View(model);
         }
+        [HttpGet]
+        public async Task<IActionResult> UploadLogo()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UploadLogo(AppViewModel model)
+        {
+            byte[] imagebyte = null;
+            if (model.ImageUpload != null) 
+
+            {
+                if (model.ImageUpload.Length > 0)
+
+                //Convert Image to byte and save to database
+
+                {
+
+                    using (var fs1 = model.ImageUpload.OpenReadStream())
+                    using (var ms1 = new MemoryStream())
+                    {
+                        fs1.CopyTo(ms1);
+                        imagebyte = ms1.ToArray();
 
 
+                    }
+                }
+
+            }
+            var AppUser = await _usermanager.GetUserAsync(User);
+            AppUser.ImageUpload = imagebyte;
+            var idResult = await _usermanager.UpdateAsync(AppUser);
+            if (idResult.Succeeded)
+            {
+                return View(nameof(Modules));
+            }
+            return View();
+        }
 
         public async Task<IActionResult> EligibleUsersForCertificate(int ModuleId)
         {
@@ -128,7 +167,7 @@ namespace MISTDO.Web.Controllers
            
             foreach (var trainee in trainings)
             {
-                var TraineeApplicationUser = Traineedbcontext.Users.Where(t => t.Id == trainee.TraineeId).ToList();
+                var TraineeApplicationUser = Traineedbcontext.Users.Where(t => t.UID == trainee.TraineeId).ToList();
               
                 foreach (var user in TraineeApplicationUser)
                 {
@@ -188,12 +227,13 @@ namespace MISTDO.Web.Controllers
         public async Task<IActionResult> ViewCertificate(string traineeid, string moduleid)
         {
             var user = await _usermanager.GetUserAsync(User);
+            var trainee = await _traineeuserManager.FindByIdAsync(traineeid);
             var train = dbcontext.Trainings.ToList();
-            var training =  train.FirstOrDefault(t => t.TraineeId == traineeid.Trim() & t.ModuleId == moduleid & t.TrainingCentreId == user.Id);
+            var training =  train.FirstOrDefault(t => t.TraineeId == trainee.UID & t.ModuleId == moduleid & t.TrainingCentreId == user.Id);
    
              var centre = await _usermanager.FindByIdAsync(user.Id);
 
-           var  trainee = await _traineeuserManager.FindByIdAsync(traineeid);
+         
             var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
 
             if (training.CertificateId != null)
@@ -201,7 +241,7 @@ namespace MISTDO.Web.Controllers
                 return Content("Cert already Generated");
             }
 
-            var CertId = Helpers.GetCertId.RandomString(5);
+            var CertId = "MISTDO/"+module.ShortCode + DateTime.Now.Year + Helpers.GetCertId.RandomString(5);
 
             ViewBag.Trainee = trainee;
             ViewBag.Centre = centre;
@@ -688,10 +728,11 @@ namespace MISTDO.Web.Controllers
         }
         public async Task<IActionResult> ViewTraineeCertificate(string traineeid, string moduleid, string TrainingCentreId, int TrainingId)
         {
-            var training = dbcontext.Trainings.FirstOrDefault(t => t.TraineeId == traineeid && t.ModuleId == moduleid && t.TrainingCentreId == TrainingCentreId);
+            var trainee = await _traineeuserManager.FindByIdAsync(traineeid);
+            var training = dbcontext.Trainings.FirstOrDefault(t => t.TraineeId == trainee.UID && t.ModuleId == moduleid && t.TrainingCentreId == TrainingCentreId);
             var centre = await _usermanager.FindByIdAsync(TrainingCentreId);
 
-            var trainee = await _traineeuserManager.FindByIdAsync(traineeid);
+            
             var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
 
 

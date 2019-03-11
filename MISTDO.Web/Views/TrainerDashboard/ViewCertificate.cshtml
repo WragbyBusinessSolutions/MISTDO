@@ -9,6 +9,13 @@
     var centre = ViewBag.Centre as ApplicationUser;
     var module = ViewBag.Module as Modules;
 }
+<style>
+    #over img {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+</style>
 <div class="page-container">
     <!-- Header START -->
     <div class="header navbar">
@@ -126,9 +133,9 @@
                                 @*<img class="profile-img img-fluid" src="assets/images/user.jpg" alt="profile image">*@
                                 <div class="user-info">
 
-                                    <span class="name pdd-right-5"> <label> @user.CompanyName</label> &nbsp; @user.CompanyAddress </span>
+                                    <span class="name pdd-right-5"> <label> @user.CompanyName</label> &nbsp; @user.UID </span>
 
-                                     
+
 
                                     <i class="ti-angle-down font-size-10"></i>
                                 </div>
@@ -249,86 +256,144 @@
                                 </a>
                             </li>
                             <li class="list-inline-item">
-                               
+
                             </li>
                         </ul>
                     </div>
                     <div class="card-body">
                         <div class="pdd-horizon-30">
+
                             <div class="mrg-top-15">
                                 <div class="inline-block">
                                     @*<img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">*@
-                                    <img class="img-fluid" src="~/css/JDF.KSDJ" alt="MISTDO LOGO" />
+                                    <img class="img-fluid" src="~/images/logo.png" alt="MISTDO LOGO" style="max-width:45%" />
                                     <address class="pdd-left-10 mrg-top-20">
 
-                                       
+
+                                    </address>
+                                </div>
+                                <div id="over" style="position:absolute; width:100%; height:100%">
+
+                                    @if (user.ImageUpload != null)
+                                    {
+
+                                        <span class="over">
+                                            <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(trainee.ImageUpload))" alt="Take a new Passport">
+                                        </span>
+
+                                    }
+                                    else
+                                    {
+
+                                        <img class="mrg-top-30" src="~/templates/avatar.png" alt="Take a new Passport" height="150" width="180">
+
+                                        <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
+
+                                    }
+                                </div>
+
+                            </div>
+                            <div class="mrg-top-15">
+                                <div class="inline-block">
+                                    @*<img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">*@
+                                    <img class="img-fluid" src="~/images/logo.png" alt="MISTDO LOGO" style="max-width:45%" />
+                                    <address class="pdd-left-10 mrg-top-20">
+
+
                                     </address>
                                 </div>
                                 <div class="pull-right">
-                                    <h2>Certificate ID: @training.CertificateId</h2>
-                                    <span>First Name: @trainee.FirstName</span><br />
-                                    <span>Last Name:   @trainee.LastName</span><br />
-                                    <span>Trainee ID:   @trainee.Id</span><br />
-                                    <span>Trainee Address: @trainee.UserAddress</span><br>
+                                    <h2 class="text-dark">Certificate ID: @training.CertificateId</h2>
+                                    <span class="text-dark">First Name: @trainee.FirstName</span><br />
+                                    <span class="text-dark">Last Name:   @trainee.LastName</span><br />
+                                    <span class="text-dark">Trainee ID: @trainee.UID</span><br />
+                                    <span class="text-dark">Trainee Address: @trainee.UserAddress</span><br>
                                     <abbr class="text-dark" title="Phone">Phone:</abbr>
-                                    <span>@trainee.PhoneNumber</span>
+                                    <span class="text-dark">@trainee.PhoneNumber</span>
+
                                 </div>
                             </div>
-                            <div class="row mrg-top-20">
-                                <div class="col-md-9 col-sm-9">
-                                    <h3 class="pdd-left-10 mrg-top-10">Training Centre</h3>
-                                    <address class="pdd-left-10 mrg-top-10">
-                                        <b class="text-dark">Accreditation Id: @training.TrainingCentreId</b><br>
-                                        <span>Centre Address: @centre.CentreName </span><br>
-                                        <span>Centre Address: @centre.CompanyAddress </span><br>
-                                    </address>
-                                </div>
-                                <div class="col-md-3 col-sm-3">
-                                    <div class="mrg-top-80">
-                                        <div class="text-dark text-uppercase inline-block"><b>Certificate Id: @training.CertificateId</b></div>
-                                    </div>
-                                    <div class="">
-                                        <div class="text-dark text-uppercase inline-block"><b>Issued Date: @training.CertGenDate</b></div>
-                                    </div>
-                                    <div class="">
-                                        <div class="text-dark text-uppercase inline-block"><b>Valid Till: @training.CertGenDate.AddYears(2)</b></div>
-                                    </div>
-                                </div>
+                        </div>
+                        <div id="background">
+                            <p id="bg-text">MISTDO-DPR</p>
+                        </div>
+
+                        <div class="row mrg-top-20">
+                            <div class="col-md-12 col-sm-12">
+
+
+                                <p>
+
+                                    <h4>
+                                        <span style="float:left;"><b class="text-dark">Training Center : @centre.CompanyName</b>  </span>
+                                        <span style="float:right;"><b>Certificate Id: @training.CertificateId</b></span>
+                                    </h4>
+                                </p>
+
                             </div>
-                            <div class="row mrg-top-20">
-                                <div class="col-md-12">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-
-                                                <th>Module Completed</th>
-                                                <th>Description</th>
-                                                @*<th>Score</th>*@
-                                                <th class="text-right">Remark</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                @*<td>@module.Id</td>*@
-                                                <td>@module.Name</td>
-                                                <td>@module.Description</td>
-                                                @*<td>Score</td>*@
-                                                <td class="text-right">Completed</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="row mrg-top-30">
-                                        <div class="col-md-12">
-                                            <div class="pull-right text-right">
+                            <div class="col-md-12 col-sm-12">
 
 
-                                            </div>
+                                <p>
+
+                                    <h4>
+                                        <span style="float:left;"><b class="text-dark">Centre ID: @centre.UID</b> </span>
+                                        <span style="float:right;"><b>Issued Date: @training.CertGenDate</b></span>
+                                    </h4>
+                                </p>
+
+                            </div>
+                            <div class="col-md-12">
+                                <p>
+                                    <h4>
+                                        <span style="float:left;"><b class="text-dark">Centre Address: @centre.CompanyAddress</b> </span>
+                                        <span style="float:right;"><b>Valid Till: @training.CertGenDate.AddYears(2)</b></span>
+                                    </h4>
+                                </p>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="row mrg-top-20">
+                            <div class="col-md-12">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Exam Name</th>
+                                            <th>Description</th>
+                                            @*
+                                                <th>Score</th>*@
+                                            <th class="text-right">Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            @*
+                                                <td>@module.Id</td>*@
+                                            <td>@module.Name</td>
+                                            <td>@module.Description</td>
+                                            @*
+                                                <td>Score</td>*@
+                                            <td class="text-right">Completed</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="row mrg-top-30">
+                                    <div class="col-md-12">
+                                        <div class="pull-right text-right">
+
+                                            <a class="btn btn-success">Passed</a>
                                         </div>
                                     </div>
-                                    <div class="row mrg-vertical-20">
-                                        <div class="col-md-6">
-                                            <span class="font-size-13 pull-right pdd-top-10">MISTDO Portal &copy; 2018</span>
-                                        </div>
+                                </div>
+                                <div class="row mrg-vertical-20">
+                                    <div class="col-md-8" align="center">
+
+                                        <span class="font-size-13 pull-right pdd-top-10"><img src="~/dist/assets/images/logo/seal2.jpg" width="20%" height="10%"></span>
                                     </div>
                                 </div>
                             </div>
