@@ -44,6 +44,13 @@
 
             @if (user.ImageUpload != null && user.RightIndex != null)
             {
+                <li class="nav-item">
+                    <a href="#" title=" Profile Page">
+                       
+                        <h2> <span class="title" style="color:crimson"> <strong>Trainee's Portal</strong></span></h2>
+                    </a>
+                </li>
+
                 <li class="nav-item ">
                     <a asp-controller="Trainees" asp-action="Dashboard" title="Your Dashboard">
                         <span class="icon-holder">
@@ -119,6 +126,13 @@
             }
             else
             {
+
+                <li class="nav-item">
+                    <a href="#" title=" Profile Page">
+                      
+                        <h2> <span class="title" style="color:crimson"> <strong>Trainee's Portal</strong></span></h2>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a asp-action="Profile" asp-controller="Trainees" title=" Profile Page">
                         <span class="icon-holder">

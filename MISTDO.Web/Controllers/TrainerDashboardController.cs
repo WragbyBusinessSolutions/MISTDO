@@ -299,6 +299,20 @@ namespace MISTDO.Web.Controllers
             dbcontext.Add(certificate);
 
            await dbcontext.SaveChangesAsync();
+            // Then Send Mail
+            SmtpClient client = new SmtpClient("smtp.office365.com"); //set client 
+            client.Port = 587;
+            client.EnableSsl = true;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new NetworkCredential("Wragbydev@wragbysolutions.com", "@Devops19"); //Mailing credential
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress("Wragbydev@wragbysolutions.com");
+            mailMessage.To.Add("Femi4god2010@gmail.com"); //swap with trainee.Email on go live
+            mailMessage.Body = "Dear "+trainee.FirstName+", Congratulations!! You have been Awarded a Certifcate on "+ module.Name +" by "+user.CompanyName +" on "+DateTime.Now +" Go to your Training Provider to Collect your Certificate." ;
+            mailMessage.Subject = "MISTDO Certificate ";
+            client.Send(mailMessage);
+
 
             ViewBag.Training = updateTraining;
 
@@ -970,7 +984,7 @@ namespace MISTDO.Web.Controllers
 
             foreach (var trainee in trainings)
             {
-                var tra = Traineedbcontext.Trainees.Where(t => t.Id == trainee.TraineeId);
+                var tra = Traineedbcontext.Trainees.Where(t => t.UID == trainee.TraineeId);
                 Trainees.AddRange(tra);
                                                               
             }
@@ -981,8 +995,9 @@ namespace MISTDO.Web.Controllers
         }
         public async Task<IActionResult> DetailsTrainees(string id)
         {
-           
-            var train = await dbcontext.Trainings.Where(t => t.TraineeId == id).ToListAsync();
+            var trainee = await Traineedbcontext.Users.SingleOrDefaultAsync(m => m.Id == id);
+
+            var train = await dbcontext.Trainings.Where(t => t.TraineeId == trainee.UID).ToListAsync();
            
             ViewBag.trainings = train;
 
@@ -993,7 +1008,7 @@ namespace MISTDO.Web.Controllers
                 return View(await Traineedbcontext.Users.ToListAsync());
             }
 
-            var trainee = await Traineedbcontext.Users.SingleOrDefaultAsync(m => m.Id == id);
+          
 
 
 

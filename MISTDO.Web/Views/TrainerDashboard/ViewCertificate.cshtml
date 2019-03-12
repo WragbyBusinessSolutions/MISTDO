@@ -272,38 +272,39 @@
 
                                     </address>
                                 </div>
-                                <div id="over" style="position:absolute; width:100%; height:100%">
-
-                                    @if (user.ImageUpload != null)
-                                    {
-
-                                        <span class="over">
-                                            <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(trainee.ImageUpload))" alt="Take a new Passport">
-                                        </span>
-
-                                    }
-                                    else
-                                    {
-
-                                        <img class="mrg-top-30" src="~/templates/avatar.png" alt="Take a new Passport" height="150" width="180">
-
-                                        <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
-
-                                    }
-                                </div>
+                              
 
                             </div>
                             <div class="mrg-top-15">
                                 <div class="inline-block">
                                     @*<img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">*@
-                                    <img class="img-fluid" src="~/images/logo.png" alt="MISTDO LOGO" style="max-width:45%" />
+                                    <div id="over" style="position:absolute; width:100%; height:100%">
+
+                                        @if (user.ImageUpload != null)
+                                        {
+
+                                            <span class="over">
+                                                <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(user.ImageUpload))" alt="Take a new Passport">
+                                            </span>
+
+                                        }
+                                        else
+                                        {
+
+                                            <img class="mrg-top-30" src="~/templates/avatar.png" alt="Take a new Passport" height="150" width="180">
+
+                                            <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
+
+                                        }
+                                    </div>
                                     <address class="pdd-left-10 mrg-top-20">
 
 
                                     </address>
                                 </div>
                                 <div class="pull-right">
-                                    <h2 class="text-dark">Certificate ID: @training.CertificateId</h2>
+                                    
+                                    <span class="text-dark"><span>Certificate ID: @training.CertificateId</span></span><br />
                                     <span class="text-dark">First Name: @trainee.FirstName</span><br />
                                     <span class="text-dark">Last Name:   @trainee.LastName</span><br />
                                     <span class="text-dark">Trainee ID: @trainee.UID</span><br />
@@ -314,9 +315,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="background">
-                            <p id="bg-text">MISTDO-DPR</p>
-                        </div>
+                       
 
                         <div class="row mrg-top-20">
                             <div class="col-md-12 col-sm-12">
