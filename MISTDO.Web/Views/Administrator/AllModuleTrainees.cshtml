@@ -295,7 +295,7 @@
                     <div class="card">
                         <div class="card-block">
                             <div class="table-overflow">
-                                <table id="dt-opt" class="display">
+                                <table id="dt-opt" class="display" style="font-size:small;">
                                     <thead>
                                         <tr>
                                             <th>
@@ -400,7 +400,7 @@
                                                         var t = item.TraineeId;
                                                         var us =  userManager.Users.FirstOrDefault(m => m.UID == item.TraineeId);
                                                         
-                                                        <a asp-action="DetailsTrainees" title="Check Trainee Details" asp-route-id="item.TraineeId">Details</a>
+                                                        <a asp-action="DetailsTrainees" title="Check Trainee Details" asp-route-id="@item.TraineeId">Details</a>
                                                     }
                                                 </td>
                                             </tr>
