@@ -314,38 +314,7 @@
                                         <th>Other Options</th>
                                     </tr>
                                 </thead>
-                                <tbody style="font-size:small;">
-                                    @foreach (var item in Model)
-                                    {
-
-                                        <tr>
-                                            <td>
-                                                @item.FirstName
-                                            </td>
-                                            <td>
-                                                @item.LastName
-                                            </td>
-                                            <th>
-                                                @item.Id
-                                            </th>
-                                            <th>
-                                                @item.Email
-                                            </th>
-                                            <td>
-                                                @item.PhoneNumber
-                                            </td>
-                                            <td>
-                                                @item.CompanyName
-                                            </td>
-
-                                            <td>
-                                                <a asp-action="DetailsTrainees" asp-route-id="@item.Id" title="Check Trainee Details">Details</a>
-                                            </td>
-                                        </tr>
-
-                                    }
-                                </tbody>
-                                <tfoot>
+                                <thead>
                                     <tr>
                                         <th>
                                             <input type="text" id="input1" onkeyup="input1f()" placeholder="First Name " title="Type in a name">
@@ -373,7 +342,39 @@
 
                                         <th></th>
                                     </tr>
-                                </tfoot>
+                                </thead>
+                                <tbody style="font-size:small;">
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                @item.FirstName
+                                            </td>
+                                            <td>
+                                                @item.LastName
+                                            </td>
+                                            <th>
+                                                @item.UID
+                                            </th>
+                                            <th>
+                                                @item.Email
+                                            </th>
+                                            <td>
+                                                @item.PhoneNumber
+                                            </td>
+                                            <td>
+                                                @item.CompanyName
+                                            </td>
+
+                                            <td>
+                                                <a asp-action="DetailsTrainees" asp-route-id="@item.Id" title="Check Trainee Details">Details</a>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+
                             </table>
                         </div>
                     </div>

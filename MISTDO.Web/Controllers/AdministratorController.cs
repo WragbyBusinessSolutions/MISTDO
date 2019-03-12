@@ -437,10 +437,11 @@ namespace MISTDO.Web.Controllers
         }
         public async Task<IActionResult> ViewCertificate(string traineeid, string moduleid, string TrainingCentreId, int TrainingId)
         {
-            var training = dbcontext.Trainings.FirstOrDefault(t => t.TraineeId == traineeid && t.ModuleId == moduleid && t.TrainingCentreId == TrainingCentreId);
+            var trainee = await _traineeuserManager.FindByIdAsync(traineeid);
+            var training = dbcontext.Trainings.FirstOrDefault(t => t.TraineeId == trainee.UID && t.ModuleId == moduleid && t.TrainingCentreId == TrainingCentreId);
             var centre = await _usermanager.FindByIdAsync(TrainingCentreId);
 
-            var trainee = await _traineeuserManager.FindByIdAsync(traineeid);
+            
             var module = admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
 
 

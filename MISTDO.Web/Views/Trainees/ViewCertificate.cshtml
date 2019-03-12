@@ -329,14 +329,27 @@
                             <div class="mrg-top-15">
                                 <div class="inline-block">
                                     @*<img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">*@
-                                    <img class="img-fluid" src="~/images/logo.png" alt="MISTDO LOGO" style="max-width:45%" />
+                                    @if (centre.ImageUpload != null)
+                                    {
+
+                                        <span class="over">
+                                            <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(centre.ImageUpload))" alt="@centre.CentreName" style="max-width:45%">
+                                        </span>
+
+                                    }
+                                    else
+                                    {
+
+
+
+                                    }
                                     <address class="pdd-left-10 mrg-top-20">
 
 
                                     </address>
                                 </div>
                                 <div class="pull-right">
-                                    <h2 class="text-dark">Certificate ID: @training.CertificateId</h2>
+                                    <span class="text-dark"><span>Certificate ID: @training.CertificateId</span></span><br />
                                     <span class="text-dark">First Name: @trainee.FirstName</span><br />
                                     <span class="text-dark">Last Name:   @trainee.LastName</span><br />
                                     <span class="text-dark">Trainee ID: @trainee.UID</span><br />
@@ -359,7 +372,7 @@
 
                                     <h4>
                                         <span style="float:left;"><b class="text-dark">Training Center : @centre.CompanyName</b>  </span>
-                                        <span style="float:right;"><b>Certificate Id: @training.CertificateId</b></span>
+                                        <span style="float:right;"><b>Certificate ID: @training.CertificateId</b></span>
                                     </h4>
                                 </p>
 

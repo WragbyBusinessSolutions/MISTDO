@@ -118,25 +118,25 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
                         @*<div class="user-info">
-                            @if (user.ImageUpload != null)
-                            {
+                                @if (user.ImageUpload != null)
+                                {
 
-                                <span class="name pdd-right-5">
-                                    <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(user.ImageUpload))" alt="Take a new Passport" height="25" width="25">
-                                </span>
+                                    <span class="name pdd-right-5">
+                                        <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(user.ImageUpload))" alt="Take a new Passport" height="25" width="25">
+                                    </span>
 
-                            }
-                            else
-                            {
+                                }
+                                else
+                                {
 
-                                <img class="mrg-top-30" src="~/templates/avatar.png" alt="Take a new Passport" height="150" width="180">
+                                    <img class="mrg-top-30" src="~/templates/avatar.png" alt="Take a new Passport" height="150" width="180">
 
-                                <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
+                                    <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
 
-                            }
-                            <span class="name pdd-right-5"> <label> @user.FirstName</label> &nbsp; @user.LastName </span>
-                            <i class="ti-angle-down font-size-10"></i>
-                        </div>*@
+                                }
+                                <span class="name pdd-right-5"> <label> @user.FirstName</label> &nbsp; @user.LastName </span>
+                                <i class="ti-angle-down font-size-10"></i>
+                            </div>*@
                     </a>
                     <ul class="dropdown-menu">
 
@@ -225,7 +225,14 @@
             </div>
         </div>
     </div>
-
+    <style>
+        #over img {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            max-width:10%;
+        }
+    </style>
     <!-- Content Wrapper START -->
     <div class="main-content">
         <div class="container-fluid">
@@ -258,21 +265,67 @@
                         </ul>
                     </div>
                     <div class="card-body">
+
                         <div class="pdd-horizon-30">
+
                             <div class="mrg-top-15">
                                 <div class="inline-block">
                                     @*<img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">*@
-                                    <img class="img-fluid" src="~/css/JDF.KSDJ" alt="MISTDO LOGO" />
+                                    <img class="img-fluid" src="~/images/logo.png" alt="MISTDO LOGO" style="max-width:45%" />
+                                    <address class="pdd-left-10 mrg-top-20">
+
+
+                                    </address>
+                                </div>
+                                <div id="over" style="position:absolute; width:100%; height:100%">
+
+                                    @if (trainee.ImageUpload != null)
+                                    {
+
+                                        <span class="over">
+                                            <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(trainee.ImageUpload))" alt="Take a new Passport">
+                                        </span>
+
+                                    }
+                                    else
+                                    {
+                                        <span class="over">
+                                            <img src="~/templates/avatar.png" alt="Take a new Passport">
+                                        </span>
+
+                                        <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
+
+                                    }
+                                </div>
+
+                            </div>
+                            <div class="mrg-top-15">
+                                <div class="inline-block">
+                                    @*<img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">*@
+                                    @if (centre.ImageUpload != null)
+                                    {
+
+                                        <span class="over">
+                                            <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(centre.ImageUpload))" alt="@centre.CentreName" style="max-width:45%">
+                                        </span>
+
+                                    }
+                                    else
+                                    {
+
+
+
+                                    }
                                     <address class="pdd-left-10 mrg-top-20">
 
 
                                     </address>
                                 </div>
                                 <div class="pull-right">
-                                    <h2 class="text-dark">Certificate ID: @training.CertificateId</h2>
+                                    <span class="text-dark"><span>Certificate ID: @training.CertificateId</span></span><br />
                                     <span class="text-dark">First Name: @trainee.FirstName</span><br />
                                     <span class="text-dark">Last Name:   @trainee.LastName</span><br />
-                                    <span class="text-dark">Trainee ID: @trainee.Id</span><br />
+                                    <span class="text-dark">Trainee ID: @trainee.UID</span><br />
                                     <span class="text-dark">Trainee Address: @trainee.UserAddress</span><br>
                                     <abbr class="text-dark" title="Phone">Phone:</abbr>
                                     <span class="text-dark">@trainee.PhoneNumber</span>
@@ -281,7 +334,6 @@
                             </div>
                         </div>
 
-
                         <div class="row mrg-top-20">
                             <div class="col-md-12 col-sm-12">
 
@@ -289,8 +341,8 @@
                                 <p>
 
                                     <h4>
-                                        <span style="float:left;"><b class="text-dark">Training Center</b>  </span>
-                                        <span style="float:right;"><b>Certificate Id: @training.CertificateId</b></span>
+                                        <span style="float:left;"><b class="text-dark">Training Center : @centre.CompanyName</b>  </span>
+                                        <span style="float:right;"><b>Certificate ID: @training.CertificateId</b></span>
                                     </h4>
                                 </p>
 
@@ -301,7 +353,7 @@
                                 <p>
 
                                     <h4>
-                                        <span style="float:left;"><b class="text-dark">Accreditation Id: @training.TrainingCentreId</b> </span>
+                                        <span style="float:left;"><b class="text-dark">Centre ID: @centre.UID</b> </span>
                                         <span style="float:right;"><b>Issued Date: @training.CertGenDate</b></span>
                                     </h4>
                                 </p>
@@ -310,7 +362,7 @@
                             <div class="col-md-12">
                                 <p>
                                     <h4>
-                                        <span style="float:left;"><b class="text-dark">Centre Address: @centre.CompanyAddress</b> </span>
+                                        <span style="float:left;"><b class="text-dark">Permit Number: @centre.PermitNumber</b> </span>
                                         <span style="float:right;"><b>Valid Till: @training.CertGenDate.AddYears(2)</b></span>
                                     </h4>
                                 </p>
@@ -330,18 +382,18 @@
                                             <th>Exam Name</th>
                                             <th>Description</th>
                                             @*
-                                            <th>Score</th>*@
+                                                <th>Score</th>*@
                                             <th class="text-right">Remark</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             @*
-                                            <td>@module.Id</td>*@
+                                                <td>@module.Id</td>*@
                                             <td>@module.Name</td>
                                             <td>@module.Description</td>
                                             @*
-                                            <td>Score</td>*@
+                                                <td>Score</td>*@
                                             <td class="text-right">Completed</td>
                                         </tr>
                                     </tbody>

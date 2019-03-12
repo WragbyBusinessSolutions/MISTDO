@@ -5,6 +5,7 @@
 }
 
 @inject UserManager<TraineeApplicationUser> userManager;
+@inject UserManager<ApplicationUser> usermanager;
 
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
 <script>
@@ -324,47 +325,7 @@
                                             <th>Other Options</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach (var item in Model)
-                                        {
-
-                                            <tr>
-                                                <td>
-                                                    @Html.DisplayFor(model => item.TraineeId)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => item.TrainingName)
-                                                </td>
-                                                <th>
-                                                    @Html.DisplayFor(model => item.TrainingCentreId)
-                                                </th>
-                                                <th>
-                                                    @Html.DisplayFor(model => item.CertificateId)
-                                                </th>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.DateCreated)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.TrainingStartDate)
-                                                </td>
-                                                <th>
-                                                    @Html.DisplayFor(model => item.TrainingEndDate)
-                                                </th>
-                                                <th>
-                                                    @Html.DisplayFor(model => item.CertGenDate)
-                                                </th>
-                                                <td>
-                                                    @{
-                                                        var t = item.TraineeId;
-
-                                                        <a asp-action="DetailsTrainees" title="Check Trainee Details" asp-route-id="@item.TraineeId">Details</a>
-                                                    }
-                                                </td>
-                                            </tr>
-
-                                        }
-                                    </tbody>
-                                    <tfoot>
+                                    <thead>
                                         <tr>
                                             <th>
                                                 <input type="text" id="input1" onkeyup="input1f()" placeholder="Trainee ID" title="Type in a name">
@@ -400,7 +361,53 @@
                                             </th>
                                             <th></th>
                                         </tr>
-                                    </tfoot>
+                                    </thead>
+                                    <tbody style="font-size:small;">
+                                        @foreach (var item in Model)
+                                        {
+
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(model => item.TraineeId)
+                                                </td>
+                                                <td>
+
+                                                    @Html.DisplayFor(model => item.TrainingName)
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        var center = await usermanager.FindByIdAsync(item.TrainingCentreId);
+                                                    }
+                                                    @Html.DisplayFor(model => center.UID)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(model => item.CertificateId)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DateCreated)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TrainingStartDate)
+                                                </td>
+                                                <th>
+                                                    @Html.DisplayFor(model => item.TrainingEndDate)
+                                                </th>
+                                                <td>
+                                                    @Html.DisplayFor(model => item.CertGenDate)
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        var t = item.TraineeId;
+                                                        var us =  userManager.Users.FirstOrDefault(m => m.UID == item.TraineeId);
+                                                        
+                                                        <a asp-action="DetailsTrainees" title="Check Trainee Details" asp-route-id="item.TraineeId">Details</a>
+                                                    }
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+
                                 </table>
                             </div>
                         </div>
