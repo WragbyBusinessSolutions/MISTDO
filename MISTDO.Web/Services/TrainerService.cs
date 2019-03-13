@@ -132,6 +132,7 @@ namespace MISTDO.Web.Services
 
             return users;
         }
+       
         //public async Task<IEnumerable<ApplicationUser>> GetTrainingCentre(string id)
         //{
 

@@ -241,7 +241,7 @@ namespace MISTDO.Web.Controllers
                 return Content("Cert already Generated");
             }
 
-            var CertId = "MISTDO/"+module.ShortCode + DateTime.Now.Year + Helpers.GetCertId.RandomString(5);
+            var CertId = "MISTDO/"+module.ShortCode+"/" + DateTime.Now.Year +"/"+ Helpers.GetCertId.RandomString(5);
 
             ViewBag.Trainee = trainee;
             ViewBag.Centre = centre;

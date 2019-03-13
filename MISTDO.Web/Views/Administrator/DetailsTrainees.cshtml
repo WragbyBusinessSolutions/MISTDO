@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
 
 <!-- Page Container START -->
+@inject UserManager<TraineeApplicationUser> usermanager;
 @inject UserManager<ApplicationUser> userManager;
 <div class="page-container">
     <!-- Header START -->
@@ -18,7 +19,7 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                <a asp-action="AllRegisteredTrainees">Back</a>
+                <a asp-action="AllRegisteredTrainees" class="btn btn-success">Back</a>
                 <h4>Trainee Details</h4>
             </div>
             <div class="row">
@@ -58,7 +59,17 @@
                                 <div class="card-block">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.FirstName)</b></p>
+                                            <p class="mrg-top-10 text-dark"> <b>Trainee ID</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="status online mrg-top-10"></span>
+                                            <p class="mrg-top-10"> @Html.DisplayFor(model => model.UID)</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="mrg-top-10 text-dark"> <b>First Name</b></p>
                                         </div>
                                         <div class="col-md-6">
                                             <span class="status online mrg-top-10"></span>
@@ -80,7 +91,7 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b> @Html.DisplayNameFor(model => model.PhoneNumber)</b></p>
+                                            <p class="mrg-top-10 text-dark"> <b> Phone Number</b></p>
                                         </div>
                                         <div class="col-md-6">
                                             <span class="status online mrg-top-10"></span>
@@ -90,7 +101,7 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.CompanyName)</b></p>
+                                            <p class="mrg-top-10 text-dark"> <b>Company Name</b></p>
                                         </div>
                                         <div class="col-md-6">
                                             <p class="mrg-top-10">
@@ -102,7 +113,7 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.CompanyAddress)</b></p>
+                                            <p class="mrg-top-10 text-dark"> <b>Company Address</b></p>
                                         </div>
                                         <div class="col-md-6">
                                             <p class="mrg-top-10">
@@ -114,7 +125,7 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>@Html.DisplayNameFor(model => model.UserAddress)</b></p>
+                                            <p class="mrg-top-10 text-dark"> <b>User Address</b></p>
                                         </div>
                                         <div class="col-md-6">
                                             <p class="mrg-top-10">
@@ -137,8 +148,8 @@
             <div class="page-title">
                 <h4>Registered Trainings</h4>
                 @*<p>
-                    <a asp-action="CreateTraining">Create New</a>
-                </p>*@
+                        <a asp-action="CreateTraining">Create New</a>
+                    </p>*@
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -147,8 +158,10 @@
 
                             @{
                                 var user = await userManager.GetUserAsync(User);
-                                
+
                                 var Mode = ViewBag.trainings as List<MISTDO.Web.Models.Training>;
+
+                                var trainee = await usermanager.GetUserAsync(User);
 
 
                             }
@@ -162,11 +175,11 @@
                                             <th>
                                                 Module ID
                                             </th>
-                                           
+
                                             <th>
                                                 Trainee ID
                                             </th>
-                                         
+
                                             <th>
                                                 Start Date
                                             </th>
@@ -179,45 +192,48 @@
                                     <tbody>
                                         @foreach (var item in Mode)
                                         {
-                                            
-                                                <tr>
-                                                    <td>
-                                                        @Html.DisplayFor(Item => item.TrainingName)
+
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(Item => item.TrainingName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.ModuleId)
+                                                </td>
+                                                @*<td>
+                                                        @Html.DisplayFor(modelItem => item.PaymentRefId)
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.ModuleId)
-                                                    </td>
-                                                    @*<td>
-                                                            @Html.DisplayFor(modelItem => item.PaymentRefId)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.TrainingCentreId)
-                                                        </td>*@
-                                                    <th>
-                                                        @Html.DisplayFor(model => item.TraineeId)
+                                                        @Html.DisplayFor(modelItem => item.TrainingCentreId)
+                                                    </td>*@
+                                                @{ 
+                                                    string badt = item.TraineeId;
+                                                }
+                                                <th>
+                                                    @Html.DisplayFor(model => model.UID)
+                                                </th>
+                                                @*<th>
+                                                        @Html.DisplayFor(model => item.CertificateId)
                                                     </th>
-                                                    @*<th>
-                                                            @Html.DisplayFor(model => item.CertificateId)
-                                                        </th>
-                                                        <th>
-                                                            @Html.DisplayFor(model => item.CertGenDate)
-                                                        </th>
-                                                        <th>
-                                                            @Html.DisplayFor(model => item.DateCreated)
-                                                        </th>*@
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate)
-                                                    </td>
-                                                    <td>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.CertGenDate)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayFor(model => item.DateCreated)
+                                                    </th>*@
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TrainingStartDate)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TrainingEndDate)
+                                                </td>
+                                                <td>
 
-                                                         <a asp-action="DetailsModule" asp-route-id="@item.Id">Details</a> 
+                                                    <a asp-action="DetailsModule" asp-route-id="@item.Id">Details</a>
 
-                                                    </td>
-                                                </tr>
-                                           
+                                                </td>
+                                            </tr>
+
 
                                         }
                                     </tbody>
@@ -231,7 +247,7 @@
             </div>
         </div>
 
-        
+
     </div>
     <!-- Content Wrapper END -->
     <!-- Footer START -->

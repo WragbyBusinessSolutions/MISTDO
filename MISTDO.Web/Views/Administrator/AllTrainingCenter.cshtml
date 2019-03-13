@@ -79,7 +79,7 @@
     }
     function input5f() {
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("input3");
+        input = document.getElementById("input5");
         filter = input.value.toUpperCase();
         table = document.getElementById("dt-opt");
         tr = table.getElementsByTagName("tr");
@@ -97,7 +97,7 @@
     }
     function input6f() {
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("input3");
+        input = document.getElementById("input6");
         filter = input.value.toUpperCase();
         table = document.getElementById("dt-opt");
         tr = table.getElementsByTagName("tr");
@@ -115,12 +115,30 @@
     }
     function input7f() {
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("input3");
+        input = document.getElementById("input7");
         filter = input.value.toUpperCase();
         table = document.getElementById("dt-opt");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[6];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function input8f() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input8");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dt-opt");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[7];
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -213,6 +231,16 @@
         border: 1px solid #ddd;
         margin-bottom: 12px;
     }
+    #input8 {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
 
     #dt-opt {
         border-collapse: collapse;
@@ -256,7 +284,7 @@
                     <div class="card">
                         <div class="card-block">
                             <div class="table-overflow">
-                                <table id="dt-opt" class="display">
+                                <table id="dt-opt" class="display" style="font-size:small;">
                                     <thead>
                                         <tr>
                                             <th>
@@ -288,35 +316,73 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody style="font-size:small;">
-                                        @foreach (var item in Model )
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="text" id="input1" onkeyup="input1f()">
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input2" onkeyup="input2f()">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input3" onkeyup="input3f()">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input4" onkeyup="input4f()">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input5" onkeyup="input5f()">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input6" onkeyup="input6f()">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input7" onkeyup="input7f()">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input8" onkeyup="input8f()">
+
+                                            </th>
+
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                        @foreach (var item in Model)
                                         {
 
                                             <tr>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.Id)
+                                                    @Html.DisplayFor(modelItem => item.UID)
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.CentreName)
                                                 </td>
-                                                <th>
+                                                <td>
                                                     @Html.DisplayFor(model => item.CompanyAddress)
-                                                </th>
-                                                <th>
+                                                </td>
+                                                <td>
                                                     @Html.DisplayFor(model => item.City)
-                                                </th>
-                                                <th>
+                                                </td>
+                                                <td>
                                                     @Html.DisplayFor(model => item.Email)
-                                                </th>
+                                                </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.PhoneNumber)
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.PermitNumber)
                                                 </td>
-                                                <th>
+                                                <td>
                                                     @Html.DisplayFor(model => item.DateRegistered)
-                                                </th>
+                                                </td>
                                                 <td>
                                                     <a asp-action="DetailsTrainingCenter" asp-route-id="@item.Id" title="Check more details" class="btn btn-success">Details</a>
                                                 </td>
@@ -325,36 +391,7 @@
                                         }
                                     </tbody>
 
-                                    <tfoot>
-                                        <tr>
-                                            <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Search " title="Type in a name">
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Search " title="Type in a name">
 
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Search" title="Type in a name">
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Search" title="Type in a name">
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="Search " title="Type in a name">
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="Search " title="Type in a name">
-
-                                            </th>
-
-
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
                                 </table>
                             </div>
                         </div>

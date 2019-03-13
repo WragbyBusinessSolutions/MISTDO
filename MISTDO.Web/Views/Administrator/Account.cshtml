@@ -5,6 +5,7 @@
 }
 
 @inject UserManager<TraineeApplicationUser> userManager;
+@inject UserManager<ApplicationUser> usermanager;
 
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
 <script>
@@ -82,7 +83,7 @@
     }
     function input5f() {
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("input3");
+        input = document.getElementById("input5");
         filter = input.value.toUpperCase();
         table = document.getElementById("dt-opt");
         tr = table.getElementsByTagName("tr");
@@ -100,7 +101,7 @@
     }
     function input6f() {
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("input3");
+        input = document.getElementById("input6");
         filter = input.value.toUpperCase();
         table = document.getElementById("dt-opt");
         tr = table.getElementsByTagName("tr");
@@ -118,7 +119,7 @@
     }
     function input7f() {
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("input3");
+        input = document.getElementById("input7");
         filter = input.value.toUpperCase();
         table = document.getElementById("dt-opt");
         tr = table.getElementsByTagName("tr");
@@ -267,7 +268,7 @@
                     <div class="card">
                         <div class="card-block">
                             <div class="table-overflow">
-                                <table id="dt-opt" class="display">
+                                <table id="dt-opt" class="display" style="font-size:small;">
                                     <thead>
                                         <tr>
                                             <th>
@@ -285,74 +286,77 @@
                                             <th>
                                                 Date Registered
                                             </th>
-                                            <th>
-                                                Training Cost
-                                            </th>
+                                            
 
                                             <th> other options</th>
                                         </tr>
                                     </thead>
-                                    <tbody style="font-size:small;">
-                                        @for (int i = 0; i < Model.Count(); i++)
-                                        {
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="text" id="input1" onkeyup="input1f()">
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input2" onkeyup="input2f()">
 
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input3" onkeyup="input3f()">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input4" onkeyup="input4f()">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input5" onkeyup="input5f()">
+
+                                            </th>
+
+                                           
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="font-size:small;">
+                                        @foreach (var item in Model)
+                                        {
                                             <tr>
                                                 <td>
-                                                    @Model[i].TraineeId
-                                                </td>
-                                                <td>
-                                                    @Model[i].TrainingName
-                                                </td>
-                                                <td>
-                                                    @Model[i].TrainingCentreId
-                                                </td>
-                                                <td>
-                                                    @Model[i].CertificateId
-                                                </td>
-                                                <td>
-                                                    @Model[i].DateCreated
+
+                                                    @Html.DisplayFor(modelItem => item.TraineeId)
                                                 </td>
                                                 <td>
 
-                                                    @module[i].Cost
+                                                    @Html.DisplayFor(modelItem => item.TrainingName)
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        var center = await usermanager.FindByIdAsync(item.TrainingCentreId);
+
+                                                    }
+                                                    @center.UID
 
                                                 </td>
+                                                <td>
+
+                                                    @Html.DisplayFor(modelItem => item.CertificateId)
+                                                </td>
+                                                <td>
+
+                                                    @Html.DisplayFor(modelItem => item.DateCreated)
+                                                </td>
+                                               
 
                                                 <td>
 
-                                                    <a asp-action="DetailsTrainees" asp-route-id="@Model[i].TraineeId">View Details</a>
+                                                    <a asp-action="DetailsTrainees" asp-route-id="@item.TraineeId">View Details</a>
 
                                                 </td>
                                             </tr>
 
                                         }
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Trainee ID " title="Type in a name">
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Module Name " title="Type in a name">
 
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Centre ID" title="Type in a name">
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Date Registered" title="Type in a name">
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="Training Cost" title="Type in a name">
-
-                                            </th>
-
-                                            <th> </th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
 
                                 </table>
 

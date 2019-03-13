@@ -206,7 +206,13 @@ namespace MISTDO.Web.Controllers
      
         public async Task<IActionResult> Account()
         {
+            string id = null;
             var allModuletrainee = await _trainer.GetAllModuleTrainees();
+            var Trainings = await dbcontext.Trainings.ToListAsync();
+            foreach (var item in Trainings)
+                ViewBag.centerid = item.TrainingCentreId;
+
+            
             var modules = new List<Modules>();
             foreach (var item in allModuletrainee)
             {
@@ -218,9 +224,10 @@ namespace MISTDO.Web.Controllers
 
             double total = modules.Sum(item => item.Cost);
             string cost = string.Format(new System.Globalization.CultureInfo("en-NG"), "{0:C2}", total);
+           
             ViewBag.totalcost = cost;
 
-            return View(allModuletrainee);
+            return View(Trainings);
 
         }
 
@@ -290,6 +297,12 @@ namespace MISTDO.Web.Controllers
             foreach (var item in tcentre)
 
                 ViewBag.Tcenter = item.CentreName;
+            foreach (var item in tcentre)
+                ViewBag.CenterID = item.UID;
+
+            var users = await Traineedbcontext.Users.ToListAsync();
+            foreach (var item in users)
+                ViewBag.trainee = item.UID;
 
             var training = await dbcontext.Trainings
                 .SingleOrDefaultAsync(m => m.Id == id);
@@ -339,7 +352,7 @@ namespace MISTDO.Web.Controllers
 
             var trainee = await Traineedbcontext.Users.SingleOrDefaultAsync(m => m.Id == id);
 
-
+            ViewBag.ID = trainee.UID;
 
 
             if (trainee == null)
