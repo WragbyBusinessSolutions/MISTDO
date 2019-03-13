@@ -82,7 +82,7 @@
     }
     function input5f() {
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("input3");
+        input = document.getElementById("input5");
         filter = input.value.toUpperCase();
         table = document.getElementById("dt-opt");
         tr = table.getElementsByTagName("tr");
@@ -100,7 +100,7 @@
     }
     function input6f() {
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("input3");
+        input = document.getElementById("input6");
         filter = input.value.toUpperCase();
         table = document.getElementById("dt-opt");
         tr = table.getElementsByTagName("tr");
@@ -118,7 +118,7 @@
     }
     function input7f() {
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("input3");
+        input = document.getElementById("input7");
         filter = input.value.toUpperCase();
         table = document.getElementById("dt-opt");
         tr = table.getElementsByTagName("tr");
@@ -258,7 +258,7 @@
                     <div class="card">
                         <div class="card-block">
                             <div class="table-overflow">
-                                <table id="dt-opt" class="table table-lg table-hover">
+                                <table id="dt-opt" class="table table-lg table-hover" style="font-size:small;">
                                     <thead>
                                         <tr>
                                             <th>
@@ -288,26 +288,26 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Module Name" title="Type in a name">
+                                                <input type="text" id="input1" onkeyup="input1f()" >
                                             </th>
                                             <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Center Name" title="Type in a name">
+                                                <input type="text" id="input2" onkeyup="input2f()" >
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Cost" title="Type in a name">
+                                                <input type="text" id="input3" onkeyup="input3f()" >
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="State" title="Type in a name">
+                                                <input type="text" id="input4" onkeyup="input4f()" >
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input4" onkeyup="input5f()" placeholder="Start Date" title="Type in a name">
+                                                <input type="text" id="input5" onkeyup="input5f()" >
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="End Date" title="Type in a name">
+                                                <input type="text" id="input6" onkeyup="input6f()" >
 
                                             </th>
 
@@ -316,7 +316,7 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody style="font-size:small;">
+                                    <tbody >
                                         @foreach (var item in Model)
                                         {
                                             var centername = await usermanager.FindByIdAsync(item.TrainingCentreId);
@@ -342,19 +342,19 @@
                                                     <td>
                                                         @Html.DisplayFor(model => item.Cost)
                                                     </td>
-                                                    <th>
+                                                    <td>
                                                         @Html.DisplayFor(model => item.Venue)
-                                                    </th>
+                                                    </td>
 
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate) 
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate) 
                                                     </td>
                                                     <td>
 
-                                                        <a asp-action="DetailsCalender" asp-route-id="@item.Id">Details</a>
+                                                        <a asp-action="DetailsCalender" asp-route-id="@item.Id" class="btn btn-success">Details</a>
 
                                                     </td>
                                                 </tr>

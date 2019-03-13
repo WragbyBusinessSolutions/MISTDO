@@ -372,7 +372,12 @@ namespace MISTDO.Web.Views.TrainerDashboard
         {
             return View(await tdbcontext.Calenders.ToListAsync());
         }
-
+        [HttpGet]
+        public async Task<IActionResult> Deactivate()
+        {
+            ViewBag.Message = "";
+            return View();
+        }
         public async Task<IActionResult> DetailsCalender(int? id)
         {
             if (id == null)
@@ -382,6 +387,9 @@ namespace MISTDO.Web.Views.TrainerDashboard
 
             var calenders = await tdbcontext.Calenders
                 .SingleOrDefaultAsync(m => m.Id == id);
+           
+            var trainer = await tdbcontext.Users.SingleOrDefaultAsync(m => m.Id == calenders.TrainingCentreId);
+            ViewBag.CenterID = trainer.UID;
             if (calenders == null)
             {
                 return NotFound();
@@ -591,6 +599,12 @@ namespace MISTDO.Web.Views.TrainerDashboard
                     {
 
                         return RedirectToAction(nameof(EditPassword));
+                    }
+                    
+                    if (user.ImageUpload == null && user.RightIndex == null && DateTime.Now >= user.DateRegistered.AddDays(30))// check for expiry date 
+                    {
+                        ViewBag.Message = ViewBag.Message + "Sorry Your Account has been Deactivated";
+                        return RedirectToAction(nameof(Deactivate));
                     }
                     returnUrl = returnUrl ?? Url.Content("~/Trainees/Profile");
                     //     }

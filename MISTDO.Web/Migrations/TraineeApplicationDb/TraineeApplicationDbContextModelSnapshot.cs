@@ -194,6 +194,8 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
 
                     b.Property<bool>("TwoFactorEnabled");
 
+                    b.Property<string>("UID");
+
                     b.Property<string>("UserName");
 
                     b.HasKey("Id");
