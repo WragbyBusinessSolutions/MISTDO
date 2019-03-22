@@ -1,0 +1,447 @@
+﻿
+@{
+    ViewData["Title"] = "View Certificate";
+    Layout = "_LayoutAdminDashboard";
+}
+@inject UserManager<TraineeApplicationUser> userManager;
+@{
+    var training = ViewBag.Training as Training;
+    var trainee = ViewBag.Trainee as TraineeApplicationUser;
+    var centre = ViewBag.Centre as ApplicationUser;
+    var module = ViewBag.Module as Modules;
+    var user = await userManager.GetUserAsync(User);
+}
+<div class="page-container">
+    <!-- Header START -->
+    <div class="header navbar">
+        <div class="header-container">
+            <ul class="nav-left">
+                <li>
+                    <a class="side-nav-toggle" href="javascript:void(0);">
+                        <i class="ti-view-grid"></i>
+                    </a>
+                </li>
+                <li class="search-box">
+                    <a class="search-toggle no-pdd-right" href="javascript:void(0);">
+                        <i class="search-icon ti-search pdd-right-10"></i>
+                        <i class="search-icon-close ti-close pdd-right-10"></i>
+                    </a>
+                </li>
+                <li class="search-input">
+                    <input class="form-control" type="text" placeholder="Search...">
+                    <div class="advanced-search">
+                        <div class="search-wrapper">
+                            <div class="pdd-vertical-10">
+                                <span class="display-block mrg-vertical-5 pdd-horizon-20 text-gray">
+                                    <i class="ti-user pdd-right-5"></i>
+                                    <span>People</span>
+                                </span>
+                                <ul class="list-unstyled list-info">
+                                    <li>
+                                        <a href="#">
+                                            <img class="thumb-img" src="assets/images/avatars/thumb-1.jpg" alt="">
+                                            <div class="info">
+                                                <span class="title">Jordan Hurst</span>
+                                                <span class="sub-title">
+                                                    <i class="ti-location-pin"></i>
+                                                    <span>44 Shirley Ave. West Chicago</span>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img class="thumb-img" src="assets/images/avatars/thumb-5.jpg" alt="">
+                                            <div class="info">
+                                                <span class="title">Jennifer Watkins</span>
+                                                <span class="sub-title">
+                                                    <i class="ti-location-pin"></i>
+                                                    <span>514 S. Magnolia St. Orlando</span>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img class="thumb-img" src="assets/images/avatars/thumb-4.jpg" alt="">
+                                            <div class="info">
+                                                <span class="title">Michael Birch</span>
+                                                <span class="sub-title">
+                                                    <i class="ti-location-pin"></i>
+                                                    <span>70 Bowman St. South Windsor</span>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mrg-horizon-20 border top"></div>
+                            <div class="pdd-vertical-10">
+                                <span class="display-block mrg-vertical-5 pdd-horizon-20 text-gray">
+                                    <i class="ti-rss pdd-right-5"></i>
+                                    <span>Post</span>
+                                </span>
+                                <ul class="list-unstyled list-info">
+                                    <li>
+                                        <a href="#">
+                                            <img class="thumb-img" src="assets/images/img-1.jpg" alt="">
+                                            <div class="info">
+                                                <span class="title">Artoo expresses his relief</span>
+                                                <span class="sub-title">
+                                                    <span>Oh, thank goodness we're coming out...</span>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img class="thumb-img" src="assets/images/img-2.jpg" alt="">
+                                            <div class="info">
+                                                <span class="title">Ready for some power?</span>
+                                                <span class="sub-title">
+                                                    <span>Lord Vader. You may take Caption So...</span>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="search-footer">
+                            <span>You are Searching for '<b class="text-dark"><span class="serach-text-bind"></span></b>'</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav-right">
+                <li class="user-profile dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        @*<div class="user-info">
+                                @if (user.ImageUpload != null)
+                                {
+
+                                    <span class="name pdd-right-5">
+                                        <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(user.ImageUpload))" alt="Take a new Passport" height="25" width="25">
+                                    </span>
+
+                                }
+                                else
+                                {
+
+                                    <img class="mrg-top-30" src="~/templates/avatar.png" alt="Take a new Passport" height="150" width="180">
+
+                                    <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
+
+                                }
+                                <span class="name pdd-right-5"> <label> @user.FirstName</label> &nbsp; @user.LastName </span>
+                                <i class="ti-angle-down font-size-10"></i>
+                            </div>*@
+                    </a>
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a asp-controller="Trainees" asp-action="Profile">
+                                <i class="ti-user pdd-right-10"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Trainees" asp-action="Notification">
+                                <i class="ti-email pdd-right-10"></i>
+                                <span>Inbox</span>
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a asp-controller="Trainees" asp-action="Logout">
+                                <i class="ti-power-off pdd-right-10"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+    <!-- Header END -->
+    <!-- theme configurator START -->
+    <div class="theme-configurator">
+        <div class="configurator-wrapper">
+            <div class="config-header">
+                <h4 class="config-title">Config Panel</h4>
+                <button class="config-close">
+                    <i class="ti-close"></i>
+                </button>
+            </div>
+            <div class="config-body">
+                <div class="mrg-btm-30">
+                    <p class="lead font-weight-normal">Header Color</p>
+                    <div class="theme-colors header-default">
+                        <input type="radio" id="header-default" name="theme">
+                        <label for="header-default"></label>
+                    </div>
+                    <div class="theme-colors header-primary">
+                        <input type="radio" class="primary" id="header-primary" name="theme">
+                        <label for="header-primary"></label>
+                    </div>
+                    <div class="theme-colors header-info">
+                        <input type="radio" id="header-info" name="theme">
+                        <label for="header-info"></label>
+                    </div>
+                    <div class="theme-colors header-success">
+                        <input type="radio" id="header-success" name="theme">
+                        <label for="header-success"></label>
+                    </div>
+                    <div class="theme-colors header-danger">
+                        <input type="radio" id="header-danger" name="theme">
+                        <label for="header-danger"></label>
+                    </div>
+                    <div class="theme-colors header-dark">
+                        <input type="radio" id="header-dark" name="theme">
+                        <label for="header-dark"></label>
+                    </div>
+                </div>
+                <div class="mrg-btm-30">
+                    <p class="lead font-weight-normal">Sidebar Color</p>
+                    <div class="theme-colors sidenav-default">
+                        <input type="radio" id="sidenav-default" name="sidenav">
+                        <label for="sidenav-default"></label>
+                    </div>
+                    <div class="theme-colors side-nav-dark">
+                        <input type="radio" id="side-nav-dark" name="sidenav">
+                        <label for="side-nav-dark"></label>
+                    </div>
+                </div>
+                <div class="mrg-btm-30">
+                    <p class="lead font-weight-normal no-mrg-btm">RTL</p>
+                    <div class="toggle-checkbox checkbox-inline toggle-sm mrg-top-10">
+                        <input type="checkbox" name="rtl-toogle" id="rtl-toogle">
+                        <label for="rtl-toogle"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        #over img {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            max-width:10%;
+        }
+    </style>
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="card">
+                    <div class="pdd-vertical-5 pdd-horizon-10 border bottom print-invisible">
+                        <ul class="list-unstyle list-inline text-left">
+                            <li class="list-inline-item">
+
+                                <a class="btn text-gray text-hover display-block padding-10 no-mrg-btm" asp-action="AllCertificate">
+
+                                    <i class="ti-back-left"></i>
+                                    <b>Back</b>
+                                </a>
+                            </li>
+                        </ul>
+
+
+
+                        <ul class="list-unstyle list-inline text-right">
+                            <li class="list-inline-item">
+                                <a href="#" class="btn text-gray text-hover display-block padding-10 no-mrg-btm" onclick="window.print();">
+                                    <i class="ti-printer text-info pdd-right-5"></i>
+                                    <b>Print</b>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="pdd-horizon-30">
+
+                            <div class="mrg-top-15">
+                                <div class="inline-block">
+                                    @*<img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">*@
+                                    <img class="img-fluid" src="~/images/logo.png" alt="MISTDO LOGO" style="max-width:45%" />
+                                    <address class="pdd-left-10 mrg-top-20">
+
+
+                                    </address>
+                                </div>
+                                <div id="over" style="position:absolute; width:100%; height:100%">
+
+                                    @if (trainee.ImageUpload != null)
+                                    {
+
+                                        <span class="over">
+                                            <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(trainee.ImageUpload))" alt="Take a new Passport">
+                                        </span>
+
+                                    }
+                                    else
+                                    {
+                                        <span class="over">
+                                            <img src="~/templates/avatar.png" alt="Take a new Passport">
+                                        </span>
+
+                                        <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
+
+                                    }
+                                </div>
+
+                            </div>
+                            <div class="mrg-top-15">
+                                <div class="inline-block">
+                                    @*<img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">*@
+                                    @if (centre.ImageUpload != null)
+                                    {
+
+                                        <span class="over">
+                                            <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(centre.ImageUpload))" alt="@centre.CentreName" style="max-width:45%">
+                                        </span>
+
+                                    }
+                                    else
+                                    {
+
+
+
+                                    }
+                                    <address class="pdd-left-10 mrg-top-20">
+
+
+                                    </address>
+                                </div>
+                                <div class="pull-right">
+                                    <span class="text-dark"><span>Certificate ID: @training.CertificateId</span></span><br />
+                                    <span class="text-dark">First Name: @trainee.FirstName</span><br />
+                                    <span class="text-dark">Last Name:   @trainee.LastName</span><br />
+                                    <span class="text-dark">Trainee ID: @trainee.UID</span><br />
+                                    <span class="text-dark">Trainee Address: @trainee.UserAddress</span><br>
+                                    <abbr class="text-dark" title="Phone">Phone:</abbr>
+                                    <span class="text-dark">@trainee.PhoneNumber</span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mrg-top-20">
+                            <div class="col-md-12 col-sm-12">
+
+
+                                <p>
+
+                                    <h4>
+                                        <span style="float:left;"><b class="text-dark">Training Center : @centre.CompanyName</b>  </span>
+                                        <span style="float:right;"><b>Certificate ID: @training.CertificateId</b></span>
+                                    </h4>
+                                </p>
+
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+
+
+                                <p>
+
+                                    <h4>
+                                        <span style="float:left;"><b class="text-dark">Centre ID: @centre.UID</b> </span>
+                                        <span style="float:right;"><b>Issued Date: @training.CertGenDate</b></span>
+                                    </h4>
+                                </p>
+
+                            </div>
+                            <div class="col-md-12">
+                                <p>
+                                    <h4>
+                                        <span style="float:left;"><b class="text-dark">Permit Number: @centre.PermitNumber</b> </span>
+                                        <span style="float:right;"><b>Valid Till: @training.CertGenDate.AddYears(2)</b></span>
+                                    </h4>
+                                </p>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="row mrg-top-20">
+                            <div class="col-md-12">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Exam Name</th>
+                                            <th>Description</th>
+                                            @*
+                                                <th>Score</th>*@
+                                            <th class="text-right">Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            @*
+                                                <td>@module.Id</td>*@
+                                            <td>@module.Name</td>
+                                            <td>@module.Description</td>
+                                            @*
+                                                <td>Score</td>*@
+                                            <td class="text-right">Completed</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="row mrg-top-30">
+                                    <div class="col-md-12">
+                                        <div class="pull-right text-right">
+
+                                            <a class="btn btn-success">Passed</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mrg-vertical-20">
+                                    <div class="col-md-8" align="center">
+
+                                        <span class="font-size-13 pull-right pdd-top-10"><img src="~/dist/assets/images/logo/seal2.jpg" width="20%" height="10%"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <footer class="content-footer">
+        <div class="footer">
+            <div class="copyright">
+                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
+                <span class="go-right">
+                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
+                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+</div>
+
+
+
+
+
+
+
+
+
+
