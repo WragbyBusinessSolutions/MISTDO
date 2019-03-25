@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "View Certificate";
-    Layout = "_LayoutTraineeDashboard";
+    Layout = "_LayoutAdminDashboard";
 }
 @inject UserManager<TraineeApplicationUser> userManager;
 @{
@@ -11,33 +11,6 @@
     var module = ViewBag.Module as Modules;
     var user = await userManager.GetUserAsync(User);
 }
-<style>
-    #background {
-        position: absolute;
-        z-index: 99;
-        margin-left: auto;
-        margin-right: 20px;
-        min-height: 50%;
-        min-width: 100%;
-        left:180px;
-    }
-
-    #content {
-        position: absolute;
-        z-index: 1;
-    }
-
-    #bg-text {
- 
-        color: lightgrey;
-        opacity: 0.5;
-        font-size: 120px;
-        transform: rotate(270deg);
-        -webkit-transform: rotate(360deg);
-    }
-</style>
-
-
 <div class="page-container">
     <!-- Header START -->
     <div class="header navbar">
@@ -144,27 +117,26 @@
                 <li class="user-profile dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                        <div class="user-info">
-                            @if (user.ImageUpload != null)
-                            {
+                        @*<div class="user-info">
+                                @if (user.ImageUpload != null)
+                                {
 
-                                <span class="name pdd-right-5">
-                                    <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(user.ImageUpload))" alt="Take a new Passport" height="25" width="25">
-                                </span>
+                                    <span class="name pdd-right-5">
+                                        <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(user.ImageUpload))" alt="Take a new Passport" height="25" width="25">
+                                    </span>
 
-                            }
-                            else
-                            {
+                                }
+                                else
+                                {
 
-                                <img class="mrg-top-30" src="~/templates/avatar.png" alt="Take a new Passport" height="150" width="180">
+                                    <img class="mrg-top-30" src="~/templates/avatar.png" alt="Take a new Passport" height="150" width="180">
 
-                                <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
+                                    <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
 
-                            }
-                            <span class="name pdd-right-5"> <label> @user.FirstName</label> &nbsp; @user.LastName </span>
-                            <span class="name pdd-right-5"> <label> ID:</label> &nbsp;@user.UID </span>
-                            <i class="ti-angle-down font-size-10"></i>
-                        </div>
+                                }
+                                <span class="name pdd-right-5"> <label> @user.FirstName</label> &nbsp; @user.LastName </span>
+                                <i class="ti-angle-down font-size-10"></i>
+                            </div>*@
                     </a>
                     <ul class="dropdown-menu">
 
@@ -194,13 +166,6 @@
             </ul>
         </div>
     </div>
-    <style>
-        #over img {
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-        }
-    </style>
     <!-- Header END -->
     <!-- theme configurator START -->
     <div class="theme-configurator">
@@ -258,22 +223,30 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-
+    <style>
+        #over img {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            max-width:10%;
+        }
+    </style>
     <!-- Content Wrapper START -->
-    <div class="main-content" style=".watermark{background:url(~/templates/avatar.png);">
-        <div class="container-fluid" >
+    <div class="main-content">
+        <div class="container-fluid">
             <div class="container">
                 <div class="card">
                     <div class="pdd-vertical-5 pdd-horizon-10 border bottom print-invisible">
                         <ul class="list-unstyle list-inline text-left">
                             <li class="list-inline-item">
 
-                                <a class="btn text-gray text-hover display-block padding-10 no-mrg-btm" asp-action="Certificate">
+                                <a class="btn text-gray text-hover display-block padding-10 no-mrg-btm" asp-action="AllCertificate">
 
                                     <i class="ti-back-left"></i>
-                                    <b>Back</b> 
+                                    <b>Back</b>
                                 </a>
                             </li>
                         </ul>
@@ -288,7 +261,7 @@
                                 </a>
                             </li>
                             <li class="list-inline-item">
-                               
+
                             </li>
                         </ul>
                     </div>
@@ -307,7 +280,7 @@
                                 </div>
                                 <div id="over" style="position:absolute; width:100%; height:100%">
 
-                                    @if (user.ImageUpload != null)
+                                    @if (trainee.ImageUpload != null)
                                     {
 
                                         <span class="over">
@@ -317,8 +290,9 @@
                                     }
                                     else
                                     {
-
-                                        <img class="mrg-top-30" src="~/templates/avatar.png" alt="Take a new Passport" height="150" width="180">
+                                        <span class="over">
+                                            <img src="~/templates/avatar.png" alt="Take a new Passport">
+                                        </span>
 
                                         <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
 
@@ -359,9 +333,6 @@
 
                                 </div>
                             </div>
-                        </div>
-                        <div id="background">
-                            <p id="bg-text">MISTDO-DPR</p>
                         </div>
 
                         <div class="row mrg-top-20">
@@ -412,18 +383,18 @@
                                             <th>Exam Name</th>
                                             <th>Description</th>
                                             @*
-                            <th>Score</th>*@
+                                                <th>Score</th>*@
                                             <th class="text-right">Remark</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             @*
-                            <td>@module.Id</td>*@
+                                                <td>@module.Id</td>*@
                                             <td>@module.Name</td>
                                             <td>@module.Description</td>
                                             @*
-                            <td>Score</td>*@
+                                                <td>Score</td>*@
                                             <td class="text-right">Completed</td>
                                         </tr>
                                     </tbody>
@@ -443,16 +414,16 @@
                                         @if (ViewBag.QR != null)
                                         {
 
-                                            <span class="over">
-                                                <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.QR))" alt="@centre.CentreName" style="max-width:10%">
-
-                                            </span>
+                                        <span class="over">
+                                            <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.QR))" alt="@centre.CentreName" style="max-width:10%">
+                                           
+                                        </span>
 
                                         }
                                         else
                                         {
 
-
+                                            
 
                                         }
                                     </div>
@@ -465,6 +436,7 @@
             </div>
         </div>
     </div>
+
     <!-- Content Wrapper END -->
     <!-- Footer START -->
     <footer class="content-footer">
@@ -480,26 +452,6 @@
     </footer>
     <!-- Footer END -->
 </div>
-
-
-<style type="text/css" media="print">
-    BODY {
-        display: none;
-        visibility: hidden;
-    }
-
-    body, html {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-</style>
-<script type="text/javascript">
-    document.addEventListener('contextmenu', event => event.preventDefault());
-</script>
 
 
 

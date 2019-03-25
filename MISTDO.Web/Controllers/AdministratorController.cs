@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using MISTDO.Web.Data;
 using MISTDO.Web.Services;
 
+using System.Drawing;
+using System.IO;
+using QRCoder;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 using MISTDO.Web.Models;
 using Microsoft.Azure.KeyVault.Models;
@@ -13,7 +16,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using System.IO;
 using OfficeOpenXml;
 using System.Xml.Linq;
 using OfficeOpenXml.Style;
@@ -665,7 +667,18 @@ namespace MISTDO.Web.Controllers
 
             
             var module = admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
+            //QR code generation
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(training.CertificateId, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            //Bitmap qrCodeImage = qrCode.GetGraphic(20);
+            //Set color by using Color-class types
+            Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.DarkRed, Color.PaleGreen, true);
+            MemoryStream ms = new MemoryStream();
+            qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+           
 
+            ViewBag.QR = ms.ToArray();
 
             ViewBag.Trainee = trainee;
             ViewBag.Centre = centre;
@@ -677,6 +690,8 @@ namespace MISTDO.Web.Controllers
 
             return View();
         }
+        
+      
         public async Task<IActionResult> Feedback()
         {
             var feedback = await Traineedbcontext.Feedbacks.ToListAsync();

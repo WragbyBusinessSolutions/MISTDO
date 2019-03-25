@@ -25,6 +25,8 @@ using System.Diagnostics;
 using System.Net.Mime;
 using System.Net.Mail;
 using System.Net;
+using QRCoder;
+using System.Drawing;
 
 namespace MISTDO.Web.Views.TrainerDashboard
 {
@@ -946,8 +948,18 @@ namespace MISTDO.Web.Views.TrainerDashboard
            
             var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
 
-           
-            
+            //QR code generation
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(training.CertificateId, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            //Bitmap qrCodeImage = qrCode.GetGraphic(20);
+            //Set color by using Color-class types
+            Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.DarkRed, Color.PaleGreen, true);
+            MemoryStream ms = new MemoryStream();
+            qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+            ViewBag.QR = ms.ToArray();
+
 
             ViewBag.Trainee = trainee;
             ViewBag.Centre = centre;
