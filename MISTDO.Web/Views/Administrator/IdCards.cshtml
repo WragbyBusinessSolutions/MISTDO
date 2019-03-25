@@ -11,6 +11,12 @@
     var module = ViewBag.Module as Modules;
     var user = await userManager.GetUserAsync(User);
 }
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+    td img {
+        display: block;
+    }
+</style>
 <div class="page-container">
     <!-- Header START -->
     <div class="header navbar">
@@ -231,10 +237,12 @@
             margin-left: auto;
             margin-right: auto;
             display: block;
-            max-width:10%;
+            max-width: 10%;
         }
     </style>
     <!-- Content Wrapper START -->
+
+
     <div class="main-content">
         <div class="container-fluid">
             <div class="container">
@@ -266,177 +274,180 @@
                         </ul>
                     </div>
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <table border="0" cellpadding="0" cellspacing="0" width="787">
+                                    <!-- fwtable fwsrc="Untitled" fwbase="cards.gif" fwstyle="Dreamweaver" fwdocid = "1361147694" fwnested="0" -->
+                                    <tr>
+                                        <td><img src="~/images/card/images/spacer.gif" width="11" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="24" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="100" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="9" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="22" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="65" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="15" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="159" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="189" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="54" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="31" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="84" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="4" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="17" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="1" border="0" alt="" /></td>
+                                    </tr>
 
-                        <div class="pdd-horizon-30">
+                                    <tr>
+                                        <td colspan="17"><img name="idcards_r1_c1" src="~/images/card/images/idcards_r1_c1.gif" width="787" height="44" border="0" id="idcards_r1_c1" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="44" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="13"><img name="idcards_r2_c1" src="~/images/card/images/idcards_r2_c1.gif" width="651" height="36" border="0" id="idcards_r2_c1" alt="" /></td>
+                                        @*<td rowspan="2" colspan="2"><img name="idcards_r2_c14" src="~/images/card/images/idcards_r2_c14.gif" width="115" height="72" border="0" id="idcards_r2_c14" alt="" /></td>*@
+                                        @if (centre.ImageUpload != null)
+                                        {
 
-                            <div class="mrg-top-15">
-                                <div class="inline-block">
-                                    @*<img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">*@
-                                    <img class="img-fluid" src="~/images/logo.png" alt="MISTDO LOGO" style="max-width:45%" />
-                                    <address class="pdd-left-10 mrg-top-20">
+                                            <td rowspan="2" colspan="2"><img name="cards_r3_c4" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(centre.ImageUpload))" width="115" height="72" border="0" id="cards_r3_c4" alt="" /></td>
 
-
-                                    </address>
-                                </div>
-                                <div id="over" style="position:absolute; width:100%; height:100%">
-
-                                    @if (trainee.ImageUpload != null)
-                                    {
-
-                                        <span class="over">
-                                            <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(trainee.ImageUpload))" alt="Take a new Passport">
-                                        </span>
-
-                                    }
-                                    else
-                                    {
-                                        <span class="over">
-                                            <img src="~/templates/avatar.png" alt="Take a new Passport">
-                                        </span>
-
-                                        <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
-
-                                    }
-                                </div>
-
-                            </div>
-                            <div class="mrg-top-15">
-                                <div class="inline-block">
-                                    @*<img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">*@
-                                    @if (centre.ImageUpload != null)
-                                    {
-
-                                        <span class="over">
-                                            <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(centre.ImageUpload))" alt="@centre.CentreName" style="max-width:45%">
-                                        </span>
-
-                                    }
-                                    else
-                                    {
+                                        }
+                                        else
+                                        {
+                                            <td rowspan="2" colspan="2"><img name="cards_r3_c4" src="~/templates/avatar.png" width="197" height="183" border="0" id="cards_r3_c4" alt="" /></td>
 
 
+                                        }
+                                        <td rowspan="7" colspan="2"><img name="idcards_r2_c16" src="~/images/card/images/idcards_r2_c16.gif" width="21" height="279" border="0" id="idcards_r2_c16" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="36" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="5" colspan="4"><img name="idcards_r3_c1" src="~/images/card/images/idcards_r3_c1.gif" width="37" height="232" border="0" id="idcards_r3_c1" alt="" /></td>
+                                        @*<td rowspan="4" colspan="5"><img name="idcards_r3_c5" src="~/images/card/images/idcards_r3_c5.gif" width="197" height="183" border="0" id="idcards_r3_c5" alt="" /></td>*@
+                                        @if (trainee.ImageUpload != null)
+                                        {
 
-                                    }
-                                    <address class="pdd-left-10 mrg-top-20">
+                                            <td rowspan="4" colspan="5"><img name="cards_r3_c4" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(trainee.ImageUpload))" width="197" height="183" border="0" id="cards_r3_c4" alt="" /></td>
 
-
-                                    </address>
-                                </div>
-                                <div class="pull-right">
-                                    <span class="text-dark"><span>Certificate ID: @training.CertificateId</span></span><br />
-                                    <span class="text-dark">First Name: @trainee.FirstName</span><br />
-                                    <span class="text-dark">Last Name:   @trainee.LastName</span><br />
-                                    <span class="text-dark">Trainee ID: @trainee.UID</span><br />
-                                    <span class="text-dark">Trainee Address: @trainee.UserAddress</span><br>
-                                    <abbr class="text-dark" title="Phone">Phone:</abbr>
-                                    <span class="text-dark">@trainee.PhoneNumber</span>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mrg-top-20">
-                            <div class="col-md-12 col-sm-12">
+                                        }
+                                        else
+                                        {
+                                            <td rowspan="4" colspan="5"><img name="cards_r3_c4" src="~/templates/avatar.png" width="197" height="183" border="0" id="cards_r3_c4" alt="" /></td>
 
 
-                                <p>
-
-                                    <h4>
-                                        <span style="float:left;"><b class="text-dark">Training Center : @centre.CompanyName</b>  </span>
-                                        <span style="float:right;"><b>Certificate ID: @training.CertificateId</b></span>
-                                    </h4>
-                                </p>
-
-                            </div>
-                            <div class="col-md-12 col-sm-12">
-
-
-                                <p>
-
-                                    <h4>
-                                        <span style="float:left;"><b class="text-dark">Centre ID: @centre.UID</b> </span>
-                                        <span style="float:right;"><b>Issued Date: @training.CertGenDate</b></span>
-                                    </h4>
-                                </p>
-
-                            </div>
-                            <div class="col-md-12">
-                                <p>
-                                    <h4>
-                                        <span style="float:left;"><b class="text-dark">Permit Number: @centre.PermitNumber</b> </span>
-                                        <span style="float:right;"><b>Valid Till: @training.CertGenDate.AddYears(2)</b></span>
-                                    </h4>
-                                </p>
-
-                            </div>
-
-
-
-                        </div>
-
-
-                        <div class="row mrg-top-20">
-                            <div class="col-md-12">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Exam Name</th>
-                                            <th>Description</th>
-                                            @*
-                                                <th>Score</th>*@
-                                            <th class="text-right">Remark</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            @*
-                                                <td>@module.Id</td>*@
-                                            <td>@module.Name</td>
-                                            <td>@module.Description</td>
-                                            @*
-                                                <td>Score</td>*@
-                                            <td class="text-right">Completed</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="row mrg-top-30">
-                                    <div class="col-md-12">
-                                        <div class="pull-right text-right">
-
-                                            <a class="btn btn-success">Passed</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mrg-vertical-20">
-                                    <div class="col-md-8" align="center">
-
-                                        <span class="font-size-13 pull-right pdd-top-10"><img src="~/dist/assets/images/logo/seal2.jpg" width="20%" height="10%"></span>
+                                        }
+                                        <td rowspan="2" colspan="4"><img name="idcards_r3_c10" src="~/images/card/images/idcards_r3_c10.gif" width="417" height="80" border="0" id="idcards_r3_c10" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="36" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><img name="idcards_r4_c14" src="~/images/card/images/idcards_r4_c14.gif" width="115" height="44" border="0" id="idcards_r4_c14" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="44" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3"><img name="idcards_r5_c10" src="~/images/card/images/idcards_r5_c10.gif" width="15" height="152" border="0" id="idcards_r5_c10" alt="" /></td>
+                                        <td colspan="4" style="font-size:large;"><b>@trainee.FirstName</b> &ensp;<b>@trainee.LastName</b></td>
+                                        <td rowspan="4"><img name="idcards_r5_c15" src="~/images/card/images/idcards_r5_c15.gif" width="84" height="163" border="0" id="idcards_r5_c15" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="43" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2" colspan="4"><img name="idcards_r6_c11" src="~/images/card/images/idcards_r6_c11.gif" width="433" height="109" border="0" id="idcards_r6_c11" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="60" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5"><img name="idcards_r7_c5" src="~/images/card/images/idcards_r7_c5.gif" width="197" height="49" border="0" id="idcards_r7_c5" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="49" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="12"><img name="idcards_r8_c1" src="~/images/card/images/idcards_r8_c1.gif" width="11" height="185" border="0" id="idcards_r8_c1" alt="" /></td>
+                                        <td rowspan="2" colspan="5"><img name="idcards_r8_c2" src="~/images/card/images/idcards_r8_c2.gif" width="135" height="26" border="0" id="idcards_r8_c2" alt="" /></td>
+                                        <td rowspan="12"><img name="idcards_r8_c7" src="~/images/card/images/idcards_r8_c7.gif" width="22" height="185" border="0" id="idcards_r8_c7" alt="" /></td>
+                                        <td rowspan="2" colspan="4"><b> @training.CertificateId</b></td>
+                                        <td colspan="3"><img name="idcards_r8_c12" src="~/images/card/images/idcards_r8_c12.gif" width="274" height="11" border="0" id="idcards_r8_c12" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="11" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="11"><img name="idcards_r9_c12" src="~/images/card/images/idcards_r9_c12.gif" width="189" height="174" border="0" id="idcards_r9_c12" alt="" /></td>
                                         @if (ViewBag.QR != null)
                                         {
 
-                                        <span class="over">
-                                            <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.QR))" alt="@centre.CentreName" style="max-width:10%">
-                                           
-                                        </span>
+
+                                            <td rowspan="10" colspan="4"><img name="idcards_r9_c13" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.QR))" width="173" height="153" border="0" id="cards_r8_c20" alt="" /></td>
+
+
 
                                         }
                                         else
                                         {
 
-                                            
+
 
                                         }
-                                    </div>
-                                </div>
+                                        @*<td rowspan="10" colspan="4"><img name="idcards_r9_c13" src="~/images/card/images/idcards_r9_c13.gif" width="173" height="153" border="0" id="idcards_r9_c13" alt="" /></td>*@
+                                        <td rowspan="11"><img name="idcards_r9_c17" src="~/images/card/images/idcards_r9_c17.gif" width="17" height="174" border="0" id="idcards_r9_c17" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="15" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5"><img name="idcards_r10_c2" src="~/images/card/images/idcards_r10_c2.gif" width="135" height="16" border="0" id="idcards_r10_c2" alt="" /></td>
+                                        <td colspan="4"><img name="idcards_r10_c8" src="~/images/card/images/idcards_r10_c8.gif" width="240" height="16" border="0" id="idcards_r10_c8" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="16" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><img name="idcards_r11_c2" src="~/images/card/images/idcards_r11_c2.gif" width="126" height="22" border="0" id="idcards_r11_c2" alt="" /></td>
+                                        <td rowspan="9"><img name="idcards_r11_c6" src="~/images/card/images/idcards_r11_c6.gif" width="9" height="143" border="0" id="idcards_r11_c6" alt="" /></td>
+                                        <td colspan="4">@training.CertGenDate</td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="22" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><img name="idcards_r12_c2" src="~/images/card/images/idcards_r12_c2.gif" width="126" height="7" border="0" id="idcards_r12_c2" alt="" /></td>
+                                        <td rowspan="2" colspan="4"><img name="idcards_r12_c8" src="~/images/card/images/idcards_r12_c8.gif" width="240" height="12" border="0" id="idcards_r12_c8" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="7" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="7"><img name="idcards_r13_c2" src="~/images/card/images/idcards_r13_c2.gif" width="1" height="114" border="0" id="idcards_r13_c2" alt="" /></td>
+                                        <td rowspan="2" colspan="3"><img name="idcards_r13_c3" src="~/images/card/images/idcards_r13_c3.gif" width="125" height="22" border="0" id="idcards_r13_c3" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="5" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2" colspan="4">@training.CertGenDate.AddYears(2)</td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="17" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2" colspan="3"><img name="idcards_r15_c3" src="~/images/card/images/idcards_r15_c3.gif" width="125" height="11" border="0" id="idcards_r15_c3" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="1" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><img name="idcards_r16_c8" src="~/images/card/images/idcards_r16_c8.gif" width="240" height="10" border="0" id="idcards_r16_c8" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="10" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3"><img name="idcards_r17_c3" src="~/images/card/images/idcards_r17_c3.gif" width="1" height="81" border="0" id="idcards_r17_c3" alt="" /></td>
+                                        <td colspan="2"><img name="idcards_r17_c4" src="~/images/card/images/idcards_r17_c4.gif" width="124" height="19" border="0" id="idcards_r17_c4" alt="" /></td>
+                                        <td rowspan="3"><img name="idcards_r17_c8" src="~/images/card/images/idcards_r17_c8.gif" width="1" height="81" border="0" id="idcards_r17_c8" alt="" /></td>
+                                        <td colspan="3">@centre.CentreName</td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="19" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2" colspan="2"><img name="idcards_r18_c4" src="~/images/card/images/idcards_r18_c4.gif" width="124" height="62" border="0" id="idcards_r18_c4" alt="" /></td>
+                                        <td rowspan="2" colspan="3"><img name="idcards_r18_c9" src="~/images/card/images/idcards_r18_c9.gif" width="239" height="62" border="0" id="idcards_r18_c9" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="41" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><img name="idcards_r19_c13" src="~/images/card/images/idcards_r19_c13.gif" width="173" height="21" border="0" id="idcards_r19_c13" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="21" border="0" alt="" /></td>
+                                    </tr>
+                                </table>
                             </div>
+
                         </div>
                     </div>
 
                 </div>
+
+
+
             </div>
         </div>
     </div>
-
     <!-- Content Wrapper END -->
     <!-- Footer START -->
     <footer class="content-footer">
