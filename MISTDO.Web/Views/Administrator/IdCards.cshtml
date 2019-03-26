@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "View Certificate";
+    ViewData["Title"] = "View ID Card";
     Layout = "_LayoutAdminDashboard";
 }
 @inject UserManager<TraineeApplicationUser> userManager;
@@ -15,6 +15,36 @@
 <style type="text/css">
     td img {
         display: block;
+    }
+    .name {
+        font-family: 'Century Gothic';
+        border: hidden;
+        font: 30pt caption;
+        font-weight: bolder;
+    }
+
+    .centreid {
+        font-family: 'Century Gothic';
+        border: hidden;
+        font: 14pt caption;
+        font-weight: bold;
+        color: #666666;
+    }
+
+    .textcontent {
+        font-family: 'Century Gothic';
+        border: hidden;
+        font: 20pt caption;
+        font-weight: bold;
+        color: #666666;
+    }
+
+    .dynamics {
+        font-family: 'Century Gothic';
+        border: hidden;
+        font: 11pt caption;
+        font-weight: bolder;
+        color: #666666;
     }
 </style>
 <div class="page-container">
@@ -277,104 +307,72 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <table border="0" cellpadding="0" cellspacing="0" width="787">
-                                    <!-- fwtable fwsrc="Untitled" fwbase="cards.gif" fwstyle="Dreamweaver" fwdocid = "1361147694" fwnested="0" -->
+                                    <!-- fwtable fwsrc="Untitled" fwbase="idcards.gif" fwstyle="Dreamweaver" fwdocid = "1361147694" fwnested="0" -->
                                     <tr>
-                                        <td><img src="~/images/card/images/spacer.gif" width="11" height="1" border="0" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="1" border="0" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="1" border="0" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="24" height="1" border="0" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="100" height="1" border="0" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="9" height="1" border="0" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="22" height="1" border="0" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="1" border="0" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="65" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="37" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="119" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="78" height="1" border="0" alt="" /></td>
                                         <td><img src="~/images/card/images/spacer.gif" width="15" height="1" border="0" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="159" height="1" border="0" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="189" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="147" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="201" height="1" border="0" alt="" /></td>
                                         <td><img src="~/images/card/images/spacer.gif" width="54" height="1" border="0" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="31" height="1" border="0" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="84" height="1" border="0" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="4" height="1" border="0" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="119" height="1" border="0" alt="" /></td>
                                         <td><img src="~/images/card/images/spacer.gif" width="17" height="1" border="0" alt="" /></td>
                                         <td><img src="~/images/card/images/spacer.gif" width="1" height="1" border="0" alt="" /></td>
                                     </tr>
 
                                     <tr>
-                                        <td colspan="17"><img name="idcards_r1_c1" src="~/images/card/images/idcards_r1_c1.gif" width="787" height="44" border="0" id="idcards_r1_c1" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="44" border="0" alt="" /></td>
+                                        <td colspan="9"><img name="idcards_r1_c1" src="~/images/card/images/idcards_r1_c1.gif" width="787" height="80" border="0" id="idcards_r1_c1" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="80" border="0" alt="" /></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="13"><img name="idcards_r2_c1" src="~/images/card/images/idcards_r2_c1.gif" width="651" height="36" border="0" id="idcards_r2_c1" alt="" /></td>
-                                        @*<td rowspan="2" colspan="2"><img name="idcards_r2_c14" src="~/images/card/images/idcards_r2_c14.gif" width="115" height="72" border="0" id="idcards_r2_c14" alt="" /></td>*@
-                                        @if (centre.ImageUpload != null)
-                                        {
-
-                                            <td rowspan="2" colspan="2"><img name="cards_r3_c4" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(centre.ImageUpload))" width="115" height="72" border="0" id="cards_r3_c4" alt="" /></td>
-
-                                        }
-                                        else
-                                        {
-                                            <td rowspan="2" colspan="2"><img name="cards_r3_c4" src="~/templates/avatar.png" width="197" height="183" border="0" id="cards_r3_c4" alt="" /></td>
-
-
-                                        }
-                                        <td rowspan="7" colspan="2"><img name="idcards_r2_c16" src="~/images/card/images/idcards_r2_c16.gif" width="21" height="279" border="0" id="idcards_r2_c16" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="36" border="0" alt="" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="5" colspan="4"><img name="idcards_r3_c1" src="~/images/card/images/idcards_r3_c1.gif" width="37" height="232" border="0" id="idcards_r3_c1" alt="" /></td>
-                                        @*<td rowspan="4" colspan="5"><img name="idcards_r3_c5" src="~/images/card/images/idcards_r3_c5.gif" width="197" height="183" border="0" id="idcards_r3_c5" alt="" /></td>*@
+                                        <td rowspan="14"><img name="idcards_r2_c1" src="~/images/card/images/idcards_r2_c1.gif" width="37" height="417" border="0" id="idcards_r2_c1" alt="" /></td>
                                         @if (trainee.ImageUpload != null)
                                         {
 
-                                            <td rowspan="4" colspan="5"><img name="cards_r3_c4" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(trainee.ImageUpload))" width="197" height="183" border="0" id="cards_r3_c4" alt="" /></td>
+                                            <td rowspan="3" colspan="2"><img name="idcards_r2_c2" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(trainee.ImageUpload))" width="197" height="183" border="0" id="idcards_r2_c2" alt="" /></td>
+                                          
 
                                         }
                                         else
                                         {
-                                            <td rowspan="4" colspan="5"><img name="cards_r3_c4" src="~/templates/avatar.png" width="197" height="183" border="0" id="cards_r3_c4" alt="" /></td>
 
 
                                         }
-                                        <td rowspan="2" colspan="4"><img name="idcards_r3_c10" src="~/images/card/images/idcards_r3_c10.gif" width="417" height="80" border="0" id="idcards_r3_c10" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="36" border="0" alt="" /></td>
+
+                                        <td colspan="6"><img name="idcards_r2_c4" src="~/images/card/images/idcards_r2_c4.gif" width="553" height="80" border="0" id="idcards_r2_c4" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="80" border="0" alt="" /></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"><img name="idcards_r4_c14" src="~/images/card/images/idcards_r4_c14.gif" width="115" height="44" border="0" id="idcards_r4_c14" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="44" border="0" alt="" /></td>
+                                        <td rowspan="3"><img name="idcards_r3_c4" src="~/images/card/images/idcards_r3_c4.gif" width="15" height="153" border="0" id="idcards_r3_c4" alt="" /></td>
+                                        <td colspan="3" class="textcontent">@trainee.FirstName.ToUpper() &ensp; @trainee.LastName.ToUpper()</td>
+                                        <td rowspan="4" colspan="2"><img name="idcards_r3_c8" src="~/images/card/images/idcards_r3_c8.gif" width="136" height="163" border="0" id="idcards_r3_c8" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="45" border="0" alt="" /></td>
                                     </tr>
                                     <tr>
-                                        <td rowspan="3"><img name="idcards_r5_c10" src="~/images/card/images/idcards_r5_c10.gif" width="15" height="152" border="0" id="idcards_r5_c10" alt="" /></td>
-                                        <td colspan="4" style="font-size:large;"><b>@trainee.FirstName</b> &ensp;<b>@trainee.LastName</b></td>
-                                        <td rowspan="4"><img name="idcards_r5_c15" src="~/images/card/images/idcards_r5_c15.gif" width="84" height="163" border="0" id="idcards_r5_c15" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="43" border="0" alt="" /></td>
+                                        <td rowspan="2" colspan="3"><img name="idcards_r4_c5" src="~/images/card/images/idcards_r4_c5.gif" width="402" height="108" border="0" id="idcards_r4_c5" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="58" border="0" alt="" /></td>
                                     </tr>
                                     <tr>
-                                        <td rowspan="2" colspan="4"><img name="idcards_r6_c11" src="~/images/card/images/idcards_r6_c11.gif" width="433" height="109" border="0" id="idcards_r6_c11" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="60" border="0" alt="" /></td>
+                                        <td colspan="2"><img name="idcards_r5_c2" src="~/images/card/images/idcards_r5_c2.gif" width="197" height="50" border="0" id="idcards_r5_c2" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="50" border="0" alt="" /></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="5"><img name="idcards_r7_c5" src="~/images/card/images/idcards_r7_c5.gif" width="197" height="49" border="0" id="idcards_r7_c5" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="49" border="0" alt="" /></td>
+                                        <td rowspan="10"><img name="idcards_r6_c2" src="~/images/card/images/idcards_r6_c2.gif" width="119" height="184" border="0" id="idcards_r6_c2" alt="" /></td>
+                                        <td rowspan="2" colspan="3" class="dynamics">@training.CertificateId.ToUpper()</td>
+                                        <td colspan="2"><img name="idcards_r6_c6" src="~/images/card/images/idcards_r6_c6.gif" width="255" height="10" border="0" id="idcards_r6_c6" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="10" border="0" alt="" /></td>
                                     </tr>
                                     <tr>
-                                        <td rowspan="12"><img name="idcards_r8_c1" src="~/images/card/images/idcards_r8_c1.gif" width="11" height="185" border="0" id="idcards_r8_c1" alt="" /></td>
-                                        <td rowspan="2" colspan="5"><img name="idcards_r8_c2" src="~/images/card/images/idcards_r8_c2.gif" width="135" height="26" border="0" id="idcards_r8_c2" alt="" /></td>
-                                        <td rowspan="12"><img name="idcards_r8_c7" src="~/images/card/images/idcards_r8_c7.gif" width="22" height="185" border="0" id="idcards_r8_c7" alt="" /></td>
-                                        <td rowspan="2" colspan="4"><b> @training.CertificateId</b></td>
-                                        <td colspan="3"><img name="idcards_r8_c12" src="~/images/card/images/idcards_r8_c12.gif" width="274" height="11" border="0" id="idcards_r8_c12" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="11" border="0" alt="" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="11"><img name="idcards_r9_c12" src="~/images/card/images/idcards_r9_c12.gif" width="189" height="174" border="0" id="idcards_r9_c12" alt="" /></td>
+                                        <td rowspan="9"><img name="idcards_r7_c6" src="~/images/card/images/idcards_r7_c6.gif" width="201" height="174" border="0" id="idcards_r7_c6" alt="" /></td>
                                         @if (ViewBag.QR != null)
                                         {
 
 
-                                            <td rowspan="10" colspan="4"><img name="idcards_r9_c13" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.QR))" width="173" height="153" border="0" id="cards_r8_c20" alt="" /></td>
 
 
-
+                                            <td rowspan="8" colspan="2"><img name="idcards_r7_c7" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.QR))" width="173" height="153" border="0" id="idcards_r7_c7" alt="" /></td>
+                                           
                                         }
                                         else
                                         {
@@ -382,57 +380,40 @@
 
 
                                         }
-                                        @*<td rowspan="10" colspan="4"><img name="idcards_r9_c13" src="~/images/card/images/idcards_r9_c13.gif" width="173" height="153" border="0" id="idcards_r9_c13" alt="" /></td>*@
-                                        <td rowspan="11"><img name="idcards_r9_c17" src="~/images/card/images/idcards_r9_c17.gif" width="17" height="174" border="0" id="idcards_r9_c17" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="15" border="0" alt="" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="5"><img name="idcards_r10_c2" src="~/images/card/images/idcards_r10_c2.gif" width="135" height="16" border="0" id="idcards_r10_c2" alt="" /></td>
-                                        <td colspan="4"><img name="idcards_r10_c8" src="~/images/card/images/idcards_r10_c8.gif" width="240" height="16" border="0" id="idcards_r10_c8" alt="" /></td>
+
+                                        <td rowspan="9"><img name="idcards_r7_c9" src="~/images/card/images/idcards_r7_c9.gif" width="17" height="174" border="0" id="idcards_r7_c9" alt="" /></td>
                                         <td><img src="~/images/card/images/spacer.gif" width="1" height="16" border="0" alt="" /></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4"><img name="idcards_r11_c2" src="~/images/card/images/idcards_r11_c2.gif" width="126" height="22" border="0" id="idcards_r11_c2" alt="" /></td>
-                                        <td rowspan="9"><img name="idcards_r11_c6" src="~/images/card/images/idcards_r11_c6.gif" width="9" height="143" border="0" id="idcards_r11_c6" alt="" /></td>
-                                        <td colspan="4">@training.CertGenDate</td>
+                                        <td colspan="3"><img name="idcards_r8_c3" src="~/images/card/images/idcards_r8_c3.gif" width="240" height="15" border="0" id="idcards_r8_c3" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="15" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="dynamics">@training.CertGenDate.ToString("MM/dd/yyyy")</td>
                                         <td><img src="~/images/card/images/spacer.gif" width="1" height="22" border="0" alt="" /></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4"><img name="idcards_r12_c2" src="~/images/card/images/idcards_r12_c2.gif" width="126" height="7" border="0" id="idcards_r12_c2" alt="" /></td>
-                                        <td rowspan="2" colspan="4"><img name="idcards_r12_c8" src="~/images/card/images/idcards_r12_c8.gif" width="240" height="12" border="0" id="idcards_r12_c8" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="7" border="0" alt="" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="7"><img name="idcards_r13_c2" src="~/images/card/images/idcards_r13_c2.gif" width="1" height="114" border="0" id="idcards_r13_c2" alt="" /></td>
-                                        <td rowspan="2" colspan="3"><img name="idcards_r13_c3" src="~/images/card/images/idcards_r13_c3.gif" width="125" height="22" border="0" id="idcards_r13_c3" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="5" border="0" alt="" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="2" colspan="4">@training.CertGenDate.AddYears(2)</td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="17" border="0" alt="" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="2" colspan="3"><img name="idcards_r15_c3" src="~/images/card/images/idcards_r15_c3.gif" width="125" height="11" border="0" id="idcards_r15_c3" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="1" border="0" alt="" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4"><img name="idcards_r16_c8" src="~/images/card/images/idcards_r16_c8.gif" width="240" height="10" border="0" id="idcards_r16_c8" alt="" /></td>
+                                        <td colspan="3"><img name="idcards_r10_c3" src="~/images/card/images/idcards_r10_c3.gif" width="240" height="10" border="0" id="idcards_r10_c3" alt="" /></td>
                                         <td><img src="~/images/card/images/spacer.gif" width="1" height="10" border="0" alt="" /></td>
                                     </tr>
                                     <tr>
-                                        <td rowspan="3"><img name="idcards_r17_c3" src="~/images/card/images/idcards_r17_c3.gif" width="1" height="81" border="0" id="idcards_r17_c3" alt="" /></td>
-                                        <td colspan="2"><img name="idcards_r17_c4" src="~/images/card/images/idcards_r17_c4.gif" width="124" height="19" border="0" id="idcards_r17_c4" alt="" /></td>
-                                        <td rowspan="3"><img name="idcards_r17_c8" src="~/images/card/images/idcards_r17_c8.gif" width="1" height="81" border="0" id="idcards_r17_c8" alt="" /></td>
-                                        <td colspan="3">@centre.CentreName</td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="19" border="0" alt="" /></td>
+                                        <td colspan="3" class="dynamics">@training.CertGenDate.AddYears(2).ToString("MM/dd/yyyy")</td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="22" border="0" alt="" /></td>
                                     </tr>
                                     <tr>
-                                        <td rowspan="2" colspan="2"><img name="idcards_r18_c4" src="~/images/card/images/idcards_r18_c4.gif" width="124" height="62" border="0" id="idcards_r18_c4" alt="" /></td>
-                                        <td rowspan="2" colspan="3"><img name="idcards_r18_c9" src="~/images/card/images/idcards_r18_c9.gif" width="239" height="62" border="0" id="idcards_r18_c9" alt="" /></td>
-                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="41" border="0" alt="" /></td>
+                                        <td colspan="3"><img name="idcards_r12_c3" src="~/images/card/images/idcards_r12_c3.gif" width="240" height="9" border="0" id="idcards_r12_c3" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="9" border="0" alt="" /></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4"><img name="idcards_r19_c13" src="~/images/card/images/idcards_r19_c13.gif" width="173" height="21" border="0" id="idcards_r19_c13" alt="" /></td>
+                                        <td colspan="3" class="dynamics">@centre.CentreName</td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="22" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2" colspan="3"><img name="idcards_r14_c3" src="~/images/card/images/idcards_r14_c3.gif" width="240" height="58" border="0" id="idcards_r14_c3" alt="" /></td>
+                                        <td><img src="~/images/card/images/spacer.gif" width="1" height="37" border="0" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><img name="idcards_r15_c7" src="~/images/card/images/idcards_r15_c7.gif" width="173" height="21" border="0" id="idcards_r15_c7" alt="" /></td>
                                         <td><img src="~/images/card/images/spacer.gif" width="1" height="21" border="0" alt="" /></td>
                                     </tr>
                                 </table>

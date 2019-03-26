@@ -11,6 +11,47 @@
     var module = ViewBag.Module as Modules;
     var user = await userManager.GetUserAsync(User);
 }
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+    td img {
+        display: block;
+    }
+    span {
+        
+    }
+  
+    input {
+       
+    }
+    .name {
+        font-family: 'Century Gothic';
+        border: hidden;
+        font: 30pt caption;
+        font-weight: bolder;
+    }
+    .centreid {
+        font-family: 'Century Gothic';
+        border: hidden;
+        font: 14pt caption;
+        font-weight: bold;
+        color: #666666;
+    }
+    .textcontent {
+        font-family: 'Century Gothic';
+        border: hidden;
+        font: 14pt caption;
+        font-weight: bold;
+        color: #666666;
+    }
+    .dynamics {
+        font-family: 'Century Gothic';
+        border: hidden;
+        font: 11pt caption;
+        font-weight: bolder;
+        color: #666666;
+    }
+</style>
 <div class="page-container">
     <!-- Header START -->
     <div class="header navbar">
@@ -237,7 +278,7 @@
     <!-- Content Wrapper START -->
     <div class="main-content">
         <div class="container-fluid">
-            <div class="container">
+            <div class="col-6">
                 <div class="card">
                     <div class="pdd-vertical-5 pdd-horizon-10 border bottom print-invisible">
                         <ul class="list-unstyle list-inline text-left">
@@ -266,515 +307,144 @@
                         </ul>
                     </div>
                     <div class="card-body">
+                        <table border="0" cellpadding="0" cellspacing="0" width="1200">
+                            <!-- fwtable fwsrc="Untitled" fwbase="certificate.gif" fwstyle="Dreamweaver" fwdocid = "1463634176" fwnested="0" -->
+                            <tr>
+                                <td><img src="~/images/cert/images/spacer.gif" width="58" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="89" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="210" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="46" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="105" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="75" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="16" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="134" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="126" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="50" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="114" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="7" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="116" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="13" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="14" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="27" height="1" border="0" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="1" border="0" alt="" /></td>
+                            </tr>
 
-                        <div class="pdd-horizon-30">
+                            <tr>
+                                <td colspan="16"><img name="certificate_r1_c1" src="~/images/cert/images/certificate_r1_c1.gif" width="1200" height="129" border="0" id="certificate_r1_c1" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="129" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" colspan="11"><img name="certificate_r2_c1" src="~/images/cert/images/certificate_r2_c1.gif" width="1023" height="129" border="0" id="certificate_r2_c1" alt="" /></td>
+                                @if (trainee.ImageUpload != null)
+                                {
 
-                            <div class="mrg-top-15">
-                                <div class="inline-block">
-                                    @*<img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">*@
-                                    <img class="img-fluid" src="~/images/logo.png" alt="MISTDO LOGO" style="max-width:45%" />
-                                    <address class="pdd-left-10 mrg-top-20">
+                                    <td colspan="3"><img name="certificate_r2_c12" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(trainee.ImageUpload))" width="136" height="122" border="0" id="certificate_r2_c12" alt="" /></td>
+                                   
 
-
-                                    </address>
-                                </div>
-                                <div id="over" style="position:absolute; width:100%; height:100%">
-
-                                    @if (trainee.ImageUpload != null)
-                                    {
-
-                                        <span class="over">
-                                            <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(trainee.ImageUpload))" alt="Take a new Passport">
-                                        </span>
-
-                                    }
-                                    else
-                                    {
-                                        <span class="over">
-                                            <img src="~/templates/avatar.png" alt="Take a new Passport">
-                                        </span>
-
-                                        <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
-
-                                    }
-                                </div>
-
-                            </div>
-                            <div class="mrg-top-15">
-                                <div class="inline-block">
-                                    @*<img class="img-responsive" src="~/dist/assets/images/logo/dpr logo.png" width="250" alt=" MISTDO LOGO HERE">*@
-                                    @if (centre.ImageUpload != null)
-                                    {
-
-                                        <span class="over">
-                                            <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(centre.ImageUpload))" alt="@centre.CentreName" style="max-width:45%">
-                                        </span>
-
-                                    }
-                                    else
-                                    {
+                                }
+                                else
+                                {
 
 
+                                }
 
-                                    }
-                                    <address class="pdd-left-10 mrg-top-20">
-
-
-                                    </address>
-                                </div>
-                                <div class="pull-right">
-                                    <span class="text-dark"><span>Certificate ID: @training.CertificateId</span></span><br />
-                                    <span class="text-dark">First Name: @trainee.FirstName</span><br />
-                                    <span class="text-dark">Last Name:   @trainee.LastName</span><br />
-                                    <span class="text-dark">Trainee ID: @trainee.UID</span><br />
-                                    <span class="text-dark">Trainee Address: @trainee.UserAddress</span><br>
-                                    <abbr class="text-dark" title="Phone">Phone:</abbr>
-                                    <span class="text-dark">@trainee.PhoneNumber</span>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mrg-top-20">
-                            <div class="col-md-12 col-sm-12">
-
-
-                                <p>
-
-                                    <h4>
-                                        <span style="float:left;"><b class="text-dark">Training Center : @centre.CompanyName</b>  </span>
-                                        <span style="float:right;"><b>Certificate ID: @training.CertificateId</b></span>
-                                    </h4>
-                                </p>
-
-                            </div>
-                            <div class="col-md-12 col-sm-12">
-
-
-                                <p>
-
-                                    <h4>
-                                        <span style="float:left;"><b class="text-dark">Centre ID: @centre.UID</b> </span>
-                                        <span style="float:right;"><b>Issued Date: @training.CertGenDate</b></span>
-                                    </h4>
-                                </p>
-
-                            </div>
-                            <div class="col-md-12">
-                                <p>
-                                    <h4>
-                                        <span style="float:left;"><b class="text-dark">Permit Number: @centre.PermitNumber</b> </span>
-                                        <span style="float:right;"><b>Valid Till: @training.CertGenDate.AddYears(2)</b></span>
-                                    </h4>
-                                </p>
-
-                            </div>
+                                <td rowspan="12" colspan="2"><img name="certificate_r2_c15" src="~/images/cert/images/certificate_r2_c15.gif" width="41" height="421" border="0" id="certificate_r2_c15" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="122" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="6" colspan="3"><img name="certificate_r3_c12" src="~/images/cert/images/certificate_r3_c12.gif" width="136" height="147" border="0" id="certificate_r3_c12" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="7" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="13"><img name="certificate_r4_c1" src="~/images/cert/images/certificate_r4_c1.gif" width="58" height="342" border="0" id="certificate_r4_c1" alt="" /></td>
+                                <td colspan="5" class="name">@trainee.FirstName.ToUpper() &ensp; @trainee.LastName.ToUpper()</td>
+                                <td rowspan="2" colspan="5"><img name="certificate_r4_c7" src="~/images/cert/images/certificate_r4_c7.gif" width="440" height="104" border="0" id="certificate_r4_c7" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="64" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"><img name="certificate_r5_c2" src="~/images/cert/images/certificate_r5_c2.gif" width="525" height="40" border="0" id="certificate_r5_c2" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="40" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" class="textcontent">Has been awarded certificate for successfully completing  the course</td>
+                                <td rowspan="8" colspan="2"><img name="certificate_r6_c10" src="~/images/cert/images/certificate_r6_c10.gif" width="164" height="188" border="0" id="certificate_r6_c10" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="21" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8"><img name="certificate_r7_c2" src="~/images/cert/images/certificate_r7_c2.gif" width="801" height="5" border="0" id="certificate_r7_c2" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="5" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" colspan="6" class="centreid">@module.Name.ToUpper()</td>
+                                <td rowspan="6" colspan="2"><img name="certificate_r8_c8" src="~/images/cert/images/certificate_r8_c8.gif" width="260" height="162" border="0" id="certificate_r8_c8" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="10" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="5"><img name="certificate_r9_c12" src="~/images/cert/images/certificate_r9_c12.gif" width="7" height="152" border="0" id="certificate_r9_c12" alt="" /></td>
+                                @if (ViewBag.QR != null)
+                                {
 
 
 
-                        </div>
 
-
-                        <div class="row mrg-top-20">
-                            <div class="col-md-12">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Exam Name</th>
-                                            <th>Description</th>
-                                            @*
-                                                <th>Score</th>*@
-                                            <th class="text-right">Remark</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            @*
-                                                <td>@module.Id</td>*@
-                                            <td>@module.Name</td>
-                                            <td>@module.Description</td>
-                                            @*
-                                                <td>Score</td>*@
-                                            <td class="text-right">Completed</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="row mrg-top-30">
-                                    <div class="col-md-12">
-                                        <div class="pull-right text-right">
-
-                                            <a class="btn btn-success">Passed</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mrg-vertical-20">
-                                    <div class="col-md-8" align="center">
-
-                                        <span class="font-size-13 pull-right pdd-top-10"><img src="~/dist/assets/images/logo/seal2.jpg" width="20%" height="10%"></span>
-                                        @if (ViewBag.QR != null)
-                                        {
-
-                                            <span class="over">
-                                                <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.QR))" alt="@centre.CentreName" style="max-width:10%">
-
-                                            </span>
-
-                                        }
-                                        else
-                                        {
+                                    <td rowspan="2"><img name="certificate_r9_c13" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(ViewBag.QR))" width="116" height="105" border="0" id="certificate_r9_c13" alt="" /></td>
+                                   
+                                }
+                                else
+                                {
 
 
 
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                }
+
+                                <td rowspan="5"><img name="certificate_r9_c14" src="~/images/cert/images/certificate_r9_c14.gif" width="13" height="152" border="0" id="certificate_r9_c14" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="24" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" colspan="6"><img name="certificate_r10_c2" src="~/images/cert/images/certificate_r10_c2.gif" width="541" height="101" border="0" id="certificate_r10_c2" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="81" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3"><img name="certificate_r11_c13" src="~/images/cert/images/certificate_r11_c13.gif" width="116" height="47" border="0" id="certificate_r11_c13" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="20" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="5"><img name="certificate_r12_c2" src="~/images/cert/images/certificate_r12_c2.gif" width="89" height="77" border="0" id="certificate_r12_c2" alt="" /></td>
+                                <td class="dynamics">@centre.UID.ToUpper()</td>
+                                <td rowspan="2" colspan="4"><img name="certificate_r12_c4" src="~/images/cert/images/certificate_r12_c4.gif" width="242" height="27" border="0" id="certificate_r12_c4" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="22" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td><img name="certificate_r13_c3" src="~/images/cert/images/certificate_r13_c3.gif" width="210" height="5" border="0" id="certificate_r13_c3" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="5" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="dynamics">@centre.CentreName.ToUpper()</td>
+                                <td rowspan="3"><img name="certificate_r14_c5" src="~/images/cert/images/certificate_r14_c5.gif" width="105" height="50" border="0" id="certificate_r14_c5" alt="" /></td>
+                                <td rowspan="2" colspan="3" class="dynamics">@training.CertGenDate.ToString("MM/dd/yyyy")</td>
+                                <td rowspan="3" colspan="2"><img name="certificate_r14_c9" src="~/images/cert/images/certificate_r14_c9.gif" width="176" height="50" border="0" id="certificate_r14_c9" alt="" /></td>
+                                <td colspan="5" class="dynamics">@training.CertificateId</td>
+                                <td rowspan="3"><img name="certificate_r14_c16" src="~/images/cert/images/certificate_r14_c16.gif" width="27" height="50" border="0" id="certificate_r14_c16" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="17" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" colspan="2"><img name="certificate_r15_c3" src="~/images/cert/images/certificate_r15_c3.gif" width="256" height="33" border="0" id="certificate_r15_c3" alt="" /></td>
+                                <td rowspan="2" colspan="5"><img name="certificate_r15_c11" src="~/images/cert/images/certificate_r15_c11.gif" width="264" height="33" border="0" id="certificate_r15_c11" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="2" border="0" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><img name="certificate_r16_c6" src="~/images/cert/images/certificate_r16_c6.gif" width="225" height="31" border="0" id="certificate_r16_c6" alt="" /></td>
+                                <td><img src="~/images/cert/images/spacer.gif" width="1" height="31" border="0" alt="" /></td>
+                            </tr>
+                        </table>
+
                     </div>
 
                 </div>
             </div>
         </div>
     </div>
-    <div class="main-content">
-        <div class="container-fluid">
-            <div class="container">
-                <div class="card">
-                    <div class="pdd-vertical-5 pdd-horizon-10 border bottom print-invisible">
-                        <ul class="list-unstyle list-inline text-left">
-                            <li class="list-inline-item">
-
-                                <a class="btn text-gray text-hover display-block padding-10 no-mrg-btm" asp-action="AllCertificate">
-
-                                    <i class="ti-back-left"></i>
-                                    <b>Back</b>
-                                </a>
-                            </li>
-                        </ul>
-
-
-
-                        <ul class="list-unstyle list-inline text-right">
-                            <li class="list-inline-item">
-                                <a href="#" class="btn text-gray text-hover display-block padding-10 no-mrg-btm" onclick="window.print();">
-                                    <i class="ti-printer text-info pdd-right-5"></i>
-                                    <b>Print</b>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-10">
-                                <div class="card widget-weather">
-                                    <div class="card-block">
-                                        <h5 class="card-title">New York, 22 July</h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div id="over" class="inline-block">
-                                                    @if (trainee.ImageUpload != null)
-                                                    {
-
-                                                        <span >
-                                                            <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(trainee.ImageUpload))" alt="Take a new Passport">
-                                                        </span>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <span >
-                                                            <img src="~/templates/avatar.png" alt="Take a new Passport">
-                                                        </span>
-
-                                                        <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a asp-action="EditProfile">Upload your Picture and Update your Profile  </a> </h4>
-
-                                                    }
-                                                    <p>Partly Sunny</p>
-                                                </div>
-                                                <div class="inline-block" style="width:550px;">
-                                                    
-                                                </div>
-                                                <div class="inline-block">
-                                                    <p>Partly Sunny</p>
-                                                    <p>Partly Sunny</p>
-                                                    <p>Partly Sunny</p>
-                                                    <p>Partly Sunny</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row border bottom mrg-top-30">
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-md-4 col-sm-4 col-4">
-                                                        <h3 class="no-mrg-btm">22°/28°</h3>
-                                                        <p class="font-size-13">Temp</p>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-4">
-                                                        <h3 class="no-mrg-btm">61%</h3>
-                                                        <p class="font-size-13">Humidity</p>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-4">
-                                                        <h3 class="no-mrg-btm">18<span class="font-size-13">km/h</span></h3>
-                                                        <p class="font-size-13">Wind</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mrg-top-35">
-                                            <div class="col-md-2 col-sm-2 col-2">
-                                                <div class="next-7day">
-                                                    <span class="display-block">WED</span>
-                                                    <h2 class="mrg-top-10"><i class="ei-cloud"></i></h2>
-                                                    <span>28°</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-2 col-2">
-                                                <div class="next-7day">
-                                                    <span class="display-block">THU</span>
-                                                    <h2 class="mrg-top-10"><i class="ei-breeze"></i></h2>
-                                                    <span>23°</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-2 col-2">
-                                                <div class="next-7day">
-                                                    <span class="display-block">FRI</span>
-                                                    <h2 class="mrg-top-10"><i class="ei-blizzard"></i></h2>
-                                                    <span>25°</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-2 col-2">
-                                                <div class="next-7day">
-                                                    <span class="display-block">SAT</span>
-                                                    <h2 class="mrg-top-10"><i class="ei-sunny-day"></i></h2>
-                                                    <span>27°</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-2 col-2">
-                                                <div class="next-7day">
-                                                    <span class="display-block">SUN</span>
-                                                    <h2 class="mrg-top-10"><i class="ei-partialy-cloudy"></i></h2>
-                                                    <span>24°</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-2 col-2">
-                                                <div class="next-7day">
-                                                    <span class="display-block">MON</span>
-                                                    <h2 class="mrg-top-10"><i class="ei-sunny-day"></i></h2>
-                                                    <span>26°</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @*<div class="col-lg-4 col-md-6">
-                                <div class="card">
-                                    <div class="card-heading border bottom">
-                                        <h4 class="card-title">Latest Feed</h4>
-                                    </div>
-                                    <div class="widget-feed">
-                                        <ul class="list-info overflow-y-auto relative scrollable" style="max-height: 340px">
-                                            <li class="border bottom mrg-btm-10">
-                                                <div class="pdd-vertical-10">
-                                                    <span class="thumb-img bg-primary">
-                                                        <span class="text-white">JH</span>
-                                                    </span>
-                                                    <div class="info">
-                                                        <a href="#" class="text-link"><span class="title"><b class="font-size-15">Jordan Hurst</b></span></a>
-                                                        <span class="sub-title">5 mins ago</span>
-                                                    </div>
-                                                    <div class="mrg-top-10">
-                                                        <p class="no-mrg-btm">Remember, a Jedi can feel the Force flowing through him. You mean it controls your actions? Partially.</p>
-                                                    </div>
-                                                    <ul class="feed-action">
-                                                        <li>
-                                                            <a href="#">
-                                                                <i class="ti-heart text-danger pdd-right-5"></i>
-                                                                <span>168</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <i class="ti-comments text-primary pdd-right-5"></i>
-                                                                <span>18</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                            <li class="border bottom mrg-btm-10">
-                                                <div class="pdd-vertical-10">
-                                                    <span class="thumb-img bg-success">
-                                                        <span class="text-white">JW</span>
-                                                    </span>
-                                                    <div class="info">
-                                                        <a href="#" class="text-link"><span class="title"><b class="font-size-15">Jennifer Watkins</b></span></a>
-                                                        <span class="sub-title">5 mins ago</span>
-                                                    </div>
-                                                    <div class="mrg-top-15">
-                                                        <p>What good's a reward if you ain't around to use it?</p>
-                                                    </div>
-                                                    <ul class="feed-action">
-                                                        <li>
-                                                            <a href="#">
-                                                                <i class="ti-heart text-danger pdd-right-5"></i>
-                                                                <span>168</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <i class="ti-comments text-primary pdd-right-5"></i>
-                                                                <span>18</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                            <li class="border bottom">
-                                                <div class="pdd-vertical-10">
-                                                    <span class="thumb-img bg-warning">
-                                                        <span class="text-white">MB</span>
-                                                    </span>
-                                                    <div class="info">
-                                                        <a href="#" class="text-link"><span class="title"><b class="font-size-15">Michael Birch</b></span></a>
-                                                        <span class="sub-title">5 mins ago</span>
-                                                    </div>
-                                                    <div class="mrg-top-15">
-                                                        <p>What good's a reward if you ain't around to use it? Besides, attacking that battle station ain't my idea of courage.</p>
-                                                    </div>
-                                                    <ul class="feed-action">
-                                                        <li>
-                                                            <a href="#">
-                                                                <i class="ti-heart text-danger pdd-right-5"></i>
-                                                                <span>168</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <i class="ti-comments text-primary pdd-right-5"></i>
-                                                                <span>18</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card">
-                                    <div class="card-heading border bottom">
-                                        <h4 class="card-title">Project</h4>
-                                    </div>
-                                    <div class="card-block">
-                                        <div class="pdd-vertical-10">
-                                            <ul class="list-info">
-                                                <li>
-                                                    <img class="thumb-img img-circle" src="assets/images/others/thumb-1.jpg" alt="">
-                                                    <div class="info">
-                                                        <span class="title"><a href="#" class="text-link text-dark"><b class="font-size-15">Devolopment - Android App</b></a></span>
-                                                        <span class="sub-title">Android App</span>
-                                                        <div class="float-object dropdown right">
-                                                            <i class="ti-android-o"></i>
-                                                            <a href="#" class="btn btn-icon btn-flat btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                                <i class="ti-more"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu">
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <i class="ti-files pdd-right-10"></i>
-                                                                        <span>Duplicate</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <i class="ti-smallcap pdd-right-10"></i>
-                                                                        <span>Edit</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <i class="ti-image pdd-right-10"></i>
-                                                                        <span>Add Images</span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mrg-top-20">
-                                                        <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.</p>
-                                                    </div>
-                                                    <div class="mrg-top-30">
-                                                        <b class="pull-left lh-2-5 pdd-right-15">Team: </b>
-                                                        <ul class="list-members list-inline">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <img src="assets/images/avatars/thumb-1.jpg" alt="">
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <img src="assets/images/avatars/thumb-2.jpg" alt="">
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <img src="assets/images/avatars/thumb-3.jpg" alt="">
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <img src="assets/images/avatars/thumb-4.jpg" alt="">
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <img src="assets/images/avatars/thumb-5.jpg" alt="">
-                                                                </a>
-                                                            </li>
-                                                            <li class="all-members">
-                                                                <a href="#">
-                                                                    <span>+2</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="add-member">
-                                                                <a href="#">
-                                                                    <span>+</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class=" mrg-top-30">
-                                                        <span>Due date: <span class="text-success text-semibold">23/7/2017</span></span>
-                                                    </div>
-                                                    <div class="mrg-top-30">
-                                                        <p class="mrg-btm-5">Task completed: <span class="text-dark text-semibold">7/10</span></p>
-                                                        <div class="progress progress-info">
-                                                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>*@
-                        </div>
-                    </div>
-
-                </div>
-
-        
-
-            </div>
-        </div>
-    </div>
+ 
     <!-- Content Wrapper END -->
     <!-- Footer START -->
     <footer class="content-footer">

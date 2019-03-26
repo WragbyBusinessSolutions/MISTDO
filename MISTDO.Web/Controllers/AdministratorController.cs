@@ -673,7 +673,7 @@ namespace MISTDO.Web.Controllers
             QRCode qrCode = new QRCode(qrCodeData);
             //Bitmap qrCodeImage = qrCode.GetGraphic(20);
             //Set color by using Color-class types
-            Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.DarkRed, Color.PaleGreen, true);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.Goldenrod, Color.White, true);
             MemoryStream ms = new MemoryStream();
             qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
            
@@ -705,7 +705,7 @@ namespace MISTDO.Web.Controllers
             QRCode qrCode = new QRCode(qrCodeData);
             //Bitmap qrCodeImage = qrCode.GetGraphic(20);
             //Set color by using Color-class types
-            Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.DarkRed, Color.PaleGreen, true);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.Goldenrod, Color.White, true);
             MemoryStream ms = new MemoryStream();
             qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
 
