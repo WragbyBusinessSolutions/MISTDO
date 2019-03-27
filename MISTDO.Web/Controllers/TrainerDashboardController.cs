@@ -22,6 +22,8 @@ using System.Diagnostics;
 using System.Text.Encodings.Web;
 using System.Net.Mail;
 using System.Net;
+using QRCoder;
+using System.Drawing;
 
 //FingerPrint Assembly 
 
@@ -223,7 +225,38 @@ namespace MISTDO.Web.Controllers
             ViewBag.Module = module;
             return View(TraineeViewModel);
         }
-       
+        public async Task<IActionResult> IdCards(string traineeid, string moduleid, string TrainingCentreId, int TrainingId)
+        {
+            var trainee = await _traineeuserManager.FindByIdAsync(traineeid);
+            var training = dbcontext.Trainings.FirstOrDefault(t => t.TraineeId == trainee.UID && t.ModuleId == moduleid && t.TrainingCentreId == TrainingCentreId);
+            var centre = await _usermanager.FindByIdAsync(TrainingCentreId);
+
+
+            var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
+            //QR code generation
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(training.CertificateId, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            //Bitmap qrCodeImage = qrCode.GetGraphic(20);
+            //Set color by using Color-class types
+            Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.Goldenrod, Color.White, true);
+            MemoryStream ms = new MemoryStream();
+            qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+
+            ViewBag.QR = ms.ToArray();
+
+            ViewBag.Trainee = trainee;
+            ViewBag.Centre = centre;
+            ViewBag.Module = module;
+
+            ViewBag.Training = training;
+
+
+
+            return View();
+        }
+
         public async Task<IActionResult> ViewCertificate(string traineeid, string moduleid)
         {
             var user = await _usermanager.GetUserAsync(User);
@@ -232,8 +265,19 @@ namespace MISTDO.Web.Controllers
             var training =  train.FirstOrDefault(t => t.TraineeId == trainee.UID & t.ModuleId == moduleid & t.TrainingCentreId == user.Id);
    
              var centre = await _usermanager.FindByIdAsync(user.Id);
+            //QR code generation
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(training.CertificateId, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            //Bitmap qrCodeImage = qrCode.GetGraphic(20);
+            //Set color by using Color-class types
+            Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.Goldenrod, Color.White, true);
+            MemoryStream ms = new MemoryStream();
+            qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
 
-         
+
+            ViewBag.QR = ms.ToArray();
+
             var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
 
             if (training.CertificateId != null)
@@ -591,11 +635,16 @@ namespace MISTDO.Web.Controllers
             var tcentre = await _trainer.GetAllTrainingCenters();
 
             foreach (var item in tcentre)
+                ViewBag.CenterID = item.UID;
+
+            foreach (var item in tcentre)
                 
                 ViewBag.Tcenter = item.CentreName;
 
             var training = await dbcontext.Trainings
                 .SingleOrDefaultAsync(m => m.Id == id);
+            var trainee = await Traineedbcontext.Users.SingleOrDefaultAsync(a => a.UID == training.TraineeId);
+            ViewBag.traineeid = trainee.Id;
             if (training == null)
             {
                 return NotFound();
@@ -748,7 +797,18 @@ namespace MISTDO.Web.Controllers
 
             
             var module = Admindbcontext.Modules.FirstOrDefault(m => m.Id == int.Parse(moduleid));
+            //QR code generation
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(training.CertificateId, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            //Bitmap qrCodeImage = qrCode.GetGraphic(20);
+            //Set color by using Color-class types
+            Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.Goldenrod, Color.White, true);
+            MemoryStream ms = new MemoryStream();
+            qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
 
+
+            ViewBag.QR = ms.ToArray();
 
             ViewBag.Trainee = trainee;
             ViewBag.Centre = centre;

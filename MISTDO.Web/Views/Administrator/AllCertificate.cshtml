@@ -277,35 +277,36 @@
                                             <th>Training Center Name</th>
 
                                             <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <thead>
                                         <tr>
                                             <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" >
+                                                <input type="text" id="input1" onkeyup="input1f()">
                                             </th>
                                             <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" >
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" >
+                                                <input type="text" id="input2" onkeyup="input2f()">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" >
+                                                <input type="text" id="input3" onkeyup="input3f()">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input5" onkeyup="input5f()" >
+                                                <input type="text" id="input4" onkeyup="input4f()">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input6" onkeyup="input6f()" >
+                                                <input type="text" id="input5" onkeyup="input5f()">
+
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input6" onkeyup="input6f()">
 
                                             </th>
 
-
+                                            <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -361,16 +362,11 @@
                                                 </td>
                                                 <td>
 
-                                                  <div>
-                                                      <div>
-                                                          <a asp-action="ViewCertificate" class="btn btn-success" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId" title="View this Certificate">Certificate</a>
-                                                      </div>
-                                                      <div>
                                                           <a asp-action="IdCards" class="btn btn-success" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId" title="View this Certificate">View ID</a>
-                                                      </div>
-                                                  </div>
-                                                  
-
+                                                    
+                                                </td>
+                                                <td>
+                                                    <a asp-action="ViewCertificate" class="btn btn-success" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId" title="View this Certificate">Certificate</a>
                                                 </td>
                                             </tr>
 

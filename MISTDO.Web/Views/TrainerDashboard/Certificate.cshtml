@@ -272,36 +272,36 @@
 
                                             <th>Training Center Name</th>
 
-
+                                            <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <thead>
                                         <tr>
                                             <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" >
+                                                <input type="text" id="input1" onkeyup="input1f()">
                                             </th>
                                             <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" >
-
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" >
+                                                <input type="text" id="input2" onkeyup="input2f()">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" >
+                                                <input type="text" id="input3" onkeyup="input3f()">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input5" onkeyup="input5f()" >
+                                                <input type="text" id="input4" onkeyup="input4f()">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input6" onkeyup="input6f()" >
+                                                <input type="text" id="input5" onkeyup="input5f()">
 
                                             </th>
+                                            <th>
+                                                <input type="text" id="input6" onkeyup="input6f()">
 
+                                            </th>
+                                            <th></th>
 
                                             <th>
 
@@ -312,59 +312,64 @@
                                         @for (int i = 0; i < Model.Count(); i++)
                                         {
 
-                                            <tr style="font-size:small">
+                                        <tr style="font-size:small">
 
-                                                <td>
+                                            <td>
 
-                                                    <div class="mrg-top-15">
-                                                        <span class="text-info"><b>@owners[i].FirstName  @owners[i].LastName</b></span>
+                                                <div class="mrg-top-15">
+                                                    <span class="text-info"><b>@owners[i].FirstName  @owners[i].LastName</b></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="mrg-top-15">
+                                                    <span class="text-info"><b>@owners[i].Email</b></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="mrg-top-15">
+                                                    <span class="text-info"><b>@Model[i].CertNumber</b></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @if (DateTime.Now >= @Model[i].DateGenerated.AddYears(2))
+                                                {
+                                                    <div class="relative mrg-top-15">
+                                                        <span class="status danger"> </span>
+                                                        <span class="pdd-left-20">Invalid</span>
                                                     </div>
-                                                </td>
-                                                <td>
-                                                    <div class="mrg-top-15">
-                                                        <span class="text-info"><b>@owners[i].Email</b></span>
+                                                }
+                                                else
+                                                {
+                                                    <div class="relative mrg-top-15">
+                                                        <span class="status online"> </span>
+                                                        <span class="pdd-left-20">@Model[i].CertStatus</span>
                                                     </div>
-                                                </td>
-                                                <td >
-                                                    <div class="mrg-top-15">
-                                                        <span class="text-info"><b>@Model[i].CertNumber</b></span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    @if (DateTime.Now >= @Model[i].DateGenerated.AddYears(2))
-                                                    {
-                                                        <div class="relative mrg-top-15">
-                                                            <span class="status danger"> </span>
-                                                            <span class="pdd-left-20">Invalid</span>
-                                                        </div>
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="relative mrg-top-15">
-                                                            <span class="status online"> </span>
-                                                            <span class="pdd-left-20">@Model[i].CertStatus</span>
-                                                        </div>
-                                                    }
-                                                </td>
+                                                }
+                                            </td>
 
-                                                <td>
-                                                    <div class="mrg-top-15">
-                                                        <span>@Model[i].DateGenerated</span>
-                                                    </div>
-                                                </td>
+                                            <td>
+                                                <div class="mrg-top-15">
+                                                    <span>@Model[i].DateGenerated</span>
+                                                </div>
+                                            </td>
 
-                                                <td>
-                                                    <div class="mrg-top-15">
-                                                        <b class="text-dark font-size-16">@Model[i].Trainer.CentreName</b>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="mrg-top-10 text-center">
+                                            <td>
+                                                <div class="mrg-top-15">
+                                                    <b class="text-dark font-size-16">@Model[i].Trainer.CentreName</b>
+                                                </div>
+                                            </td>
+                                            <td>
 
-                                                        <a asp-action="ViewTraineeCertificate" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId">View Certificate</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                <a asp-action="IdCards" class="btn btn-success" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId" title="View this Certificate">View ID</a>
+
+                                            </td>
+                                            <td>
+
+
+                                                <a asp-action="ViewTraineeCertificate" class="btn btn-success" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId">View Certificate</a>
+
+                                            </td>
+                                        </tr>
 
                                         }
 

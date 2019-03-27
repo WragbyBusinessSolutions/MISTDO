@@ -515,8 +515,13 @@ namespace MISTDO.Web.Controllers
             foreach (var item in users)
                 ViewBag.trainee = item.UID;
 
+          
+
             var training = await dbcontext.Trainings
                 .SingleOrDefaultAsync(m => m.Id == id);
+
+            var trainee = await Traineedbcontext.Users.SingleOrDefaultAsync(a => a.UID == training.TraineeId);
+            ViewBag.traineeid = trainee.Id;
             if (training == null)
             {
                 return NotFound();
@@ -550,7 +555,8 @@ namespace MISTDO.Web.Controllers
         public async Task<IActionResult> DetailsTrainees(string id)
         {
 
-            var train = await dbcontext.Trainings.Where(t => t.TraineeId == id).ToListAsync();
+            var trainee = await Traineedbcontext.Users.SingleOrDefaultAsync(m => m.Id == id);
+            var train = await dbcontext.Trainings.Where(t => t.TraineeId == trainee.UID).ToListAsync();
 
             ViewBag.trainings = train;
 
@@ -561,7 +567,8 @@ namespace MISTDO.Web.Controllers
                 return View(await Traineedbcontext.Users.ToListAsync());
             }
 
-            var trainee = await Traineedbcontext.Users.SingleOrDefaultAsync(m => m.Id == id);
+           
+
 
             ViewBag.ID = trainee.UID;
 
