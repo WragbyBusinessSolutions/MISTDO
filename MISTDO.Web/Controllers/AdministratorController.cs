@@ -221,11 +221,12 @@ namespace MISTDO.Web.Controllers
             {
                 modules.Add(admindbcontext.Modules.FirstOrDefault(m => m.Id.ToString() == item.ModuleId));
             }
-
+            double cos = 0;
             //var modules = await _trainer.GetAllModules();
                  ViewBag.modulecosts = modules;
+            
 
-            double total = modules.Sum(item => item.Cost);
+            double total = modules.Select(i => i.Cost).Sum();
             string cost = string.Format(new System.Globalization.CultureInfo("en-NG"), "{0:C2}", total);
            
             ViewBag.totalcost = cost;

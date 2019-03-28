@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Modules>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "All Modules";
     Layout = "_LayoutAdminDashboard";
     //   Layout = "_LayoutAdminDashboard";
 
@@ -325,16 +325,16 @@
 
                                             <tr>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.Name)
+                                                    @item.Name.ToUpper()
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.ShortCode)
+                                                    @item.ShortCode.ToUpper()
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.Description)
+                                                    @item.Description.ToUpper()
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.Cost)
+                                                    ₦  @Html.Raw(@String.Format("{0:n00}", item.Cost))
                                                 </td>
                                                 <td>
                                                     <a asp-action="EditModule" asp-route-id="@item.Id" title="Edit Module Record" class="btn btn-success">Edit</a>

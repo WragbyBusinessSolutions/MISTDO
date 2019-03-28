@@ -20,6 +20,94 @@
         background-color: #7dc290;
     }
 </style>
+@if (ViewData["Title"].ToString().Contains("Trainees"))
+{
+    <style>
+        #a1 {
+            background-color: forestgreen;
+        }
+    </style>
+
+
+}
+@if (ViewData["Title"].ToString().Contains("Certificate"))
+{
+    <style>
+        #a2 {
+            background-color: forestgreen;
+        }
+    </style>
+}
+@if (ViewData["Title"].ToString().Contains("Modules"))
+{
+    <style>
+        #a3 {
+            background-color: forestgreen;
+        }
+    </style>
+}
+@if (ViewData["Title"].ToString().Contains("Calender"))
+{
+    <style>
+        #a4 {
+            background-color: forestgreen;
+        }
+    </style>
+}
+@if (ViewData["Title"].ToString().Contains("Providers"))
+{
+    <style>
+        #a5 {
+            background-color: forestgreen;
+        }
+    </style>
+
+}
+@if (ViewData["Title"].ToString().Contains("Support"))
+{
+    <style>
+        #a6 {
+            background-color: forestgreen;
+        }
+    </style>
+
+}
+@if (ViewData["Title"].ToString().Contains("Notifications"))
+{
+    <style>
+        #a7 {
+            background-color: forestgreen;
+        }
+    </style>
+
+}
+@if (ViewData["Title"].ToString().Contains("Feedback"))
+{
+    <style>
+        #a9 {
+            background-color: forestgreen;
+        }
+    </style>
+
+}
+@if (ViewData["Title"].ToString().Contains("Support"))
+{
+    <style>
+        #a8 {
+            background-color: forestgreen;
+        }
+    </style>
+
+}
+@if (ViewData["Title"].ToString().Contains("Dashboard"))
+{
+    <style>
+        #a0 {
+            background-color: forestgreen;
+        }
+    </style>
+
+}
 <div class="side-nav">
     <div class="side-nav-inner">
         <div class="side-nav-logo">
@@ -42,7 +130,7 @@
                     <span class="title">Home</span>
                 </a>
             </li>
-            <li class="nav-item active" title="Admin Dashboard">
+            <li class="nav-item " title="Admin Dashboard" id="a0">
                 <a asp-controller="Administrator" asp-action="Dashboard">
                     <span class="icon-holder">
                         <i class="ti-dashboard"></i>
@@ -50,7 +138,7 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item dropdown" title="Registered Trainees on MISTDO">
+            <li class="nav-item dropdown" title="Registered Trainees on MISTDO" id="a1">
                 <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder">
                         <i class="ti-id-badge"></i>
@@ -69,7 +157,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item" title="Certificates Awarded to Trainees">
+            <li class="nav-item" title="Certificates Awarded to Trainees" id="a2">
                 <a asp-controller="Administrator" asp-action="AllCertificate">
                     <span class="icon-holder">
                         <i class="ti-medall"></i>
@@ -77,7 +165,7 @@
                     <span class="title">Certificates</span>
                 </a>
             </li>
-            <li class="nav-item " title=" D.P.R Approved Modules ">
+            <li class="nav-item " title=" D.P.R Approved Modules " id="a3">
                 <a asp-controller="Administrator" asp-action="AllModules">
                     <span class="icon-holder">
                         <i class="ei-file-check"></i>
@@ -85,7 +173,7 @@
                     <span class="title">Approved Modules</span>
                 </a>
             </li>
-            <li class="nav-item " title="Training Centers Training Calender">
+            <li class="nav-item " title="Training Centers Training Calender" id="a4">
                 <a asp-controller="Administrator" asp-action="AllCalender">
                     <span class="icon-holder">
                         <i class="ei-calendar"></i>
@@ -93,7 +181,7 @@
                     <span class="title">Training Calender </span>
                 </a>
             </li>
-            <li class="nav-item " title="Accredited Training Providers">
+            <li class="nav-item " title="Accredited Training Providers" id="a5">
                 <a asp-controller="Administrator" asp-action="AllTrainingCenter">
                     <span class="icon-holder">
                         <i class="ti-view-list"></i>
@@ -101,23 +189,23 @@
                     <span class="title">Accredited Training Providers </span>
                 </a>
             </li>
-            <li class="nav-item " title="User Management">
-                <a href="/training">
+            <li class="nav-item " title="User Management" >
+                <a href="#">
                     <span class="icon-holder">
                         <i class="ti-user"></i>
                     </span>
                     <span class="title"> User Management</span>
                 </a>
             </li>
-            <li class="nav-item " title="Total Revenue">
-                <a asp-controller="Administrator" asp-action="Account">
-                    <span class="icon-holder">
-                        <i class="ti-receipt"></i>
-                    </span>
-                    <span class="title">Training Accounts</span>
-                </a>
-            </li>
-            <li class="nav-item dropdown " title="Notifications">
+            @*<li class="nav-item " title="Total Revenue">
+                    <a asp-controller="Administrator" asp-action="Account">
+                        <span class="icon-holder">
+                            <i class="ti-receipt"></i>
+                        </span>
+                        <span class="title">Training Accounts</span>
+                    </a>
+                </li>*@
+            <li class="nav-item dropdown " title="Notifications" id="a7">
                 <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder">
                         <i class="ti-bell"></i>
@@ -136,7 +224,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item " title="Respond to Support Tickets from Trainees">
+            <li class="nav-item " title="Respond to Support Tickets from Trainees" id="a8">
                 <a asp-controller="Administrator" asp-action="Support">
                     <span class="icon-holder">
                         <i class="ti-help"></i>
@@ -144,7 +232,7 @@
                     <span class="title">Resolve Support Tickets</span>
                 </a>
             </li>
-            <li class="nav-item " title="Feedbacks from Trainees">
+            <li class="nav-item " title="Feedbacks from Trainees" id="a9">
                 <a asp-controller="Administrator" asp-action="Feedback">
                     <span class="icon-holder">
                         <i class="ti-receipt"></i>

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MISTDO.Web.Models.Calender>
 
 @{
-    ViewData["Title"] = "Training";
+    ViewData["Title"] = "Calender";
     Layout = "_LayoutAdminDashboard";
 }
 @inject UserManager<ApplicationUser> userManager;
@@ -342,23 +342,23 @@
 
                                             <tr>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.TrainingName)
+                                                    @item.TrainingName.ToUpper()
                                                 </td>
                                                 @{
                                                     var user = await userManager.FindByIdAsync(item.TrainingCentreId);
 
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => user.CompanyName)
+                                                        @user.CompanyName.ToUpper()
                                                     </td>
 
                                                 }
 
 
+                                                    <td>
+                                                        ₦  @Html.Raw(@String.Format("{0:n00}", item.Cost))
+                                                    </td>
                                                 <td>
-                                                    @Html.DisplayFor(model => item.Cost)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(model => item.Venue)
+                                                    @item.Venue.ToUpper()
                                                 </td>
 
                                                 <td>

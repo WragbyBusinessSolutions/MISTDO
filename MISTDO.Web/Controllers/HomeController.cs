@@ -21,6 +21,7 @@ namespace MISTDO.Web.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ApplicationDbContext tdbcontext;
+        private readonly TraineeApplicationDbContext Traineedbcontext;
 
 
         public ApplicationDbContext dbcontext { get; }
@@ -28,14 +29,15 @@ namespace MISTDO.Web.Controllers
         public HomeController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IEmailSender emailSender,
+            IEmailSender emailSender, TraineeApplicationDbContext traineedbcontext,
              ApplicationDbContext context, ApplicationDbContext contexted)
         {
             tdbcontext = contexted;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
-           
+            Traineedbcontext = traineedbcontext;
+
             dbcontext = context;
         }
         public async Task<IActionResult> Index()
@@ -84,7 +86,10 @@ namespace MISTDO.Web.Controllers
                 ViewBag.Message = ViewBag.Message + "Certificate is not Valid";
                 return View(nameof(CertificateCheck));
             }
-           
+            var trainee = await Traineedbcontext.Users.FirstOrDefaultAsync(a => a.Id == certificate.Owner);
+
+            ViewBag.name = trainee.FirstName+" "+trainee.LastName;
+            ViewBag.uid = trainee.UID;
             ViewBag.Message = ViewBag.Message + "Certificate is Valid";
 
          

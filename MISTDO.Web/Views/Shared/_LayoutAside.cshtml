@@ -1,16 +1,14 @@
 ﻿<!-- Side Nav START -->
 <div class="side-nav">
     <div class="side-nav-inner">
-      
+
         <style>
             /* Style the buttons */
             .nav-item {
                 border: none;
                 outline: none;
-              
                 background-color: white;
                 cursor: pointer;
-             
             }
 
                 /* Style the active class, and buttons on mouse-over */
@@ -18,13 +16,83 @@
                     background-color: forestgreen;
                     color: white;
                 }
+
             .side-nav-menu > .active > a,
             .side-nav-menu > .active > a:hover,
             .side-nav-menu > .active > a:focus {
                 background-color: #7dc290;
             }
-           
         </style>
+        @if (ViewData["Title"].ToString().Contains("Profile"))
+        {
+            <style>
+                #a1 {
+                    background-color: forestgreen;
+                }
+            </style>
+
+
+        }
+        @if (ViewData["Title"].ToString().Contains("Trainee"))
+        {
+            <style>
+                #a2 {
+                    background-color: forestgreen;
+                }
+            </style>
+        }
+        @if (ViewData["Title"].ToString().Contains("Certificate"))
+        {
+            <style>
+                #a3 {
+                    background-color: forestgreen;
+                }
+            </style>
+        }
+        @if (ViewData["Title"].ToString().Contains("Training"))
+        {
+            <style>
+                #a4 {
+                    background-color: forestgreen;
+                }
+            </style>
+        }
+        @if (ViewData["Title"].ToString().Contains("Notification"))
+        {
+            <style>
+                #a5 {
+                    background-color: forestgreen;
+                }
+            </style>
+
+        }
+        @if (ViewData["Title"].ToString().Contains("Support"))
+        {
+            <style>
+                #a6 {
+                    background-color: forestgreen;
+                }
+            </style>
+
+        }
+        @if (ViewData["Title"].ToString().Contains("Help"))
+        {
+            <style>
+                #a7 {
+                    background-color: forestgreen;
+                }
+            </style>
+
+        }
+        @if (ViewData["Title"].ToString().Contains("Dashboard"))
+        {
+            <style>
+                #a0 {
+                    background-color: forestgreen;
+                }
+            </style>
+
+        }
         <div class="side-nav-logo">
             <a asp-controller="Home" asp-action="Index">
                 <div class="logo"> <img src="~/dist/assets/images/logo/dpr logo.png" width="240" alt=""></div>
@@ -45,7 +113,7 @@
                     <h3> <span class="title" style="color:crimson"> <strong>Training Provider's Portal</strong></span></h3>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="a0">
                 <a asp-action="Index">
                     <span class="icon-holder">
                         <i class="ti-dashboard"></i>
@@ -54,7 +122,7 @@
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" id="a1">
                 <a asp-controller="TrainerDashboard" asp-action="Profile">
                     <span class="icon-holder">
                         <i class="ti-user"></i>
@@ -62,7 +130,7 @@
                     <span class="title">Profile</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="a2">
                 <a asp-controller="TrainerDashboard" asp-action="Trainees">
                     <span class="icon-holder">
                         <i class="ti-id-badge"></i>
@@ -70,7 +138,7 @@
                     <span class="title">Trainees</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="a3">
                 <a asp-controller="TrainerDashboard" asp-action="Certificate">
                     <span class="icon-holder">
                         <i class="ti-medall"></i>
@@ -78,7 +146,7 @@
                     <span class="title">Certificate</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="a4">
                 <a asp-controller="TrainerDashboard" asp-action="Training">
                     <span class="icon-holder">
                         <i class="ti-calendar"></i>
@@ -86,7 +154,7 @@
                     <span class="title">Training Calender</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="a5">
                 <a asp-controller="TrainerDashboard" asp-action="Notification">
                     <span class="icon-holder">
                         <i class="ti-bell"></i>
@@ -94,7 +162,7 @@
                     <span class="title">Notification </span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="a6">
                 <a asp-controller="TrainerDashboard" asp-action="SupportTrainees">
                     <span class="icon-holder">
                         <i class="ti-light-bulb"></i>
@@ -102,7 +170,7 @@
                     <span class="title">Resolve  Support Tickets </span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="a7">
                 <a asp-controller="TrainerDashboard" asp-action="Support">
                     <span class="icon-holder">
                         <i class="ti-help"></i>
@@ -110,6 +178,7 @@
                     <span class="title">Help Support </span>
                 </a>
             </li>
+
 
         </ul>
 

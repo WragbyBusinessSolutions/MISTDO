@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ApplicationUser>
 @{
-    ViewData["Title"] = "All Registered Training Centers";
+    ViewData["Title"] = "All Registered Training Providers";
     Layout = "_LayoutAdminDashboard";
 }
 <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
@@ -363,13 +363,13 @@
                                                     @Html.DisplayFor(modelItem => item.UID)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.CentreName)
+                                                    @item.CentreName.ToUpper()
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(model => item.CompanyAddress)
+                                                    @item.CompanyAddress.ToUpper()
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(model => item.City)
+                                                    @item.City.ToUpper()
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(model => item.Email)

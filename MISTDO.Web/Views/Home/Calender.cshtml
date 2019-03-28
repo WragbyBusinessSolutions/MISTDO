@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MISTDO.Web.Models.Calender>
 @{
     ViewData["Title"] = "Training Calendar | MISTDO Portal";
-    Layout = "_RegisterPartial";
+   
 }
 
 
@@ -239,162 +239,214 @@
                 background-color: #f1f1f1;
             }
 </style>
-<div class="page-container">
-    <!-- Header START -->
-    @await Html.PartialAsync("_LayoutRegisterHeader");
-    @inject UserManager<TraineeApplicationUser> userManager;
-    @inject UserManager<ApplicationUser> usermanager;
-    <!-- Theme Toggle Button END -->
-    <!-- Content Wrapper START -->
-    <div class="main-content">
+<head>
+    <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--- Basic Page Needs  -->
+    <link rel="stylesheet" href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
+    <link rel="stylesheet" href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+    <meta charset="utf-8">
 
-        <div class="container-fluid">
-            <div class="page-title">
-                <h4>Training Calender</h4>
-                @if (ViewData["Success"] != null)
-                {
-                    <div id="successMessage">
-                        @ViewData["Success"]
-                    </div>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/assets2/vendor/bootstrap/css/bootstrap.min.css">
 
-                }
+    <link rel="stylesheet" href="~/assets2/css/heroic-features.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
+    <!-- Favicon -->
+
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen; color:white;">
+        <img src="~/images/logo.png" style="max-width:10%">
+        <div class="container">
+
+            <a class="navbar-brand" asp-action="Index" asp-controller="Home"><b></b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Home"><b>Home</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Contact" asp-controller="Home"><b>Contact</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Calender" asp-controller="Home"><b>Training Calendar</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home"><b>Certificates</b></a>
+                    </li>
+                </ul>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-block">
-                            <div class="table-overflow">
-                                <table id="dt-opt" class="table table-lg table-hover" style="font-size:medium">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                Module Name
-                                            </th>
+        </div>
+    </nav>
 
-                                            <th>
-                                                Center Name
-                                            </th>
+    <div class="page-container">
+        <!-- Header START -->
+       
+        @inject UserManager<TraineeApplicationUser> userManager;
+        @inject UserManager<ApplicationUser> usermanager;
+        <!-- Theme Toggle Button END -->
+        <!-- Content Wrapper START -->
+        <div class="main-content">
+
+           
+                <div class="page-title">
+                    <h4>Training Calender</h4>
+                    @if (ViewData["Success"] != null)
+                    {
+                        <div id="successMessage">
+                            @ViewData["Success"]
+                        </div>
+
+                    }
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-overflow">
+                                    <table id="dt-opt" class="table table-lg table-hover" style="font-size:medium">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Module Name
+                                                </th>
+
+                                                <th>
+                                                    Center Name
+                                                </th>
 
 
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.Cost)
-                                            </th>
-                                            <th>
-                                               State
-                                            </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Cost)
+                                                </th>
+                                                <th>
+                                                    State
+                                                </th>
 
-                                            <th>
-                                                Start Date
-                                            </th>
-                                            <th>
-                                                End Date
-                                            </th>
-                                            <th>Other Options</th>
-                                        </tr>
-                                    </thead>
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="" >
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="" >
+                                                <th>
+                                                    Start Date
+                                                </th>
+                                                <th>
+                                                    End Date
+                                                </th>
+                                                <th>Other Options</th>
+                                            </tr>
+                                        </thead>
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <input type="text" id="input1" onkeyup="input1f()" placeholder="">
+                                                </th>
+                                                <th>
+                                                    <input type="text" id="input2" onkeyup="input2f()" placeholder="">
 
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="" >
+                                                </th>
+                                                <th>
+                                                    <input type="text" id="input3" onkeyup="input3f()" placeholder="">
 
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="" >
+                                                </th>
+                                                <th>
+                                                    <input type="text" id="input4" onkeyup="input4f()" placeholder="">
 
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="" >
+                                                </th>
+                                                <th>
+                                                    <input type="text" id="input5" onkeyup="input5f()" placeholder="">
 
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="" >
+                                                </th>
+                                                <th>
+                                                    <input type="text" id="input6" onkeyup="input6f()" placeholder="">
 
-                                            </th>
+                                                </th>
 
-                                            <th>
+                                                <th>
 
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model)
-                                        {
-                                            var centername = await usermanager.FindByIdAsync(item.TrainingCentreId);
-                                          
-                                            if (item.TrainingEndDate >= DateTime.Today)
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
                                             {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingName)
-                                            </td>
-                                            <td>
-                                                 @if (centername == null)
-                                                        {
-                                                            string jas = "jadel company";
-                                                            @jas
-                                                        }
-                                                        else
-                                                        {
+                                                var centername = await usermanager.FindByIdAsync(item.TrainingCentreId);
 
-                                                            @centername.CompanyName
-                                                        }
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(model => item.Cost)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(model => item.Venue)
-                                            </td>
+                                                if (item.TrainingEndDate >= DateTime.Today)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.TrainingName)
+                                                        </td>
+                                                        <td>
+                                                            @if (centername == null)
+                                                            {
+                                                                string jas = "jadel company";
+                                                                @jas
+                                                            }
+                                                            else
+                                                            {
 
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
-                                            </td>
-                                            <td>
+                                                                @centername.CompanyName
+                                                            }
+                                                        </td>
+                                                        <td>
 
-                                                <a asp-action="DetailsCalender" class="btn btn-success" asp-route-id="@item.Id">Details</a>
+                                                            ₦  @Html.Raw(@String.Format("{0:n0}", item.Cost))
 
-                                            </td>
-                                        </tr>
+
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(model => item.Venue)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                                        </td>
+                                                        <td>
+
+                                                            <a asp-action="DetailsCalender" class="btn btn-success" asp-route-id="@item.Id">Details</a>
+
+                                                        </td>
+                                                    </tr>
+                                                }
                                             }
-                                        }
-                                    </tbody>
+                                        </tbody>
 
-                                </table>
+                                    </table>
+                                </div>
+
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        
 
-    <!-- Content Wrapper END -->
-    <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
+        <!-- Content Wrapper END -->
+        <!-- Footer START -->
+       
+        <!-- Footer END -->
+        <!-- Page Container END -->
+    </div>
+    <footer style="background-color:black">
+        <div class="container">
+            <span style="float:left;color:aliceblue">Copyright © @DateTime.Now.Year <img src="~/dist/assets/images/logo/footerlogo.png" width="65%" height="45%" style="margin:15px"></span>
         </div>
+        <!-- /.container -->
     </footer>
-    <!-- Footer END -->
-    <!-- Page Container END -->
-</div>
+</body>
 
 <script src="~/dist/assets/js/apps/calendar.js"></script>
 <script src="~/dist/assets/js/vendor.js"></script>
