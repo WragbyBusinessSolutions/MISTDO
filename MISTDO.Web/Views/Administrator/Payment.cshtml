@@ -40,7 +40,7 @@
                     <div class="card">
                         <div class="card-block">
 
-                           
+
                             <form asp-action="EditTraining" enctype="multipart/form-data">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -125,7 +125,7 @@
 
                                     </div>
 
-                                    
+
                                 </div>
                                 <div class="row">
 
@@ -139,38 +139,38 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Module Short Code</label>
-                                            <input asp-for="@module.ShortCode" class="form-control" disabled/>
+                                            <input asp-for="@module.ShortCode" class="form-control" disabled />
                                             <span asp-validation-for="@module.ShortCode" class="text-danger"></span>
                                         </div>
-                                     </div>
+                                    </div>
 
 
-                                        <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Module Cost</label>
+                                            <input asp-for="@module.Cost" class="form-control" disabled />
+                                            <span asp-validation-for="@module.Cost" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <div class="text-right mrg-top-5">
                                             <div class="form-group">
-                                                <label class="control-label">Module Cost</label>
-                                                <input asp-for="@module.Cost" class="form-control" disabled />
-                                                <span asp-validation-for="@module.Cost" class="text-danger"></span>
+                                                <a class="btn btn-success" asp-route-trainer="@ViewBag.Trainer" asp-route-ModuleId="@module.Id" asp-route-TraineeId="@Model.TraineeId" asp-action="GenerateCertificate">Generate Certificate</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6 col-xs-6">
-                                            <div class="text-right mrg-top-5">
-                                                <div class="form-group">
-                                                    <a class="btn btn-success" asp-route-trainer="@ViewBag.Trainer" asp-route-ModuleId="@module.Id" asp-route-TraineeId="@Model.TraineeId" asp-action="GenerateCertificate">Generate Certificate</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-</form>
+                                </div>
+                            </form>
 
 
                             <div align="center">
-                                
+
                                 @*<form>
-                <script src="https://remitademo.net/payment/v1/remita-pay-inline.bundle.js"></script>
-                <button class="btn btn-primary" type="button" onclick="makePayment()"> Pay </button>
-            </form>*@
+                                    <script src="https://remitademo.net/payment/v1/remita-pay-inline.bundle.js"></script>
+                                    <button class="btn btn-primary" type="button" onclick="makePayment()"> Pay </button>
+                                </form>*@
                             </div>
 
                         </div>
@@ -183,17 +183,7 @@
 
         <!-- Content Wrapper END -->
         <!-- Footer START -->
-        <footer class="content-footer">
-            <div class="footer">
-                <div class="copyright">
-                    <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                    <span class="go-right">
-                        <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                        <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                    </span>
-                </div>
-            </div>
-        </footer>
+        @await Html.PartialAsync("_Footer")
         <!-- Footer END -->
         <!-- Page Container END -->
     </div>

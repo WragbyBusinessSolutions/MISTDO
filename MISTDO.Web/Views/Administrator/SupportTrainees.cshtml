@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="page-title">
                 <h4> Support Tickets From Training Centres</h4>
-                
+
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -45,24 +45,24 @@
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Subject)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Issue)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.SupportTimeStamp)
-                                            </td>
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Subject)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Issue)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.SupportTimeStamp)
+                                                </td>
 
 
-                                            <td>
+                                                <td>
 
-                                                <a asp-action="SupportDetails" asp-route-id="@item.SupportId">Details</a> |
+                                                    <a asp-action="SupportDetails" asp-route-id="@item.SupportId">Details</a> |
 
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
                                         }
                                     </tbody>
                                 </table>
@@ -77,18 +77,7 @@
 
     <!-- Content Wrapper END -->
     <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="~/Views/Administrator/SupportTrainees.cshtml">~/Views/Administrator/SupportTrainees.cshtml</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_Footer")
     <!-- Footer END -->
     <!-- Page Container END -->
 </div>

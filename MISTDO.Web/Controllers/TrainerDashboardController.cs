@@ -1306,6 +1306,8 @@ namespace MISTDO.Web.Controllers
                         UserAddress = model.UserAddress,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
+                        State = model.State,
+                        City = model.City,
 
                         DateRegistered = DateTime.Now.Date,
 
@@ -1542,6 +1544,7 @@ namespace MISTDO.Web.Controllers
                 using (var cells = worksheet.Cells[1, 1, 1, 10]) //(1,1) (1,5)
                 {
                     cells.Style.Font.Bold = true;
+                  
                 }
 
                 int totalRows = traineeList.Count();
@@ -1552,8 +1555,10 @@ namespace MISTDO.Web.Controllers
                 worksheet.Cells[1, 4].Value = "Email";
                 worksheet.Cells[1, 5].Value = "Company Name";
                 worksheet.Cells[1, 6].Value = "Company Address";
-                worksheet.Cells[1, 7].Value = "User Address";
-                worksheet.Cells[1, 8].Value = "Registration Date";
+                worksheet.Cells[1, 7].Value = "City";
+                worksheet.Cells[1, 8].Value = "State";
+                worksheet.Cells[1, 9].Value = "User Address";
+                worksheet.Cells[1, 10].Value = "Registration Date";
                 int i = 0;
                 for (int row = 2; row <= totalRows + 1; row++)
                 {
@@ -1563,8 +1568,10 @@ namespace MISTDO.Web.Controllers
                     worksheet.Cells[row, 4].Value = traineeList[i].Email;
                     worksheet.Cells[row, 5].Value = traineeList[i].CompanyName;
                     worksheet.Cells[row, 6].Value = traineeList[i].CompanyAddress;
-                    worksheet.Cells[row, 7].Value = traineeList[i].CompanyAddress;
-                    worksheet.Cells[row, 8].Value = traineeList[i].DateRegistered.ToString();
+                    worksheet.Cells[row, 7].Value = traineeList[i].City;
+                    worksheet.Cells[row, 8].Value = traineeList[i].State;
+                    worksheet.Cells[row, 9].Value = traineeList[i].CompanyAddress;
+                    worksheet.Cells[row, 10].Value = traineeList[i].DateRegistered.ToString();
                     i++;
                 }
 

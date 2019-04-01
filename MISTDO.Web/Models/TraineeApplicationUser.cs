@@ -32,6 +32,15 @@ namespace MISTDO.Web.Models
         public string UserAddress { get; set; }
         public DateTime DateRegistered { get; set; }
 
+        [Display(Name = "State")]
+        [Required]
+        [DataType(DataType.Text)]
+        public string State { get; set; }
+        [Display(Name = "City")]
+        [Required]
+        [DataType(DataType.Text)]
+        public string City { get; set; }
+
         public byte[] RightThumb { get; set; }
         public byte[] LeftThumb { get; set; }
         public byte[] RightIndex { get; set; }

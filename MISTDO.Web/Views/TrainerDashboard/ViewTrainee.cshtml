@@ -496,12 +496,11 @@
                                     </li>
                                 </ul>
                             </li>
-                           
+
                         </ul>
                     </div>
                 </div>
                 <!-- Header END -->
-              
                 <!-- theme configurator START -->
                 <div class="theme-configurator">
                     <div class="configurator-wrapper">
@@ -567,7 +566,7 @@
                 </button>
                 <!-- Theme Toggle Button END -->
                 <!-- Content Wrapper START -->
-                        <div class="main-content">
+                <div class="main-content">
                     <div class="container-fluid">
                         <div class="page-title">
                             <h4>Account Setting</h4>
@@ -579,11 +578,11 @@
                                         <div class="widget-profile-1 card">
                                             <div class="profile border bottom">
                                                 <img class="mrg-top-30" src="../dist/assets/images/others/img-10.jpg" alt="">
-                                                <p >
-                                                <h4 class="mrg-top-20 no-mrg-btm text-semibold"> usddakjsdjk</h4>
+                                                <p>
+                                                    <h4 class="mrg-top-20 no-mrg-btm text-semibold"> usddakjsdjk</h4>
                                                 </p>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -598,7 +597,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <span class="status online mrg-top-10"></span>
-                                                        <p class="mrg-top-10"> @Html.DisplayFor(model => model.FirstName)</p> 
+                                                        <p class="mrg-top-10"> @Html.DisplayFor(model => model.FirstName)</p>
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -611,8 +610,8 @@
                                                         <p class="mrg-top-10">@Html.DisplayFor(model => model.Email)</p>
                                                     </div>
                                                 </div>
-                                                
-                                                
+
+
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -661,9 +660,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                                
-                                       
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -672,17 +671,7 @@
                 </div>
                 <!-- Content Wrapper END -->
                 <!-- Footer START -->
-                <footer class="content-footer">
-                    <div class="footer">
-                        <div class="copyright">
-                            <span>Copyright © 2017 <b class="text-dark">Theme_Nate</b>. All rights reserved.</span>
-                            <span class="go-right">
-                                <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                                <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                            </span>
-                        </div>
-                    </div>
-                </footer>
+                @await Html.PartialAsync("_Footer")
                 <!-- Footer END -->
 
             </div>

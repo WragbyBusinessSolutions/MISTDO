@@ -259,55 +259,30 @@
                         <div class="card-block">
                             <div class="table-overflow">
                                 <table id="dt-opt" class="table table-lg table-hover" style="font-size:small;">
+                                    
                                     <thead>
                                         <tr>
                                             <th>
-                                                Module Name
-                                            </th>
-
-                                            <th>
-                                                Center Name
-                                            </th>
-
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.Cost)
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Module Name">
                                             </th>
                                             <th>
-                                              State
-                                            </th>
-
-                                            <th>
-                                                Start Date
-                                            </th>
-                                            <th>
-                                                End Date
-                                            </th>
-                                            <th>Other Options</th>
-                                        </tr>
-                                    </thead>
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" >
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" >
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder=" Centre Name">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" >
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Cost">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" >
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="State">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input5" onkeyup="input5f()" >
+                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="Start Date">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input6" onkeyup="input6f()" >
+                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="End Date">
 
                                             </th>
 
@@ -316,7 +291,7 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody >
+                                    <tbody>
                                         @foreach (var item in Model)
                                         {
                                             var centername = await usermanager.FindByIdAsync(item.TrainingCentreId);
@@ -347,10 +322,10 @@
                                                     </td>
 
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate) 
+                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate)
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate) 
+                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate)
                                                     </td>
                                                     <td>
 
@@ -373,17 +348,7 @@
 
     <!-- Content Wrapper END -->
     <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_Footer")
     <!-- Footer END -->
     <!-- Page Container END -->
 </div>

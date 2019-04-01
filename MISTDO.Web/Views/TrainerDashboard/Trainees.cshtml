@@ -251,30 +251,30 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                
+
                 <p>
-                  
+
                     <h4>Registered Trainees</h4>
                     <span style="float:right;"><a asp-controller="TrainerDashboard" class="btn btn-success" asp-action="ExportCenterTrainees" align="right" title="Export Certificates to Microsoft Excel file"><i> Export  Trainees via Excel</i></a></span>
 
 
                 </p>
-                
-                    <div>
-                        <p>
-                            <h4>
-                                <span style="float:left;"> <a asp-action="CreateTrainees" class="btn btn-success">Create New&nbsp;<i class="ti-user">+</i> &nbsp;</a></span> | 
-                                <span> <a class="btn btn-success" asp-action="CompleteTraineeRegistration">Complete Existing Trainee Registration <i class="ti-user"><i class="ti-settings"></i></i> </a></span>
 
-                                <span style="float:right;"><a asp-action="AttachTraineeTraining" align="right" class="btn btn-success">Assign Course Module to Trainee </a></span>
-                            </h4>
-                        </p>
-                    </div>
+                <div>
+                    <p>
+                        <h4>
+                            <span style="float:left;"> <a asp-action="CreateTrainees" class="btn btn-success">Create New&nbsp;<i class="ti-user">+</i> &nbsp;</a></span> 
+                            @*<span> <a class="btn btn-success" asp-action="CompleteTraineeRegistration">Complete Existing Trainee Registration <i class="ti-user"><i class="ti-settings"></i></i> </a></span>*@
+
+                            <span style="float:right;"><a asp-action="AttachTraineeTraining" align="right" class="btn btn-success">Assign Course Module to Trainee </a></span>
+                        </h4>
+                    </p>
+                </div>
 
 
 
             </div>
-          
+
 
             <div class="row">
 
@@ -289,60 +289,34 @@
                         <div class="card-block">
                             <div class="table-overflow">
                                 <table id="dt-opt" class="display">
+                                
                                     <thead>
                                         <tr>
                                             <th>
-                                                First Name
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="First Name">
                                             </th>
                                             <th>
-                                                Last Name
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.Email)
-                                            </th>
-                                            <th>
-                                                Phone Number
-                                            </th>
-                                            <th>
-                                                Company Name
-                                            </th>
-                                            <th>
-                                                Company Address
-                                            </th>
-                                            <th>
-                                                User Address
-                                            </th>
-
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" >
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" >
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Last Name">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" >
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Email">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" >
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Phone Number">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input5" onkeyup="input5f()" >
+                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="Company Name">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input6" onkeyup="input6f()" >
+                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="State">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input7" onkeyup="input7f()" >
+                                                <input type="text" id="input7" onkeyup="input7f()" placeholder="City">
 
                                             </th>
 
@@ -372,10 +346,10 @@
                                                     @Html.DisplayFor(modelItem => item.CompanyName)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.CompanyAddress)
+                                                    @Html.DisplayFor(modelItem => item.State)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.UserAddress)
+                                                    @Html.DisplayFor(modelItem => item.City)
                                                 </td>
 
                                                 <td>
@@ -403,17 +377,7 @@
 
     <!-- Content Wrapper END -->
     <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_Footer")
     <!-- Footer END -->
     <!-- Page Container END -->
 </div>

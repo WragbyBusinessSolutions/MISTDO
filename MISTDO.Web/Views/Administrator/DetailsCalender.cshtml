@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                       
+
 
                         <div class="col-md-8">
                             <div class="card">
@@ -49,17 +49,17 @@
 
 
                                     <hr />
-                                   
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <p class="mrg-top-10 text-dark"> <b>Training Centre Name</b></p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <span class="status online mrg-top-10"></span>
-                                                <p class="mrg-top-10"> @ViewBag.center</p>
-                                            </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="mrg-top-10 text-dark"> <b>Training Centre Name</b></p>
                                         </div>
-                                          
+                                        <div class="col-md-6">
+                                            <span class="status online mrg-top-10"></span>
+                                            <p class="mrg-top-10"> @ViewBag.center</p>
+                                        </div>
+                                    </div>
+
 
 
                                     <hr />
@@ -139,17 +139,7 @@
     </div>
     <!-- Content Wrapper END -->
     <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_Footer")
     <!-- Footer END -->
     <!-- Page Container END -->
 </div>

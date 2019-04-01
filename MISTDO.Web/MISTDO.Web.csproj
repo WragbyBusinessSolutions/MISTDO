@@ -263,6 +263,9 @@
     <Content Update="Views\Shared\_LayoutAdminDash.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Shared\_Footer.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Trainees\Deactivate.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

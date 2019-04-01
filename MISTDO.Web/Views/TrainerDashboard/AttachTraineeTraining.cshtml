@@ -31,39 +31,39 @@
                                 var module = ViewBag.modulecosts as List<SelectListItem>;
                                 var moduless = ViewBag.modules as List<SelectListItem>;
 
-                               }
+                            }
 
 
 
                             <form>
-                               
+
 
 
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-group">
                                     <label asp-for="TraineeId" class="control-label"> Trainee Id</label>
-                                    <input  asp-for="TraineeId" class="form-control" id="TraineeId"/>
+                                    <input asp-for="TraineeId" class="form-control" id="TraineeId" />
                                     <span asp-validation-for="TraineeId" class="text-danger"></span>
                                 </div>
 
                                 @{
                                     string id = Html.ValueFor(model => model.TraineeId);
 
-                                  var trainee = await usermanager.FindByIdAsync(id);
+                                    var trainee = await usermanager.FindByIdAsync(id);
 
-                                   // var trainee = ViewBag.Message as TraineeApplicationUser;
+                                    // var trainee = ViewBag.Message as TraineeApplicationUser;
 
 
                                 }
                                 <div class="form-group">
 
                                     <label class="control-label"> First Name</label>
-                                    <input class="form-control" id="firstname"  />
+                                    <input class="form-control" id="firstname" />
                                 </div>
                                 <div class="form-group">
 
                                     <label class="control-label"> Last Name</label>
-                                    <input class="form-control" id="lastname"  />
+                                    <input class="form-control" id="lastname" />
                                 </div>
 
 
@@ -166,21 +166,11 @@
 
     <!-- Content Wrapper END -->
     <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_Footer")
     <!-- Footer END -->
     <!-- Page Container END -->
 </div>
-</div>
+
 
 <script>
 

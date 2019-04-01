@@ -520,6 +520,8 @@ namespace MISTDO.Web.Views.TrainerDashboard
                     CompanyAddress = model.CompanyAddress,
                     CompanyName = model.CompanyName,
                     UserAddress = model.UserAddress,
+                    State = model.State,
+                    City = model.City,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     ImageUpload = p1,

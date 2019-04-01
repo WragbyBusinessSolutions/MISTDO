@@ -236,69 +236,55 @@
                 background-color: #f1f1f1;
             }
 </style>
+
 <div class="page-container">
     @await Html.PartialAsync("_LayoutHeader");
 
     <div class="main-content">
-      
+
 
         <div class="container-fluid">
 
             <div class="page-title">
                 <h4>Certificates</h4>
-               
+
                 <p>
                     <a class="btn btn-success" asp-controller="TrainerDashboard" asp-action="Modules">Generate a New Certificate</a>
                     <span style="float:right;"><a asp-controller="TrainerDashboard" class="btn btn-success" asp-action="ExportCertificates" align="right" title="Export Certificates to Microsoft Excel file"><i> Export  All Certificates via Excel</i></a></span>
 
                 </p>
-               
+
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-block">
                             <div class="table-overflow">
-                                <table id="dt-opt" class="display">
-                                    <thead>
-                                        <tr>
-                                            <th>Full Name</th>
-                                            <th>Email</th>
-
-                                            <th>Certificate Number</th>
-                                            <th>Certificate Status</th>
-
-                                            <th>Date Generated</th>
-
-                                            <th>Training Center Name</th>
-
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
+                                <table id="dt-opt" class="display nowrap">
+                               
                                     <thead>
                                         <tr>
                                             <th>
-                                                <input type="text" id="input1" onkeyup="input1f()">
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Full Name">
                                             </th>
                                             <th>
-                                                <input type="text" id="input2" onkeyup="input2f()">
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Email">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input3" onkeyup="input3f()">
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Certificate Number">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input4" onkeyup="input4f()">
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Certificate Status">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input5" onkeyup="input5f()">
+                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="Date Generated">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input6" onkeyup="input6f()">
+                                                <input type="text" id="input6" onkeyup="input6f()" placeholder="Centre Name">
 
                                             </th>
                                             <th></th>
@@ -312,64 +298,64 @@
                                         @for (int i = 0; i < Model.Count(); i++)
                                         {
 
-                                        <tr style="font-size:small">
+                                            <tr style="font-size:small">
 
-                                            <td>
+                                                <td>
 
-                                                <div class="mrg-top-15">
-                                                    <span class="text-info"><b>@owners[i].FirstName  @owners[i].LastName</b></span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="mrg-top-15">
-                                                    <span class="text-info"><b>@owners[i].Email</b></span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="mrg-top-15">
-                                                    <span class="text-info"><b>@Model[i].CertNumber</b></span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                @if (DateTime.Now >= @Model[i].DateGenerated.AddYears(2))
-                                                {
-                                                    <div class="relative mrg-top-15">
-                                                        <span class="status danger"> </span>
-                                                        <span class="pdd-left-20">Invalid</span>
+                                                    <div class="mrg-top-15">
+                                                        <span class="text-info"><b>@owners[i].FirstName  @owners[i].LastName</b></span>
                                                     </div>
-                                                }
-                                                else
-                                                {
-                                                    <div class="relative mrg-top-15">
-                                                        <span class="status online"> </span>
-                                                        <span class="pdd-left-20">@Model[i].CertStatus</span>
+                                                </td>
+                                                <td>
+                                                    <div class="mrg-top-15">
+                                                        <span class="text-info"><b>@owners[i].Email</b></span>
                                                     </div>
-                                                }
-                                            </td>
+                                                </td>
+                                                <td>
+                                                    <div class="mrg-top-15">
+                                                        <span class="text-info"><b>@Model[i].CertNumber</b></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    @if (DateTime.Now >= @Model[i].DateGenerated.AddYears(2))
+                                                    {
+                                                        <div class="relative mrg-top-15">
+                                                            <span class="status danger"> </span>
+                                                            <span class="pdd-left-20">Invalid</span>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="relative mrg-top-15">
+                                                            <span class="status online"> </span>
+                                                            <span class="pdd-left-20">@Model[i].CertStatus</span>
+                                                        </div>
+                                                    }
+                                                </td>
 
-                                            <td>
-                                                <div class="mrg-top-15">
-                                                    <span>@Model[i].DateGenerated</span>
-                                                </div>
-                                            </td>
+                                                <td>
+                                                    <div class="mrg-top-15">
+                                                        <span>@Model[i].DateGenerated</span>
+                                                    </div>
+                                                </td>
 
-                                            <td>
-                                                <div class="mrg-top-15">
-                                                    <b class="text-dark font-size-16">@Model[i].Trainer.CentreName</b>
-                                                </div>
-                                            </td>
-                                            <td>
+                                                <td>
+                                                    <div class="mrg-top-15">
+                                                        <b class="text-dark font-size-16">@Model[i].Trainer.CentreName</b>
+                                                    </div>
+                                                </td>
+                                                <td>
 
-                                                <a asp-action="IdCards" class="btn btn-success" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId" title="View this Certificate">View ID</a>
+                                                    <a asp-action="IdCards" class="btn btn-success" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId" title="View this Certificate">View ID</a>
 
-                                            </td>
-                                            <td>
+                                                </td>
+                                                <td>
 
 
-                                                <a asp-action="ViewTraineeCertificate" class="btn btn-success" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId">View Certificate</a>
+                                                    <a asp-action="ViewTraineeCertificate" class="btn btn-success" asp-route-TrainingId="@Model[i].TrainingId" asp-route-TraineeId="@owners[i].Id" asp-route-TrainingCentreId="@Model[i].Trainer.Id" asp-route-ModuleId="@Model[i].ModuleId">View Certificate</a>
 
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
 
                                         }
 
@@ -385,17 +371,7 @@
     </div>
     <!-- Content Wrapper END -->
     <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_Footer")
     <!-- Footer END -->
 </div>
 <script src="~/dist/assets/js/vendor.js"></script>

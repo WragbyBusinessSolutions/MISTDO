@@ -294,6 +294,9 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<string>("City")
+                        .IsRequired();
+
                     b.Property<string>("CompanyAddress")
                         .HasMaxLength(100);
 
@@ -345,6 +348,9 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
                     b.Property<byte[]>("RightThumb");
 
                     b.Property<string>("SecurityStamp");
+
+                    b.Property<string>("State")
+                        .IsRequired();
 
                     b.Property<bool>("TwoFactorEnabled");
 

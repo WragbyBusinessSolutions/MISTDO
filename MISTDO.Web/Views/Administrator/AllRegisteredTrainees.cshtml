@@ -289,54 +289,30 @@
                     <div class="card-block">
                         <div class="table-overflow">
                             <table id="dt-opt" class="display" style="font-size:small;">
+                           
                                 <thead>
                                     <tr>
                                         <th>
-                                            First Name
+                                            <input type="text" id="input1" onkeyup="input1f()" placeholder="First Name">
                                         </th>
                                         <th>
-                                            Last Name
-                                        </th>
-                                        <th>
-                                            Trainee ID
-                                        </th>
-                                        <th>
-                                            Email
-                                        </th>
-                                        <th>
-                                            Phone Number
-                                        </th>
-                                        <th>
-                                            Company Name
-                                        </th>
-
-                                        </th>
-                                        <th>Other Options</th>
-                                    </tr>
-                                </thead>
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <input type="text" id="input1" onkeyup="input1f()" >
-                                        </th>
-                                        <th>
-                                            <input type="text" id="input2" onkeyup="input2f()" >
+                                            <input type="text" id="input2" onkeyup="input2f()" placeholder="Last Nmae">
 
                                         </th>
                                         <th>
-                                            <input type="text" id="input3" onkeyup="input3f()" >
+                                            <input type="text" id="input3" onkeyup="input3f()" placeholder="Trainee ID">
 
                                         </th>
                                         <th>
-                                            <input type="text" id="input4" onkeyup="input4f()" >
+                                            <input type="text" id="input4" onkeyup="input4f()" placeholder="Email">
 
                                         </th>
                                         <th>
-                                            <input type="text" id="input5" onkeyup="input5f()" >
+                                            <input type="text" id="input5" onkeyup="input5f()" placeholder="Phone Number">
 
                                         </th>
                                         <th>
-                                            <input type="text" id="input6" onkeyup="input6f()" >
+                                            <input type="text" id="input6" onkeyup="input6f()" placeholder=" Company Name">
 
                                         </th>
 
@@ -382,20 +358,10 @@
             </div>
         </div>
     </div>
-</div>
+
 <!-- Content Wrapper END -->
 <!-- Footer START -->
-<footer class="content-footer">
-    <div class="footer">
-        <div class="copyright">
-            <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-            <span class="go-right">
-                <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                <a href="#" class="text-gray">Privacy &amp; Policy</a>
-            </span>
-        </div>
-    </div>
-</footer>
+@await Html.PartialAsync("_Footer")
 <!-- Footer END -->
 <!-- Page Container END -->
 </div>

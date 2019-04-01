@@ -41,7 +41,7 @@
                 Webcam.attach('#my_camera');
             </script>
 
-           
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
@@ -165,25 +165,25 @@
                                 </div>
 
                                 @*<div class="form-group">
-            <label>Fingerprint </label> <label style="color:crimson">( Place your thumb on the device:)</label>
-            <div class="col-4" align="center">
+                                        <label>Fingerprint </label> <label style="color:crimson">( Place your thumb on the device:)</label>
+                                        <div class="col-4" align="center">
 
-                <span align="center">
-                    <img id="ImagePreview" src="~/templates/fprint1.bmp" alt="Take a new Passport" height="150" width="120">
+                                            <span align="center">
+                                                <img id="ImagePreview" src="~/templates/fprint1.bmp" alt="Take a new Passport" height="150" width="120">
 
-                </span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Fingerprint </label> <label style="color:crimson">( Place your Index on the device:) </label>
-            <div class="col-4" align="center">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Fingerprint </label> <label style="color:crimson">( Place your Index on the device:) </label>
+                                        <div class="col-4" align="center">
 
-                <span align="center">
-                    <img id="ImagePreview" src="~/templates/fprint.bmp" alt="Take a new Passport" height="150" width="120">
+                                            <span align="center">
+                                                <img id="ImagePreview" src="~/templates/fprint.bmp" alt="Take a new Passport" height="150" width="120">
 
-                </span>
-            </div>
-        </div>*@
+                                            </span>
+                                        </div>
+                                    </div>*@
 
 
 
@@ -201,61 +201,61 @@
                         <script src="~/js/webcam.js"></script>
                         <!-- Configure a few settings and attach camera -->
                         @*<script language="JavaScript">
-                            Webcam.set({
-                                width: 300,
-                                height: 150,
-                                image_format: 'jpeg',
-                                jpeg_quality: 120
-                            });
-                            Webcam.attach('#my_camera');
-                        </script>*@
+                                Webcam.set({
+                                    width: 300,
+                                    height: 150,
+                                    image_format: 'jpeg',
+                                    jpeg_quality: 120
+                                });
+                                Webcam.attach('#my_camera');
+                            </script>*@
 
                         <!-- Code to handle taking the snapshot and displaying it locally -->
                         @*<script language="JavaScript">
-                            function take_snapshot() {
-                                // take snapshot and get image data
-                                Webcam.snap(function (data_uri) {
-                                    // display results in page
-                                    document.getElementById('result').innerHTML =
-                                        '<img id="ImageUpload" src="' +
-                                        data_uri +
-                                        '"/>';
-                                    
-                                    var file = document.getElementById("ImageUpload").src;
+                                function take_snapshot() {
+                                    // take snapshot and get image data
+                                    Webcam.snap(function (data_uri) {
+                                        // display results in page
+                                        document.getElementById('result').innerHTML =
+                                            '<img id="ImageUpload" src="' +
+                                            data_uri +
+                                            '"/>';
 
-                                    var formdata = new FormData();
-                                    formdata.append("ImageUpload", file);
+                                        var file = document.getElementById("ImageUpload").src;
 
-                                     $.ajax({  
-                                                type: "POST",  
-                                                url: '@Url.Action("CreateTrainees")',  
-                                                data: { base64image: file },  
-                                                dataType: "json",  
-                                                contentType: "application/json; charset=utf-8",  
-                                                success: function (result) {                     
-                                                    alert(" data inserted");   //hide the modal
-                                                },  
-                                                error: function () {  
-                                                    alert("Error while inserting data");  
-                                                }  
+                                        var formdata = new FormData();
+                                        formdata.append("ImageUpload", file);
+
+                                         $.ajax({
+                                                    type: "POST",
+                                                    url: '@Url.Action("CreateTrainees")',
+                                                    data: { base64image: file },
+                                                    dataType: "json",
+                                                    contentType: "application/json; charset=utf-8",
+                                                    success: function (result) {
+                                                        alert(" data inserted");   //hide the modal
+                                                    },
+                                                    error: function () {
+                                                        alert("Error while inserting data");
+                                                    }
+                                                });
+
+
+
+                                        Webcam.upload(data_uri,
+                                            '/images/CamImages' ,
+                                            function (code, text) {
+                                                //alert('Photo Captured');
                                             });
+                                    });
+                                }
+                            </script>*@
 
-                                  
 
-                                    Webcam.upload(data_uri,
-                                        '/images/CamImages' ,
-                                        function (code, text) {
-                                            //alert('Photo Captured');
-                                        });
-                                });
-                            }
-                        </script>*@
-
-                       
 
 
                     </div>
-                  
+
                 </div>
                 <div>
                     <div class="col-md-6">
@@ -267,14 +267,14 @@
                                     <p>@Html.ActionLink("Click here to download Template for Bulk Upload", "DownloadTraineeFile", new { })</p>
 
                                     <div class="form-group">
-                                        
-                                            <p><b>Upload Bulk Trainee with Excel File</b></p>
-                                            <input type="file" class="btn btn-success" name="file" multiple accept=".xlsx*" />
+
+                                        <p><b>Upload Bulk Trainee with Excel File</b></p>
+                                        <input type="file" class="btn btn-success" name="file" multiple accept=".xlsx*" />
                                     </div>
                                     <div class="form-group">
-                                       
-                                            <input class="btn btn-success" type="submit" value="Upload"  />
-                                        
+
+                                        <input class="btn btn-success" type="submit" value="Upload" />
+
                                     </div>
 
 
@@ -288,22 +288,12 @@
 
             </div>
         </div>
-      
+
     </div>
 
     <!-- Content Wrapper END -->
     <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_Footer")
     <!-- Footer END -->
     <!-- Page Container END -->
 </div>

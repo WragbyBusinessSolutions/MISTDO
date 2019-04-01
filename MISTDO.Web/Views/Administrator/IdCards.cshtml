@@ -340,13 +340,13 @@
 
 
                                         }
-                                       
+
                                         <td colspan="7"><img name="idcards_r2_c4" src="~/images/card/images/idcards_r2_c4.gif" width="571" height="69" border="0" id="idcards_r2_c4" alt="" /></td>
                                         <td><img src="~/images/card/images/spacer.gif" width="1" height="69" border="0" alt="" /></td>
                                     </tr>
                                     <tr>
                                         <td rowspan="3"><img name="idcards_r3_c4" src="~/images/card/images/idcards_r3_c4.gif" width="33" height="153" border="0" id="idcards_r3_c4" alt="" /></td>
-                                      
+
                                         <td colspan="4"><label style="font-size:18pt; color: #666666;">@trainee.FirstName.ToUpper() &ensp; @trainee.LastName.ToUpper()</label></td>
                                         <td rowspan="5" colspan="2"><img name="idcards_r3_c9" src="~/images/card/images/idcards_r3_c9.gif" width="136" height="194" border="0" id="idcards_r3_c9" alt="" /></td>
                                         <td><img src="~/images/card/images/spacer.gif" width="1" height="45" border="0" alt="" /></td>
@@ -378,7 +378,7 @@
 
 
                                             <td rowspan="6" colspan="2"><img name="idcards_r8_c8" src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(ViewBag.QR))" width="148" height="122" border="0" id="idcards_r8_c8" alt="" /></td>
-                                            
+
 
                                         }
                                         else
@@ -431,17 +431,7 @@
     </div>
     <!-- Content Wrapper END -->
     <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_Footer")
     <!-- Footer END -->
 </div>
 

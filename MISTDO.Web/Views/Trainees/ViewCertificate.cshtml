@@ -431,13 +431,13 @@
                                 <td><img src="~/images/cert/images/spacer.gif" width="1" height="81" border="0" alt="" /></td>
                             </tr>
                             @*<tr id="background">
-                                <p id="bg-text">MISTDO-DPR</p>
-                            </tr>*@
+                                    <p id="bg-text">MISTDO-DPR</p>
+                                </tr>*@
                             <tr>
                                 <td><img name="certificate_r11_c12" src="~/images/cert/images/certificate_r11_c12.gif" width="116" height="47" border="0" id="certificate_r11_c12" alt="" /></td>
                                 <td><img src="~/images/cert/images/spacer.gif" width="1" height="47" border="0" alt="" /></td>
                             </tr>
-                         
+
                             <tr>
                                 <td rowspan="3"><img name="certificate_r12_c2" src="~/images/cert/images/certificate_r12_c2.gif" width="87" height="50" border="0" id="certificate_r12_c2" alt="" /></td>
                                 <td rowspan="2" class="dynamics" align="center">@centre.UID.ToUpper()</td>
@@ -468,17 +468,7 @@
     </div>
     <!-- Content Wrapper END -->
     <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_Footer")
     <!-- Footer END -->
 </div>
 

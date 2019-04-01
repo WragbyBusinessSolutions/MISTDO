@@ -235,6 +235,13 @@
             #dt-opt tr.header, #dt-opt tr:hover {
                 background-color: #f1f1f1;
             }
+    input {
+        background-color: transparent;
+        border: hidden;
+       
+        width: 160px;
+        color: #CCC;
+    }
 </style>
 <!-- Page Container START -->
 
@@ -257,48 +264,26 @@
                         <div class="card-block">
                             <div class="table-overflow">
                                 <table id="dt-opt" class="table table-lg table-hover" style="font-size:small;">
+                                
                                     <thead>
                                         <tr>
                                             <th>
-                                                Module Name
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Module Name">
                                             </th>
                                             <th>
-                                                Training Center Name
-                                            </th>
-
-                                            <th>
-                                                Trainee Name
-                                            </th>
-
-
-                                            <th>
-                                                Training Start Date
-                                            </th>
-                                            <th>
-                                                Training End Date
-                                            </th>
-                                            <th>Other Options</th>
-                                        </tr>
-                                    </thead>
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" >
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" >
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Centre Name">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" >
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Name">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input4" onkeyup="input4f()">
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Start Date">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input5" onkeyup="input5f()" >
+                                                <input type="text" id="input5" onkeyup="input5f()" placeholder="End Date">
 
                                             </th>
 
@@ -309,7 +294,8 @@
                                     </thead>
                                     <tbody style="font-size:small;">
                                         @foreach (var item in Model)
-                                        { var centername =await usermanager.FindByIdAsync(item.TrainingCentreId);
+                                        {
+                                            var centername = await usermanager.FindByIdAsync(item.TrainingCentreId);
                                             var traineename = await userManager.FindByIdAsync(item.TraineeId);
                                             if (item.TrainingEndDate >= DateTime.Today)
                                             {
@@ -318,8 +304,8 @@
                                                         @Html.DisplayFor(modelItem => item.TrainingName)
                                                     </td>
                                                     <td>
-                                                       @centername.CompanyName
-                                                        
+                                                        @centername.CompanyName
+
                                                     </td>
 
                                                     <th>
@@ -385,31 +371,31 @@
                                         </tr>
                                     </thead>
                                     @*<thead>
-                                        <tr>
-                                            <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" >
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" >
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" >
+                                            <tr>
+                                                <th>
+                                                    <input type="text" id="input1" onkeyup="input1f()" >
+                                                </th>
+                                                <th>
+                                                    <input type="text" id="input2" onkeyup="input2f()" >
+                                                </th>
+                                                <th>
+                                                    <input type="text" id="input3" onkeyup="input3f()" >
 
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" >
+                                                </th>
+                                                <th>
+                                                    <input type="text" id="input4" onkeyup="input4f()" >
 
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input5" onkeyup="input5f()" >
+                                                </th>
+                                                <th>
+                                                    <input type="text" id="input5" onkeyup="input5f()" >
 
-                                            </th>
+                                                </th>
 
-                                            <th>
+                                                <th>
 
-                                            </th>
-                                        </tr>
-                                    </thead>*@
+                                                </th>
+                                            </tr>
+                                        </thead>*@
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
@@ -427,7 +413,7 @@
                                                     </td>
 
                                                     <td>
-                                                       @trainee
+                                                        @trainee
                                                     </td>
 
                                                     <td>
@@ -457,17 +443,7 @@
 
     <!-- Content Wrapper END -->
     <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_Footer")
     <!-- Footer END -->
     <!-- Page Container END -->
 </div>

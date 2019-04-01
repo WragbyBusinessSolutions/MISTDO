@@ -277,41 +277,22 @@
                             <div class="table-overflow">
                                 <table id="dt-opt" class="display" style="font-size:small;">
 
+                                 
                                     <thead>
                                         <tr>
                                             <th>
-                                                Module Name
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Module Name">
                                             </th>
                                             <th>
-                                                Module Code
-                                            </th>
-                                            <th>
-                                                Module Desciption
-                                            </th>
-                                            <th>
-                                                Module  Registration Cost
-                                            </th>
-                                            <th>
-
-                                            </th>
-
-                                        </tr>
-                                    </thead>
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <input type="text" id="input1" onkeyup="input1f()" >
-                                            </th>
-                                            <th>
-                                                <input type="text" id="input2" onkeyup="input2f()" >
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Module Code">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input3" onkeyup="input3f()" >
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Module Description">
 
                                             </th>
                                             <th>
-                                                <input type="text" id="input4" onkeyup="input4f()" >
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="Module Registration Cost">
 
                                             </th>
                                             <th>
@@ -360,17 +341,7 @@
     </div>
     <!-- Content Wrapper END -->
     <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_Footer")
     <!-- Footer END -->
     <!-- Page Container END -->
 </div>

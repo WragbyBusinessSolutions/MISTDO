@@ -18,7 +18,7 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                <a asp-action="Trainees" class="btn btn-success" >Back</a>
+                <a asp-action="Trainees" class="btn btn-success">Back</a>
                 <h4>Trainee Details</h4>
             </div>
             <div class="row">
@@ -43,7 +43,7 @@
                                     <div class="profile border bottom">
                                         <img class="mrg-top-30" src="~/templates/avatar.png" alt="Take a new Passport" height="150" width="180">
                                         <p>
-                                            <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a >Upload your Picture and Update your Profile  </a> </h4>
+                                            <h4 class="mrg-top-20 no-mrg-btm text-semibold"> <a>Upload your Picture and Update your Profile  </a> </h4>
                                         </p>
                                     </div>
 
@@ -147,8 +147,8 @@
             <div class="page-title">
                 <h4>Registered Trainings</h4>
                 @*<p>
-                    <a asp-action="CreateTraining">Create New</a>
-                </p>*@
+                        <a asp-action="CreateTraining">Create New</a>
+                    </p>*@
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -157,7 +157,7 @@
 
                             @{
                                 var user = await userManager.GetUserAsync(User);
-                                
+
                                 var Mode = ViewBag.trainings as List<MISTDO.Web.Models.Training>;
 
 
@@ -172,11 +172,11 @@
                                             <th>
                                                 Module ID
                                             </th>
-                                           
+
                                             <th>
                                                 Trainee ID
                                             </th>
-                                         
+
                                             <th>
                                                 Start Date
                                             </th>
@@ -242,21 +242,11 @@
             </div>
         </div>
 
-        
+
     </div>
     <!-- Content Wrapper END -->
     <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_Footer")
     <!-- Footer END -->
     <!-- Page Container END -->
 </div>

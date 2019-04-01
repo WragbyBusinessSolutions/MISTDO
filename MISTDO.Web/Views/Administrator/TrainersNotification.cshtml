@@ -28,7 +28,7 @@
                                 <form asp-action="TrainersNotification" enctype="multipart/form-data">
 
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                   
+
                                     <div class="form-group">
                                         <label class="control-label"> Notification Message</label>
                                         <textarea type="" asp-for="NotificationMessage" class="form-control"> </textarea>
@@ -37,11 +37,11 @@
 
 
                                     <div class="form-group">
-                                        <input  title="Send Notification to Training Centers" type="submit" value="Send" class="btn btn-success" />
+                                        <input title="Send Notification to Training Centers" type="submit" value="Send" class="btn btn-success" />
                                     </div>
                                 </form>
-                                </div>
                             </div>
+                        </div>
 
 
 
@@ -54,45 +54,45 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-block">
-                           <div class="table-overflow">
-                            <table id="dt-opt" class="table table-lg table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.NotificationMessage)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.NotificationDateTime)
-                                        </th>
-
-
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @{
-                                        // var data = ViewBag.Message as IEnumerable<MISTDO.Web.Models.Notification>;
-                                        var data = (IEnumerable<MISTDO.Web.Models.Notification>)ViewBag.Message;
-                                    }
-                                    @foreach (var item in data)
-                                    {
+                            <div class="table-overflow">
+                                <table id="dt-opt" class="table table-lg table-hover">
+                                    <thead>
                                         <tr>
-                                            <td width="60%">
-                                                @Html.DisplayFor(modelItem => item.NotificationMessage)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.NotificationDateTime)
-                                            </td>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.NotificationMessage)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.NotificationDateTime)
+                                            </th>
 
 
-
-
-
+                                            <th></th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
-                             </div>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            // var data = ViewBag.Message as IEnumerable<MISTDO.Web.Models.Notification>;
+                                            var data = (IEnumerable<MISTDO.Web.Models.Notification>)ViewBag.Message;
+                                        }
+                                        @foreach (var item in data)
+                                        {
+                                            <tr>
+                                                <td width="60%">
+                                                    @Html.DisplayFor(modelItem => item.NotificationMessage)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.NotificationDateTime)
+                                                </td>
+
+
+
+
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -105,17 +105,7 @@
 
     <!-- Content Wrapper END -->
     <!-- Footer START -->
-    <footer class="content-footer">
-        <div class="footer">
-            <div class="copyright">
-                <span>Copyright © 2018 <img src="~/dist/assets/images/logo/footerlogo.png" width="12%" height="7%"></span>
-                <span class="go-right">
-                    <a href="#" class="text-gray mrg-right-15">Term &amp; Conditions</a>
-                    <a href="#" class="text-gray">Privacy &amp; Policy</a>
-                </span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_Footer")
     <!-- Footer END -->
     <!-- Page Container END -->
 </div>
