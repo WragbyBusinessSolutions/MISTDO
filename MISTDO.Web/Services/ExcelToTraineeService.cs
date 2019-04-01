@@ -29,6 +29,29 @@ namespace MISTDO.Web.Services
 
         public async Task ConvertFileToTraineeString(string filePath)
         {
+            //Generate OTP
+
+            string alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string small_alphabets = "abcdefghijklmnopqrstuvwxyz";
+            string numbers = "1234567890";
+
+            string characters = numbers;
+
+            characters += alphabets + small_alphabets + numbers;
+
+            int length = 10;
+            string otps = string.Empty;
+            for (int i = 0; i < length; i++)
+            {
+                string character = string.Empty;
+                do
+                {
+                    int index = new Random().Next(0, characters.Length);
+                    character = characters.ToCharArray()[index].ToString();
+                } while (otps.IndexOf(character) != -1);
+                otps += character;
+            }
+            string permitotp = otps.ToUpper();
 
             var eps = new ExcelPackage(new FileInfo(filePath));
             List<Models.TraineeApplicationUser> traineesFromExcel = new List<Models.TraineeApplicationUser>();
@@ -45,6 +68,20 @@ namespace MISTDO.Web.Services
                     traineeFromExcel.FirstName = ws.Cells[rw, 1].Value.ToString();
                     traineeFromExcel.LastName = ws.Cells[rw, 2].Value.ToString();
                     traineeFromExcel.UserName = ws.Cells[rw, 3].Value.ToString();
+                    traineeFromExcel.NormalizedEmail = ws.Cells[rw, 3].Value.ToString().ToUpper();
+                    traineeFromExcel.NormalizedUserName = ws.Cells[rw, 3].Value.ToString().ToUpper();
+                    traineeFromExcel.Email = ws.Cells[rw, 3].Value.ToString();
+                    traineeFromExcel.PhoneNumber = ws.Cells[rw, 4].Value.ToString();
+                    traineeFromExcel.CompanyName = ws.Cells[rw, 5].Value.ToString();
+                    traineeFromExcel.CompanyAddress = ws.Cells[rw, 6].Value.ToString();
+                    traineeFromExcel.UserAddress = ws.Cells[rw, 7].Value.ToString();
+
+                    traineeFromExcel.State = ws.Cells[rw, 8].Value.ToString().ToUpper();
+                    traineeFromExcel.City = ws.Cells[rw, 9].Value.ToString().ToUpper();
+                    
+                    traineeFromExcel.DateRegistered = DateTime.Now;
+                    traineeFromExcel.UID = "MISTDO/" + permitotp;
+          
 
                     ////hash password before upload
 
@@ -65,24 +102,13 @@ namespace MISTDO.Web.Services
                     //    iterationCount: 10000,
                     //    numBytesRequested: 256 / 8));
 
+
+
+
                     string originalPassword = "Qwerty415#";
 
                     var result = await _userManager.AddPasswordAsync(traineeFromExcel, originalPassword);
 
-                   
-
-
-
-                    traineeFromExcel.Email = ws.Cells[rw, 4].Value.ToString();
-                    traineeFromExcel.NormalizedEmail = ws.Cells[rw, 4].Value.ToString().ToUpper();
-                    traineeFromExcel.NormalizedUserName = ws.Cells[rw, 4].Value.ToString().ToUpper();
-                    
-                    traineeFromExcel.DateRegistered = DateTime.Now;
-                    traineeFromExcel.PhoneNumber = ws.Cells[rw, 5].Value.ToString();
-                    traineeFromExcel.CompanyName = ws.Cells[rw, 6].Value.ToString();
-                    traineeFromExcel.CompanyAddress= ws.Cells[rw, 7].Value.ToString();
-                    traineeFromExcel.UserAddress = ws.Cells[rw, 8].Value.ToString();
-                    
                 }
                 
                 traineesFromExcel.Add(traineeFromExcel);

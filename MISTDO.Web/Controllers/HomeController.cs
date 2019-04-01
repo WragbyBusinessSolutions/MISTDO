@@ -116,6 +116,8 @@ namespace MISTDO.Web.Controllers
 
             var calenders = await tdbcontext.Calenders
                 .SingleOrDefaultAsync(m => m.Id == id);
+            var trainer = await dbcontext.Users.SingleOrDefaultAsync(m => m.Id == calenders.TrainingCentreId);
+            ViewBag.center = trainer.CentreName;
             if (calenders == null)
             {
                 return NotFound();
