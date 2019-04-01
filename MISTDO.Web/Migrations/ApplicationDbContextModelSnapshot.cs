@@ -223,6 +223,8 @@ namespace MISTDO.Web.Migrations
 
                     b.Property<decimal>("Cost");
 
+                    b.Property<string>("Description");
+
                     b.Property<string>("ModuleId");
 
                     b.Property<string>("TrainingCentreId");

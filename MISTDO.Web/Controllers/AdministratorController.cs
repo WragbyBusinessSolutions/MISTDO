@@ -1195,18 +1195,22 @@ namespace MISTDO.Web.Controllers
                 worksheet.Cells[1, 5].Value = "Company Name";
                 worksheet.Cells[1, 6].Value = "Company Address";
                 worksheet.Cells[1, 7].Value = "User Address";
-                worksheet.Cells[1, 8].Value = "Registration Date";
+                worksheet.Cells[1, 8].Value = "State";
+                worksheet.Cells[1, 9].Value = "City";
+                worksheet.Cells[1, 10].Value = "Registration Date";
                 int i = 0;
                 for (int row = 2; row <= totalRows + 1; row++)
                 {
                     worksheet.Cells[row, 1].Value = traineeList[i].FirstName;
                     worksheet.Cells[row, 2].Value = traineeList[i].LastName;
-                    worksheet.Cells[row, 3].Value = traineeList[i].Id;
+                    worksheet.Cells[row, 3].Value = traineeList[i].UID;
                     worksheet.Cells[row, 4].Value = traineeList[i].Email;
                     worksheet.Cells[row, 5].Value = traineeList[i].CompanyName;
                     worksheet.Cells[row, 6].Value = traineeList[i].CompanyAddress;
-                    worksheet.Cells[row, 7].Value = traineeList[i].CompanyAddress;
-                    worksheet.Cells[row, 8].Value = traineeList[i].DateRegistered.ToString();
+                    worksheet.Cells[row, 7].Value = traineeList[i].UserAddress;
+                    worksheet.Cells[row, 8].Value = traineeList[i].State.ToString();
+                    worksheet.Cells[row, 9].Value = traineeList[i].City.ToString();
+                    worksheet.Cells[row, 10].Value = traineeList[i].DateRegistered.ToString();
                     i++;                            
                 }
 
@@ -1229,7 +1233,7 @@ namespace MISTDO.Web.Controllers
         public async Task<IActionResult> ExportModuleTrainees()
         {
             string rootFolder = _env.WebRootPath;
-            string fileName = @"ExportTraineeWithModules.xlsx";
+            string fileName = @"ExportRegisteredTraineesOnModules.xlsx";
             string URL = string.Format("{0}://{1}/{2}", Request.Scheme, Request.Host, fileName);
 
             FileInfo file = new FileInfo(Path.Combine(rootFolder, fileName));
@@ -1242,38 +1246,94 @@ namespace MISTDO.Web.Controllers
             using (ExcelPackage package = new ExcelPackage(file))
             {
 
-                
-                IList<Training> trainingList = dbcontext.Trainings.ToList();
 
-                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Trainings");
+                //
+
+                //ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Trainings");
+                //using (var cells = worksheet.Cells[1, 1, 1, 10]) //(1,1) (1,5)
+                //{
+                //    cells.Style.Font.Bold = true;
+                //}
+                //int totalRows = trainingList.Count();
+
+
+                //worksheet.Cells[1, 1].Value = "Trainee ID";
+                //worksheet.Cells[1, 2].Value = "Training Name";
+                //worksheet.Cells[1, 3].Value = "Training Centre ID";
+                //worksheet.Cells[1, 4].Value = "Certificate ID";
+                //worksheet.Cells[1, 5].Value = "Date Registered";
+                //worksheet.Cells[1, 6].Value = "Training Start Date";
+                //worksheet.Cells[1, 7].Value = "Training End Date";
+                //worksheet.Cells[1, 8].Value = "Certifcate Gen  Date";
+
+
+                //int i = 0;
+                //for (int row = 2; row <= totalRows + 1; row++)
+                //{
+                //    worksheet.Cells[row, 1].Value = trainingList[i].TraineeId;
+                //    worksheet.Cells[row, 2].Value = trainingList[i].TrainingName;
+                //    worksheet.Cells[row, 3].Value = trainingList[i].TrainingCentreId;
+                //    worksheet.Cells[row, 4].Value = trainingList[i].CertificateId;
+                //    worksheet.Cells[row, 5].Value = trainingList[i].DateCreated.ToString();
+                //    worksheet.Cells[row, 6].Value = trainingList[i].TrainingStartDate.Date.ToString();
+                //    worksheet.Cells[row, 7].Value = trainingList[i].TrainingEndDate.Date.ToString();
+                //    worksheet.Cells[row, 8].Value = trainingList[i].CertGenDate.Date.ToString();
+                //    i++;
+                //}
+
+                //package.Save();
+
+                IList<Training> training = dbcontext.Trainings.ToList();
+                string id = null;
+                foreach (var item in training)
+                    id = item.TraineeId;
+
+                var user = await _usermanager.GetUserAsync(User);
+                List<TraineeApplicationUser> Trainees = new List<TraineeApplicationUser>();
+
+                var trainings = dbcontext.Trainings.ToList();
+
+                foreach (var trainee in trainings)
+                {
+                    var tra = Traineedbcontext.Trainees.Where(t => t.UID == trainee.TraineeId);
+                    Trainees.AddRange(tra);
+
+                }
+
+               // return View(Trainees.Distinct());
+               // IList<TraineeApplicationUser> traineeList = Traineedbcontext.Users.Where(x=>x.UID == id ).ToList();
+
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("User");
                 using (var cells = worksheet.Cells[1, 1, 1, 10]) //(1,1) (1,5)
                 {
                     cells.Style.Font.Bold = true;
                 }
-                int totalRows = trainingList.Count();
 
+                int totalRows = Trainees.Count();
 
-                worksheet.Cells[1, 1].Value = "Trainee ID";
-                worksheet.Cells[1, 2].Value = "Training Name";
-                worksheet.Cells[1, 3].Value = "Training Centre ID";
-                worksheet.Cells[1, 4].Value = "Certificate ID";
-                worksheet.Cells[1, 5].Value = "Date Registered";
-                worksheet.Cells[1, 6].Value = "Training Start Date";
-                worksheet.Cells[1, 7].Value = "Training End Date";
-                worksheet.Cells[1, 8].Value = "Certifcate Gen  Date";
-
-
+                worksheet.Cells[1, 1].Value = "First Name";
+                worksheet.Cells[1, 2].Value = "Last Name";
+                worksheet.Cells[1, 3].Value = "Trainee ID";
+                worksheet.Cells[1, 4].Value = "Email";
+                worksheet.Cells[1, 5].Value = "Company Name";
+                worksheet.Cells[1, 6].Value = "Company Address";
+                worksheet.Cells[1, 7].Value = "User Address";
+                worksheet.Cells[1, 8].Value = "State";
+                worksheet.Cells[1, 9].Value = "City";
+                worksheet.Cells[1, 10].Value = "Registration Date";
                 int i = 0;
                 for (int row = 2; row <= totalRows + 1; row++)
                 {
-                    worksheet.Cells[row, 1].Value = trainingList[i].TraineeId;
-                    worksheet.Cells[row, 2].Value = trainingList[i].TrainingName;
-                    worksheet.Cells[row, 3].Value = trainingList[i].TrainingCentreId;
-                    worksheet.Cells[row, 4].Value = trainingList[i].CertificateId;
-                    worksheet.Cells[row, 5].Value = trainingList[i].DateCreated.ToString();
-                    worksheet.Cells[row, 6].Value = trainingList[i].TrainingStartDate.Date.ToString();
-                    worksheet.Cells[row, 7].Value = trainingList[i].TrainingEndDate.Date.ToString();
-                    worksheet.Cells[row, 8].Value = trainingList[i].CertGenDate.Date.ToString();
+                    worksheet.Cells[row, 1].Value = Trainees[i].FirstName;
+                    worksheet.Cells[row, 2].Value = Trainees[i].LastName;
+                    worksheet.Cells[row, 3].Value = Trainees[i].UID;
+                    worksheet.Cells[row, 4].Value = Trainees[i].Email;
+                    worksheet.Cells[row, 5].Value = Trainees[i].CompanyName;
+                    worksheet.Cells[row, 6].Value = Trainees[i].CompanyAddress;
+                    worksheet.Cells[row, 7].Value = Trainees[i].UserAddress;
+                    worksheet.Cells[row, 8].Value = Trainees[i].State.ToString();
+                    worksheet.Cells[row, 9].Value = Trainees[i].City.ToString();
+                    worksheet.Cells[row, 10].Value = Trainees[i].DateRegistered.ToString();
                     i++;
                 }
 

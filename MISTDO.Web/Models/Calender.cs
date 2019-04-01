@@ -13,7 +13,8 @@ namespace MISTDO.Web.Models
         public int Id { get; set; }
        
         public string ModuleId { get; set; }
-       
+        public string Description { get; set; }
+
         public string TrainingName { get; set; }
 
         public string Venue { get; set; }

@@ -710,19 +710,21 @@ namespace MISTDO.Web.Controllers
             {
                 try
                 {
+                    var bae = await _trainer.GetModulebyId(int.Parse(training.ModuleId));
                     var train = new Calender()
                     {
                         Id = training.Id,
                         TrainingCentreId = user.Id,
                         Venue = training.Venue,
-                        
+                        Description = bae.Description,
                         TrainingStartDate = training.TrainingStartDate,
                        // TraineeId = training.TraineeId,
                         Cost = training.Cost,
                         TrainingStartTime = training.TrainingStartTime,
                         TrainingEndTime = training.TrainingEndTime,
                         TrainingEndDate = training.TrainingEndDate,
-                        TrainingName = training.TrainingName
+                        TrainingName = bae.Name,
+                        
 
 
 
@@ -935,6 +937,7 @@ namespace MISTDO.Web.Controllers
                     Venue = calender.Venue,
                     TrainingEndDate = calender.TrainingEndDate,
                     TrainingName = bae.Name,
+                    Description = bae.Description,
                    //TraineeId = user.Id
 
 
