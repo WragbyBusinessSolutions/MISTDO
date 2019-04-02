@@ -376,6 +376,36 @@ namespace MISTDO.Web.Controllers
           
         }
 
+     
+        [AllowAnonymous]
+        public async Task<IActionResult> DeActivate(string id)
+        {
+           
+            var AppUser = await _usermanager.FindByIdAsync(id);
+            AppUser.PhoneNumberConfirmed = true;
+            var idResult = await _usermanager.UpdateAsync(AppUser);
+            if (idResult.Succeeded) 
+            {
+                return RedirectToAction("AllTrainingCenter");
+            }
+            return RedirectToAction("AllTrainingCenter");
+        }
+
+  
+        [AllowAnonymous]
+        public async Task<IActionResult> Activate(string id)
+        {
+
+            var AppUser = await _usermanager.FindByIdAsync(id);
+            AppUser.PhoneNumberConfirmed = false;
+            var idResult = await _usermanager.UpdateAsync(AppUser);
+            if (idResult.Succeeded)
+            {
+                return RedirectToAction("AllTrainingCenter");
+            }
+            return RedirectToAction("AllTrainingCenter");
+        }
+
         // POST: Training/Delete/5
         //[HttpPost, ActionName("DeleteTrainerModule")]
         //[ValidateAntiForgeryToken]

@@ -545,7 +545,7 @@ namespace MISTDO.Web.Controllers
         {
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-            
+            ViewBag.msg = "";
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -569,16 +569,24 @@ namespace MISTDO.Web.Controllers
 
                     if (verifyID != null && verifyID.PermitNumber == user.PermitNumber )//If Success
                     {
-                       
-                        var isTrainer = await _userManager.IsInRoleAsync(user, "Trainer");
-                        //if (isTrainer)
-                        //{
-                        returnUrl = returnUrl ?? Url.Content("~/TrainerDashboard/");
-                        //     }
-                        //      else
-                        //      {
-                        ViewBag.msg = "Success";
-                        return RedirectToLocal(returnUrl);
+
+                        if (user.PhoneNumberConfirmed == false)
+                        {
+                            var isTrainer = await _userManager.IsInRoleAsync(user, "Trainer");
+                            //if (isTrainer)
+                            //{
+                            returnUrl = returnUrl ?? Url.Content("~/TrainerDashboard/");
+                            //     }
+                            //      else
+                            //      {
+                            ViewBag.msg = "Success";
+                            return RedirectToLocal(returnUrl);
+                        }
+                        else
+                        {
+                            ViewBag.msg = "You have been De-Listed From Accessing Training Centers Portal Contact Admin";
+                            return RedirectToAction(nameof(Login));
+                        }
                         //      }
 
                     }

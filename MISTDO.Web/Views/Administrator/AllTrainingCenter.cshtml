@@ -332,11 +332,12 @@
 
                                             </th>
                                             @*<th>
-                                                    <input type="text" id="input8" onkeyup="input8f()" >
+            <input type="text" id="input8" onkeyup="input8f()" >
 
-                                                </th>*@
+        </th>*@
 
 
+                                            <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -371,6 +372,17 @@
                                                     </td>*@
                                                 <td>
                                                     <a asp-action="DetailsTrainingCenter" asp-route-id="@item.Id" title="Check more details" class="btn btn-success">Details</a>
+                                                </td>
+                                                <td>
+                                                    @if (item.PhoneNumberConfirmed==true)
+                                                    {
+                                                        <a asp-controller="Administrator" asp-action="Activate" asp-route-id="@item.Id" title="Activate Training Center" class="btn btn-success">ACTIVATE</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-controller="Administrator" asp-action="DeActivate" title="De-Activate Training Center" asp-route-id="@item.Id" class="btn btn-success">DE-ACTIVATE</a>
+                                                    }
+
                                                 </td>
                                             </tr>
 

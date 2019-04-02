@@ -21,8 +21,13 @@
                                     <img class="img-responsive inline-block" src="~/dist/assets/images/logo/dpr logo.png" width="600" height="100" alt="" sizes="60"><br /><br />
                                     <h2>Trainer's Portal Login</h2>
                                     <h4 class="mrg-btm-15 font-size-16">Please enter your user name and password to login</h4>
-                                    <form asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" >
+                                    <form asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                                         <div asp-validation-summary="All" class="text-danger"></div>
+
+                                        <div class="form-group">
+                                            
+                                            <span  class="text-danger"> @ViewBag.msg </span>
+                                        </div>
 
                                         <div class="form-group">
                                             <input asp-for="Email" class="form-control" placeholder="User name" />
