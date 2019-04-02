@@ -37,12 +37,12 @@
         </div>
     </div>
     <environment include="Development">
-        <script src="~/lib/multiform/jquery.min.js"></script>
+        @*<script src="~/lib/multiform/jquery.min.js"></script>
         <script src="~/lib/multiform/bootstrap.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>*@
     </environment>
     <!-- build:js assets/js/vendor.js -->
-    <script src="~/dist/assets/js/vendor.js"></script>
+    @*<script src="~/dist/assets/js/vendor.js"></script>*@
     <!-- page plugins js -->
     <script src="~/bower_components/bower-jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
     <script src="~/dist/assets/js/maps/jquery-jvectormap-us-aea.js"></script>
@@ -52,14 +52,14 @@
     <script src="~/bower_components/chart.js/dist/Chart.min.js"></script>
     <script src="~/dist/assets/js/app.min.js"></script>
     <!-- page js -->
-    <script src="~/dist/assets/js/dashboard/dashboard.js"></script>
+    @*<script src="~/dist/assets/js/dashboard/dashboard.js"></script>*@
     <!-- page js -->
     <!--Filter jsa-->
     
     <environment exclude="Development">
-        <script src="~/lib/multiform/jquery.min.js"></script>
+        @*<script src="~/lib/multiform/jquery.min.js"></script>
         <script src="~/lib/multiform/bootstrap.min.js"></script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>*@
     </environment>
     @RenderSection("Scripts", required: false)
 </body>

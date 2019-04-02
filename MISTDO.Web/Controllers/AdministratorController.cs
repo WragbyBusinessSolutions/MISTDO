@@ -307,24 +307,86 @@ namespace MISTDO.Web.Controllers
 
 
             ViewBag.modules = modulesList;
+
+            
+
+            ViewBag.Message = await dbcontext.TrainerModules.ToListAsync();
+
+            var module = await admindbcontext.Modules.ToListAsync();
             return View();
         }
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AssignTrainerModule(AssignTrainerModule assign)
+        public async Task<IActionResult> AssignTrainerModule(AssignTrainerModule assign, string trainer)
         {
-            var modules = await _trainer.GetAllModules();
+            var user = await _usermanager.GetUserAsync(User);
+            if (ModelState.IsValid)
+            {
+                var modulename = await _trainer.GetModulebyId(int.Parse(assign.ModuleId));
+                var updatemodule = new AssignTrainerModule
+                {
+                    CentreId = trainer,
+                    ModuleId = assign.ModuleId,
+                    ModuleName = modulename.Name,
+                    DateGenerated = DateTime.Now,
+                  
 
-            var modulesList = new List<SelectListItem>();
-            foreach (var item in modules)
+                };
 
-                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+                dbcontext.Add(updatemodule);
+                await dbcontext.SaveChangesAsync();
+                return RedirectToAction(nameof(AssignTrainerModule));
+            }
+            else
+            {
+                return View(assign);
+            }
 
+           
 
-            ViewBag.modules = modulesList;
-            return View();
+         
         }
+
+        public async Task<IActionResult> DeleteTrainerModule(int id)
+        {
+            var modules = await dbcontext.TrainerModules.SingleOrDefaultAsync(m => m.Id == id);
+            if (modules == null)
+            {
+                return RedirectToAction(nameof(AssignTrainerModule));
+            }
+
+            try
+            {
+                dbcontext.TrainerModules.Remove(modules);
+                await dbcontext.SaveChangesAsync();
+                return RedirectToAction(nameof(AssignTrainerModule));
+            }
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.)
+               // return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
+            }
+
+           
+            dbcontext.TrainerModules.Remove(modules);
+           var result =   await admindbcontext.SaveChangesAsync();
+            return RedirectToAction(nameof(AssignTrainerModule));
+
+          
+        }
+
+        // POST: Training/Delete/5
+        //[HttpPost, ActionName("DeleteTrainerModule")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirm(int id)
+        //{
+        //    var modules = await dbcontext.TrainerModules.SingleOrDefaultAsync(m => m.Id == id);
+        //    dbcontext.TrainerModules.Remove(modules);
+        //    await admindbcontext.SaveChangesAsync();
+        //    return RedirectToAction(nameof(AssignTrainerModule));
+        //}
+
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -984,7 +1046,7 @@ namespace MISTDO.Web.Controllers
             }
             else
             {
-                return Content("OperationFailed");
+                return View(modules);
             }
         }
         [HttpGet]

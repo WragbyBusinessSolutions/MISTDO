@@ -9,9 +9,10 @@ namespace MISTDO.Web.Models
     public class AssignTrainerModule
     {
         [Key]
-        private int Id { get; set; }
+        public int Id { get; set; }
         public string CentreId { get; set; }
         public string ModuleId { get; set; }
+        public string ModuleName { get; set; }
 
         [DataType(DataType.Date)]
 

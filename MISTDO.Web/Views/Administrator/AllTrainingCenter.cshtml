@@ -275,12 +275,25 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-title">
-                <h4>All Registered Training Centers</h4>
-                <p>
-                    <a asp-controller="Administrator" asp-action="AddNewModule" title="Create New Module" class="btn btn-success">Add New Module</a>
+             
+             
 
+                <p>
+                    <h4>All Registered Training Centers</h4>
                     <span style="float:right;"><a class="btn btn-success" asp-controller="Administrator" asp-action="ExportCenters" align="right" title="Export Approved Training Providers to Microsoft Excel file"><i> Export  All Training Centres via Excel</i></a></span>
+
                 </p>
+
+                <div>
+                    <p>
+                        <h4>
+                            <span style="float:left;">  <a asp-controller="Administrator" asp-action="AddNewModule" title="Create New Module" class="btn btn-success">Add New Module</a></span>
+
+                            <span style="float:right;"><a asp-action="AssignTrainerModule" align="right" class="btn btn-success">Assign Course Module to Trainer </a></span>
+                        </h4>
+                    </p>
+                </div>
+
             </div>
             <div class="row">
                 <div class="col-md-12">

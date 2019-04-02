@@ -11,9 +11,10 @@ using System;
 namespace MISTDO.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190402142328_assigntrainermodule")]
+    partial class assigntrainermodule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -214,24 +215,6 @@ namespace MISTDO.Web.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("MISTDO.Web.Models.AssignTrainerModule", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CentreId");
-
-                    b.Property<DateTime>("DateGenerated");
-
-                    b.Property<string>("ModuleId");
-
-                    b.Property<string>("ModuleName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TrainerModules");
                 });
 
             modelBuilder.Entity("MISTDO.Web.Models.Calender", b =>
