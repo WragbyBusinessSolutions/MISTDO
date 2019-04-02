@@ -163,7 +163,7 @@ namespace MISTDO.Web.Controllers
         //[HttpPost]
        [AllowAnonymous]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterPay(RegisterViewModel model,string Companyname ,string  Companyaddress, string CentreName, string CenterAddress, string Permitnumber,string email, string Licenseexpdate, string otp, string PhoneNumber,string State,string City,string Password,string ConfirmPassword,string fee, string returnUrl = null)
+        public async Task<IActionResult> RegisterNow(RegisterViewModel model,string Companyname ,string  Companyaddress, string CentreName, string CenterAddress, string Permitnumber,string email, string Licenseexpdate, string otp, string PhoneNumber,string State,string City,string Password,string ConfirmPassword,string fee, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)

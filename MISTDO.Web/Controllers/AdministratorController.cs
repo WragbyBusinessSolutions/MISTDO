@@ -296,6 +296,35 @@ namespace MISTDO.Web.Controllers
             ViewBag.modules = modulesList;
             return View();
         }
+        public async Task<IActionResult> AssignTrainerModule()
+        {
+            var modules = await _trainer.GetAllModules();
+
+            var modulesList = new List<SelectListItem>();
+            foreach (var item in modules)
+
+                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+
+
+            ViewBag.modules = modulesList;
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AssignTrainerModule(AssignTrainerModule assign)
+        {
+            var modules = await _trainer.GetAllModules();
+
+            var modulesList = new List<SelectListItem>();
+            foreach (var item in modules)
+
+                modulesList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+
+
+            ViewBag.modules = modulesList;
+            return View();
+        }
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -30,5 +30,21 @@ namespace MISTDO.Web.Controllers
                 return BadRequest();
             }
         }
+
+        [Produces("application/json")]
+        [HttpGet("search")]
+        public async Task<IActionResult> searchid()
+        {
+            try
+            {
+                string term = HttpContext.Request.Query["term"].ToString();
+                var names = dbcontext.Users.Where(p => p.CompanyName.Contains(term)).Select(p => p.UID).ToList();
+                return Ok(names);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
     }
 }

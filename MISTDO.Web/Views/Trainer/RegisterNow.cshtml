@@ -28,7 +28,7 @@
                 }
 
             </div>
-            <form>
+            <form asp-action="RegisterNow" enctype="multipart/form-data">
                 <div class="row">
 
                     <div class="col-md-6">
@@ -154,10 +154,10 @@
                                         <input asp-for="ConfirmPassword" class="form-control" id="ConfirmPassword" />
                                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                     </div>
-                                    <div class="form-group">
+                                    @*<div class="form-group">
                                         <label>Onboarding Fee</label>
                                         <input id="fee" name="fee" value="50000" class="form-control" disabled />
-                                    </div>
+                                    </div>*@
 
 
 
@@ -166,15 +166,18 @@
 
                                 </div>
 
-                                <input hidden  id="firstname" value="@Companyname"  />
+                                <input hidden id="firstname" value="@Companyname" />
 
-                                <input hidden id="lastname" value="@Companyaddress"  />
+                                <input hidden id="lastname" value="@Companyaddress" />
                                 <input hidden name="otp" id="otp" value="@otp" />
                                 <div class="form-group">
-                                    <script src="https://remitademo.net/payment/v1/remita-pay-inline.bundle.js"></script>
-                                    <button class="btn btn-success" type="button" onclick="makePayment()"> Register </button>
-                                    
+                                    <input type="submit" value="Register" class="btn btn-success" />
                                 </div>
+                                @*<div class="form-group">
+            <script src="https://remitademo.net/payment/v1/remita-pay-inline.bundle.js"></script>
+            <button class="btn btn-success" type="button" onclick="makePayment()"> Register </button>
+
+        </div>*@
                             </div>
                         </div>
 
