@@ -1,0 +1,342 @@
+﻿@model IEnumerable<MISTDO.Web.Models.Calender>
+@{
+    ViewData["Title"] = "Information | MISTDO Portal";
+}
+@inject UserManager<ApplicationUser> userManager;
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<head>
+    <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--- Basic Page Needs  -->
+    <link rel="stylesheet" href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
+    <link rel="stylesheet" href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/assets2/vendor/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/assets2/css/heroic-features.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
+    <!-- Favicon -->
+    <style>
+
+        /*  bhoechie tab */
+        div.bhoechie-tab-container {
+            z-index: 10;
+            background-color: #ffffff;
+            padding: 0 !important;
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            margin-left: 50px;
+            -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            background-clip: padding-box;
+            opacity: 0.97;
+            filter: alpha(opacity=97);
+        }
+
+        div.bhoechie-tab-menu {
+            padding-right: 0;
+            padding-left: 0;
+            padding-bottom: 0;
+        }
+
+            div.bhoechie-tab-menu div.list-group {
+                margin-bottom: 0;
+            }
+
+                div.bhoechie-tab-menu div.list-group > a {
+                    margin-bottom: 0;
+                }
+
+                    div.bhoechie-tab-menu div.list-group > a .glyphicon,
+                    div.bhoechie-tab-menu div.list-group > a .fa {
+                        color: #0b9242;
+                    }
+
+                    div.bhoechie-tab-menu div.list-group > a:first-child {
+                        border-top-right-radius: 0;
+                        -moz-border-top-right-radius: 0;
+                    }
+
+                    div.bhoechie-tab-menu div.list-group > a:last-child {
+                        border-bottom-right-radius: 0;
+                        -moz-border-bottom-right-radius: 0;
+                    }
+
+                    div.bhoechie-tab-menu div.list-group > a.active,
+                    div.bhoechie-tab-menu div.list-group > a.active .glyphicon,
+                    div.bhoechie-tab-menu div.list-group > a.active .fa {
+                        background-color: #0b9242;
+                        background-image: #0b9242;
+                        color: #ffffff;
+                    }
+
+                        div.bhoechie-tab-menu div.list-group > a.active:after {
+                            content: '';
+                            position: absolute;
+                            left: 100%;
+                            top: 50%;
+                            margin-top: -13px;
+                            border-left: 0;
+                            border-bottom: 13px solid transparent;
+                            border-top: 13px solid transparent;
+                            border-left: 10px solid #0b9242;
+                        }
+
+        div.bhoechie-tab-content {
+            background-color: #ffffff;
+            /* border: 1px solid #eeeeee; */
+            padding-left: 20px;
+            padding-top: 10px;
+        }
+
+        div.bhoechie-tab div.bhoechie-tab-content:not(.active) {
+            display: none;
+        }
+               
+    </style>
+
+
+</head>
+
+>
+<!------ Include the above in your HEAD tag ---------->
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">
+        <img src="~/images/mlogo.png" style=" height:80px; margin-left:100px;">
+        <div class="container">
+
+            <a class="navbar-brand" asp-action="Index" asp-controller="Home"><b></b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Home"><b>Home</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Contact" asp-controller="Home"><b>Contact</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Calender" asp-controller="Home"><b>Training Calendar</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home"><b>Certificates</b></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <!--Carousel Wrapper-->
+        <div class="row text-center">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active text-center">
+                            <h4 class="glyphicon glyphicon-home"></h4><br />General Information
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                            <h4 class="glyphicon glyphicon-road"></h4><br />FAQs
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                            <h4 class="glyphicon glyphicon-plane"></h4><br />MISTDO Training Provider's requirements
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                            <h4 class="glyphicon glyphicon-cutlery"></h4><br />Restaurant
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                            <h4 class="glyphicon glyphicon-credit-card"></h4><br />Credit Card
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                    <!-- flight section -->
+                    <div class="bhoechie-tab-content active">
+
+                        <div class="col-md-12">
+                            <div class="card-block">
+                                <h4 class="card-title">What is MISTDO?</h4>
+                                <p class="card-text text-justify">
+                                    Minimum Industry Safety Training for Downstream Operations (MISTDO) is a basic safety training requirement which must be undertaken by ALL personnel working in the downstream sector of the Nigerian oil and gas industry. It is a major component of the Safety Audit Clearance policy launched by the Department to reduce risks and occurrences of accidents in the downstream sector of the Oil and Gas industry.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="card-block">
+                                <h4 class="card-title">Why MISTDO ?</h4>
+                                <p class="card-text text-justify">
+                                    MISTDO seeks to address the high rate of incidents caused by personnel working in the downstream sector of the Oil and Gas industry which have resulted in loss of lives, destruction of infrastructure, downtime in production, loss of revenue and environmental pollution. The outcome from previous Investigations reveal that poor safety knowledge and culture and a dearth of competent personnel in this sector are major causes of these incidents. Thus, to eliminate or reduce to the barest minimum future occurrences of these incidents, the Department in line with its mandate to enforce policies & programs for the safety of people, the environment and Oil and Gas infrastructure, developed MISTDO.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-block">
+                                <h4 class="card-title">What are the objectives of MISTDO ?</h4>
+                                <p class="card-text text-justify">
+                                    i.	Enforce safety training requirements in the downstream sector.
+                                </p>
+                                <p class="card-text text-justify">
+                                    ii.	Increase awareness in safety and risks associated with operations in the sector.
+                                </p>
+                                <p class="card-text text-justify">
+                                    iii.	Improve knowledge and general competence level in the sector.
+                                </p>
+                                <p class="card-text text-justify">
+                                    iv.	Standardize basic safety training requirements for personnel across the sector.
+                                </p>
+                                <p class="card-text text-justify">
+                                    v.	Serve as a reference or guide for prospective trainees in basic safety.
+                                </p>
+                                <p class="card-text text-justify">
+                                    vi.	Provide a platform to effectively monitor and regulate basic safety training activities in the sector.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-block">
+                                <h4 class="card-title">Instructions for Online Registration </h4>
+                                <h6>  As a Trainee</h6>
+
+                                <p class="card-text text-justify">
+                                    i. Click on ‘Trainee Portal’ button on Home page
+                                </p>
+                                <p class="card-text text-justify">
+                                    ii.	Click on ‘Register’
+                                </p>
+                                <p class="card-text text-justify">
+                                    iii. Complete the online form with bio and other required data
+                                </p>
+                                <p class="card-text text-justify">
+                                    iv.	 Complete the registration process with biometrics capturing by going to any of the DPR accredited training centers of your choice listed on the website
+                                </p>
+                               
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- train section -->
+                    <div class="bhoechie-tab-content">
+                        <div class="col-md-12">
+                            <div class="card-block">
+                                <h4 class="card-title">What is MISTDO?</h4>
+                                <p class="card-text text-justify">
+                                    Minimum Industry Safety Training for Downstream Operations (MISTDO) is a basic safety training requirement which must be undertaken by ALL personnel working in the downstream sector of the Nigerian oil and gas industry. It is a major component of the Safety Audit Clearance policy launched by the Department to reduce risks and occurrences of accidents in the downstream sector of the Oil and Gas industry.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="card-block">
+                                <h4 class="card-title">Why MISTDO ?</h4>
+                                <p class="card-text text-justify">
+                                    MISTDO seeks to address the high rate of incidents caused by personnel working in the downstream sector of the Oil and Gas industry which have resulted in loss of lives, destruction of infrastructure, downtime in production, loss of revenue and environmental pollution. The outcome from previous Investigations reveal that poor safety knowledge and culture and a dearth of competent personnel in this sector are major causes of these incidents. Thus, to eliminate or reduce to the barest minimum future occurrences of these incidents, the Department in line with its mandate to enforce policies & programs for the safety of people, the environment and Oil and Gas infrastructure, developed MISTDO.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- hotel search -->
+                    <div class="bhoechie-tab-content">
+                        <center>
+                            <h1 class="glyphicon glyphicon-plane" style="font-size:12em;color:#0b9242"></h1>
+                            <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                            <h3 style="margin-top: 0;color:#55518a">Hotel Directory</h3>
+
+                        </center>
+                    </div>
+                    <div class="bhoechie-tab-content">
+                        <center>
+                            <h1 class="glyphicon glyphicon-cutlery" style="font-size:12em;color:#55518a"></h1>
+                            <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                            <h3 style="margin-top: 0;color:#55518a">Restaurant Diirectory</h3>
+                        </center>
+                    </div>
+                    <div class="bhoechie-tab-content">
+                        <center>
+                            <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
+                            <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                            <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.Carousel Wrapper-->
+
+
+        <br />
+        <br />
+
+
+
+        <!-- Jumbotron Header -->
+        <!-- Page Features -->
+       
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+    <!-- Footer -->
+    <footer style="background-color:black">
+        <div class="container">
+            <span style="float:left;color:aliceblue">Copyright © @DateTime.Now.Year <img src="~/dist/assets/images/logo/footerlogo.png" width="65%" height="45%" style="margin:15px"></span>
+        </div>
+        <!-- /.container -->
+    </footer>
+    <script src="~/dist/assets/js/vendor.js"></script>
+    <script src="~/dist/assets/js/app.min.js"></script>
+
+    <!-- page plugins js -->
+    <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+    <!-- page js -->
+    <script src="~/dist/assets/js/table/data-table.js"></script>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("div.bhoechie-tab-menu>div.list-group>a").click(function (e) {
+                e.preventDefault();
+                $(this).siblings('a.active').removeClass("active");
+                $(this).addClass("active");
+                var index = $(this).index();
+                $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+                $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+            });
+        });
+    </script>
+
+
+</body>
+

@@ -33,7 +33,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">
-        <img src="~/images/logo.png" style="max-width:10%">
+        <img src="~/images/mlogo.png" style=" height:80px; margin-left:100px;">
         <div class="container">
 
             <a class="navbar-brand" asp-action="Index" asp-controller="Home"><b></b></a>
@@ -42,7 +42,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-               
+
                     <li class="nav-item">
                         <a class="nav-link" asp-action="Contact" asp-controller="Home"><b>Contact</b></a>
                     </li>
@@ -57,25 +57,216 @@
         </div>
     </nav>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.lite.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.js"></script>
+
 
     <!-- Page Content -->
     <div class="container">
-        <div class="w3-content w3-section" style="max-width:1200px; max-height:400px">
-            <img class="mySlides" src="~/images/slide1.jpg" style="width:100%; max-height:400px">
-            <img class="mySlides" src="~/images/slide2.jpg" style="width:100%; max-height:400px">
-            <img class="mySlides" src="../dist/assets/images/others/welcomepage3.jpg" style="width:100%; max-height:400px">
+
+
+        <br />
+        <br />
+        <br />
+        <!--Carousel Wrapper-->
+        <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+            <!--Controls-->
+            <div class="controls-top">
+                @*<a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
+                <a class="btn-floating" href="#multi-item-example" data-slide="next">
+                    <i class="fas fa-chevron-right"></i>
+                </a>*@
+            </div>
+            <!--/.Controls-->
+            <!--Indicators-->
+            <ol class="carousel-indicators">
+                <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+                <li data-target="#multi-item-example" data-slide-to="1"></li>
+                <li data-target="#multi-item-example" data-slide-to="2"></li>
+            </ol>
+            <!--/.Indicators-->
+            <!--Slides-->
+            <div class="carousel-inner" role="listbox">
+
+                <!--First slide-->
+                <div class="carousel-item active">
+
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            @*<img class="card-img-top"
+        src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+        alt="Card image cap">*@
+                            <div class="card-body">
+                                <h2 class="card-title">GENERAL INFORMATION</h2>
+                                <p class="card-text" style="text-align:justify;">
+                                    Minimum Industry Safety Training for Downstream Operations (MISTDO) is a basic safety training requirement
+                                    which must be undertaken by ALL personnel working in the downstream sector
+                                    sector of the Nigerian oil and gas industry. It is a major component of the
+                                    Safety Audit Clearance policy launched by the Department to reduce risks and
+                                    occurrences of accidents in the downstream sector of the Oil and Gas industry.
+                                </p>
+                                <a asp-action="Info" class="btn btn-outline-success" target="_blank">...Read more</a>
+                                <br />
+                                <br />
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="card mb-4">
+                            <img class="card-img-top"
+                                 src="~/images/slidee.jpg"
+                                 alt="Card image cap">
+                            <div class="card-body">
+                                @*<h4 class="card-title">Card title</h4>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the
+                                    card's content.
+                                </p>
+                                <a class="btn btn-primary">Button</a>*@
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="col-md-4">
+                        <div class="card mb-2">
+                            <img class="card-img-top"
+                                 src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                                 alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title">Card title</h4>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the
+                                    card's content.
+                                </p>
+                                <a class="btn btn-primary">Button</a>
+                            </div>
+                        </div>
+                    </div>*@
+
+                </div>
+                <!--/.First slide-->
+                <!--Second slide-->
+                <div class="carousel-item">
+
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            @*<img class="card-img-top"
+        src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">*@
+                          
+                            <div class="card-body">
+                                <h4 class="card-title">FAQs</h4>
+                                <p class="card-text">
+                                    Click the button below to browse through these Frequently Asked Questions to find answers to commonly raised questions.
+                                </p>
+                                <a asp-action="Info" class="btn btn-outline-success" target="_blank">Click here...</a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">MISTDO Training Provider's requirements </h4>
+                                <p class="card-text">
+                                    Minimum requirements for establisment of MISTDO safety training center.
+                                </p>
+                                <a asp-action="Info" class="btn btn-outline-success" target="_blank">Click here...</a>
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="card mb-4">
+                            <img class="card-img-top"
+                                 src="~/images/slide2.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                @*<h4 class="card-title">Card title</h4>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the
+                                    card's content.
+                                </p>
+                                <a class="btn btn-primary">Button</a>*@
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="col-md-4">
+                        <div class="card mb-2">
+                            <img class="card-img-top"
+                                 src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title">Card title</h4>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the
+                                    card's content.
+                                </p>
+                                <a class="btn btn-primary">Button</a>
+                            </div>
+                        </div>
+                    </div>*@
+
+                </div>
+                <!--/.Second slide-->
+                <!--Third slide-->
+                @*<div class="carousel-item">
+
+                    <div class="col-md-4">
+                        <div class="card mb-2">
+                            <img class="card-img-top"
+                                 src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title">Card title</h4>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the
+                                    card's content.
+                                </p>
+                                <a class="btn btn-primary">Button</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card mb-2">
+                            <img class="card-img-top"
+                                 src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(45).jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title">Card title</h4>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the
+                                    card's content.
+                                </p>
+                                <a class="btn btn-primary">Button</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card mb-2">
+                            <img class="card-img-top"
+                                 src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(51).jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title">Card title</h4>
+                                <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the
+                                    card's content.
+                                </p>
+                                <a class="btn btn-primary">Button</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>*@
+                <!--/.Third slide-->
+
+            </div>
+            <!--/.Slides-->
+
         </div>
+        <!--/.Carousel Wrapper-->
 
 
-        @*<h3 class="text-dark text-size-15 text-m-size-10" align="center">To Verify MISTDO Certificate <a asp-action="CertificateCheck" asp-controller="Home" class="btn btn-success" align="center" style="color:white;">Click Here</a> </h3>
-            <hr class="break background-primary break-small break-center margin-bottom-50">*@
-
-        @*<div class="line text-center">
-                <i class="icon-sli-heart text-primary text-size-40"></i>
-                <h2 class="text-dark text-size-40 text-m-size-30">Minimum Industry Safety Training for Downstream Operations <b>Portals</b></h2>
-                <hr class="break background-primary break-small break-center margin-bottom-50">
-            </div>*@
-
+        <br />
+        <br />
 
 
 
