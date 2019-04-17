@@ -33,7 +33,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">
-        <img src="~/images/mlogo.png" style=" height:80px; margin-left:100px;">
+        <img src="~/images/logo.png" style="max-width:10%;margin-left:100px;">
         <div class="container">
 
             <a class="navbar-brand" asp-action="Index" asp-controller="Home"><b></b></a>
@@ -46,14 +46,15 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-action="Contact" asp-controller="Home"><b>Contact</b></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="Calender" asp-controller="Home"><b>Training Calendar</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home"><b>Certificates</b></a>
-                    </li>
+                    @*<li class="nav-item">
+                    <a class="nav-link" asp-action="Calender" asp-controller="Home"><b>Training Calendar</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home"><b>Certificates</b></a>
+                </li>*@
                 </ul>
             </div>
+            <img src="~/images/mlogo.png" style=" height:60px; margin-left:60px;">
         </div>
     </nav>
 
@@ -65,8 +66,8 @@
     <div class="container">
 
 
-        <br />
-        <br />
+       
+       
         <br />
         <!--Carousel Wrapper-->
         <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
@@ -74,17 +75,28 @@
             <!--Controls-->
             <div class="controls-top">
                 @*<a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
-                <a class="btn-floating" href="#multi-item-example" data-slide="next">
-                    <i class="fas fa-chevron-right"></i>
-                </a>*@
+            <a class="btn-floating" href="#multi-item-example" data-slide="next">
+                <i class="fas fa-chevron-right"></i>
+            </a>*@
+
+                <a class="btn-floating" href="#multi-item-example" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="btn-floating" href="#multi-item-example" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
             <!--/.Controls-->
             <!--Indicators-->
             <ol class="carousel-indicators">
-                <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
-                <li data-target="#multi-item-example" data-slide-to="1"></li>
-                <li data-target="#multi-item-example" data-slide-to="2"></li>
+                <li data-target="#multi-item-example" data-slide-to="0" class="active arrow_box_left btn-outline-success"></li>
+                <li data-target="#multi-item-example" data-slide-to="1" class="arrow_box_left btn-outline-success"></li>
+                <li data-target="#multi-item-example" data-slide-to="2" class="arrow_box_left btn-outline-success"></li>
             </ol>
+
+            
             <!--/.Indicators-->
             <!--Slides-->
             <div class="carousel-inner" role="listbox">
@@ -95,8 +107,8 @@
                     <div class="col-md-4">
                         <div class="card mb-4">
                             @*<img class="card-img-top"
-        src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
-        alt="Card image cap">*@
+                        src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                        alt="Card image cap">*@
                             <div class="card-body">
                                 <h2 class="card-title">GENERAL INFORMATION</h2>
                                 <p class="card-text" style="text-align:justify;">
@@ -110,7 +122,7 @@
                                 <br />
                                 <br />
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -121,30 +133,16 @@
                                  alt="Card image cap">
                             <div class="card-body">
                                 @*<h4 class="card-title">Card title</h4>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.
-                                </p>
-                                <a class="btn btn-primary">Button</a>*@
+                            <p class="card-text">
+                                Some quick example text to build on the card title and make up the bulk of the
+                                card's content.
+                            </p>
+                            <a class="btn btn-primary">Button</a>*@
                             </div>
                         </div>
                     </div>
 
-                    @*<div class="col-md-4">
-                        <div class="card mb-2">
-                            <img class="card-img-top"
-                                 src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                                 alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.
-                                </p>
-                                <a class="btn btn-primary">Button</a>
-                            </div>
-                        </div>
-                    </div>*@
+
 
                 </div>
                 <!--/.First slide-->
@@ -153,9 +151,8 @@
 
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            @*<img class="card-img-top"
-        src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">*@
-                          
+
+
                             <div class="card-body">
                                 <h4 class="card-title">FAQs</h4>
                                 <p class="card-text">
@@ -181,81 +178,63 @@
                                  src="~/images/slide2.jpg" alt="Card image cap">
                             <div class="card-body">
                                 @*<h4 class="card-title">Card title</h4>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.
-                                </p>
-                                <a class="btn btn-primary">Button</a>*@
+                            <p class="card-text">
+                                Some quick example text to build on the card title and make up the bulk of the
+                                card's content.
+                            </p>
+                            <a class="btn btn-primary">Button</a>*@
                             </div>
                         </div>
                     </div>
 
-                    @*<div class="col-md-4">
-                        <div class="card mb-2">
-                            <img class="card-img-top"
-                                 src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.
-                                </p>
-                                <a class="btn btn-primary">Button</a>
-                            </div>
-                        </div>
-                    </div>*@
+
 
                 </div>
                 <!--/.Second slide-->
                 <!--Third slide-->
-                @*<div class="carousel-item">
+                <div class="carousel-item">
 
                     <div class="col-md-4">
-                        <div class="card mb-2">
-                            <img class="card-img-top"
-                                 src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg" alt="Card image cap">
+                        <div class="card mb-4">
+
+
                             <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
+                                <h4 class="card-title">Training Calendar</h4>
                                 <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.
+                                    Browse through raining calendars from DPR Approved Training Providers to find answers to commonly raised questions.
                                 </p>
-                                <a class="btn btn-primary">Button</a>
+                                <a asp-action="Calender" asp-controller="Home" class="btn btn-outline-success" target="_blank">View MISTDO Trainign Calendar...</a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">MISTDO Certificate Verification </h4>
+                                <p class="card-text">
+                                    Click the button below to verify MISTDO Certificate
+                                </p>
+                                <a asp-action="CertificateCheck" asp-controller="Home" class="btn btn-outline-success" target="_blank">Verify MISTDO Certificate...</a>
+                                <br />
+                                <br />
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="card mb-2">
+                    <div class="col-md-8">
+                        <div class="card mb-4">
                             <img class="card-img-top"
-                                 src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(45).jpg" alt="Card image cap">
+                                 src="~/images/slide2.jpg" alt="Card image cap">
                             <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.
-                                </p>
-                                <a class="btn btn-primary">Button</a>
+                                @*<h4 class="card-title">Card title</h4>
+                            <p class="card-text">
+                                Some quick example text to build on the card title and make up the bulk of the
+                                card's content.
+                            </p>
+                            <a class="btn btn-primary">Button</a>*@
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="card mb-2">
-                            <img class="card-img-top"
-                                 src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(51).jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.
-                                </p>
-                                <a class="btn btn-primary">Button</a>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>*@
+
+                </div>
                 <!--/.Third slide-->
 
             </div>
@@ -280,13 +259,14 @@
                 <div class="card">
                     <img class="card-img-top" src="~/images/traine.jpg" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">Trainee's Portal</h4>
-                        <p class="card-text">Trainee's intending to register for courses from DPR approved centres</p>
+                        <h4 class="card-title">Trainee Portal</h4>
+                        <p class="card-text">Trainees Intending To Register For Courses From DPR Approved Centres</p>
                     </div>
                     <div class="card-footer">
-                        <center><a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a><br /></center>
+                        <center><a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:40%; background-color: #0b9242; color: white;" title="This portal is for Trainees">LOGIN</a>
+                                <a asp-controller="Trainees" asp-action="RegisterNow" class="btn" style="min-width:50%; background-color: #0b9242; color: white;" title="This portal is for Trainees">REGISTER</a>
+                        </center>
 
-                        @*<center><a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:40%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a>|<a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:40%; background-color: #0b9242; color: white;" title="This portal is for Trainees">Trainee Portal</a></center>*@
                     </div>
                 </div>
             </div>
@@ -295,12 +275,15 @@
                 <div class="card">
                     <img class="card-img-top" src="~/images/trainer.jpg" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">Training Provider's Portal</h4>
-                        <p class="card-text">DPR approved training centres .</p>
+                        <h4 class="card-title">Training Provider Portal</h4>
+                        <p class="card-text">DPR Approved Training Centres .</p>
                     </div>
                     <div class="card-footer">
                         <center>
-                            <a asp-controller="Trainer" asp-action="Login" class="btn" style="min-width:100%; background-color: #0b9242; color: white;" title="This Portal is for Training Centers">Trainers Portal</a><br />
+                            <a asp-controller="Trainer" asp-action="Login" class="btn" style="min-width:40%; background-color: #0b9242; color: white;" title="This Portal is for Training Centers">LOGIN</a> <a asp-controller="Trainer" asp-action="OgispCheck" class="btn" style="min-width:50%; background-color: #0b9242; color: white;" title="This Portal is for Training Centers">REGISTER</a><br />
+                        </center>
+                        <center>
+                           
                         </center>
                     </div>
                 </div>
@@ -310,11 +293,11 @@
                 <div class="card">
                     <img class="card-img-top" src="~/images/admin.jpg" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">Administrator's Portal</h4>
+                        <h4 class="card-title">Administrator Portal</h4>
                         <p class="card-text"> </p>
                     </div>
                     <div class="card-footer">
-                        <center><a asp-controller="Administrator" asp-action="Login" class="btn" style="min-width:100%; min-height:initial; background-color: #0b9242; color: whitesmoke;" title="This Portal is for SHE Department DPR"> Administrative Portal </a> <br /></center>
+                        <center><a asp-controller="Administrator" asp-action="Login" class="btn" style="min-width:100%; min-height:initial; background-color: #0b9242; color: whitesmoke;" title="This Portal is for SHE Department DPR"> Administrator Portal </a> <br /></center>
 
                     </div>
                 </div>
