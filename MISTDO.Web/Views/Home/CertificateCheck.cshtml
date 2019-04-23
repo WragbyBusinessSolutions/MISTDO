@@ -38,11 +38,7 @@
         right: 15px;
     }
 </style>
-<style type="text/css">
-    .custom {
-        font-size: 20px;
-    }
-</style>
+
 
 <!-- Optional theme
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
@@ -72,7 +68,7 @@
 
 </head>
 
-p {
+
 
 
 <body>
@@ -89,16 +85,16 @@ p {
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="Index" asp-controller="Home"><b>Home</b></a>
+                        <a class="nav-link" asp-action="Index" asp-controller="Home" style="color:white;"><b>Home</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="Contact" asp-controller="Home"><b>Contact</b></a>
+                        <a class="nav-link" asp-action="Contact" asp-controller="Home"style="color:white;"><b>Contact</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="Calender" asp-controller="Home"><b>View Training Calendar</b></a>
+                        <a class="nav-link" asp-action="Calender" asp-controller="Home" style="color:white;"><b>View Training Calendar</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home"><b>Verify MISTDO Certificates</b></a>
+                        <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home"style="color:white;"><b>Verify MISTDO Certificates</b></a>
                     </li>
                 </ul>
             </div>
@@ -119,11 +115,11 @@ p {
                         string cert = "";
                     }
                     <div id="form" class="col-sm-10 col-sm-offset-1">
-                        <h2 class="text-center" style="color:darkgreen"><strong>Certificate Verification</strong></h2>
+                        <h3 class="text-center" style="color:darkgreen"><strong>Certificate Verification</strong></h3>
                         <br />
                         <form asp-action="Certificate" asp-controller="Home" method="post" enctype="multipart/form-data">
                             <div class="form-group">
-                                <h4><strong>Please Enter Certificate Number below</strong></h4>
+                                <h4><strong style="color:black;">Please Enter Certificate Number below</strong></h4>
 
                             </div>
                             <div class="form-group" align="center">
@@ -162,13 +158,13 @@ p {
                                 }
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Certificate Number*</label>
+                                <label for="exampleInputEmail1" style="color:black;">Certificate Number*</label>
                                 <input type="Text" class="form-control" name="cert" id="cert" placeholder="Enter Certificate NUMBER">
                             </div>
 
                             <button type="submit" class="btn btn-success">Submit</button>
                             <div class="form-group">
-                                <h5><i><strong>You cant find your certificate? <a asp-action="Login" asp-controller="Trainees">Login to your Portal</a> to raise a support ticket to your Training Provider</strong></i></h5>
+                                <h5><i><strong style="color:black;">You cant find your certificate?</strong> <a asp-action="Login" asp-controller="Trainees">Login to your Portal</a><strong style="color:black;"> to raise a support ticket to your Training Provider</strong></i></h5>
                             </div>
                         </form>
                     </div>
