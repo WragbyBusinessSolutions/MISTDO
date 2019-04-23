@@ -264,8 +264,8 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen; color:white;">
-        <img src="~/images/logo.png" style="max-width:10%">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">
+        <img src="~/images/logo.png" style="max-width:12%">
         <div class="container">
 
             <a class="navbar-brand" asp-action="Index" asp-controller="Home"><b></b></a>
@@ -275,16 +275,16 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="Index" asp-controller="Home"><b>Home</b></a>
+                        <a class="nav-link" asp-action="Index" asp-controller="Home"style="color:white;"><b>Home</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="Contact" asp-controller="Home"><b>Contact</b></a>
+                        <a class="nav-link" asp-action="Contact" asp-controller="Home"style="color:white;"><b>Contact</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="Calender" asp-controller="Home"><b>Training Calendar</b></a>
+                        <a class="nav-link" asp-action="Calender" asp-controller="Home"style="color:white;"><b>View Training Calendar</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home"><b>Certificates</b></a>
+                        <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home" style="color:white;"><b>Verify MISTDO Certificates</b></a>
                     </li>
                 </ul>
             </div>
@@ -294,150 +294,123 @@
 
     <div class="page-container">
         <!-- Header START -->
-       
+
         @inject UserManager<TraineeApplicationUser> userManager;
         @inject UserManager<ApplicationUser> usermanager;
         <!-- Theme Toggle Button END -->
         <!-- Content Wrapper START -->
-        <div class="main-content" style="background-color:darkseagreen">
-
-           
-                <div class="page-title">
-                    <h4 style=" color:white">Training Calender</h4>
-                    @if (ViewData["Success"] != null)
-                    {
-                        <div id="successMessage">
-                            @ViewData["Success"]
-                        </div>
-
-                    }
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="table-overflow">
-                                    <table id="dt-opt" class="table table-lg table-hover" style="font-size:medium">
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    Module Name
-                                                </th>
-
-                                                <th>
-                                                    Center Name
-                                                </th>
+        <div class="main-content" style="background-color:darkseagreen;color:black;">
 
 
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.Cost)
-                                                </th>
-                                                <th>
-                                                    State
-                                                </th>
+            <div class="page-title">
+                <h4 style=" color:white">Training Calender</h4>
+                @if (ViewData["Success"] != null)
+                {
+                    <div id="successMessage">
+                        @ViewData["Success"]
+                    </div>
 
-                                                <th>
-                                                    Start Date
-                                                </th>
-                                                <th>
-                                                    End Date
-                                                </th>
-                                                <th>Other Options</th>
-                                            </tr>
-                                        </thead>
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    <input type="text" id="input1" onkeyup="input1f()" placeholder="Module Name">
-                                                </th>
-                                                <th>
-                                                    <input type="text" id="input2" onkeyup="input2f()" placeholder="Center Name">
+                }
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="table-overflow">
+                                <table id="dt-opt" class="table table-lg table-hover" style="font-size:medium">
+                                   
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="text" id="input1" onkeyup="input1f()" placeholder="Module Name">
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input2" onkeyup="input2f()" placeholder="Center Name">
 
-                                                </th>
-                                                <th>
-                                                    <input type="text" id="input3" onkeyup="input3f()" placeholder="Cost">
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input3" onkeyup="input3f()" placeholder="Cost">
 
-                                                </th>
-                                                <th>
-                                                    <input type="text" id="input4" onkeyup="input4f()" placeholder="State">
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input4" onkeyup="input4f()" placeholder="State">
 
-                                                </th>
-                                                <th>
-                                                    <input type="text" id="input5" onkeyup="input5f()" placeholder=" Start Date">
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input5" onkeyup="input5f()" placeholder=" Start Date">
 
-                                                </th>
-                                                <th>
-                                                    <input type="text" id="input6" onkeyup="input6f()" placeholder=" End Date">
+                                            </th>
+                                            <th>
+                                                <input type="text" id="input6" onkeyup="input6f()" placeholder=" End Date">
 
-                                                </th>
+                                            </th>
 
-                                                <th>
+                                            <th>
 
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var item in Model)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            var centername = await usermanager.FindByIdAsync(item.TrainingCentreId);
+
+                                            if (item.TrainingEndDate >= DateTime.Today)
                                             {
-                                                var centername = await usermanager.FindByIdAsync(item.TrainingCentreId);
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingName)
+                                                    </td>
+                                                    <td>
+                                                        @if (centername == null)
+                                                        {
+                                                            string jas = "jadel company";
+                                                            @jas
+                                                        }
+                                                        else
+                                                        {
 
-                                                if (item.TrainingEndDate >= DateTime.Today)
-                                                {
-                                                    <tr>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.TrainingName)
-                                                        </td>
-                                                        <td>
-                                                            @if (centername == null)
-                                                            {
-                                                                string jas = "jadel company";
-                                                                @jas
-                                                            }
-                                                            else
-                                                            {
+                                                            @centername.CompanyName
+                                                        }
+                                                    </td>
+                                                    <td>
 
-                                                                @centername.CompanyName
-                                                            }
-                                                        </td>
-                                                        <td>
-
-                                                            ₦  @Html.Raw(@String.Format("{0:n0}", item.Cost))
+                                                        ₦  @Html.Raw(@String.Format("{0:n0}", item.Cost))
 
 
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(model => item.Venue)
-                                                        </td>
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => item.Venue)
+                                                    </td>
 
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
-                                                        </td>
-                                                        <td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                                                    </td>
+                                                    <td>
 
-                                                            <a asp-action="DetailsCalender" class="btn btn-success" asp-route-id="@item.Id">Details</a>
+                                                        <a asp-action="DetailsCalender" class="btn btn-success" asp-route-id="@item.Id">Details</a>
 
-                                                        </td>
-                                                    </tr>
-                                                }
+                                                    </td>
+                                                </tr>
                                             }
-                                        </tbody>
+                                        }
+                                    </tbody>
 
-                                    </table>
-                                </div>
-
+                                </table>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-        
+        </div>
+
 
         <!-- Content Wrapper END -->
         <!-- Footer START -->
-       
         <!-- Footer END -->
         <!-- Page Container END -->
     </div>

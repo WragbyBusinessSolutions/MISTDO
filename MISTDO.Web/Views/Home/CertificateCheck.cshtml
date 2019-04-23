@@ -38,6 +38,11 @@
         right: 15px;
     }
 </style>
+<style type="text/css">
+    .custom {
+        font-size: 20px;
+    }
+</style>
 
 <!-- Optional theme
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
@@ -67,12 +72,14 @@
 
 </head>
 
+p {
+
 
 <body>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">
-        <img src="~/images/logo.png" style="max-width:10%">
+        <img src="~/images/logo.png" style="max-width:12%">
         <div class="container">
 
             <a class="navbar-brand" asp-action="Index" asp-controller="Home"><b></b></a>
@@ -88,10 +95,10 @@
                         <a class="nav-link" asp-action="Contact" asp-controller="Home"><b>Contact</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="Calender" asp-controller="Home"><b>Training Calendar</b></a>
+                        <a class="nav-link" asp-action="Calender" asp-controller="Home"><b>View Training Calendar</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home"><b>Certificates</b></a>
+                        <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home"><b>Verify MISTDO Certificates</b></a>
                     </li>
                 </ul>
             </div>
@@ -101,85 +108,82 @@
 
 
     <!-- Page Content -->
- 
-        <!-- Jumbotron Header -->
-        <!-- Page Features -->
-        <section id="loginform" class="outer-wrapper">
+    <!-- Jumbotron Header -->
+    <!-- Page Features -->
+    <section id="loginform" class="outer-wrapper">
 
-            <div class="inner-wrapper">
-                <div class="container">
-                    <div class="row">
-                        @{
-                            string cert = "";
-                        }
-                        <div id="form" class="col-sm-10 col-sm-offset-1">
-                            <h2 class="text-center" style="color:darkgreen"><strong>Certificate Verification</strong></h2>
-                            <br />
-                            <form asp-action="Certificate" asp-controller="Home" method="post" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <h4><strong>Please Enter Certificate Number below</strong></h4>
+        <div class="inner-wrapper">
+            <div class="container">
+                <div class="row">
+                    @{
+                        string cert = "";
+                    }
+                    <div id="form" class="col-sm-10 col-sm-offset-1">
+                        <h2 class="text-center" style="color:darkgreen"><strong>Certificate Verification</strong></h2>
+                        <br />
+                        <form asp-action="Certificate" asp-controller="Home" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <h4><strong>Please Enter Certificate Number below</strong></h4>
 
-                                </div>
-                                <div class="form-group" align="center">
-                                    @{
-                                        var msg = ViewBag.Message;
-                                    }
-                                    @if (String.IsNullOrEmpty(msg))
+                            </div>
+                            <div class="form-group" align="center">
+                                @{
+                                    var msg = ViewBag.Message;
+                                }
+                                @if (String.IsNullOrEmpty(msg))
+                                {
+
+                                }
+                                else
+                                {
+                                    @if (ViewBag.Message.Contains("not Valid"))
                                     {
+                                        <h4><strong style="color:red">@ViewBag.Message </strong></h4>
 
                                     }
                                     else
                                     {
-                                        @if (ViewBag.Message.Contains("not Valid"))
-                                        {
-                                            <h4><strong style="color:red">@ViewBag.Message </strong></h4>
-
-                                        }
-                                        else
-                                        {
-                                            <h4><strong style="color:forestgreen;">@ViewBag.Message </strong></h4>
-                                            <table border="1" width="100%" style="border-color:forestgreen">
-                                                <thead>
-                                                    <tr>
-                                                        <th> Name</th>
-                                                        <th> Trainee ID</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>@ViewBag.name</td>
-                                                        <td>@ViewBag.uid</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        }
+                                        <h4><strong style="color:forestgreen;">@ViewBag.Message </strong></h4>
+                                        <table border="1" width="100%" style="border-color:forestgreen">
+                                            <thead>
+                                                <tr>
+                                                    <th> Name</th>
+                                                    <th> Trainee ID</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>@ViewBag.name</td>
+                                                    <td>@ViewBag.uid</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     }
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Certificate Number*</label>
-                                    <input type="Text" class="form-control" name="cert" id="cert" placeholder="Enter Certificate NUMBER">
-                                </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Certificate Number*</label>
+                                <input type="Text" class="form-control" name="cert" id="cert" placeholder="Enter Certificate NUMBER">
+                            </div>
 
-                                <button type="submit" class="btn btn-success">Submit</button>
-                                <div class="form-group">
-                                    <h5><i><strong>You cant find your certificate? <a asp-action="Login" asp-controller="Trainees">Login to your Portal</a> to raise a support ticket to your Training Provider</strong></i></h5>
-                                </div>
-                            </form>
-                        </div>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                            <div class="form-group">
+                                <h5><i><strong>You cant find your certificate? <a asp-action="Login" asp-controller="Trainees">Login to your Portal</a> to raise a support ticket to your Training Provider</strong></i></h5>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
 
-        </section>
-        <!-- /.row -->
-
- 
+    </section>
+    <!-- /.row -->
     <!-- /.container -->
     <!-- Footer -->
 
     <script src="~/dist/assets/js/vendor.js"></script>
     <script src="~/dist/assets/js/app.min.js"></script>
-    
+
     <!-- page plugins js -->
     <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
 
@@ -189,7 +193,7 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
- 
+
 
 
 </body>
