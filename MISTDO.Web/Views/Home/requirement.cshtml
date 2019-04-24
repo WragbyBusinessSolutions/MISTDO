@@ -1,0 +1,1037 @@
+﻿@model IEnumerable<MISTDO.Web.Models.Calender>
+@{
+    ViewData["Title"] = "Information | MISTDO Portal";
+}
+@inject UserManager<ApplicationUser> userManager;
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<head>
+    <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--- Basic Page Needs  -->
+    <link rel="stylesheet" href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
+    <link rel="stylesheet" href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/assets2/vendor/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/assets2/css/heroic-features.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
+    <!-- Favicon -->
+    <style>
+
+        /*  bhoechie tab */
+        div.bhoechie-tab-container {
+            z-index: 10;
+            background-color: #ffffff;
+            padding: 0 !important;
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            margin-left: 50px;
+            -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            background-clip: padding-box;
+            opacity: 0.97;
+            filter: alpha(opacity=97);
+        }
+
+        div.bhoechie-tab-menu {
+            padding-right: 0;
+            padding-left: 0;
+            padding-bottom: 0;
+        }
+
+            div.bhoechie-tab-menu div.list-group {
+                margin-bottom: 0;
+            }
+
+                div.bhoechie-tab-menu div.list-group > a {
+                    margin-bottom: 0;
+                }
+
+                    div.bhoechie-tab-menu div.list-group > a .glyphicon,
+                    div.bhoechie-tab-menu div.list-group > a .fa {
+                        color: #0b9242;
+                    }
+
+                    div.bhoechie-tab-menu div.list-group > a:first-child {
+                        border-top-right-radius: 0;
+                        -moz-border-top-right-radius: 0;
+                    }
+
+                    div.bhoechie-tab-menu div.list-group > a:last-child {
+                        border-bottom-right-radius: 0;
+                        -moz-border-bottom-right-radius: 0;
+                    }
+
+                    div.bhoechie-tab-menu div.list-group > a.active,
+                    div.bhoechie-tab-menu div.list-group > a.active .glyphicon,
+                    div.bhoechie-tab-menu div.list-group > a.active .fa {
+                        background-color: #0b9242;
+                        background-image: #0b9242;
+                        color: #ffffff;
+                    }
+
+                        div.bhoechie-tab-menu div.list-group > a.active:after {
+                            content: '';
+                            position: absolute;
+                            left: 100%;
+                            top: 50%;
+                            margin-top: -13px;
+                            border-left: 0;
+                            border-bottom: 13px solid transparent;
+                            border-top: 13px solid transparent;
+                            border-left: 10px solid #0b9242;
+                        }
+
+        div.bhoechie-tab-content {
+            background-color: #ffffff;
+            /* border: 1px solid #eeeeee; */
+            padding-left: 20px;
+            padding-top: 10px;
+        }
+
+        div.bhoechie-tab div.bhoechie-tab-content:not(.active) {
+            display: none;
+        }
+               
+    </style>
+
+
+</head>
+
+>
+<!------ Include the above in your HEAD tag ---------->
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">
+        <img src="~/images/mlogo.png" style=" height:80px; margin-left:100px;">
+        <div class="container">
+
+            <a class="navbar-brand" asp-action="Index" asp-controller="Home"><b></b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Home" style="color:white;"><b>Home</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.dpr.gov.ng/contact/" target="_blank" style="color:white;"><b>Contact</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Calender" asp-controller="Home" style="color:white;"><b>Training Calendar</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home" style="color:white;"><b>Certificates</b></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <!--Carousel Wrapper-->
+        <div class="row text-center">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active text-center">
+                            <h4 class="glyphicon glyphicon-home"></h4><br />General Information
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                            <h4 class="glyphicon glyphicon-road"></h4><br />FAQs
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                            <h4 class="glyphicon glyphicon-plane"></h4><br />MISTDO Training Provider's requirements
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                    <!-- flight section -->
+                    <div class="bhoechie-tab-content">
+                        <div class="accordion" id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            What is MISTDO?
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body text-justify">
+                                        Minimum Industry Safety Training for Downstream Operations (MISTDO) is a basic safety training requirement which must be undertaken by ALL personnel working in the downstream sector of the Nigerian oil and gas industry. It is a major component of the Safety Audit Clearance policy launched by the Department to reduce risks and occurrences of accidents in the downstream sector of the Oil and Gas industry.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Why MISTDO ?
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body text-justify">
+                                        MISTDO seeks to address the high rate of incidents caused by personnel working in the downstream sector of the Oil and Gas industry which have resulted in loss of lives, destruction of infrastructure, downtime in production, loss of revenue and environmental pollution. The outcome from previous Investigations reveal that poor safety knowledge and culture and a dearth of competent personnel in this sector are major causes of these incidents. Thus, to eliminate or reduce to the barest minimum future occurrences of these incidents, the Department in line with its mandate to enforce policies & programs for the safety of people, the environment and Oil and Gas infrastructure, developed MISTDO.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Who is MISTDO for?
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <p class="card-text text-justify">
+                                            i.	Enforce safety training requirements in the downstream sector.
+                                        </p>
+                                        <p class="card-text text-justify">
+                                            ii.	Increase awareness in safety and risks associated with operations in the sector.
+                                        </p>
+                                        <p class="card-text text-justify">
+                                            iii.	Improve knowledge and general competence level in the sector.
+                                        </p>
+                                        <p class="card-text text-justify">
+                                            iv.	Standardize basic safety training requirements for personnel across the sector.
+                                        </p>
+                                        <p class="card-text text-justify">
+                                            v.	Serve as a reference or guide for prospective trainees in basic safety.
+                                        </p>
+                                        <p class="card-text text-justify">
+                                            vi.	Provide a platform to effectively monitor and regulate basic safety training activities in the sector.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingFour">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            Instructions for Online Registration
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <h6>  As a Trainee</h6>
+
+                                        <p class="card-text text-justify">
+                                            i. Click on ‘Trainee Portal’ button on Home page
+                                        </p>
+                                        <p class="card-text text-justify">
+                                            ii.	Click on ‘Register’
+                                        </p>
+                                        <p class="card-text text-justify">
+                                            iii. Complete the online form with bio and other required data
+                                        </p>
+                                        <p class="card-text text-justify">
+                                            iv.	 Complete the registration process with biometrics capturing by going to any of the DPR accredited training centers of your choice listed on the website
+                                        </p>
+                                        <hr />
+                                        <h6>  As a Training Provider</h6>
+
+                                        <p class="card-text text-justify">
+                                            i.	Go to the DPR Oil and Gas Industry Service Permit (OGISP) portal
+                                        </p>
+                                        <p class="card-text text-justify">
+                                            ii.	 Apply for MISTDO Permit listed under the Specialized Category in line with OGISP requirements
+                                        </p>
+                                        <p class="card-text text-justify">
+                                            iii. Upon the receipt of MISTDO OGISP Permit, Click on ‘Training Provider’s Portal’ button on Home page
+                                        </p>
+                                        <p class="card-text text-justify">
+                                            iv.	 	Click on ‘Register’
+                                        </p>
+                                        <p class="card-text text-justify">
+                                            v.	Enter OGISP Permit Number and proceed with the step by step registration.
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="bhoechie-tab-content">
+                        <div class="accordion" id="accordion2">
+                            <div class="card">
+                                <div class="card-header" id="heading2a">
+                                    GENERAL
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapse2a" aria-expanded="true" aria-controls="collapse2a">
+                                            What is the full meaning of MISTDO?
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapse2a" class="collapse show" aria-labelledby="heading2a" data-parent="#accordion2">
+                                    <div class="card-body text-justify">
+                                        Minimum Industry Safety Training for Downstream Operations.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="heading2b">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2b" aria-expanded="false" aria-controls="collapse2b">
+                                            Which sector of the Oil & Gas Industry is MISTDO applicable to?
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapse2b" class="collapse" aria-labelledby="heading2b" data-parent="#accordion2">
+                                    <div class="card-body text-justify">
+                                        MISTDO applies to operations in the Downstream Sector
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="heading2c">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2c" aria-expanded="false" aria-controls="collapse2c">
+                                            Who is MISTDO for?
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapse2c" class="collapse" aria-labelledby="heading2c" data-parent="#accordion2">
+                                    <div class="card-body text-justify">
+                                        All operations personnel working in Downstream Facilities. These include but are not limited to petroleum retail outlets, depots,
+                                        Jetties, petroleum transport, Lube plants, gas retail and processing plants.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="heading2d">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                            How long is the validity of training?
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                    <div class="card-body text-justify">
+                                        Generally two (2) years, but may vary depending on the course Module.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- train section -->
+               
+                <div class="bhoechie-tab-content">
+                    <div class="accordion" id="accordion3">
+                        <div class="card">
+                            <div class="card-header" id="heading3a">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapse2a" aria-expanded="true" aria-controls="collapse3a">
+                                        What is the next step after an individual completes training(s) and obtain certificate(s)?
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapse3a" class="collapse show" aria-labelledby="heading3a" data-parent="#accordion3">
+                                <div class="card-body text-justify">
+                                    The Department may request for evidence of training during facility audits/inspections at any time.
+                                    While working in the facility/plant/location, the trainee should ensure that they always have in their
+                                    possession their MISTDO card or Number/ID.
+                                    Failure to provide this could lead to possible sanctions.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header" id="heading3b">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse3b" aria-expanded="false" aria-controls="collapse3b">
+                                        Do I need to be accredited by OGISP before I can register as a Training Provider on MISTDO?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse3b" class="collapse" aria-labelledby="heading3b" data-parent="#accordion3">
+                                <div class="card-body text-justify">
+                                    Yes! All companies operating in the Nigerian Oil and Gas Industry require an Oil and Gas Industry Service Permit (OGISP).
+                                    However, accreditation for the MISTDO program has been incorporated into the OGISP platform.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading3c">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse3c" aria-expanded="false" aria-controls="collapse3c">
+                                        Who can be a Training Provider?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse3c" class="collapse" aria-labelledby="heading3c" data-parent="#accordion3">
+                                <div class="card-body text-justify">
+                                    Any company that has the requisite infrastructure/competencies and meet all preset
+                                    requirements by DPR to carry out the training(s) can be a Training Provider.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading3d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse3d" aria-expanded="false" aria-controls="collapse3d">
+                                        Is there an age limit for trainee registration?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse3d" class="collapse" aria-labelledby="heading3d" data-parent="#accordion3">
+                                <div class="card-body text-justify">
+                                    Minimum age for hazardous work in Nigeria is eighteen (18) years (Source: Labour Act, 2004).
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading3d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse3d" aria-expanded="false" aria-controls="collapse3d">
+                                        How can a MISTDO training center which has been accredited by DPR be verified by members of the public?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse3d" class="collapse" aria-labelledby="heading3d" data-parent="#accordion3">
+                                <div class="card-body text-justify">
+                                    All accredited MISTDO training providers are published on the MISTDO portal.
+                                    In addition, any prospective trainee or customer
+                                    may request to view the DPR accreditation permit to confirm its validity.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading3d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse3d" aria-expanded="false" aria-controls="collapse3d">
+                                        Can a training certificate issued by a non- DPR accredited training center be recognized?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse3d" class="collapse" aria-labelledby="heading3d" data-parent="#accordion3">
+                                <div class="card-body text-justify">
+                                    No. Only the training certificate issued by DPR accredited MISTDO training
+                                    provider will be recognized. It is the duty of any prospective trainee or
+                                    customer to undertake MISTDO training at only DPR accredited training centers.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading3d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse3d" aria-expanded="false" aria-controls="collapse3d">
+                                        Is there any penalty or punishment for MISTDO violations?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse3d" class="collapse" aria-labelledby="heading3d" data-parent="#accordion3">
+                                <div class="card-body text-justify">
+                                    Yes. Appropriate penalties/fines/sanctions in line with the Petroleum Laws and Regulations will be applied
+                                    to any operator/company that violates the MISTDO program and directives.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading3c">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse3c" aria-expanded="false" aria-controls="collapse3c">
+                                        Who is responsible for ensuring that personnel possess MISTDO as applicable?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse3c" class="collapse" aria-labelledby="heading3c" data-parent="#accordion3">
+                                <div class="card-body text-justify">
+                                    An employer (operator/company) is responsible for ensuring compliance with MISTDO
+                                    requirements by all her employees.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bhoechie-tab-content">
+                    <div class="accordion" id="accordion2">
+                        <div class="card">
+                            <div class="card-header" id="heading2a">
+                                TRAINEES Registration
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapse2a" aria-expanded="true" aria-controls="collapse2a">
+                                        How do I register as a Trainee?
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapse2a" class="collapse show" aria-labelledby="heading2a" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    On the home page, click on “Trainee Portal” and select “Register Now”.
+                                    You will be asked to provide some personal information. You must have a functional email address before you can register,
+                                    as a verification email would be sent to successfully complete your application.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2b">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2b" aria-expanded="false" aria-controls="collapse2b">
+                                        How much does it cost to register a trainee?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2b" class="collapse" aria-labelledby="heading2b" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Registration on the portal is free. However, registration will only be completed at any
+                                    DPR accredited training center by enrolling for a module at a fee.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2c">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2c" aria-expanded="false" aria-controls="collapse2c">
+                                        Can I apply to a training center different to the one I registered with?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2c" class="collapse" aria-labelledby="heading2c" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Yes! Registration is just to get on the MISTDO portal. However, you would be able to see various
+                                    training centers and pick the courses which suit your budget, schedule, location etc.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        How do I change training centers?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Training Centers cannot be changed once the course has been paid for. However, trainees may liaise with
+                                    the trainers and reschedule their trainings to a more convenient time.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        Can I apply to multiple training centers at the same time?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Yes! Modules which you apply for will be available on your calendar and ideally will display any overlaps.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        Can a company carry out single or bulk registration of her employees for MISTDO training?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Yes. Companies can register single or multiple employees for any MISTDO
+                                    modules/courses. However, the certificates will be issued
+                                    to individuals as MISTDO training certificate is personalized.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        Does having MISTDO training & certificate guarantee employment?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    No. All employers have their various employment requirements.
+                                    MISTDO training is only a requirement to work in the downstream operations.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        Can I change Training centres at any time?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Training Centers cannot be changed once training has been paid for. Trainings
+                                    can only be rescheduled. A full refund of the training
+                                    fee can only be obtained when the course is cancelled by the training center.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        I forgot my username and password?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    There is a “forgot password” link on the Trainee's Portal Login page
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        Can I begin a training in one training center and complete same at another training center?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    No. A Module must be completed at the training center where it was registered.
+                                    You can however register to take different modules at different training centers.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        I cannot log on to the portal as a trainee
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Kindly verify your internet connection and your log in details.
+                                    You may have put in the wrong user name or password.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        How do I verify that my Training Provider is accredited?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    All Training Centers on the MISTDO platform are already accredited on the OGISP platform. However, each training
+                                    center has a unique ID Number which can be used for accreditation verification.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        Is there an age limit for registration?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Minimum age for hazardous work in Nigeria is eighteen (18) years (Source: Labour Act 2004).
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        Can I update my bio and any other data as a trainee?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Bio data change/update for trainees can be done at any MISTDO accredited center.
+                                    It is important to have your unique ID No. for making such changes/updates.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bhoechie-tab-content">
+                    <div class="accordion" id="accordion2">
+                        <div class="card">
+                            <div class="card-header" id="heading2a">
+                                Course/Modules
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapse2a" aria-expanded="true" aria-controls="collapse2a">
+                                        Can I sign up for multiple modules?
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapse2a" class="collapse show" aria-labelledby="heading2a" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Yes! Each trainee can enroll to more than one module and it is dependent on location, cost and availability.
+                                    Note - Trainees would not be able to enroll modules simultaneously.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2b">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2b" aria-expanded="false" aria-controls="collapse2b">
+                                        Are there any prerequisites to enrolling on the training modules?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2b" class="collapse" aria-labelledby="heading2b" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    There are no prerequisites for enrolling for any module on the MISTDO platform, except age requirements.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2c">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2c" aria-expanded="false" aria-controls="collapse2c">
+                                        How do I view the timetable for upcoming classes?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2c" class="collapse" aria-labelledby="heading2c" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    This can be viewed by clicking the calendar tab on the MISTDO portal.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        What are the different types of modules or courses available on MISTDO?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Click to view modules.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bhoechie-tab-content">
+                    <div class="accordion" id="accordion2">
+                        <div class="card">
+                            <div class="card-header" id="heading2a">
+                                Fees Payment
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapse2a" aria-expanded="true" aria-controls="collapse2a">
+                                        How do I pay the module fees?
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapse2a" class="collapse show" aria-labelledby="heading2a" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Payment of module fees is done at any DPR accredited training center of choice.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bhoechie-tab-content">
+                    <div class="accordion" id="accordion2">
+                        <div class="card">
+                            <div class="card-header" id="heading2a">
+                                Training Certificates
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapse2a" aria-expanded="true" aria-controls="collapse2a">
+                                        How is my training certificate issued?
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapse2a" class="collapse show" aria-labelledby="heading2a" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Training certificate is issued by training centre where the module was completed.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2b">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2b" aria-expanded="false" aria-controls="collapse2b">
+                                        When is my training certificate issued?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2b" class="collapse" aria-labelledby="heading2b" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Training certificate is issued at the completion of every module by the accredited training center.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2c">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2c" aria-expanded="false" aria-controls="collapse2c">
+                                        How long is my training certificate valid for?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2c" class="collapse" aria-labelledby="heading2c" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Training certificate is valid for duration of two (2) years.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        What do I do if my training certificate is lost or stolen?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Training certificate is reissued once evidence of theft/misplacement is provided and still within its validity.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        How do I renew my Training certificate?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Training certificate can be renewed by registering for a refresher course on or before the expiry of the present certificate.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        Are there fees for certificate renewal?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Yes, there are fees for training certificate renewal.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2d">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2d" aria-expanded="false" aria-controls="collapse2d">
+                                        Is renewal of certificate mandatory?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2d" class="collapse" aria-labelledby="heading2d" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Yes, renewal of training certificate is mandatory if the holder must continue
+                                    work in the Downstream sector of the oil and gas industry
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="bhoechie-tab-content">
+                    <div class="accordion" id="accordion2">
+                        <div class="card">
+                            <div class="card-header" id="heading2a">
+                                    TRAINING PROVIDERS	Registration
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapse2a" aria-expanded="true" aria-controls="collapse2a">
+                                          How do I register as a Training Provider?
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapse2a" class="collapse show" aria-labelledby="heading2a" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Training Providers are required to register and apply for MISTDO Permit listed under Specialized Category on the OGISP Portal. 
+                                    If permit is granted, training providers may log on to MISTDO portal with the permit number.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2b">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2b" aria-expanded="false" aria-controls="collapse2b">
+                                        How much does it cost to register as a training provider on MISTDO?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2b" class="collapse" aria-labelledby="heading2b" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    N250, 000:00 for MISTDO Permit (OGISP).
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2c">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success collapsed" type="button" data-toggle="collapse" data-target="#collapse2c" aria-expanded="false" aria-controls="collapse2c">
+                                        What are the requirements needed to be a Training Provider?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse2c" class="collapse" aria-labelledby="heading2c" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Download the requirements.
+
+                                    Note: Accreditation assessment shall be conducted, and only qualified
+                                    training centers shall be accredited to offer trainings in line with standardized 
+                                    requirements. Thereafter, the same permitting/accreditation process shall apply annually.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2a">
+                                Fees Payment
+                                <h5 class="mb-0">
+                                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapse2a" aria-expanded="true" aria-controls="collapse2a">
+                                        Are there renewal fees for Training Providers?
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapse2a" class="collapse show" aria-labelledby="heading2a" data-parent="#accordion2">
+                                <div class="card-body text-justify">
+                                    Yes. Accreditation for training providers is valid for one (1) year and a fee is applicable for renewal.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- hotel search -->
+                @*<div class="bhoechie-tab-content">
+            <center>
+
+
+            </center>
+        </div>*@
+                <div class="bhoechie-tab-content">
+                    <center>
+
+                    </center>
+                </div>
+                <div class="bhoechie-tab-content">
+                    <center>
+
+                    </center>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!--/.Carousel Wrapper-->
+
+
+        <br />
+        <br />
+
+
+
+        <!-- Jumbotron Header -->
+        <!-- Page Features -->
+       
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+    <!-- Footer -->
+    <footer style="background-color:black">
+        <div class="container">
+            <span style="float:left;color:aliceblue">Copyright © @DateTime.Now.Year <img src="~/dist/assets/images/logo/footerlogo.png" width="65%" height="45%" style="margin:15px"></span>
+        </div>
+        <!-- /.container -->
+    </footer>
+    <script src="~/dist/assets/js/vendor.js"></script>
+    <script src="~/dist/assets/js/app.min.js"></script>
+
+    <!-- page plugins js -->
+    <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+    <!-- page js -->
+    <script src="~/dist/assets/js/table/data-table.js"></script>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("div.bhoechie-tab-menu>div.list-group>a").click(function (e) {
+                e.preventDefault();
+                $(this).siblings('a.active').removeClass("active");
+                $(this).addClass("active");
+                var index = $(this).index();
+                $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+                $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+            });
+        });
+    </script>
+
+
+</body>
+

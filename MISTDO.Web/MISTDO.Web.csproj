@@ -261,6 +261,12 @@
     <Content Update="Views\Home\DetailsCalender.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Home\Requirement.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Home\Faq.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Home\Info.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

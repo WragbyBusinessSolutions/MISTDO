@@ -70,6 +70,16 @@ namespace MISTDO.Web.Controllers
 
             return View();
         }
+        public IActionResult Faq()
+        {
+
+            return View();
+        }
+        public IActionResult Requirement()
+        {
+
+            return View();
+        }
         [HttpGet]
         public async Task<IActionResult> CertificateCheck()
         {
