@@ -78,7 +78,8 @@ namespace MISTDO.Web.Services
 
                     traineeFromExcel.State = ws.Cells[rw, 8].Value.ToString().ToUpper();
                     traineeFromExcel.City = ws.Cells[rw, 9].Value.ToString().ToUpper();
-                    
+                    traineeFromExcel.DateOfBirth = DateTime.Parse(ws.Cells[rw, 10].Value.ToString());
+
                     traineeFromExcel.DateRegistered = DateTime.Now;
                     traineeFromExcel.UID = "MISTDO/" + permitotp;
           
