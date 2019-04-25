@@ -141,6 +141,9 @@ namespace MISTDO.Web
                 options.IdleTimeout = TimeSpan.FromMinutes(10);
                 options.Cookie.HttpOnly = true;
             });
+            services.AddMvc().AddJsonOptions(options => {
+                        options.SerializerSettings.DateFormatString = "dd/mm/yy, dddd";
+                    });
             services.AddMvc();
         }
 

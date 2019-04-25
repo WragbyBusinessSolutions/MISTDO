@@ -264,10 +264,11 @@ namespace MISTDO.Web.Views.TrainerDashboard
                 UserAddress = trainee.FirstName,
                 LastName = trainee.LastName,
                 FirstName = trainee.FirstName,
-               
+                 State = trainee.State,
+                 City=trainee.City,       
                 //    ImageUpload = file
             };
-
+          
             ViewBag.Image = trainee.ImageUpload;
             return View(model);
         }
@@ -310,7 +311,9 @@ namespace MISTDO.Web.Views.TrainerDashboard
             AppUser.UserAddress = model.UserAddress;
             AppUser.Email = model.Email;
             AppUser.ImageUpload = imagebyte;
-            
+            AppUser.State = model.State;
+            AppUser.City = model.City;
+            AppUser.DateOfBirth = model.DateOfBirth;
 
                
 
@@ -392,6 +395,10 @@ namespace MISTDO.Web.Views.TrainerDashboard
            
             var trainer = await tdbcontext.Users.SingleOrDefaultAsync(m => m.Id == calenders.TrainingCentreId);
             ViewBag.CenterID = trainer.UID;
+            ViewBag.center = trainer.CentreName;
+            ViewBag.address = trainer.CentreAddress;
+            ViewBag.phone = trainer.PhoneNumber;
+            ViewBag.email = trainer.Email;
             if (calenders == null)
             {
                 return NotFound();

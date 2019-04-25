@@ -32,6 +32,8 @@ namespace MISTDO.Web.Models
         public string UserAddress { get; set; }
         public DateTime DateRegistered { get; set; }
 
+        public DateTime DateOfBirth { get; set; }
+
         [Display(Name = "State")]
         [Required]
         [DataType(DataType.Text)]

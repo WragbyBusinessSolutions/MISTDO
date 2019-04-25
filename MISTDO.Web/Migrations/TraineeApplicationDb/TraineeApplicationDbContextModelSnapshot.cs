@@ -306,6 +306,8 @@ namespace MISTDO.Web.Migrations.TraineeApplicationDb
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<DateTime>("DateOfBirth");
+
                     b.Property<DateTime>("DateRegistered");
 
                     b.Property<string>("Email")

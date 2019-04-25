@@ -56,6 +56,12 @@ namespace MISTDO.Web.Models.AccountViewModels
         [Display(Name = "Date Registered")]
 
         public DateTime DateRegistered { get; set; }
+
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:DD/mm/yyyy}")]
+        public DateTime DateOfBirth { get; set; }
         [Required]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }

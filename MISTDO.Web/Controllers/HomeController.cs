@@ -133,6 +133,10 @@ namespace MISTDO.Web.Controllers
                 .SingleOrDefaultAsync(m => m.Id == id);
             var trainer = await dbcontext.Users.SingleOrDefaultAsync(m => m.Id == calenders.TrainingCentreId);
             ViewBag.center = trainer.CentreName;
+            ViewBag.address = trainer.CentreAddress;
+            ViewBag.phone = trainer.PhoneNumber;
+            ViewBag.email = trainer.Email;
+
             if (calenders == null)
             {
                 return NotFound();

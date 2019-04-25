@@ -218,7 +218,7 @@ namespace MISTDO.Web.Controllers
                         PermitNumber = Permitnumber,
                         LicenseExpDate = Licenseexpdate,
                         DateRegistered = DateTime.Now.Date,
-                        UID = "MISTDO/" + "SHE/" + permitotp,
+                        UID = "MISTDO/" + "HSE/" + permitotp,
 
                     };
 
