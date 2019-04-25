@@ -72,6 +72,11 @@ namespace MISTDO.Web.Models.AccountViewModels
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
         public string UID { get; set; }
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:DD/mm/yyyy}")]
+        public DateTime DateOfBirth { get; set; }
 
         //[Required]
         //public string OGISPId { get; set; }

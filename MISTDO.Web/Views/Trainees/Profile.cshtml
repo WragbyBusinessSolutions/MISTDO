@@ -149,11 +149,25 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @{ 
+                                                var date = Model.DateOfBirth.ToString("dd-MM-yyyy");
+
+                                            }
+
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Phone Number</label>
                                                         <input asp-for="PhoneNumber" class="form-control" disabled />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Phone Number</label>
+                                                        <input value="@date" class="form-control" disabled />
 
                                                     </div>
                                                 </div>
