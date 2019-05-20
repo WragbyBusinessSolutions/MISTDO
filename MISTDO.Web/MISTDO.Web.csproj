@@ -179,6 +179,22 @@
     <None Include="Views\Account\ResetPassword.cshtml" />
     <None Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <None Include="Views\Account\SignedOut.cshtml" />
+    <None Include="wwwroot\css\fontawesome\fontawesome-webfont5b62.svg" />
+    <None Include="wwwroot\css\fontawesome\fontawesome-webfont5b62.woff2" />
+    <None Include="wwwroot\fonts\fontawesome\fontawesome-webfont5b62.svg" />
+    <None Include="wwwroot\fonts\fontawesome\fontawesome-webfont5b62.woff2" />
+    <None Include="wwwroot\fonts\linea-icons\linea-arrows-10.svg" />
+    <None Include="wwwroot\fonts\linea-icons\linea-basic-10.svg" />
+    <None Include="wwwroot\fonts\linea-icons\linea-basic-elaboration-10.svg" />
+    <None Include="wwwroot\fonts\linea-icons\linea-ecommerce-10.svg" />
+    <None Include="wwwroot\fonts\linea-icons\linea-music-10.svg" />
+    <None Include="wwwroot\fonts\linea-icons\linea-software-10.svg" />
+    <None Include="wwwroot\fonts\linea-icons\linea-weather-10.svg" />
+    <None Include="wwwroot\fonts\material-design-iconic-font\Material-Design-Iconic-Fontd1f1.woff2" />
+    <None Include="wwwroot\fonts\pe-icon-7\Pe-icon-7-strokebb1d.svg" />
+    <None Include="wwwroot\fonts\simple-line-icons\Simple-Line-Icons4c824c82.svg" />
+    <None Include="wwwroot\fonts\simple-line-icons\Simple-Line-Icons4c824c82.woff2" />
+    <None Include="wwwroot\fonts\themify-icons\themify9f24.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\images\CamImages\" />

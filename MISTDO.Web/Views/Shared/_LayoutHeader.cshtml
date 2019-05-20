@@ -1,44 +1,56 @@
 ﻿@inject UserManager<ApplicationUser> userManager;
 
-<header class="navbar navbar-default navbar-fixed-top">
-    <div class="topBar">
+    <header class="navbar navbar-default navbar-fixed-top">
+        <div class="topBar">
+            <div class="container">
+
+                <p class="topBarText"><i class="fa fa-phone"></i> +234 (1) 2790000</p>
+
+                <p class="topBarText"><i class="fa fa-envelope"></i> info@dpr.gov.ng</p>
+
+            </div>
+        </div>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
         <div class="container">
+            <div class="navbar-header">
 
-            <p class="topBarText">+234 (1) 2790000</p>
+                <a asp-controller="Home" asp-action="Index"><img src="~/img/logoGreen.png" class="imag" /></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown menu-item-has-children">
+                        <a asp-action="Index" asp-controller="Home" class="current">HOME</a>
 
-            <p class="topBarText">info@dpr.gov.ng</p>
+                    </li>
+                    <li class="dropdown menu-item-has-children">
+                        <a asp-action="Calender" asp-controller="Home">VIEW TRAINING CALENDAR</a>
 
-        </div>
-    </div>
-    <div class="container">
-        <div class="navbar-header">
+                    </li>
+                    <li class="dropdown menu-item-has-children">
+                        <a asp-action="CertificateCheck" asp-controller="Home">VERIFY MISTDO CERTIFICATIONS</a>
 
-            <img src="~/img/logoGreen.png" class="imag" />
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="dropdown menu-item-has-children">
-                    <a asp-action="Index" asp-controller="Home" class="current">HOME</a>
-                  
-                </li>
-                <li class="dropdown menu-item-has-children">
-                    <a asp-action="Calender" asp-controller="Home">VIEW TRAINING CALENDER</a>
-                  
-                </li>
-                <li class="dropdown menu-item-has-children">
-                    <a asp-action="CertificateCheck" asp-controller="Home">VERIFY MISTDO CERTIFICATIONS</a>
-                   
-                </li>
-                <li class="dropdown menu-item-has-children">
-                    <a href="https://www.dpr.gov.ng/contact/" target="_blank">CONTACT</a>
+                    </li>
+                    <li class="dropdown menu-item-has-children">
+                        <a href="https://www.dpr.gov.ng/contact/" target="_blank">CONTACT</a>
 
-                </li>
-            </ul>
+                    </li>
+                    <li class="dropdown menu-item-has-children">
+                        <img src="~/images/mistdologo.png" class="mist imag"/>
+
+                    </li>
+                    
+
+                </ul>
 
 
-        </div><!--/.navbar-collapse -->
-    </div><!-- end header container -->
-</header><!-- End Header -->
+            </div><!--/.navbar-collapse -->
+        </div><!-- end header container -->
+    </header><!-- End Header -->
 @*<div class="header navbar">
     <div class="header-container">
         <ul class="nav-left">
