@@ -1,355 +1,520 @@
 ﻿@model IEnumerable<MISTDO.Web.Models.Calender>
 @{
     ViewData["Title"] = "Welcome | MISTDO Portal";
+    Layout = "_Layout1";
 }
 @inject UserManager<ApplicationUser> userManager;
 
-<head>
-    <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--- Basic Page Needs  -->
-    <link rel="stylesheet" href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
-    <link rel="stylesheet" href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
-    <meta charset="utf-8">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Mobile Specific Meta  -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- CSS -->
-    <link rel="stylesheet" href="~/assets2/vendor/bootstrap/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="~/assets2/css/heroic-features.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-    <style>
-        body{
-            color:black;
-        }
-    </style>
-
-    <!-- Favicon -->
-
-
-</head>
-  
-
-
-<body >
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">
-        <img src="~/images/logo.png" style="max-width:12%;margin-left:100px;">
-        <div class="container">
-
-            <a class="navbar-brand" asp-action="Index" asp-controller="Home"><b></b></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://www.dpr.gov.ng/contact/" target="_blank"><b>Contact</b></a>
-                    </li>
-                    @*<li class="nav-item">
-                            <a class="nav-link" asp-action="Calender" asp-controller="Home"><b>Training Calendar</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home"><b>Certificates</b></a>
-                        </li>*@
-                </ul>
-            </div>
-            <img src="~/images/mlogo.png" style=" height:70px; margin-left:60px;">
-        </div>
-    </nav>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.lite.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.js"></script>
-
-
-    <!-- Page Content -->
-    <div class="container">
-
-        <br />
-        <!--Carousel Wrapper-->
-        <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
-
-            <!--Controls-->
-            <div class="controls-top">
-                @*<a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
-                    <a class="btn-floating" href="#multi-item-example" data-slide="next">
-                        <i class="fas fa-chevron-right"></i>
-                    </a>*@
-
-                <a class="btn-floating" href="#multi-item-example" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="btn-floating" href="#multi-item-example" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-            <!--/.Controls-->
-            <!--Indicators-->
-            <ol class="carousel-indicators">
-                <li data-target="#multi-item-example" data-slide-to="0" class="active arrow_box_left btn-outline-success"></li>
-                <li data-target="#multi-item-example" data-slide-to="1" class="arrow_box_left btn-outline-success"></li>
-                <li data-target="#multi-item-example" data-slide-to="2" class="arrow_box_left btn-outline-success"></li>
-            </ol>
-
-
-            <!--/.Indicators-->
-            <!--Slides-->
-            <div class="carousel-inner" role="listbox">
-
-                <!--First slide-->
-                <div class="carousel-item active">
-
-                    <div class="col-md-4">
-                        <div class="card mb-4">
-                            @*<img class="card-img-top"
-                                src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
-                                alt="Card image cap">*@
-                            <div class="card-body">
-                                <h2 class="card-title">GENERAL INFORMATION</h2>
-                                <p class="card-text" style="text-align:justify;color:black;">
-                                    Minimum Industry Safety Training for Downstream Operations (MISTDO) is a basic safety training requirement
-                                    which must be undertaken by ALL personnel working in the downstream sector
-                                    sector of the Nigerian oil and gas industry. It is a major component of the
-                                    Safety Audit Clearance policy launched by the Department to reduce risks and
-                                    occurrences of accidents in the downstream sector of the Oil and Gas industry.
-                                </p>
-                                <a asp-action="Info" class="btn btn-outline-success" style="margin-left:105px;" target="_blank">...Read more</a>
-                                <br />
-                                <br />
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-md-8">
-                        <div class="card mb-4">
-                            <img class="card-img-top"
-                                 src="~/images/slidee.jpg"
-                                 alt="Card image cap">
-                            <div class="card-body">
-                                @*<h4 class="card-title">Card title</h4>
-                                    <p class="card-text">
-                                        Some quick example text to build on the card title and make up the bulk of the
-                                        card's content.
-                                    </p>
-                                    <a class="btn btn-primary">Button</a>*@
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-                <!--/.First slide-->
-                <!--Second slide-->
-                <div class="carousel-item">
-
-                    <div class="col-md-4">
-                        <div class="card mb-4">
-
-
-                            <div class="card-body">
-                                <h4 class="card-title">FAQs</h4>
-                                <p class="card-text" style="color:black;">
-                                    Click the button below to browse through these Frequently Asked Questions to find answers to commonly raised questions.
-                                </p>
-                                <a asp-action="Info" class="btn btn-outline-success" style="margin-left:105px;" target="_blank">Click here...</a>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">MISTDO Training Provider's requirements </h4>
-                                <p class="card-text" style="color:black;">
-                                    Minimum requirements for establisment of MISTDO safety training center.
-                                </p>
-                                <a asp-action="Info" class="btn btn-outline-success" style="margin-left:105px;" target="_blank">Click here...</a>
-                                <br />
-                                <br />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-8">
-                        <div class="card mb-4">
-                            <img class="card-img-top"
-                                 src="~/images/slide2.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                @*<h4 class="card-title">Card title</h4>
-                                    <p class="card-text">
-                                        Some quick example text to build on the card title and make up the bulk of the
-                                        card's content.
-                                    </p>
-                                    <a class="btn btn-primary">Button</a>*@
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-                <!--/.Second slide-->
-                <!--Third slide-->
-                <div class="carousel-item">
-
-                    <div class="col-md-4">
-                        <div class="card mb-4">
-
-
-                            <div class="card-body">
-                                <h4 class="card-title">Training Calendar</h4>
-                                <p class="card-text" style="color:black;">
-                                    Browse through training calendars from DPR Approved Training Providers to find answers to commonly raised questions.
-                                </p>
-                                <a asp-action="Calender" asp-controller="Home" class="btn btn-outline-success" style="margin-left:80px ;target="_blank" >View MISTDO Calendar...</a>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">MISTDO Certificate Verification </h4>
-                                <p class="card-text" style="color:black;">
-                                    Click the button below to verify MISTDO Certificate
-                                </p>
-                                <a asp-action="CertificateCheck" asp-controller="Home" class="btn btn-outline-success" style="margin-left:105px;" target="_blank">Verify MISTDO Certificate...</a>
-                                <br />
-                                <br />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-8">
-                        <div class="card mb-4">
-                            <img class="card-img-top"
-                                 src="~/images/slide2.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                @*<h4 class="card-title">Card title</h4>
-                                    <p class="card-text">
-                                        Some quick example text to build on the card title and make up the bulk of the
-                                        card's content.
-                                    </p>
-                                    <a class="btn btn-primary">Button</a>*@
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-                <!--/.Third slide-->
-
-            </div>
-            <!--/.Slides-->
-            <a class="carousel-control-prev" href="#multi-item-example" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon btn-success" aria-hidden="true" style=" width: 60px;height: 25px;flood-color:red; margin-right:75px;opacity:0.9;"></span>
-
-            </a>
-            <a class="carousel-control-next" href="#multi-item-example" role="button" data-slide="next">
-                <span class="carousel-control-next-icon btn-success" aria-hidden="true" style=" width: 60px;height: 25px; margin-left:75px; opacity:0.9;"></span>
-                <span class="sr-only">Next</span>
-            </a>
-
-        </div>
-        <!--/.Carousel Wrapper-->
-        <!-- Jumbotron Header -->
-        <!-- Page Features -->
-        <div class="row text-center">
-
-
-
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card">
-                    <img class="card-img-top" src="~/images/traine.jpg" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Trainee Portal</h4>
-                        <p class="card-text" style="color:black;">Trainees Intending To Register For Courses From DPR Approved Centres</p>
-                    </div>
-                    <div class="card-footer">
-                        <center>
-                            <a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:40%; background-color: #0b9242; color: white;" title="This portal is for Trainees">LOGIN</a>
-                            <a asp-controller="Trainees" asp-action="RegisterNow" class="btn" style="min-width:50%; background-color: #0b9242; color: white;" title="This portal is for Trainees">REGISTER</a>
-                        </center>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card">
-                    <img class="card-img-top" src="~/images/trainer.jpg" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title" >Training Provider Portal</h4>
-                        <p class="card-text" style="color:black;">DPR Approved Training Centres.</p>
-                    </div>
-                    <div class="card-footer">
-                        <center>
-                            <a asp-controller="Trainer" asp-action="Login" class="btn" style="min-width:40%; background-color: #0b9242; color: white;" title="This Portal is for Training Centers">LOGIN</a> <a asp-controller="Trainer" asp-action="OgispCheck" class="btn" style="min-width:50%; background-color: #0b9242; color: white;" title="This Portal is for Training Centers">REGISTER</a><br />
-                        </center>
-                        <center>
-
-                        </center>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card">
-                    <img class="card-img-top" src="~/images/admin.jpg" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Administrator Portal</h4>
-                        <p class="card-text"> </p>
-                    </div>
-                    <div class="card-footer">
-                        <center><a asp-controller="Administrator" asp-action="Login" class="btn" style="min-width:100%; min-height:initial; background-color: #0b9242; color: whitesmoke;" title="This Portal is for SHE Department DPR"> Administrator Portal </a> <br /></center>
-
-                    </div>
-                </div>
-            </div>
-
-
-
-        </div>
-        <!-- /.row -->
-
+<section class="sliderControls">
+    <div>
+        <span class="slider-prev"></span>
+        <span class="slider-next"></span>
     </div>
-    <!-- /.container -->
-    <!-- Footer -->
-    <footer style="background-color:black">
+</section>
+
+<section class="subHeader home bxslider">
+    <div id="slide1">
         <div class="container">
-            <span style="float:left;color:aliceblue">Copyright © @DateTime.Now.Year <img src="~/dist/assets/images/logo/footerlogo.png" width="65%" height="45%" style="margin:15px"></span>
+            <div class="col-lg-6">
+                <br />
+                <br />
+                <br />
+                <div class="sliderTextBox">
+                    <h3>GENERAL INFORMATION </h3>
+                    <p>
+                        Minimum Industry Safety Training for Downstream Operations (MISTDO) is a basic safety training requirement
+                        which must be undertaken by ALL personnel working in the downstream sector
+                        sector of the Nigerian oil and gas industry. It is a major component of the
+                        Safety Audit Clearance policy launched by the Department to reduce risks and
+                        occurrences of accidents in the downstream sector of the Oil and Gas industry.
+                    </p>
+                    <a asp-action="Info" class="btn btn-green">VIEW DETAILS >></a>
+
+                    <span class="or"></span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-lg-offset-3"><h1 class="sliderPrice"></h1></div>
         </div>
-        <!-- /.container -->
-    </footer>
-    <script src="~/dist/assets/js/vendor.js"></script>
-    <script src="~/dist/assets/js/app.min.js"></script>
+    </div>
+    <div id="slide2">
+        <div class="container">
+            <br />
+            <br />
+            <div class="col-lg-6">
 
-    <!-- page plugins js -->
-    <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+                <div class="sliderTextBox">
+                    <h4>TRAINING CALENDER </h4>
+                    <p>Browse through training calendars from DPR Approved Training Providers to find answers to commonly raised questions.</p>
+                    <a asp-action="Calender" class="btn btn-green" >VIEW DETAILS >></a>
 
-    <!-- page js -->
-    <script src="~/dist/assets/js/table/data-table.js"></script>
+                    <span class="or"></span>
+                </div>
+                <br />
+                <div class="sliderTextBox">
+                    <h4>MISTDO CERTIFICATE VERIFICATION </h4>
+                    <p>Click the button below to verify MISTDO Certificate</p>
+                    <a asp-action="CertificateCheck" class="btn btn-green">VERIFY</a>
+
+                    <span class="or"></span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-lg-offset-3"><h1 class="sliderPrice"></h1></div>
+        </div>
+    </div>
+    <div id="slide3">
+        <div class="container">
+            <br />
+            <br />
+            <div class="col-lg-6">
+                <div class="sliderTextBox">
+                    <h4>FAQs </h4>
+                    <p>Click the button below to browse through these Frequently Asked Questions to find answers to commonly raised questions.</p>
+                    <a asp-action="Info" class="btn btn-green">VIEW DETAILS >></a>
+
+                    <span class="or"></span>
+                </div>
+                <br />
+                <div class="sliderTextBox">
+                    <h4>MISTDO TRAINING PROVIDER's REQUIREMENTS </h4>
+                    <p> Minimum requirements for establisment of MISTDO safety training center.e</p>
+                    <a asp-action="Info" class="btn btn-green">VIEW DETAILS >></a>
+
+                    <span class="or"></span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-lg-offset-3"><h1 class="sliderPrice"></h1></div>
+        </div>
+    </div>
+</section>
+<section class="properties">
+    <div class="container">
+        <h3>FEATURES</h3>
+        <div class="divider"></div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="propertyItem">
+                    <div class="propertyContent">
 
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script>
-        var myIndex = 0;
-        carousel();
-
-        function carousel() {
-            var i;
-            var x = document.getElementsByClassName("mySlides");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            myIndex++;
-            if (myIndex > x.length) { myIndex = 1 }
-            x[myIndex - 1].style.display = "block";
-            setTimeout(carousel, 2000); // Change image every 2 seconds
-        }
-    </script>
+                        <a class="propertyType" href="#">Trainee Portal</a>
+                        <a href="property_single.html" class="propertyImgLink"><img class="propertyImg" src="~/img/trainee.jpg" alt="" /></a>
+                        <p class="txt-centre">Trainees Intending To Register For Courses From DPR Approved Centres</p>
 
 
-</body>
+                        <a asp-controller="Trainees" asp-action="Login" class="btn marg btn-green">LOGIN</a>
+                        <a asp-controller="Trainees" asp-action="RegisterNow" class="btn btn-green">REGISTER</a>
+                        
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="propertyItem">
+                    <div class="propertyContent">
+
+
+                        <a class="propertyType" href="#">Training Provider Portal</a>
+                        <a href="property_single.html" class="propertyImgLink"><img class="propertyImg" src="~/img/trainer.jpg" alt="" /></a>
+                        <p class="txt-centre">DPR Approved Training Centres.</p>
+                        <br />
+                        <a asp-controller="Trainer" asp-action="Login" class="btn marg btn-green">LOGIN</a>
+                        <a asp-controller="Trainer" asp-action="OgispCheck" class="btn btn-green">REGISTER</a>
+
+                        
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="propertyItem">
+                    <div class="propertyContent">
+
+
+
+                        <a class="propertyType" href="#">Administrator Portal</a>
+                        <a href="property_single.html" class="propertyImgLink"><img class="propertyImg" src="~/img/admin.jpg" alt="" /></a>
+
+
+                        <p class="txt-centre">Admin Portal</p>
+                        <br />
+                        
+                        <a asp-controller="Administrator" asp-action="Login" class="btn marg btn-green">ADMINISTRATOR PORTAL</a>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div><!-- end row -->
+    </section>
+
+    @section Scripts {
+        <script type="text/JavaScript">
+            //call bxslider for sub header section
+            jQuery(document).ready(function () {
+
+                jQuery('.bxslider').bxSlider({
+                    auto: true,
+                    pager: false,
+                    nextSelector: '.slider-next',
+                    prevSelector: '.slider-prev',
+                    nextText: '<img src="../img/slider-next.png" alt="slider next" />',
+                    prevText: '<img src="../img/slider-prev.png" alt="slider prev" />'
+                });
+            });
+        </script>
+    }
+    @*<head>
+            <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <!--- Basic Page Needs  -->
+            <link rel="stylesheet" href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
+            <link rel="stylesheet" href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+            <meta charset="utf-8">
+
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <!-- Mobile Specific Meta  -->
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+            <!-- CSS -->
+            <link rel="stylesheet" href="~/assets2/vendor/bootstrap/css/bootstrap.min.css">
+
+            <link rel="stylesheet" href="~/assets2/css/heroic-features.css">
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+            <style>
+                body{
+                    color:black;
+                }
+            </style>
+
+            <!-- Favicon -->
+
+
+        </head>*@
+
+
+
+    @*<body >
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">
+                <img src="~/~/img/logo.png" style="max-width:12%;margin-left:100px;">
+                <div class="container">
+
+                    <a class="navbar-brand" asp-action="Index" asp-controller="Home"><b></b></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://www.dpr.gov.ng/contact/" target="_blank"><b>Contact</b></a>
+                            </li>
+                            @*<li class="nav-item">
+                                    <a class="nav-link" asp-action="Calender" asp-controller="Home"><b>Training Calendar</b></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home"><b>Certificates</b></a>
+                                </li>
+                        </ul>
+                    </div>
+                    <img src="~/~/img/mlogo.png" style=" height:70px; margin-left:60px;">
+                </div>
+            </nav>
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.lite.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.js"></script>
+
+
+            <!-- Page Content -->
+            <div class="container">
+
+                <br />
+                <!--Carousel Wrapper-->
+                <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+                    <!--Controls-->
+                    <div class="controls-top">
+                        @*<a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
+                            <a class="btn-floating" href="#multi-item-example" data-slide="next">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+
+                        <a class="btn-floating" href="#multi-item-example" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="btn-floating" href="#multi-item-example" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <!--/.Controls-->
+                    <!--Indicators-->
+                    <ol class="carousel-indicators">
+                        <li data-target="#multi-item-example" data-slide-to="0" class="active arrow_box_left btn-outline-success"></li>
+                        <li data-target="#multi-item-example" data-slide-to="1" class="arrow_box_left btn-outline-success"></li>
+                        <li data-target="#multi-item-example" data-slide-to="2" class="arrow_box_left btn-outline-success"></li>
+                    </ol>
+
+
+                    <!--/.Indicators-->
+                    <!--Slides-->
+                    <div class="carousel-inner" role="listbox">
+
+                        <!--First slide-->
+                        <div class="carousel-item active">
+
+                            <div class="col-md-4">
+                                <div class="card mb-4">
+                                    @*<img class="card-img-top"
+                                        src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                                        alt="Card image cap">
+                                    <div class="card-body">
+                                        <h2 class="card-title">GENERAL INFORMATION</h2>
+                                        <p class="card-text" style="text-align:justify;color:black;">
+                                            Minimum Industry Safety Training for Downstream Operations (MISTDO) is a basic safety training requirement
+                                            which must be undertaken by ALL personnel working in the downstream sector
+                                            sector of the Nigerian oil and gas industry. It is a major component of the
+                                            Safety Audit Clearance policy launched by the Department to reduce risks and
+                                            occurrences of accidents in the downstream sector of the Oil and Gas industry.
+                                        </p>
+                                        <a asp-action="Info" class="btn btn-outline-success" style="margin-left:105px;" target="_blank">...Read more</a>
+                                        <br />
+                                        <br />
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="card mb-4">
+                                    <img class="card-img-top"
+                                         src="~/~/img/slidee.jpg"
+                                         alt="Card image cap">
+                                    <div class="card-body">
+                                        @*<h4 class="card-title">Card title</h4>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and make up the bulk of the
+                                                card's content.
+                                            </p>
+                                            <a class="btn btn-primary">Button</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <!--/.First slide-->
+                        <!--Second slide-->
+                        <div class="carousel-item">
+
+                            <div class="col-md-4">
+                                <div class="card mb-4">
+
+
+                                    <div class="card-body">
+                                        <h4 class="card-title">FAQs</h4>
+                                        <p class="card-text" style="color:black;">
+                                            Click the button below to browse through these Frequently Asked Questions to find answers to commonly raised questions.
+                                        </p>
+                                        <a asp-action="Info" class="btn btn-outline-success" style="margin-left:105px;" target="_blank">Click here...</a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title">MISTDO Training Provider's requirements </h4>
+                                        <p class="card-text" style="color:black;">
+                                            Minimum requirements for establisment of MISTDO safety training center.
+                                        </p>
+                                        <a asp-action="Info" class="btn btn-outline-success" style="margin-left:105px;" target="_blank">Click here...</a>
+                                        <br />
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="card mb-4">
+                                    <img class="card-img-top"
+                                         src="~/~/img/slide2.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        @*<h4 class="card-title">Card title</h4>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and make up the bulk of the
+                                                card's content.
+                                            </p>
+                                            <a class="btn btn-primary">Button</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <!--/.Second slide-->
+                        <!--Third slide-->
+                        <div class="carousel-item">
+
+                            <div class="col-md-4">
+                                <div class="card mb-4">
+
+
+                                    <div class="card-body">
+                                        <h4 class="card-title">Training Calendar</h4>
+                                        <p class="card-text" style="color:black;">
+                                            Browse through training calendars from DPR Approved Training Providers to find answers to commonly raised questions.
+                                        </p>
+                                        <a asp-action="Calender" asp-controller="Home" class="btn btn-outline-success" style="margin-left:80px ;target="_blank" >View MISTDO Calendar...</a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title">MISTDO Certificate Verification </h4>
+                                        <p class="card-text" style="color:black;">
+                                            Click the button below to verify MISTDO Certificate
+                                        </p>
+                                        <a asp-action="CertificateCheck" asp-controller="Home" class="btn btn-outline-success" style="margin-left:105px;" target="_blank">Verify MISTDO Certificate...</a>
+                                        <br />
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="card mb-4">
+                                    <img class="card-img-top"
+                                         src="~/~/img/slide2.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Card title</h4>
+                                            <p class="card-text">
+                                                Some quick example text to build on the card title and make up the bulk of the
+                                                card's content.
+                                            </p>
+                                            <a class="btn btn-primary">Button</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <!--/.Third slide-->
+
+                    </div>
+                    <!--/.Slides-->
+                    <a class="carousel-control-prev" href="#multi-item-example" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon btn-success" aria-hidden="true" style=" width: 60px;height: 25px;flood-color:red; margin-right:75px;opacity:0.9;"></span>
+
+                    </a>
+                    <a class="carousel-control-next" href="#multi-item-example" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon btn-success" aria-hidden="true" style=" width: 60px;height: 25px; margin-left:75px; opacity:0.9;"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+
+                </div>
+                <!--/.Carousel Wrapper-->
+                <!-- Jumbotron Header -->
+                <!-- Page Features -->
+                <div class="row text-center">
+
+
+
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card">
+                            <img class="card-img-top" src="~/~/img/traine.jpg" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title">Trainee Portal</h4>
+                                <p class="card-text" style="color:black;">Trainees Intending To Register For Courses From DPR Approved Centres</p>
+                            </div>
+                            <div class="card-footer">
+                                <center>
+                                    <a asp-controller="Trainees" asp-action="Login" class="btn" style="min-width:40%; background-color: #0b9242; color: white;" title="This portal is for Trainees">LOGIN</a>
+                                    <a asp-controller="Trainees" asp-action="RegisterNow" class="btn" style="min-width:50%; background-color: #0b9242; color: white;" title="This portal is for Trainees">REGISTER</a>
+                                </center>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card">
+                            <img class="card-img-top" src="~/~/img/trainer.jpg" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title" >Training Provider Portal</h4>
+                                <p class="card-text" style="color:black;">DPR Approved Training Centres.</p>
+                            </div>
+                            <div class="card-footer">
+                                <center>
+                                    <a asp-controller="Trainer" asp-action="Login" class="btn" style="min-width:40%; background-color: #0b9242; color: white;" title="This Portal is for Training Centers">LOGIN</a> <a asp-controller="Trainer" asp-action="OgispCheck" class="btn" style="min-width:50%; background-color: #0b9242; color: white;" title="This Portal is for Training Centers">REGISTER</a><br />
+                                </center>
+                                <center>
+
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card">
+                            <img class="card-img-top" src="~/~/img/admin.jpg" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title">Administrator Portal</h4>
+                                <p class="card-text"> </p>
+                            </div>
+                            <div class="card-footer">
+                                <center><a asp-controller="Administrator" asp-action="Login" class="btn" style="min-width:100%; min-height:initial; background-color: #0b9242; color: whitesmoke;" title="This Portal is for SHE Department DPR"> Administrator Portal </a> <br /></center>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container -->
+            <!-- Footer -->
+            <footer style="background-color:black">
+                <div class="container">
+                    <span style="float:left;color:aliceblue">Copyright © @DateTime.Now.Year <img src="~/dist/assets/~/img/logo/footerlogo.png" width="65%" height="45%" style="margin:15px"></span>
+                </div>
+                <!-- /.container -->
+            </footer>
+            <script src="~/dist/assets/js/vendor.js"></script>
+            <script src="~/dist/assets/js/app.min.js"></script>
+
+            <!-- page plugins js -->
+            <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+
+            <!-- page js -->
+            <script src="~/dist/assets/js/table/data-table.js"></script>
+
+
+            <!-- Bootstrap core JavaScript -->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script>
+                var myIndex = 0;
+                carousel();
+
+                function carousel() {
+                    var i;
+                    var x = document.getElementsByClassName("mySlides");
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    myIndex++;
+                    if (myIndex > x.length) { myIndex = 1 }
+                    x[myIndex - 1].style.display = "block";
+                    setTimeout(carousel, 2000); // Change image every 2 seconds
+                }
+            </script>
+
+
+        </body>*@
 

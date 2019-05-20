@@ -1,203 +1,178 @@
 ﻿@model LoginViewModel
 @{
     ViewData["Title"] = "Certificate Check | MISTDO Portal";
+    Layout = "_Layout1";
+
 }
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<style>
-    html, body {
-        height: 100%;
-        background-image: url('../dist/assets/images/others/2.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        /*background-color: #82a43a;*/
-    }
-
-    #form {
-        background-color: #ffffff;
-        border-radius: 25px;
-        border: 2px solid #ffffff;
-        padding: 20px;
-    }
-
-    .outer-wrapper {
-        display: table;
-        width: 100%;
-        height: 100%;
-    }
-
-    .inner-wrapper {
-        display: table-cell;
-        vertical-align: middle;
-        padding: 15px;
-    }
-
-    .login-btn {
-        position: fixed;
-        top: 15px;
-        right: 15px;
-    }
-</style>
-
-
 <!-- Optional theme
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
 @*<a class="btn btn-default login-btn" asp-controller="Home" asp-action="Index">Home</a>*@
 
-<head>
-    <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--- Basic Page Needs  -->
-    <link rel="stylesheet" href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
-    <link rel="stylesheet" href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
-    <meta charset="utf-8">
+@*<head>
+        <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--- Basic Page Needs  -->
+        <link rel="stylesheet" href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
+        <link rel="stylesheet" href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+        <meta charset="utf-8">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Mobile Specific Meta  -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- CSS -->
-    <link rel="stylesheet" href="~/assets2/vendor/bootstrap/css/bootstrap.min.css">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Mobile Specific Meta  -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- CSS -->
+        <link rel="stylesheet" href="~/assets2/vendor/bootstrap/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="~/assets2/css/heroic-features.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-
-
-    <!-- Favicon -->
-
-
-</head>
+        <link rel="stylesheet" href="~/assets2/css/heroic-features.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
 
+        <!-- Favicon -->
 
-<body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">
-        <img src="~/images/logo.png" style="max-width:12%">
-        <div class="container">
+    </head>*@
 
-            <a class="navbar-brand" asp-action="Index" asp-controller="Home"><b></b></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="Index" asp-controller="Home" style="color:white;"><b>Home</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://www.dpr.gov.ng/contact/" target="_blank" style="color:white;"><b>Contact</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="Calender" asp-controller="Home" style="color:white;"><b>View Training Calendar</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home"style="color:white;"><b>Verify MISTDO Certificates</b></a>
-                    </li>
-                </ul>
-            </div>
-            <img src="~/images/mlogo.png" style=" height:60px; margin-left:60px;">
+
+
+
+
+
+<!-- Navigation -->
+@*<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">*@
+
+@*<div class="container">
+
+        <a class="navbar-brand" asp-action="Index" asp-controller="Home"><b></b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Index" asp-controller="Home" style="color:white;"><b>Home</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.dpr.gov.ng/contact/" target="_blank" style="color:white;"><b>Contact</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Calender" asp-controller="Home" style="color:white;"><b>View Training Calendar</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home"style="color:white;"><b>Verify MISTDO Certificates</b></a>
+                </li>
+            </ul>
         </div>
-    </nav>
+        <img src="~/images/mlogo.png" style=" height:60px; margin-left:60px;">
+    </div>*@
+<section class="subHeader page">
+    
+</section><!-- end subheader section -->
+<!-- start main content -->
+<section class="properties">
+    <div class="container">
+        <div class="row">
 
-
-    <!-- Page Content -->
-    <!-- Jumbotron Header -->
-    <!-- Page Features -->
-    <section id="loginform" class="outer-wrapper">
-
-        <div class="inner-wrapper">
-            <div class="container">
-                <div class="row">
-                    @{
-                        string cert = "";
-                    }
-                    <div id="form" class="col-sm-10 col-sm-offset-1">
-                        <h3 class="text-center" style="color:darkgreen"><strong>Certificate Verification</strong></h3>
-                        <br />
-                        <form asp-action="Certificate" asp-controller="Home" method="post" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <h4><strong style="color:black;">Please Enter Certificate Number below</strong></h4>
-
+            <div class="col-lg-4 col-lg-offset-4">
+                <h3>Certificate Verification</h3>
+                <div class="divider"></div>
+                <p style="font-size:13px;">Please Enter Certificate Number below <a href="register.html"></a></p>
+                <!-- start login form -->
+                <div class="filterContent defaultTab sidebarWidget">
+                    <form method="post" action="#">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-6">
+                                <div class="formBlock">
+                                    <label for="login">Certificate Number</label><br />
+                                    <input type="text" name="login" id="login" />
+                                </div>
                             </div>
-                            <div class="form-group" align="center">
-                                @{
-                                    var msg = ViewBag.Message;
-                                }
-                                @if (String.IsNullOrEmpty(msg))
+                           
+                            <div class="col-lg-12 col-md-12 col-sm-6">
+                                <div class="formBlock">
+                                    <input class="buttonColor" type="submit" value="SUBMIT" style="margin-top:24px;">
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                        </div><!-- end row -->
+                    </form><!-- end form -->
+                </div><!-- end login form -->
+            </div><!-- end col -->
+
+        </div>
+    </div><!-- end container -->
+</section>
+
+
+
+<!-- Page Content -->
+<!-- Jumbotron Header -->
+<!-- Page Features -->
+@*<div class="inner-wrapper">
+        <div class="container">
+            <div class="row">
+                @{
+                    string cert = "";
+                }
+                <div id="form" class="col-sm-10 col-sm-offset-1">
+                    <h3 class="text-center" style="color:darkgreen"><strong>Certificate Verification</strong></h3>
+                    <br />
+                    <form asp-action="Certificate" asp-controller="Home" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <h4><strong style="color:black;">Please Enter Certificate Number below</strong></h4>
+
+                        </div>
+                        <div class="form-group" align="center">
+                            @{
+                                var msg = ViewBag.Message;
+                            }
+                            @if (String.IsNullOrEmpty(msg))
+                            {
+
+                            }
+                            else
+                            {
+                                @if (ViewBag.Message.Contains("not Valid"))
                                 {
+                                    <h4><strong style="color:red">@ViewBag.Message </strong></h4>
 
                                 }
                                 else
                                 {
-                                    @if (ViewBag.Message.Contains("not Valid"))
-                                    {
-                                        <h4><strong style="color:red">@ViewBag.Message </strong></h4>
-
-                                    }
-                                    else
-                                    {
-                                        <h4><strong style="color:forestgreen;">@ViewBag.Message </strong></h4>
-                                        <table border="1" width="100%" style="border-color:forestgreen">
-                                            <thead>
-                                                <tr>
-                                                    <th> Name</th>
-                                                    <th> Trainee ID</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>@ViewBag.name</td>
-                                                    <td>@ViewBag.uid</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    }
+                                    <h4><strong style="color:forestgreen;">@ViewBag.Message </strong></h4>
+                                    <table border="1" width="100%" style="border-color:forestgreen">
+                                        <thead>
+                                            <tr>
+                                                <th> Name</th>
+                                                <th> Trainee ID</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>@ViewBag.name</td>
+                                                <td>@ViewBag.uid</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 }
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1" style="color:black;">Certificate Number*</label>
-                                <input type="Text" class="form-control" name="cert" id="cert" placeholder="Enter Certificate NUMBER">
-                            </div>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" style="color:black;">Certificate Number*</label>
+                            <input type="Text" class="form-control" name="cert" id="cert" placeholder="Enter Certificate NUMBER">
+                        </div>
 
-                            <button type="submit" class="btn btn-success">Submit</button>
-                            <div class="form-group">
-                                <h5><i><strong style="color:black;">You cant find your certificate?</strong> <a asp-action="Login" asp-controller="Trainees">Login to your Portal</a><strong style="color:black;"> to raise a support ticket to your Training Provider</strong></i></h5>
-                            </div>
-                        </form>
-                    </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        <div class="form-group">
+                            <h5><i><strong style="color:black;">You cant find your certificate?</strong> <a asp-action="Login" asp-controller="Trainees">Login to your Portal</a><strong style="color:black;"> to raise a support ticket to your Training Provider</strong></i></h5>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>*@
 
     </section>
-    <!-- /.row -->
-    <!-- /.container -->
-    <!-- Footer -->
-
-    <script src="~/dist/assets/js/vendor.js"></script>
-    <script src="~/dist/assets/js/app.min.js"></script>
-
-    <!-- page plugins js -->
-    <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
-
-    <!-- page js -->
-    <script src="~/dist/assets/js/table/data-table.js"></script>
-
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-
-
-
-</body>
-
-<footer style="background-color:black">
-    <div class="container">
-        <span style="float:left;color:aliceblue">Copyright © @DateTime.Now.Year <img src="~/dist/assets/images/logo/footerlogo.png" width="65%" height="45%" style="margin:15px"></span>
-    </div>
-    <!-- /.container -->
-</footer>
-
+@* <!-- /.row -->*@
+<!-- /.container -->
+<!-- Footer -->

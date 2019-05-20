@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<MISTDO.Web.Models.Calender>
 @{
     ViewData["Title"] = "Training Calendar | MISTDO Portal";
-   
+    Layout = "_Layout1";
 }
+
+
 
 
 
@@ -137,188 +139,239 @@
         }
     }
 </script>
-<style>
-    * {
-        box-sizing: border-box;
-    }
-
-    #input1 {
-        background-image: url('/css/searchicon.png');
-        background-position: 10px 10px;
-        background-repeat: no-repeat;
-        width: 100%;
-        font-size: 16px;
-        padding: 12px 20px 12px 40px;
-        border: 1px solid #ddd;
-        margin-bottom: 12px;
-    }
-
-    #input2 {
-        background-image: url('/css/searchicon.png');
-        background-position: 10px 10px;
-        background-repeat: no-repeat;
-        width: 100%;
-        font-size: 16px;
-        padding: 12px 20px 12px 40px;
-        border: 1px solid #ddd;
-        margin-bottom: 12px;
-    }
-
-    #input3 {
-        background-image: url('/css/searchicon.png');
-        background-position: 10px 10px;
-        background-repeat: no-repeat;
-        width: 100%;
-        font-size: 16px;
-        padding: 12px 20px 12px 40px;
-        border: 1px solid #ddd;
-        margin-bottom: 12px;
-    }
-
-    #input4 {
-        background-image: url('/css/searchicon.png');
-        background-position: 10px 10px;
-        background-repeat: no-repeat;
-        width: 100%;
-        font-size: 16px;
-        padding: 12px 20px 12px 40px;
-        border: 1px solid #ddd;
-        margin-bottom: 12px;
-    }
-
-    #input5 {
-        background-image: url('/css/searchicon.png');
-        background-position: 10px 10px;
-        background-repeat: no-repeat;
-        width: 100%;
-        font-size: 16px;
-        padding: 12px 20px 12px 40px;
-        border: 1px solid #ddd;
-        margin-bottom: 12px;
-    }
-
-    #input6 {
-        background-image: url('/css/searchicon.png');
-        background-position: 10px 10px;
-        background-repeat: no-repeat;
-        width: 100%;
-        font-size: 16px;
-        padding: 12px 20px 12px 40px;
-        border: 1px solid #ddd;
-        margin-bottom: 12px;
-    }
-
-    #input7 {
-        background-image: url('/css/searchicon.png');
-        background-position: 10px 10px;
-        background-repeat: no-repeat;
-        width: 100%;
-        font-size: 16px;
-        padding: 12px 20px 12px 40px;
-        border: 1px solid #ddd;
-        margin-bottom: 12px;
-    }
-
-    #dt-opt {
-        border-collapse: collapse;
-        width: 100%;
-        border: 1px solid #ddd;
-        font-size: 18px;
-    }
-
-        #dt-opt th, #dt-opt td {
-            text-align: left;
-            padding: 12px;
+@*<style>
+        * {
+            box-sizing: border-box;
         }
 
-        #dt-opt tr {
-            border-bottom: 1px solid #ddd;
+        #input1 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
         }
 
-            #dt-opt tr.header, #dt-opt tr:hover {
-                background-color: #f1f1f1;
+        #input2 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #input3 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #input4 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #input5 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #input6 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #input7 {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #dt-opt {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-size: 18px;
+        }
+
+            #dt-opt th, #dt-opt td {
+                text-align: left;
+                padding: 12px;
             }
-</style>
-<head>
-    <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--- Basic Page Needs  -->
-    <link rel="stylesheet" href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
-    <link rel="stylesheet" href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
-    <meta charset="utf-8">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Mobile Specific Meta  -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- CSS -->
-    <link rel="stylesheet" href="~/assets2/vendor/bootstrap/css/bootstrap.min.css">
+            #dt-opt tr {
+                border-bottom: 1px solid #ddd;
+            }
 
-    <link rel="stylesheet" href="~/assets2/css/heroic-features.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-
-
-    <!-- Favicon -->
-
-
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:forestgreen">
-        <img src="~/images/logo.png" style="max-width:12%">
-        <div class="container">
-
-            <a class="navbar-brand" asp-action="Index" asp-controller="Home"><b></b></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="Index" asp-controller="Home"style="color:white;"><b>Home</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://www.dpr.gov.ng/contact/" target="_blank"style="color:white;"><b>Contact</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="Calender" asp-controller="Home"style="color:white;"><b>View Training Calendar</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="CertificateCheck" asp-controller="Home" style="color:white;"><b>Verify MISTDO Certificates</b></a>
-                    </li>
-                </ul>
-            </div>
-            <img src="~/images/mlogo.png" style=" height:60px; margin-left:60px;">
-        </div>
-    </nav>
-
-    <div class="page-container">
-        <!-- Header START -->
-
-        @inject UserManager<TraineeApplicationUser> userManager;
-        @inject UserManager<ApplicationUser> usermanager;
-        <!-- Theme Toggle Button END -->
-        <!-- Content Wrapper START -->
-        <div class="main-content" style="background-color:darkseagreen;color:black;">
-
-
-            <div class="page-title">
-                <h4 style=" color:white">Training Calender</h4>
-                @if (ViewData["Success"] != null)
-                {
-                    <div id="successMessage">
-                        @ViewData["Success"]
-                    </div>
-
+                #dt-opt tr.header, #dt-opt tr:hover {
+                    background-color: #f1f1f1;
                 }
-            </div>
-            <div class="row">
-                <div class="col-md-12">
+    </style>*@
+@*<head>
+        <link rel="stylesheet" href="~/bower_components/datatables/media/css/jquery.dataTables.css" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--- Basic Page Needs  -->
+        <link rel="stylesheet" href="~/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
+        <link rel="stylesheet" href="~/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+        <meta charset="utf-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Mobile Specific Meta  -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- CSS -->
+        <link rel="stylesheet" href="~/assets2/vendor/bootstrap/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="~/assets2/css/heroic-features.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
+        <!-- Favicon -->
+
+
+    </head>*@
+@*<body>*@
+
+<div class="page-container">
+    <!-- Header START -->
+
+    @inject UserManager<TraineeApplicationUser> userManager;
+    @inject UserManager<ApplicationUser> usermanager;
+    <section class="genericSection">
+        <div class="container">
+            <h3>CALENDER</h3>
+            <div class="divider"></div>
+
+            <table class="myProperties">
+                <tr class="myPropertiesHeader">
+
+                    <td class="myPropertyAddress">Module Name</td>
+                    <td class="myPropertyAddress">Centre Name</td>
+                    <td class="myPropertyType">Cost</td>
+                    <td class="myPropertyStatus">State</td>
+                    <td class="myPropertyDate">Start Date</td>
+                    <td class="myPropertyDate">End Date</td>
+                    <td class="myPropertyActions">Actions</td>
+                </tr>
+               
+            <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var centername = await usermanager.FindByIdAsync(item.TrainingCentreId);
+
+                        if (item.TrainingEndDate >= DateTime.Today)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TrainingName)
+                            </td>
+                            <td>
+                                @if (centername == null)
+                                {
+                                    string jas = "jadel company";
+                                    @jas
+                                }
+                                else
+                                {
+
+                                    @centername.CompanyName
+                                }
+                            </td>
+                            <td>
+
+                                ₦  @Html.Raw(@String.Format("{0:n0}", item.Cost))
+
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.Venue)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TrainingStartDate) :  @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TrainingEndDate) : @Html.DisplayFor(modelItem => item.TrainingStartTime)
+                            </td>
+                            <td>
+
+                                <a asp-action="DetailsCalender" class="btn btn-success" asp-route-id="@item.Id">Details</a>
+
+                            </td>
+                        </tr>
+                    }
+                }
+                    
+
+                    </tbody>
+                </table>
+
+            <ul class="pageList">
+                <li><a href="#">&lt;</a></li>
+                <li><a href="#" class="current">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&gt;</a></li>
+            </ul>
+        </div><!-- end container -->
+    </section>
+
+    <!-- Theme Toggle Button END -->
+    <!-- Content Wrapper START -->
+    <div class="main-content">
+
+
+        <div class="page-title">
+            <h4 style=" color:white">Training Calender</h4>
+            @if (ViewData["Success"] != null)
+            {
+                <div id="successMessage">
+                    @ViewData["Success"]
+                </div>
+
+            }
+        </div>
+        <div class="row">
+            @*<div class="col-md-12">
                     <div class="card">
                         <div class="card-block">
                             <div class="table-overflow">
                                 <table id="dt-opt" class="table table-lg table-hover" style="font-size:medium">
-                                   
+
                                     <thead>
                                         <tr>
                                             <th>
@@ -404,34 +457,34 @@
 
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>*@
         </div>
-
-
-        <!-- Content Wrapper END -->
-        <!-- Footer START -->
-        <!-- Footer END -->
-        <!-- Page Container END -->
     </div>
-    <footer style="background-color:black">
+
+
+    <!-- Content Wrapper END -->
+    <!-- Footer START -->
+    <!-- Footer END -->
+    <!-- Page Container END -->
+</div>
+@*<footer style="background-color:black">
         <div class="container">
             <span style="float:left;color:aliceblue">Copyright © @DateTime.Now.Year <img src="~/dist/assets/images/logo/footerlogo.png" width="65%" height="45%" style="margin:15px"></span>
         </div>
         <!-- /.container -->
-    </footer>
-</body>
+    </footer>*@
+@*</body>*@
 
-<script src="~/dist/assets/js/apps/calendar.js"></script>
-<script src="~/dist/assets/js/vendor.js"></script>
+@*<script src="~/dist/assets/js/apps/calendar.js"></script>
+    <script src="~/dist/assets/js/vendor.js"></script>
 
-<script src="~/dist/assets/js/app.min.js"></script>
+    <script src="~/dist/assets/js/app.min.js"></script>
 
-<!-- page plugins js -->
-<script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <!-- page plugins js -->
+    <script src="~/bower_components/datatables/media/js/jquery.dataTables.js"></script>
 
-<!-- page js -->
-<script src="~/dist/assets/js/table/data-table.js"></script>
+    <!-- page js -->
+    <script src="~/dist/assets/js/table/data-table.js"></script>*@
 <script>
     $('table.dataTable tfoot').each(function () {
         $(this).insertAfter($(this).siblings('tbody'));
