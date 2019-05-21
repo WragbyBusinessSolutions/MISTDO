@@ -37,6 +37,8 @@ namespace MISTDO.Web.Services
                     var strResult = await response.Content.ReadAsStringAsync();
                     if (response.IsSuccessStatusCode)
                     {
+
+
                         return JsonConvert.DeserializeObject<OgispResponse>(strResult);
 
                     }
